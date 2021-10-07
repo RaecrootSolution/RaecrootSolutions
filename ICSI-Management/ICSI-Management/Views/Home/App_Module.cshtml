@@ -1,0 +1,166 @@
+﻿@model ICSI_Management.Models.AppModule
+@{
+    ViewBag.Title = "AppModule";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>App Module</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("App_Module", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Application Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.AppId, new SelectList(Model.apps, "Id", "ApplicationName"), "-- Select Application Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AppId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Mandatory Module Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.MandModuleId, new SelectList(Model.lstMandMoudule, "Id", "ModuleName"), "-- Select Mandatory Module Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MandModuleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Module Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ModuleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ModuleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Module Description </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ModuleDescription, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ModuleDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Schema Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.SchemaName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SchemaName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">Module Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Module Name</th>
+                    <th>Module Description</th>
+                    <th>Application Name</th>
+                    <th>Mandatory Module Name</th>
+                    <th>Schema Name</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AllAppModules != null)
+                {
+                    foreach (var item in Model.AllAppModules)
+                    {
+                        //count++;
+                        //dt = Convert.ToDateTime(item.CreatedDate);
+                        //status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                        //dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                <tr>
+                    @*<td>@count</td>*@
+
+                    <td>@item.ModuleName</td>
+                    <td>@item.ModuleDescription</td>
+                    <td>@item.AppName</td>
+                    <td>@item.MandModuleName</td>
+                    <td>@item.SchemaName</td>
+                    @*<td>@dtSign.ToString("dd/MM/yyyy hh:mm:ss")</td>*@
+                    <td>@item.Active</td>
+                    @*<td>@item.ClientName</td>
+
+        <td>@item.CINNumber  @item.PANNumber   @item.AadharNumber</td>*@
+
+                    <td>
+
+                        <button type="submit" onclick="location.href='@Url.Action("App_Module", "Home" , new { id = item.Id })'">Edit</button>
+
+                    </td>
+
+
+
+                </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+

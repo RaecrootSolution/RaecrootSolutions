@@ -1,0 +1,399 @@
+﻿@model ICSI_Event.Models.ReceiptDetails
+@{
+    ViewBag.Title = "DiaryPrintReceipt";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+    string words = string.Empty;
+    //string recptNo = string.Empty;
+
+    DateTime Invdt = new DateTime();
+    //Invdt = Convert.ToDateTime(Model.INVOICE_DT);
+    Invdt = Convert.ToDateTime(Model.RECEIPT_DT);
+
+    DateTime Rcdt = new DateTime();
+    Rcdt = DateTime.Now;
+    //Rcdt = Convert.ToDateTime(Model.RECEIPT_DT);
+
+    decimal Roundoff = Math.Round(Model.TOTALAMOUNT,2);
+
+    string []roundOfVlue = Model.TOTALAMOUNT.ToString().Split('.');
+    string FinalRoundOffval = string.Empty;
+    if(roundOfVlue!=null)
+    {
+        FinalRoundOffval = "0." + roundOfVlue[1];
+
+    }
+    decimal totalSGSTCGST = Model.SGSTAmount + Model.CGSTAmount;
+    decimal taxSGSTCGST = Model.CGSTAmount + Model.CGSTAmount; 
+
+    if (Model != null)
+    {
+        words = ICSI_Event.Models.NumberToWords.ConvertAmount(Convert.ToDouble(Model.TOTALAMOUNT));
+        //recptNo = Model.INVOICE_NO.Replace("Inv", "Rec");
+        //DateTime dt = new DateTime();
+        //dt = Convert.ToDateTime(Model.INVOICE_DT);
+        //string dt1= @dt.ToString("dd/MM/yyyy hh:mm:ss");
+    }
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<style>
+    @@media print {
+
+        #Icsi_top_header {
+            display: none;
+        }
+
+        #printButton {
+            display: none;
+        }
+
+        #btn-Verification {
+            display: none;
+        }
+        /* ..*/
+        .icsiFooter {
+            display: none;
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#printButton").click(function () {
+            window.print();
+        });
+    });
+</script>
+@using (Html.BeginForm("ReceiptDetails", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="contain-all">
+        <div class="container form-field">
+
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset id="fieldset">
+                    <section id="Icsi_top_header">
+                        <div class="container-fluid">
+                            <div class="header">
+                                <div class="LogoSpacing">
+                                    <div class="header-part">
+                                        <div class="" id="LogoCenter">
+                                            <img src="~/images/logo_full.png" alt="logo" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1 text-center">
+                                <div>
+                                    ICSI HOUSE, C-36, INSTITUTIONAL AREA, SECTOR-62, NOIDA, GAUTAM BUDDHA NAGAR <br>
+                                    UTTAR PRADESH.- 201309 INDIA
+                                </div>
+                                <div>
+                                    Phone : (0120) 4522000,Website - www.icsi.edu, www.icsi.in Grievance Redressal Portal :
+                                    http://support.icsi.edu
+                                </div>
+                                <div> <strong>GST Number : 09AAATT1103F2ZX  </strong> </div>
+                            </div>
+                            <div class="col-md-8 col-md-offset-1 text-center">
+                                <h3><strong>TAX INVOICE <br> ORIGINAL FOR RECIPIENT</strong></h3>
+                            </div>
+                        @*<div class="row">*@
+                            <div class="col-md-9 col-md-offset-1 no-padding">
+
+                                <div class="col-md-5 col-xs-6 no-padding" style="float:left">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            Invoice No. : <label class="PaymntLabel">@Model.RECEIPT_NO</label>
+                                        </li>
+                                        <li>Reverse Charge : <label class="PaymntLabel">No</label></li>
+                                        <li>
+                                            Customer Name : <span style="font-weight:normal;"> @Model.CustomerName </span>
+                                         
+                                        </li>
+                                        <li>GST/UIN No.: <label class="fontBold">@Model.GSTIN</label> </li>
+                                        <li>
+                                            Billing Address: <label class="PaymntLabel">
+                                                @Model.BILLING_ADDRESS_TX , @Model.SHIPPING_ADDRESS_TX , @Model.DCIty, @Model.PinCode
+                                            </label>
+                                        </li>
+                                        <li>State : <label class="PaymntLabel">@Model.Stata_Name</label> </li>
+                                        <li>State Code : <label class="PaymntLabel">@Model.STATE_CODE</label> </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-xs-6 no-padding textWrap" style="float:right">
+                                    <ul class="list-unstyled">
+
+                                        <li>Invoice Date: <label class="PaymntLabel">@Invdt.ToString("dd/MM/yyyy")</label> </li>
+                                        <li>
+                                            Memb./Regn./Ref.No. : <span style="font-weight:normal;"> @Model.MembershipNo </span>
+                                        </li>
+
+                                        <li style="margin-top:70px;"></li>
+                                        
+                                        <li>
+                                            Shipping Address : <label class="PaymntLabel">
+                                                @Model.BILLING_ADDRESS_TX , @Model.SHIPPING_ADDRESS_TX , @Model.DCIty, @Model.PinCode
+                                            </label>
+                                        </li>
+                                        <li>State : <label class="PaymntLabel">@Model.Stata_Name</label> </li>
+                                        <li>State Code : <label class="PaymntLabel">@Model.STATE_CODE</label> </li>
+
+                                        <li>Place of Supply : <label class="PaymntLabel">@Model.Stata_Name (@Model.STATE_CODE)</label> </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            @*</div>*@
+                            <div class="col-md-9 col-md-offset-1 no-padding">
+                                <table class="table table-bordered tableSearchResults receiptWidth">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>S.No.</th>
+                                            <th>Item Description</th>
+                                            <th>SAC Code</th>
+                                            <th>Qty</th>
+                                            <th>Rate/Item</th>
+                                            <th>Taxable Amt</th>
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <th>IGST @@</th>
+                                                <th>IGST Amt Rs.</th>
+                                            }
+
+                                            @if (Model.SGSTAmount != 0)
+                                            {
+                                                <th>SGST @@</th>
+                                                <th>SGST Amt Rs.</th>
+                                            }
+                                            @if (Model.CGSTAmount != 0)
+                                            {
+                                                <th>CGST @@</th>
+                                                <th>CGST Amt Rs.</th>
+                                            }
+                                            <th>Round Off</th>
+                                            <th>Total Amt Rs.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>@Model.STALLDESCRIPTION</td>
+                                            <td></td>
+                                            @*<td>@Model.SAC_CODE</td>*@
+                                            <td>@Model.QtyDiaryNumber</td>
+                                            <td>300.00</td>
+                                            <td>@Model.AMOUNT</td>
+                                            @*<td>@Model.GSTAMOUNT </td>*@
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td> 18%</td>
+                                                <td>@Model.IGSTAmount</td>
+                                            }
+                                            @if (Model.SGSTAmount != 0)
+                                            {
+                                                <td>
+                                                    9%
+                                                </td>
+                                                <td>@Model.SGSTAmount</td>
+                                            }
+                                            @if (Model.CGSTAmount != 0)
+                                            {
+                                                <td>9%</td>
+                                                <td>@Model.CGSTAmount</td>
+                                            }
+                                            <td>@FinalRoundOffval</td>
+                                            <td>@Model.TOTALAMOUNT</td>
+                                        </tr>
+
+                                        @if (Model.IGSTAmount != 0)
+                                        {
+                                        <tr class="fontBold">
+                                            <td colspan="4"></td>
+                                            <td>Total</td>
+
+                                            <td>@Model.AMOUNT</td>
+
+                                            <td>  </td>
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td> @Model.IGSTAmount </td>
+                                            }
+                                            else
+                                            {
+                                                <td> @totalSGSTCGST</td>
+
+                                            }
+
+
+                                            <td> @FinalRoundOffval </td>
+                                            <td> @Model.TOTALAMOUNT </td>
+                                            @*<td>@Model.GSTAMOUNT</td>*@
+                                        </tr>}
+
+                                        else
+                                        {
+                                        <tr class="fontBold">
+                                            <td colspan="4"></td>
+                                            <td>Total</td>
+
+                                            <td>@Model.AMOUNT</td>
+                                            <td></td>
+
+                                            <td> @Model.SGSTAmount </td>
+
+                                            <td></td>
+
+                                            <td>  @Model.CGSTAmount</td>
+                                                   
+
+
+
+                                            <td> @FinalRoundOffval </td>
+                                            <td> @Model.TOTALAMOUNT </td>
+
+                                            @*<td></td>*@
+                                            @*<td>@Model.GSTAMOUNT</td>*@
+                                        </tr>
+                                        }
+
+                                        @* 2nd table for design *@
+                                        <tr class="fontBold">
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td colspan="4"> </td>
+                                                <td colspan="2" style="text-align:left;">Taxable Amt</td>
+                                                <td colspan="5" style="text-align:left;">@Model.AMOUNT</td>
+                                            }
+                                            else
+                                            {
+                                                <td colspan="5"> </td>
+                                                <td colspan="2" style="text-align:left;">Taxable Amt</td>
+                                                <td colspan="5" style="text-align:left;">@Model.AMOUNT</td>
+                                            }
+
+                                        </tr>
+                                        <tr class="fontBold">
+
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td colspan="4"> </td>
+                                                @*<td colspan="2" style="text-align:left;">IGST @@ 18% </td>*@
+                                                <td colspan="2" style="text-align:left;">Total Tax </td>
+                                                <td colspan="4" style="text-align:left;">@Model.IGSTAmount</td>
+                                            }
+                                            else
+                                            {
+                                                <td colspan="5"> </td>
+                                                <td colspan="2" style="text-align:left;">Total Tax </td>
+                                                <td colspan="5" style="text-align:left;">@totalSGSTCGST</td>
+                                            }
+                                        </tr>
+
+                                        @*@<tr class="fontBold">
+        <td colspan="3"> </td>
+        @if (Model.SGSTAmount != 0)
+        {
+            @*<td colspan="2" style="text-align:left;">SGST @@ 9% </td>*@
+                                        @*<td colspan="2" style="text-align:left;">Total Tax </td>
+        <td colspan="4" style="text-align:left;">@Model.SGSTAmount</td>*@
+                                        @*}*@
+                                        @*</tr>*@
+                                        @*<tr class="fontBold">
+        <td colspan="3"> </td>
+        @if (Model.CGSTAmount != 0)
+        {
+        @*<td colspan="2" style="text-align:left;">CGST @@ 9% </td>*@
+                                        @*<td colspan="2" style="text-align:left;">Total Tax </td>
+            <td colspan="4" style="text-align:left;">@Model.CGSTAmount</td>
+        }*@
+                                        @*</tr>*@
+                                        <tr class="fontBold">
+
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td colspan="4"> </td>
+                                                <td colspan="2" style="text-align:left;">Round Off </td>
+                                                <td colspan="4" style="text-align:left;">@FinalRoundOffval</td>
+                                            }
+                                            else
+                                            {
+                                                <td colspan="5"> </td>
+                                                <td colspan="2" style="text-align:left;">Round Off </td>
+                                                <td colspan="5" style="text-align:left;">@FinalRoundOffval</td>
+                                            }
+
+
+
+                                        </tr>
+
+                                       
+                                        <tr class="fontBold">
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td colspan="4"> </td>
+                                                <td colspan="2" style="text-align:left;">Invoice Total (In Figure) Rs. </td>
+                                                <td colspan="4" style="text-align:left;">@Model.TOTALAMOUNT</td>
+                                            }
+
+                                            else
+                                            {
+                                                <td colspan="5"> </td>
+                                                <td colspan="2" style="text-align:left;">Invoice Total (In Figure) Rs. </td>
+                                                <td colspan="5" style="text-align:left;">@Model.TOTALAMOUNT</td>
+                                            }
+                                        </tr>
+
+
+                                        <tr class="fontBold">
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td colspan="4"> </td>
+                                                <td colspan="2" style="text-align:left;">Invoice Total (In Words)</td>
+                                                <td colspan="4" style="text-align:left;">Rupees @words</td>
+                                            }
+
+                                            else
+                                            {
+                                                <td colspan="5"> </td>
+                                                <td colspan="2" style="text-align:left;">Invoice Total (In Words)</td>
+                                                <td colspan="5" style="text-align:left;">Rupees @words</td>
+                                            }
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <div class="col-md-9 col-md-offset-1 no-padding">
+                                <div class="col-md-6 col-xs-4 col-xm-4 no-padding" style="float:left"><strong> Receipt No. : @Model.RECEIPT_NO </strong></div>
+                                <div class="col-md-4 col-xs-4 col-xm-4 no-padding textWrap textBottom" > <strong> Receipt Date : @Invdt.ToString("dd/MM/yyyy")</strong> </div>
+                            </div>
+
+                            <div class="col-md-9 col-md-offset-1 no-padding">
+                                <p></p>
+                                <p> <strong>Dear Sir/ Madam, </strong></p>
+                                <p> <strong>We acknowledge with thanks the receipt of Online Payment (ICICI Transaction ID :  @Model.ICSITransactionID_R)  of @Model.TOTALAMOUNT towards the above.</strong> </p>
+                                <p class="text-right pt-40">For The Insititute of Company Secretaries of India</p>
+                                <p >This is computer generated invoice and do not require any stamp or signature.</p>
+                            </div>
+
+                            <div class="col-md-9 col-md-offset-1 no-padding text-right pt-40">
+                                @*<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ExportToExcel", "Home")'"><span class="glyphicon glyphicon-download-alt"></span> Download PDF</button>*@
+                                <button type="button" id="printButton" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                            </div>
+                        </div>
+                            </div>
+</fieldset>
+            </form>
+        </div>
+    </div>
+}
+
+
+

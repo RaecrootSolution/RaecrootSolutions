@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBModelEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCertificateType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateType" Type="varchar" MaxLength="50" />
+          <Property Name="CertificateDesc" Type="varchar" MaxLength="200" />
+          <Property Name="DocumentTypeID" Type="int" />
+          <Property Name="IsValid" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblComplaint">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EmailId" Type="varchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="10" />
+          <Property Name="ComplaintDesc" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDocParticular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParticularType" Type="varchar" MaxLength="50" />
+          <Property Name="ParticularDesc" Type="varchar" MaxLength="300" />
+          <Property Name="DocumentTypeID" Type="int" />
+          <Property Name="IsValid" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblDocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="300" />
+          <Property Name="TypeDesc" Type="nvarchar(max)" />
+          <Property Name="IsValid" Type="char" MaxLength="1" />
+          <Property Name="IssueCerNo" Type="int" />
+          <Property Name="IssueCerPNo" Type="int" />
+          <Property Name="TypesOfDocument" Type="int" />
+          <Property Name="MaxNumber" Type="int" />
+          <Property Name="Pu_MaxNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="tblErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorCode" Type="varchar" MaxLength="10" />
+          <Property Name="ErrorType" Type="varchar" MaxLength="20" />
+          <Property Name="ErrorDescription" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblGenerateUDIN">
+          <Key>
+            <PropertyRef Name="UDINGenerationId" />
+          </Key>
+          <Property Name="UDINGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FinancialYear" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPuUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Membership_Number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Approval_Date" Type="date" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRevokeUDIN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UDINId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UDINReason" Type="varchar" MaxLength="300" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusCode" Type="varchar" MaxLength="10" />
+          <Property Name="StatusDesc" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblUDIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipNumber" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="YearOfEnrollment" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="UDINUniqueCode" Type="varchar" MaxLength="20" />
+          <Property Name="IsValid" Type="char" MaxLength="1" />
+          <Property Name="DocumentTypeId" Type="int" />
+          <Property Name="DocumentDescription" Type="varchar" MaxLength="200" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FinancialYear" Type="varchar" MaxLength="50" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" />
+          <Property Name="CINNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CertificateTypeId" Type="int" Nullable="false" />
+          <Property Name="UDINInitiative" Type="int" Nullable="false" />
+          <Property Name="DateOfSigningDoc" Type="date" Nullable="false" />
+          <Property Name="PANNumber" Type="varchar" MaxLength="50" />
+          <Property Name="AadharNumber" Type="varchar" MaxLength="50" />
+          <Property Name="FinancialYear_Remark" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="15" />
+          <Property Name="EmailId" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UType" Type="char" MaxLength="1" />
+          <Property Name="OldUserName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserActivity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageName" Type="varchar" MaxLength="50" />
+          <Property Name="ActionName" Type="varchar" MaxLength="20" />
+          <Property Name="UserRequestId" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UDINVerificationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="UDINNumber" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tblRevokeUDIN_tblUDIN">
+          <End Role="tblUDIN" Type="Self.tblUDIN" Multiplicity="0..1" />
+          <End Role="tblRevokeUDIN" Type="Self.tblRevokeUDIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUDIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRevokeUDIN">
+              <PropertyRef Name="UDINId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRevokeUDIN_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRevokeUDIN" Type="Self.tblRevokeUDIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRevokeUDIN">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UDINVerificationDetail_UDINVerificationDetail">
+          <End Role="UDINVerificationDetail" Type="Self.UDINVerificationDetail" Multiplicity="1" />
+          <End Role="UDINVerificationDetail1" Type="Self.UDINVerificationDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UDINVerificationDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UDINVerificationDetail1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetTotalUserUDIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RevokeUDIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UDINID" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="UDINReason" Type="varchar" Mode="In" />
+          <Parameter Name="UDINNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RP_GetUDINList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="UDINNumber" Type="varchar" Mode="In" />
+          <Parameter Name="FinancialYear" Type="varchar" Mode="In" />
+          <Parameter Name="FromDate" Type="varchar" Mode="In" />
+          <Parameter Name="ToDate" Type="varchar" Mode="In" />
+          <Parameter Name="MembershipNo" Type="varchar" Mode="In" />
+          <Parameter Name="MembershipName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RP_UDINVerification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FName" Type="varchar" Mode="In" />
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="MobileNumber" Type="varchar" Mode="In" />
+          <Parameter Name="MembershipNumber" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DBModelEntitiesStoreContainer">
+          <EntitySet Name="tblCertificateType" EntityType="Self.tblCertificateType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComplaint" EntityType="Self.tblComplaint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocParticular" EntityType="Self.tblDocParticular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocumentType" EntityType="Self.tblDocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblErrorLog" EntityType="Self.tblErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGenerateUDIN" EntityType="Self.tblGenerateUDIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPuUser" EntityType="Self.tblPuUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRevokeUDIN" EntityType="Self.tblRevokeUDIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUDIN" EntityType="Self.tblUDIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserActivity" EntityType="Self.tblUserActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UDINVerificationDetail" EntityType="Self.UDINVerificationDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblRevokeUDIN_tblUDIN" Association="Self.FK_tblRevokeUDIN_tblUDIN">
+            <End Role="tblUDIN" EntitySet="tblUDIN" />
+            <End Role="tblRevokeUDIN" EntitySet="tblRevokeUDIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRevokeUDIN_tblUser" Association="Self.FK_tblRevokeUDIN_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRevokeUDIN" EntitySet="tblRevokeUDIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UDINVerificationDetail_UDINVerificationDetail" Association="Self.FK_UDINVerificationDetail_UDINVerificationDetail">
+            <End Role="UDINVerificationDetail" EntitySet="UDINVerificationDetail" />
+            <End Role="UDINVerificationDetail1" EntitySet="UDINVerificationDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModelEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCertificateType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CertificateDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentTypeID" Type="Int32" />
+          <Property Name="IsValid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblComplaint">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ComplaintDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblDocParticular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParticularType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParticularDesc" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentTypeID" Type="Int32" />
+          <Property Name="IsValid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblDocumentType">
+          <Key>
+            <PropertyRef Name="DocumentTypeID" />
+          </Key>
+          <Property Name="DocumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentType" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TypeDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IssueCerNo" Type="Int32" />
+          <Property Name="IssueCerPNo" Type="Int32" />
+          <Property Name="TypesOfDocument" Type="Int32" />
+          <Property Name="MaxNumber" Type="Int32" />
+          <Property Name="Pu_MaxNumber" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblErrorLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblGenerateUDIN">
+          <Key>
+            <PropertyRef Name="UDINGenerationId" />
+          </Key>
+          <Property Name="UDINGenerationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FinancialYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRevokeUDIN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UDINId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="UDINReason" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblUDIN" Relationship="Self.FK_tblRevokeUDIN_tblUDIN" FromRole="tblRevokeUDIN" ToRole="tblUDIN" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblRevokeUDIN_tblUser" FromRole="tblRevokeUDIN" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblStatu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StatusDesc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUDIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipNumber" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YearOfEnrollment" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="UDINUniqueCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsValid" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DocumentTypeId" Type="Int32" />
+          <Property Name="DocumentDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FinancialYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CINNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CertificateTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UDINInitiative" Type="Int32" Nullable="false" />
+          <Property Name="DateOfSigningDoc" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PANNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AadharNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRevokeUDINs" Relationship="Self.FK_tblRevokeUDIN_tblUDIN" FromRole="tblUDIN" ToRole="tblRevokeUDIN" />
+          <Property Name="FinancialYear_Remark" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="MobileNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblRevokeUDINs" Relationship="Self.FK_tblRevokeUDIN_tblUser" FromRole="tblUser" ToRole="tblRevokeUDIN" />
+          <Property Name="OldUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUserActivity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserRequestId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UDINVerificationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UDINNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UDINVerificationDetail1" Relationship="Self.FK_UDINVerificationDetail_UDINVerificationDetail" FromRole="UDINVerificationDetail" ToRole="UDINVerificationDetail1" />
+          <NavigationProperty Name="UDINVerificationDetail2" Relationship="Self.FK_UDINVerificationDetail_UDINVerificationDetail" FromRole="UDINVerificationDetail1" ToRole="UDINVerificationDetail" />
+        </EntityType>
+        <Association Name="FK_tblRevokeUDIN_tblUDIN">
+          <End Role="tblUDIN" Type="Self.tblUDIN" Multiplicity="0..1" />
+          <End Role="tblRevokeUDIN" Type="Self.tblRevokeUDIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUDIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRevokeUDIN">
+              <PropertyRef Name="UDINId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRevokeUDIN_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRevokeUDIN" Type="Self.tblRevokeUDIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRevokeUDIN">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UDINVerificationDetail_UDINVerificationDetail">
+          <End Role="UDINVerificationDetail" Type="Self.UDINVerificationDetail" Multiplicity="1" />
+          <End Role="UDINVerificationDetail1" Type="Self.UDINVerificationDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UDINVerificationDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UDINVerificationDetail1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ICSI_DBModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCertificateTypes" EntityType="Self.tblCertificateType" />
+          <EntitySet Name="tblComplaints" EntityType="Self.tblComplaint" />
+          <EntitySet Name="tblDocParticulars" EntityType="Self.tblDocParticular" />
+          <EntitySet Name="tblDocumentTypes" EntityType="Self.tblDocumentType" />
+          <EntitySet Name="tblErrorLogs" EntityType="Self.tblErrorLog" />
+          <EntitySet Name="tblGenerateUDINs" EntityType="Self.tblGenerateUDIN" />
+          <EntitySet Name="tblRevokeUDINs" EntityType="Self.tblRevokeUDIN" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatu" />
+          <EntitySet Name="tblUDINs" EntityType="Self.tblUDIN" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserActivities" EntityType="Self.tblUserActivity" />
+          <EntitySet Name="UDINVerificationDetails" EntityType="Self.UDINVerificationDetail" />
+          <AssociationSet Name="FK_tblRevokeUDIN_tblUDIN" Association="Self.FK_tblRevokeUDIN_tblUDIN">
+            <End Role="tblUDIN" EntitySet="tblUDINs" />
+            <End Role="tblRevokeUDIN" EntitySet="tblRevokeUDINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRevokeUDIN_tblUser" Association="Self.FK_tblRevokeUDIN_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRevokeUDIN" EntitySet="tblRevokeUDINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UDINVerificationDetail_UDINVerificationDetail" Association="Self.FK_UDINVerificationDetail_UDINVerificationDetail">
+            <End Role="UDINVerificationDetail" EntitySet="UDINVerificationDetails" />
+            <End Role="UDINVerificationDetail1" EntitySet="UDINVerificationDetails" />
+          </AssociationSet>
+          <FunctionImport Name="GetTotalUserUDIN" ReturnType="Collection(DBModelEntities.GetTotalUserUDIN_Result)" />
+          <FunctionImport Name="RevokeUDIN">
+            <Parameter Name="UDINID" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UDINReason" Mode="In" Type="String" />
+            <Parameter Name="UDINNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RP_GetUDINList">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UDINNumber" Mode="In" Type="String" />
+            <Parameter Name="FinancialYear" Mode="In" Type="String" />
+            <Parameter Name="FromDate" Mode="In" Type="String" />
+            <Parameter Name="ToDate" Mode="In" Type="String" />
+            <Parameter Name="MembershipNo" Mode="In" Type="String" />
+            <Parameter Name="MembershipName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RP_UDINVerification" ReturnType="Collection(DBModelEntities.RP_UDINVerification_Result)">
+            <Parameter Name="FName" Mode="In" Type="String" />
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="MembershipNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblPuUsers" EntityType="DBModelEntities.tblPuUser" />
+        </EntityContainer>
+        <ComplexType Name="GetTotalUserUDIN_Result">
+          <Property Type="Int32" Name="TotalUDINs" Nullable="true" />
+          <Property Type="Int32" Name="TotalUsers" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="RP_UDINVerification_Result">
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UDINUniqueCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MembershipDetilas" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DocumentType" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="TypeofCertificate" Nullable="true" />
+          <Property Type="DateTime" Name="DateofSigingDoc" Nullable="false" />
+          <Property Type="String" Name="FigParticular" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="MembershipNumber" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="DocumentDesription" Nullable="true" MaxLength="503" />
+          <Property Type="String" Name="IsValid" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="tblPuUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Membership_Number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Approval_Date" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelEntitiesStoreContainer" CdmEntityContainer="ICSI_DBModelEntities">
+          <EntitySetMapping Name="tblCertificateTypes">
+            <EntityTypeMapping TypeName="DBModelEntities.tblCertificateType">
+              <MappingFragment StoreEntitySet="tblCertificateType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CertificateType" ColumnName="CertificateType" />
+                <ScalarProperty Name="CertificateDesc" ColumnName="CertificateDesc" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComplaints">
+            <EntityTypeMapping TypeName="DBModelEntities.tblComplaint">
+              <MappingFragment StoreEntitySet="tblComplaint">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MembershipNumber" ColumnName="MembershipNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ComplaintDesc" ColumnName="ComplaintDesc" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocParticulars">
+            <EntityTypeMapping TypeName="DBModelEntities.tblDocParticular">
+              <MappingFragment StoreEntitySet="tblDocParticular">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParticularType" ColumnName="ParticularType" />
+                <ScalarProperty Name="ParticularDesc" ColumnName="ParticularDesc" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocumentTypes">
+            <EntityTypeMapping TypeName="DBModelEntities.tblDocumentType">
+              <MappingFragment StoreEntitySet="tblDocumentType">
+                <ScalarProperty Name="Pu_MaxNumber" ColumnName="Pu_MaxNumber" />
+                <ScalarProperty Name="DocumentTypeID" ColumnName="DocumentTypeID" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="TypeDesc" ColumnName="TypeDesc" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IssueCerNo" ColumnName="IssueCerNo" />
+                <ScalarProperty Name="IssueCerPNo" ColumnName="IssueCerPNo" />
+                <ScalarProperty Name="TypesOfDocument" ColumnName="TypesOfDocument" />
+                <ScalarProperty Name="MaxNumber" ColumnName="MaxNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblErrorLogs">
+            <EntityTypeMapping TypeName="DBModelEntities.tblErrorLog">
+              <MappingFragment StoreEntitySet="tblErrorLog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="ErrorDescription" ColumnName="ErrorDescription" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGenerateUDINs">
+            <EntityTypeMapping TypeName="DBModelEntities.tblGenerateUDIN">
+              <MappingFragment StoreEntitySet="tblGenerateUDIN">
+                <ScalarProperty Name="UDINGenerationId" ColumnName="UDINGenerationId" />
+                <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRevokeUDINs">
+            <EntityTypeMapping TypeName="DBModelEntities.tblRevokeUDIN">
+              <MappingFragment StoreEntitySet="tblRevokeUDIN">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UDINId" ColumnName="UDINId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UDINReason" ColumnName="UDINReason" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatus">
+            <EntityTypeMapping TypeName="DBModelEntities.tblStatu">
+              <MappingFragment StoreEntitySet="tblStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="StatusDesc" ColumnName="StatusDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUDINs">
+            <EntityTypeMapping TypeName="DBModelEntities.tblUDIN">
+              <MappingFragment StoreEntitySet="tblUDIN">
+                <ScalarProperty Name="FinancialYear_Remark" ColumnName="FinancialYear_Remark" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MembershipNumber" ColumnName="MembershipNumber" />
+                <ScalarProperty Name="YearOfEnrollment" ColumnName="YearOfEnrollment" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="UDINUniqueCode" ColumnName="UDINUniqueCode" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="DocumentDescription" ColumnName="DocumentDescription" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="CINNumber" ColumnName="CINNumber" />
+                <ScalarProperty Name="CertificateTypeId" ColumnName="CertificateTypeId" />
+                <ScalarProperty Name="UDINInitiative" ColumnName="UDINInitiative" />
+                <ScalarProperty Name="DateOfSigningDoc" ColumnName="DateOfSigningDoc" />
+                <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+                <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="DBModelEntities.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="OldUserName" ColumnName="OldUserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UType" ColumnName="UType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserActivities">
+            <EntityTypeMapping TypeName="DBModelEntities.tblUserActivity">
+              <MappingFragment StoreEntitySet="tblUserActivity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="UserRequestId" ColumnName="UserRequestId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDINVerificationDetails">
+            <EntityTypeMapping TypeName="DBModelEntities.UDINVerificationDetail">
+              <MappingFragment StoreEntitySet="UDINVerificationDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="UDINNumber" ColumnName="UDINNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTotalUserUDIN" FunctionName="DBModelEntities.Store.GetTotalUserUDIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBModelEntities.GetTotalUserUDIN_Result">
+                <ScalarProperty Name="TotalUDINs" ColumnName="TotalUDINs" />
+                <ScalarProperty Name="TotalUsers" ColumnName="TotalUsers" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RevokeUDIN" FunctionName="DBModelEntities.Store.RevokeUDIN" />
+          <FunctionImportMapping FunctionImportName="RP_GetUDINList" FunctionName="DBModelEntities.Store.RP_GetUDINList" />
+          <FunctionImportMapping FunctionImportName="RP_UDINVerification" FunctionName="DBModelEntities.Store.RP_UDINVerification">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBModelEntities.RP_UDINVerification_Result">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UDINUniqueCode" ColumnName="UDINUniqueCode" />
+                <ScalarProperty Name="MembershipDetilas" ColumnName="MembershipDetilas" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="TypeofCertificate" ColumnName="TypeofCertificate" />
+                <ScalarProperty Name="DateofSigingDoc" ColumnName="DateofSigingDoc" />
+                <ScalarProperty Name="FigParticular" ColumnName="FigParticular" />
+                <ScalarProperty Name="MembershipNumber" ColumnName="MembershipNumber" />
+                <ScalarProperty Name="DocumentDesription" ColumnName="DocumentDesription" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblPuUsers">
+            <EntityTypeMapping TypeName="DBModelEntities.tblPuUser">
+              <MappingFragment StoreEntitySet="tblPuUser">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Approval_Date" ColumnName="Approval_Date" />
+                <ScalarProperty Name="Membership_Number" ColumnName="Membership_Number" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

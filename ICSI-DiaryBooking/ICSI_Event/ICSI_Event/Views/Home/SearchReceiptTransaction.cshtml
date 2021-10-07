@@ -1,0 +1,83 @@
+﻿@model ICSI_Event.Models.SearchReceiptTransaction
+
+@{
+    ViewBag.Title = "SearchReceiptTransaction";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+
+}
+
+<div class="contain-all">
+    <div class="container form-field">
+        <div style="min-height:350px;">
+            @*<div class="my-1">
+                <h4 class="text-center" style="background:#ccc; padding:10px;">Print Receipt</h4>
+            </div>*@
+
+            <div class="addTrainingStructure paymentStructure">
+                <h4 class="">Print Receipt</h4>
+            </div>
+
+
+
+            @using (Html.BeginForm("SearchReceiptTransaction", "Home"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div id="loginformblock">
+                    <div class="card loginformRegistrn">
+                        <div class="form-horizontal">
+
+                            <div class="form-group"></div>
+
+                            <div class="form-group">
+                                @*@Html.Label("Enter Transaction ID", htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.TransactionID, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Transaction ID" } })
+                                    @Html.ValidationMessageFor(model => model.TransactionID, "", new { @class = "text-danger" })
+                                </div>
+
+                                @*<div class="SendOtpBtn">
+                                <button type="submit" style="padding:5px;">Search</button>
+                            </div>*@
+
+                                <div class="col-sm-12 col-md-4">
+                                    <button type="submit" class="btn btn-primary" style="padding:5px;" data-toggle="modal" data-target="#message"> Search </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        @*<div class="SendOtpBtn">
+                        <button type="submit" style="text-align:center">Search</button>
+                    </div>*@
+
+                        <div class="text-danger">
+                            @if (ViewBag.ErrorMsg != null)
+                            {
+                                <p>
+                                    @ViewBag.ErrorMsg
+                                </p>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+    @*<div>
+            @Html.ActionLink("Search", "Index")
+        </div>*@
+
+
+    @*@section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+
+        }*@

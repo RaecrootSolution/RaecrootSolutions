@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ICSI_StimulateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_MODULE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODULE_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APP_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_DESC_TX" Type="text" />
+          <Property Name="SCHEMA_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="MANDATORY_MOD_ID" Type="int" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="APPLICATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="APPLICATION_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APPLICATIONDESC_TX" Type="text" />
+          <Property Name="WEB_APP_ID" Type="int" />
+          <Property Name="SCHEMA_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="MANDATORY_APP_ID" Type="int" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MENU_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MENU_LABEL_TX" Type="varchar(max)" Nullable="false" />
+          <Property Name="REF_ID" Type="int" Nullable="false" />
+          <Property Name="WEB_APP_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_NM" Type="int" Nullable="false" />
+          <Property Name="SCREEN_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REPORT_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORT_NAME_TX" Type="varchar(max)" Nullable="false" />
+          <Property Name="SQL_TX" Type="text" Nullable="false" />
+          <Property Name="COLUMNS_TX" Type="text" Nullable="false" />
+          <Property Name="TITLE_TX" Type="text" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESP_SCREEN_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCREEN_ID" Type="int" Nullable="false" />
+          <Property Name="RESP_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESPONSIBILITY_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RESP_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RESP_SYM_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RESP_DESC_TX" Type="varchar(max)" />
+          <Property Name="RESP_TYPE_NM" Type="int" Nullable="false" />
+          <Property Name="REF_ID" Type="int" />
+          <Property Name="READ_WRITE_YN" Type="bit" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE_RESP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="RESP_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ROLE_SYM_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ROLE_DESC_TX" Type="varchar(max)" />
+          <Property Name="ORDER_NM" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCREEN_COMP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCREEN_ID" Type="int" Nullable="false" />
+          <Property Name="REF_ID" Type="int" />
+          <Property Name="ORDER_NM" Type="int" Nullable="false" />
+          <Property Name="COMP_TYPE_NM" Type="int" Nullable="false" />
+          <Property Name="COMP_CONTENT_TX" Type="text" />
+          <Property Name="COMP_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COMP_VALUE_TX" Type="varchar(max)" />
+          <Property Name="COMP_TEXT_TX" Type="text" />
+          <Property Name="COMP_STYLE_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COMP_SCRIPT_TX" Type="varchar" MaxLength="50" />
+          <Property Name="SCREEN_REF_METHOD_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COMP_CLASS_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COMP_CLASS_STATIC_YN" Type="bit" />
+          <Property Name="COMP_METHOD_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COMP_METHOD_STATIC_YN" Type="bit" />
+          <Property Name="SCHEMA_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="TABLE_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="COLUMN_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="MANDATORY_YN" Type="bit" Nullable="false" />
+          <Property Name="READ_WRITE_YN" Type="bit" Nullable="false" />
+          <Property Name="SQL_TX" Type="text" />
+          <Property Name="WHERE_TX" Type="varchar(max)" />
+          <Property Name="REPORT_ID" Type="int" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCREEN_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="APP_MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="SCREEN_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SCREEN_SYM_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SCREEN_TITLE_TX" Type="varchar(max)" />
+          <Property Name="SCREEN_FILE_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="SCREEN_STYLE_TX" Type="text" />
+          <Property Name="SCREEN_SCRIPT_TX" Type="text" />
+          <Property Name="SCREEN_CONTENT_TX" Type="text" />
+          <Property Name="SCREEN_REF_CLASS_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="SCREEN_CLASS_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="SCREEN_CLASS_STATIC_YN" Type="bit" />
+          <Property Name="SCREEN_METHOD_NAME_TX" Type="varchar(max)" />
+          <Property Name="SCREEN_METHOD_STATIC_YN" Type="bit" />
+          <Property Name="MANDATORY_SCR_ID" Type="int" />
+          <Property Name="SCHEMA_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="TABLE_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="ACTION_TX" Type="varchar" MaxLength="50" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUPER_USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_TYPE_ID" Type="bigint" Nullable="false" />
+          <Property Name="USER_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL_TX" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="40" />
+          <Property Name="LOGIN_PWD_TX" Type="varchar" MaxLength="64" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_RESP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="RESP_ID" Type="int" Nullable="false" />
+          <Property Name="INCLUDE_YN" Type="bit" Nullable="false" />
+          <Property Name="READ_WRITE_YN" Type="bit" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_ROLE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_SCREEN_COMP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="SCREEN_COMP_ID" Type="int" Nullable="false" />
+          <Property Name="VISIBLE_YN" Type="bit" Nullable="false" />
+          <Property Name="WRITE_YN" Type="bit" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_TYPE_ID" Type="bigint" Nullable="false" />
+          <Property Name="USER_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="40" />
+          <Property Name="LOGIN_PWD_TX" Type="varchar" MaxLength="64" />
+          <Property Name="SESSION_KEY" Type="varchar" MaxLength="64" />
+          <Property Name="DESIGN_ADMIN_YN" Type="bit" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_TYPE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_TYPE_TX" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_TYPE_DESC_TX" Type="nvarchar(max)" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WEB_APPLICATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WEB_APP_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WEB_URL_TX" Type="varchar(max)" />
+          <Property Name="WEB_APP_DESC_TX" Type="text" />
+          <Property Name="SCHEMA_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ICSI_StimulateModelStoreContainer">
+          <EntitySet Name="APP_MODULE_T" EntityType="Self.APP_MODULE_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="APPLICATION_T" EntityType="Self.APPLICATION_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU_T" EntityType="Self.MENU_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPORT_T" EntityType="Self.REPORT_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESP_SCREEN_T" EntityType="Self.RESP_SCREEN_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESPONSIBILITY_T" EntityType="Self.RESPONSIBILITY_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_RESP_T" EntityType="Self.ROLE_RESP_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_T" EntityType="Self.ROLE_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCREEN_COMP_T" EntityType="Self.SCREEN_COMP_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCREEN_T" EntityType="Self.SCREEN_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUPER_USER_T" EntityType="Self.SUPER_USER_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_RESP_T" EntityType="Self.USER_RESP_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ROLE_T" EntityType="Self.USER_ROLE_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_SCREEN_COMP_T" EntityType="Self.USER_SCREEN_COMP_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_T" EntityType="Self.USER_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_TYPE_T" EntityType="Self.USER_TYPE_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_APPLICATION_T" EntityType="Self.WEB_APPLICATION_T" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICSI_StimulateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APP_MODULE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODULE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APP_ID" Type="Int32" Nullable="false" />
+          <Property Name="MODULE_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCHEMA_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MANDATORY_MOD_ID" Type="Int32" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="APPLICATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="APPLICATION_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APPLICATIONDESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WEB_APP_ID" Type="Int32" />
+          <Property Name="SCHEMA_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MANDATORY_APP_ID" Type="Int32" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MENU_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MENU_LABEL_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REF_ID" Type="Int32" Nullable="false" />
+          <Property Name="WEB_APP_ID" Type="Int32" Nullable="false" />
+          <Property Name="ORDER_NM" Type="Int32" Nullable="false" />
+          <Property Name="SCREEN_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REPORT_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORT_NAME_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQL_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COLUMNS_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TITLE_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESP_SCREEN_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCREEN_ID" Type="Int32" Nullable="false" />
+          <Property Name="RESP_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESPONSIBILITY_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RESP_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RESP_SYM_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RESP_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RESP_TYPE_NM" Type="Int32" Nullable="false" />
+          <Property Name="REF_ID" Type="Int32" />
+          <Property Name="READ_WRITE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE_RESP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="RESP_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_SYM_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ORDER_NM" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCREEN_COMP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCREEN_ID" Type="Int32" Nullable="false" />
+          <Property Name="REF_ID" Type="Int32" />
+          <Property Name="ORDER_NM" Type="Int32" Nullable="false" />
+          <Property Name="COMP_TYPE_NM" Type="Int32" Nullable="false" />
+          <Property Name="COMP_CONTENT_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_VALUE_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_TEXT_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_STYLE_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_SCRIPT_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_REF_METHOD_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_CLASS_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_CLASS_STATIC_YN" Type="Boolean" />
+          <Property Name="COMP_METHOD_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMP_METHOD_STATIC_YN" Type="Boolean" />
+          <Property Name="SCHEMA_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TABLE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COLUMN_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MANDATORY_YN" Type="Boolean" Nullable="false" />
+          <Property Name="READ_WRITE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="SQL_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WHERE_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="REPORT_ID" Type="Int32" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCREEN_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="APP_MODULE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SCREEN_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SCREEN_SYM_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SCREEN_TITLE_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_FILE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_STYLE_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_SCRIPT_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_CONTENT_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_REF_CLASS_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_CLASS_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_CLASS_STATIC_YN" Type="Boolean" />
+          <Property Name="SCREEN_METHOD_NAME_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCREEN_METHOD_STATIC_YN" Type="Boolean" />
+          <Property Name="MANDATORY_SCR_ID" Type="Int32" />
+          <Property Name="SCHEMA_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TABLE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTION_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUPER_USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_TYPE_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_TX" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN_PWD_TX" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_RESP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="RESP_ID" Type="Int32" Nullable="false" />
+          <Property Name="INCLUDE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="READ_WRITE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_ROLE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_SCREEN_COMP_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SCREEN_COMP_ID" Type="Int32" Nullable="false" />
+          <Property Name="VISIBLE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="WRITE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_TYPE_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN_ID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN_PWD_TX" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="SESSION_KEY" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DESIGN_ADMIN_YN" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_TYPE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_TYPE_TX" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_TYPE_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WEB_APPLICATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WEB_APP_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WEB_URL_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WEB_APP_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCHEMA_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ICSI_DBModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_MODULE_T" EntityType="Self.APP_MODULE_T" />
+          <EntitySet Name="APPLICATION_T" EntityType="Self.APPLICATION_T" />
+          <EntitySet Name="MENU_T" EntityType="Self.MENU_T" />
+          <EntitySet Name="REPORT_T" EntityType="Self.REPORT_T" />
+          <EntitySet Name="RESP_SCREEN_T" EntityType="Self.RESP_SCREEN_T" />
+          <EntitySet Name="RESPONSIBILITY_T" EntityType="Self.RESPONSIBILITY_T" />
+          <EntitySet Name="ROLE_RESP_T" EntityType="Self.ROLE_RESP_T" />
+          <EntitySet Name="ROLE_T" EntityType="Self.ROLE_T" />
+          <EntitySet Name="SCREEN_COMP_T" EntityType="Self.SCREEN_COMP_T" />
+          <EntitySet Name="SCREEN_T" EntityType="Self.SCREEN_T" />
+          <EntitySet Name="SUPER_USER_T" EntityType="Self.SUPER_USER_T" />
+          <EntitySet Name="USER_RESP_T" EntityType="Self.USER_RESP_T" />
+          <EntitySet Name="USER_ROLE_T" EntityType="Self.USER_ROLE_T" />
+          <EntitySet Name="USER_SCREEN_COMP_T" EntityType="Self.USER_SCREEN_COMP_T" />
+          <EntitySet Name="USER_T" EntityType="Self.USER_T" />
+          <EntitySet Name="USER_TYPE_T" EntityType="Self.USER_TYPE_T" />
+          <EntitySet Name="WEB_APPLICATION_T" EntityType="Self.WEB_APPLICATION_T" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICSI_StimulateModelStoreContainer" CdmEntityContainer="ICSI_DBModelEntities">
+          <EntitySetMapping Name="APP_MODULE_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.APP_MODULE_T">
+              <MappingFragment StoreEntitySet="APP_MODULE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MODULE_NAME_TX" ColumnName="MODULE_NAME_TX" />
+                <ScalarProperty Name="APP_ID" ColumnName="APP_ID" />
+                <ScalarProperty Name="MODULE_DESC_TX" ColumnName="MODULE_DESC_TX" />
+                <ScalarProperty Name="SCHEMA_NAME_TX" ColumnName="SCHEMA_NAME_TX" />
+                <ScalarProperty Name="MANDATORY_MOD_ID" ColumnName="MANDATORY_MOD_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APPLICATION_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.APPLICATION_T">
+              <MappingFragment StoreEntitySet="APPLICATION_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="APPLICATION_NAME_TX" ColumnName="APPLICATION_NAME_TX" />
+                <ScalarProperty Name="APPLICATIONDESC_TX" ColumnName="APPLICATIONDESC_TX" />
+                <ScalarProperty Name="WEB_APP_ID" ColumnName="WEB_APP_ID" />
+                <ScalarProperty Name="SCHEMA_NAME_TX" ColumnName="SCHEMA_NAME_TX" />
+                <ScalarProperty Name="MANDATORY_APP_ID" ColumnName="MANDATORY_APP_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.MENU_T">
+              <MappingFragment StoreEntitySet="MENU_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MENU_NAME_TX" ColumnName="MENU_NAME_TX" />
+                <ScalarProperty Name="MENU_LABEL_TX" ColumnName="MENU_LABEL_TX" />
+                <ScalarProperty Name="REF_ID" ColumnName="REF_ID" />
+                <ScalarProperty Name="WEB_APP_ID" ColumnName="WEB_APP_ID" />
+                <ScalarProperty Name="ORDER_NM" ColumnName="ORDER_NM" />
+                <ScalarProperty Name="SCREEN_ID" ColumnName="SCREEN_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPORT_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.REPORT_T">
+              <MappingFragment StoreEntitySet="REPORT_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="REPORT_NAME_TX" ColumnName="REPORT_NAME_TX" />
+                <ScalarProperty Name="SQL_TX" ColumnName="SQL_TX" />
+                <ScalarProperty Name="COLUMNS_TX" ColumnName="COLUMNS_TX" />
+                <ScalarProperty Name="TITLE_TX" ColumnName="TITLE_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESP_SCREEN_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.RESP_SCREEN_T">
+              <MappingFragment StoreEntitySet="RESP_SCREEN_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SCREEN_ID" ColumnName="SCREEN_ID" />
+                <ScalarProperty Name="RESP_ID" ColumnName="RESP_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESPONSIBILITY_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.RESPONSIBILITY_T">
+              <MappingFragment StoreEntitySet="RESPONSIBILITY_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RESP_NAME_TX" ColumnName="RESP_NAME_TX" />
+                <ScalarProperty Name="RESP_SYM_NAME_TX" ColumnName="RESP_SYM_NAME_TX" />
+                <ScalarProperty Name="RESP_DESC_TX" ColumnName="RESP_DESC_TX" />
+                <ScalarProperty Name="RESP_TYPE_NM" ColumnName="RESP_TYPE_NM" />
+                <ScalarProperty Name="REF_ID" ColumnName="REF_ID" />
+                <ScalarProperty Name="READ_WRITE_YN" ColumnName="READ_WRITE_YN" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_RESP_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.ROLE_RESP_T">
+              <MappingFragment StoreEntitySet="ROLE_RESP_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="RESP_ID" ColumnName="RESP_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.ROLE_T">
+              <MappingFragment StoreEntitySet="ROLE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROLE_NAME_TX" ColumnName="ROLE_NAME_TX" />
+                <ScalarProperty Name="ROLE_SYM_NAME_TX" ColumnName="ROLE_SYM_NAME_TX" />
+                <ScalarProperty Name="ROLE_DESC_TX" ColumnName="ROLE_DESC_TX" />
+                <ScalarProperty Name="ORDER_NM" ColumnName="ORDER_NM" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCREEN_COMP_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.SCREEN_COMP_T">
+              <MappingFragment StoreEntitySet="SCREEN_COMP_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SCREEN_ID" ColumnName="SCREEN_ID" />
+                <ScalarProperty Name="REF_ID" ColumnName="REF_ID" />
+                <ScalarProperty Name="ORDER_NM" ColumnName="ORDER_NM" />
+                <ScalarProperty Name="COMP_TYPE_NM" ColumnName="COMP_TYPE_NM" />
+                <ScalarProperty Name="COMP_CONTENT_TX" ColumnName="COMP_CONTENT_TX" />
+                <ScalarProperty Name="COMP_NAME_TX" ColumnName="COMP_NAME_TX" />
+                <ScalarProperty Name="COMP_VALUE_TX" ColumnName="COMP_VALUE_TX" />
+                <ScalarProperty Name="COMP_TEXT_TX" ColumnName="COMP_TEXT_TX" />
+                <ScalarProperty Name="COMP_STYLE_TX" ColumnName="COMP_STYLE_TX" />
+                <ScalarProperty Name="COMP_SCRIPT_TX" ColumnName="COMP_SCRIPT_TX" />
+                <ScalarProperty Name="SCREEN_REF_METHOD_NAME_TX" ColumnName="SCREEN_REF_METHOD_NAME_TX" />
+                <ScalarProperty Name="COMP_CLASS_NAME_TX" ColumnName="COMP_CLASS_NAME_TX" />
+                <ScalarProperty Name="COMP_CLASS_STATIC_YN" ColumnName="COMP_CLASS_STATIC_YN" />
+                <ScalarProperty Name="COMP_METHOD_NAME_TX" ColumnName="COMP_METHOD_NAME_TX" />
+                <ScalarProperty Name="COMP_METHOD_STATIC_YN" ColumnName="COMP_METHOD_STATIC_YN" />
+                <ScalarProperty Name="SCHEMA_NAME_TX" ColumnName="SCHEMA_NAME_TX" />
+                <ScalarProperty Name="TABLE_NAME_TX" ColumnName="TABLE_NAME_TX" />
+                <ScalarProperty Name="COLUMN_NAME_TX" ColumnName="COLUMN_NAME_TX" />
+                <ScalarProperty Name="MANDATORY_YN" ColumnName="MANDATORY_YN" />
+                <ScalarProperty Name="READ_WRITE_YN" ColumnName="READ_WRITE_YN" />
+                <ScalarProperty Name="SQL_TX" ColumnName="SQL_TX" />
+                <ScalarProperty Name="WHERE_TX" ColumnName="WHERE_TX" />
+                <ScalarProperty Name="REPORT_ID" ColumnName="REPORT_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCREEN_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.SCREEN_T">
+              <MappingFragment StoreEntitySet="SCREEN_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="APP_MODULE_ID" ColumnName="APP_MODULE_ID" />
+                <ScalarProperty Name="SCREEN_NAME_TX" ColumnName="SCREEN_NAME_TX" />
+                <ScalarProperty Name="SCREEN_SYM_NAME_TX" ColumnName="SCREEN_SYM_NAME_TX" />
+                <ScalarProperty Name="SCREEN_TITLE_TX" ColumnName="SCREEN_TITLE_TX" />
+                <ScalarProperty Name="SCREEN_FILE_NAME_TX" ColumnName="SCREEN_FILE_NAME_TX" />
+                <ScalarProperty Name="SCREEN_STYLE_TX" ColumnName="SCREEN_STYLE_TX" />
+                <ScalarProperty Name="SCREEN_SCRIPT_TX" ColumnName="SCREEN_SCRIPT_TX" />
+                <ScalarProperty Name="SCREEN_CONTENT_TX" ColumnName="SCREEN_CONTENT_TX" />
+                <ScalarProperty Name="SCREEN_REF_CLASS_NAME_TX" ColumnName="SCREEN_REF_CLASS_NAME_TX" />
+                <ScalarProperty Name="SCREEN_CLASS_NAME_TX" ColumnName="SCREEN_CLASS_NAME_TX" />
+                <ScalarProperty Name="SCREEN_CLASS_STATIC_YN" ColumnName="SCREEN_CLASS_STATIC_YN" />
+                <ScalarProperty Name="SCREEN_METHOD_NAME_TX" ColumnName="SCREEN_METHOD_NAME_TX" />
+                <ScalarProperty Name="SCREEN_METHOD_STATIC_YN" ColumnName="SCREEN_METHOD_STATIC_YN" />
+                <ScalarProperty Name="MANDATORY_SCR_ID" ColumnName="MANDATORY_SCR_ID" />
+                <ScalarProperty Name="SCHEMA_NAME_TX" ColumnName="SCHEMA_NAME_TX" />
+                <ScalarProperty Name="TABLE_NAME_TX" ColumnName="TABLE_NAME_TX" />
+                <ScalarProperty Name="ACTION_TX" ColumnName="ACTION_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPER_USER_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.SUPER_USER_T">
+              <MappingFragment StoreEntitySet="SUPER_USER_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+                <ScalarProperty Name="USER_NAME_TX" ColumnName="USER_NAME_TX" />
+                <ScalarProperty Name="EMAIL_TX" ColumnName="EMAIL_TX" />
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="LOGIN_PWD_TX" ColumnName="LOGIN_PWD_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_RESP_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.USER_RESP_T">
+              <MappingFragment StoreEntitySet="USER_RESP_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="RESP_ID" ColumnName="RESP_ID" />
+                <ScalarProperty Name="INCLUDE_YN" ColumnName="INCLUDE_YN" />
+                <ScalarProperty Name="READ_WRITE_YN" ColumnName="READ_WRITE_YN" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ROLE_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.USER_ROLE_T">
+              <MappingFragment StoreEntitySet="USER_ROLE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_SCREEN_COMP_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.USER_SCREEN_COMP_T">
+              <MappingFragment StoreEntitySet="USER_SCREEN_COMP_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="SCREEN_COMP_ID" ColumnName="SCREEN_COMP_ID" />
+                <ScalarProperty Name="VISIBLE_YN" ColumnName="VISIBLE_YN" />
+                <ScalarProperty Name="WRITE_YN" ColumnName="WRITE_YN" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.USER_T">
+              <MappingFragment StoreEntitySet="USER_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+                <ScalarProperty Name="USER_NAME_TX" ColumnName="USER_NAME_TX" />
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="LOGIN_PWD_TX" ColumnName="LOGIN_PWD_TX" />
+                <ScalarProperty Name="SESSION_KEY" ColumnName="SESSION_KEY" />
+                <ScalarProperty Name="DESIGN_ADMIN_YN" ColumnName="DESIGN_ADMIN_YN" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_TYPE_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.USER_TYPE_T">
+              <MappingFragment StoreEntitySet="USER_TYPE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_TYPE_TX" ColumnName="USER_TYPE_TX" />
+                <ScalarProperty Name="USER_TYPE_DESC_TX" ColumnName="USER_TYPE_DESC_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEB_APPLICATION_T">
+            <EntityTypeMapping TypeName="ICSI_StimulateModel.WEB_APPLICATION_T">
+              <MappingFragment StoreEntitySet="WEB_APPLICATION_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WEB_APP_NAME_TX" ColumnName="WEB_APP_NAME_TX" />
+                <ScalarProperty Name="WEB_URL_TX" ColumnName="WEB_URL_TX" />
+                <ScalarProperty Name="WEB_APP_DESC_TX" ColumnName="WEB_APP_DESC_TX" />
+                <ScalarProperty Name="SCHEMA_NAME_TX" ColumnName="SCHEMA_NAME_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

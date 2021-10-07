@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03deefe7b64240dcb7878d7b0d719c30" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModelEntities.tblCertificateType" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblComplaint" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblDocParticular" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblDocumentType" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblErrorLog" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblGenerateUDIN" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblRevokeUDIN" Width="1.5" PointX="5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblStatu" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblUDIN" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblUser" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.tblUserActivity" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelEntities.UDINVerificationDetail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DBModelEntities.FK_tblRevokeUDIN_tblUDIN" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelEntities.FK_tblRevokeUDIN_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelEntities.FK_UDINVerificationDetail_UDINVerificationDetail" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBModelEntities.tblPuUser" Width="1.5" PointX="9.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

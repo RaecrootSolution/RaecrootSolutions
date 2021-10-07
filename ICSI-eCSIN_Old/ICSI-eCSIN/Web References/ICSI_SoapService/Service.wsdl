@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetMemberShipDataForGST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="premember" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="membno" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberShipDataForGSTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberShipDataForGSTResult" type="tns:ICSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ICSI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MembershipNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateofBirth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="premembno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BarredMember" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BarredDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EnrollDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CertificateofPracticalNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CPDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MSg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ACS_ConversionDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MemberShipNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberDataResult" type="tns:ICSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberShipData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="premember" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="membno" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberShipDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberShipDataResult" type="tns:ICSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberDetailsResult" type="tns:ICSIData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ICSIData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chapter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MSg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMemberDetailsOnline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MembershipNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DOB" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDetailsOnlineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberDetailsOnlineResult" type="tns:ICSIDataOnline" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ICSIDataOnline">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MSg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStudentDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStudentDetailsResult" type="tns:ICSIData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentDetailsForeMSOP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentDetailsForeMSOPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStudentDetailsForeMSOPResult" type="tns:ICSIData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStudentNameResult" type="tns:ICSIData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStudentDataResult" type="tns:ICSIData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDataeCSIN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MemberShipNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberDataeCSINResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMemberDataeCSINResult" type="tns:ICSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ICSI" type="tns:ICSI" />
+      <s:element name="ICSIData" type="tns:ICSIData" />
+      <s:element name="ICSIDataOnline" type="tns:ICSIDataOnline" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMemberShipDataForGSTSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberShipDataForGST" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataForGSTSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberShipDataForGSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberShipData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberShipDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberDetailsOnline" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberDetailsOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentDetailsForeMSOP" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentDetailsForeMSOPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberName" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentName" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentData" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberDataeCSIN" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberDataeCSINResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataForGSTHttpGetIn">
+    <wsdl:part name="premember" type="s:string" />
+    <wsdl:part name="membno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataForGSTHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataHttpGetIn">
+    <wsdl:part name="MemberShipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataHttpGetIn">
+    <wsdl:part name="premember" type="s:string" />
+    <wsdl:part name="membno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineHttpGetIn">
+    <wsdl:part name="MembershipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIDataOnline" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataHttpGetIn">
+    <wsdl:part name="value" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINHttpGetIn">
+    <wsdl:part name="MemberShipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINHttpGetOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataForGSTHttpPostIn">
+    <wsdl:part name="premember" type="s:string" />
+    <wsdl:part name="membno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataForGSTHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataHttpPostIn">
+    <wsdl:part name="MemberShipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataHttpPostIn">
+    <wsdl:part name="premember" type="s:string" />
+    <wsdl:part name="membno" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberShipDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineHttpPostIn">
+    <wsdl:part name="MembershipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDetailsOnlineHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIDataOnline" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDetailsForeMSOPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataHttpPostIn">
+    <wsdl:part name="value" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSIData" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINHttpPostIn">
+    <wsdl:part name="MemberShipNo" type="s:string" />
+    <wsdl:part name="DOB" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMemberDataeCSINHttpPostOut">
+    <wsdl:part name="Body" element="tns:ICSI" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <wsdl:input message="tns:GetMemberShipDataForGSTSoapIn" />
+      <wsdl:output message="tns:GetMemberShipDataForGSTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <wsdl:input message="tns:GetMemberDataSoapIn" />
+      <wsdl:output message="tns:GetMemberDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <wsdl:input message="tns:GetMemberShipDataSoapIn" />
+      <wsdl:output message="tns:GetMemberShipDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <wsdl:input message="tns:GetMemberDetailsSoapIn" />
+      <wsdl:output message="tns:GetMemberDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <wsdl:input message="tns:GetMemberDetailsOnlineSoapIn" />
+      <wsdl:output message="tns:GetMemberDetailsOnlineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <wsdl:input message="tns:GetStudentDetailsSoapIn" />
+      <wsdl:output message="tns:GetStudentDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <wsdl:input message="tns:GetStudentDetailsForeMSOPSoapIn" />
+      <wsdl:output message="tns:GetStudentDetailsForeMSOPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <wsdl:input message="tns:GetMemberNameSoapIn" />
+      <wsdl:output message="tns:GetMemberNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <wsdl:input message="tns:GetStudentNameSoapIn" />
+      <wsdl:output message="tns:GetStudentNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <wsdl:input message="tns:GetStudentDataSoapIn" />
+      <wsdl:output message="tns:GetStudentDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <wsdl:input message="tns:GetMemberDataeCSINSoapIn" />
+      <wsdl:output message="tns:GetMemberDataeCSINSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpGet">
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <wsdl:input message="tns:GetMemberShipDataForGSTHttpGetIn" />
+      <wsdl:output message="tns:GetMemberShipDataForGSTHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <wsdl:input message="tns:GetMemberDataHttpGetIn" />
+      <wsdl:output message="tns:GetMemberDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <wsdl:input message="tns:GetMemberShipDataHttpGetIn" />
+      <wsdl:output message="tns:GetMemberShipDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <wsdl:input message="tns:GetMemberDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetMemberDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <wsdl:input message="tns:GetMemberDetailsOnlineHttpGetIn" />
+      <wsdl:output message="tns:GetMemberDetailsOnlineHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <wsdl:input message="tns:GetStudentDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetStudentDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <wsdl:input message="tns:GetStudentDetailsForeMSOPHttpGetIn" />
+      <wsdl:output message="tns:GetStudentDetailsForeMSOPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <wsdl:input message="tns:GetMemberNameHttpGetIn" />
+      <wsdl:output message="tns:GetMemberNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <wsdl:input message="tns:GetStudentNameHttpGetIn" />
+      <wsdl:output message="tns:GetStudentNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <wsdl:input message="tns:GetStudentDataHttpGetIn" />
+      <wsdl:output message="tns:GetStudentDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <wsdl:input message="tns:GetMemberDataeCSINHttpGetIn" />
+      <wsdl:output message="tns:GetMemberDataeCSINHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpPost">
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <wsdl:input message="tns:GetMemberShipDataForGSTHttpPostIn" />
+      <wsdl:output message="tns:GetMemberShipDataForGSTHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <wsdl:input message="tns:GetMemberDataHttpPostIn" />
+      <wsdl:output message="tns:GetMemberDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <wsdl:input message="tns:GetMemberShipDataHttpPostIn" />
+      <wsdl:output message="tns:GetMemberShipDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <wsdl:input message="tns:GetMemberDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetMemberDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <wsdl:input message="tns:GetMemberDetailsOnlineHttpPostIn" />
+      <wsdl:output message="tns:GetMemberDetailsOnlineHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <wsdl:input message="tns:GetStudentDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetStudentDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <wsdl:input message="tns:GetStudentDetailsForeMSOPHttpPostIn" />
+      <wsdl:output message="tns:GetStudentDetailsForeMSOPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <wsdl:input message="tns:GetMemberNameHttpPostIn" />
+      <wsdl:output message="tns:GetMemberNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <wsdl:input message="tns:GetStudentNameHttpPostIn" />
+      <wsdl:output message="tns:GetStudentNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <wsdl:input message="tns:GetStudentDataHttpPostIn" />
+      <wsdl:output message="tns:GetStudentDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <wsdl:input message="tns:GetMemberDataeCSINHttpPostIn" />
+      <wsdl:output message="tns:GetMemberDataeCSINHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <soap:operation soapAction="http://tempuri.org/GetMemberShipDataForGST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <soap:operation soapAction="http://tempuri.org/GetMemberData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <soap:operation soapAction="http://tempuri.org/GetMemberShipData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <soap:operation soapAction="http://tempuri.org/GetMemberDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <soap:operation soapAction="http://tempuri.org/GetMemberDetailsOnline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <soap:operation soapAction="http://tempuri.org/GetStudentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <soap:operation soapAction="http://tempuri.org/GetStudentDetailsForeMSOP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <soap:operation soapAction="http://tempuri.org/GetMemberName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <soap:operation soapAction="http://tempuri.org/GetStudentName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <soap:operation soapAction="http://tempuri.org/GetStudentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <soap:operation soapAction="http://tempuri.org/GetMemberDataeCSIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberShipDataForGST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberShipData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberDetailsOnline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentDetailsForeMSOP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <soap12:operation soapAction="http://tempuri.org/GetMemberDataeCSIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpGet" type="tns:ServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <http:operation location="/GetMemberShipDataForGST" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <http:operation location="/GetMemberData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <http:operation location="/GetMemberShipData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <http:operation location="/GetMemberDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <http:operation location="/GetMemberDetailsOnline" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <http:operation location="/GetStudentDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <http:operation location="/GetStudentDetailsForeMSOP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <http:operation location="/GetMemberName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <http:operation location="/GetStudentName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <http:operation location="/GetStudentData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <http:operation location="/GetMemberDataeCSIN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpPost" type="tns:ServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetMemberShipDataForGST">
+      <http:operation location="/GetMemberShipDataForGST" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberData">
+      <http:operation location="/GetMemberData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberShipData">
+      <http:operation location="/GetMemberShipData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetails">
+      <http:operation location="/GetMemberDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDetailsOnline">
+      <http:operation location="/GetMemberDetailsOnline" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <http:operation location="/GetStudentDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetailsForeMSOP">
+      <http:operation location="/GetStudentDetailsForeMSOP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberName">
+      <http:operation location="/GetMemberName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentName">
+      <http:operation location="/GetStudentName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentData">
+      <http:operation location="/GetStudentData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberDataeCSIN">
+      <http:operation location="/GetMemberDataeCSIN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://www.icsi.in/advantalwebservice/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://www.icsi.in/advantalwebservice/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpGet" binding="tns:ServiceHttpGet">
+      <http:address location="http://www.icsi.in/advantalwebservice/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
+      <http:address location="http://www.icsi.in/advantalwebservice/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

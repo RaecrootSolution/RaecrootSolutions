@@ -1,0 +1,167 @@
+﻿@model ICSI_Event.Models.DairyOnlineHome
+@{
+    ViewBag.Title = "DiaryOnlineHome";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+@using (Html.BeginForm("DiaryOnlineHome", "Home"))
+{
+    <div class="contain-all">
+        <div class="container form-field">
+
+
+
+            <div class="addTrainingStructure paymentStructure">
+                <h4 class="">Online Request for New Year Diary 2020 <span style="font-size:13px">(Only for the Members of the institute)</span></h4>
+            </div>
+
+            <p>
+                <b>Instructions:</b><br>
+            </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <ol style="font-size:13px;">
+                        <li>The Cost of each Diary is <b>Rs. 300/- (inclusive of Postal charges)</b>. The Cost of Rs.300/- per diary to be paid online through Debit/Credit Card. Under No circumstances DD/cheque is acceptable. Maximum 5 diaries can be applied.</li>
+                        <li>Please carefully enter in the name to be printed on diary &amp; complete address where it is to be sent.</li>
+                        <li>In case you want to prefix CS before your name and/or the other names to be   printed on diary, Please prefix the same.</li>
+                        <li>While filling-up address form, please ensure the correctness and do not repeat the address in different columns. City, Pin code etc. to be mentioned in earmarked columns only. Please do not enter complete address in single column.</li>
+                        <li>Last date for online request for New Year Diary 2020 is <b>Dec 25, 2019</b>. Please ensure that online Payment is done within this Date.</li>
+                        <li>No offline request ,as well as, offline payment for the New Year Diary 2020 will be entertained.</li>
+                        <li><b>Please do not add City, State and Pin Code No. in the Address Column.</b></li>
+                        <li>HELP DESK relating to Diary issues – <b>http://support.icsi.edu</b></li>
+                    </ol>
+
+                </div>
+            </div>
+            <div class="mt-30"></div>
+
+            <p class="RegistrnFormPara">
+                <label style="color:red;">@ViewBag.ErrorMsg</label>
+            </p>
+
+
+            <div class="col-md-8 col-md-offset-3 no-padding">
+                <label class="control-label col-md-5 col-sm-8">ACS/FCS:</label>
+                <div class="col-sm-12 col-md-5">
+                    @*@Html.DropDownList("premember", new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="--Select--", Value = "0" },
+                           new SelectListItem{ Text="A", Value = "1" },
+                           new SelectListItem{ Text="F", Value = "2" }
+
+                        }, new { @class = "form-control formblock" })
+                          <span class="text-danger" style="font:!important">@ViewBag.premember</span>*@
+
+                    @Html.DropDownListFor(x => x.Type, new SelectList(ViewBag.Dropdown, "Value", "Text"), "-- Please select --", new { @class = "form-control formblock" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-3 no-padding pt-10">
+                <label class="control-label col-md-5 col-sm-8">Membership Number</label>
+                <div class="col-sm-12 col-md-5">
+                    @*<input type="text" placeholder=" " class="form-control" id="" value="1314" required="">*@
+                    @*<input type="text" class="form-control formblock" id="MRN" placeholder="Membership Number (MRN)" name="MRN">*@
+                    @Html.EditorFor(model => model.MRN, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Number (MRN)" } })
+                    @Html.ValidationMessageFor(model => model.MRN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="col-md-8 col-md-offset-3 no-padding pt-10">
+                <label class="control-label col-md-5 col-sm-8">Date of Birth</label>
+
+                <div class="col-sm-12 col-md-5">
+                    @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { id = "DOB", @class = "form-control", placeholder = " DOB (dd/mm/yyyy)", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="col-md-8 col-md-offset-3 no-padding">
+                @*<label class="control-label col-md-5 col-sm-8">Date of Birth</label>*@
+                <div class="col-sm-12 col-md-5">
+                    @*<input type="text" placeholder=" " class="form-control" id="" value="1314" required="">*@
+                    @*<input type="text" class="form-control formblock" id="DOB" placeholder="Date of Birth (DD/MM/YYYY)" name="DOB">*@
+                    @*@Html.EditorFor(model => model.DOB, new { htmlAttributes = new { id = "DOB", @class = "form-control formblock", placeholder = "Date of Birth (dd/mm/yyyy)", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="SendOtpBtn">
+                <button type="submit" id="btnSubmit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+<script type="text/javascript">
+
+    function Validate() {
+        var mrn = $('#premember').val();
+        if (mrn == '' || mrn==0) {
+            alert('Please Select Member Type ');
+
+            return false;
+        }
+        var mrn = $('#premember').val();
+        if (mrn == '' || mrn == 0) {
+            alert('Please Select Member Type ');
+            return false;
+        }
+        var mrn = $('#premember').val();
+        if (mrn == '' || mrn == 0) {
+            alert('Please Select Member Type ');
+            return false;
+        }
+        return true;
+    }
+    $(document).ready(function () {
+        $('#DOB').datepicker({
+          // uiLibrary: 'bootstrap4',
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+            
+        });
+    });
+
+    @*if (@ViewBag.ErrorMsg== 1) {
+        myFunction();
+    }*@
+
+    @if(ViewBag.ErrorMsg!=null)
+    {
+       if(ViewBag.ErrorMsg=="1")
+       {
+          @:myFunction();
+       }
+    }
+    function myFunction() {
+        var url = '@ViewBag.Path'
+        alert('Your Membership is Validated with ICSI, Please Click Ok! to Book Diary.');
+        window.location.href = '@ViewBag.Path';
+    }
+</script>
+    
+   
+
+
+
+
+
+

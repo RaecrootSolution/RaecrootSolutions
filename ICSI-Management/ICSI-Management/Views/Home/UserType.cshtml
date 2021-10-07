@@ -1,0 +1,102 @@
+﻿@model ICSI_Management.Models.UserType
+@{
+    ViewBag.Title = "User Type";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled; 
+    }
+}
+
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>User Type</strong></h3>
+    </div>
+
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("UserType", "Home"))
+    {
+        <div class="form-group row">
+            <label class="col-md-3 control-label">User Type </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.User_Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User_Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">User Type Description </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.User_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User_Desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label> @Html.CheckBoxFor(m => m.Active)&nbsp;Active</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update </button>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    <div class="table-responsive pt-5">
+        @*<h5 class="mb-3">Report Table</h5>*@
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>User Type</th>
+                    <th>User Desc.</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.lstUserType)
+                {
+                    <tr>
+                        <td>@item.User_Type</td>
+                        <td>@item.User_Desc</td>
+                        <td>@item.Active</td>
+                        <td>
+                            @Html.ActionLink("Edit", "UserType", new { @id = @item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>

@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/js/gijgo.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+
+    <section id="Icsi_top_header">
+        <div class="container-fluid">
+            <div class="Header">
+                <div class="LogoSpacing">
+                    <div class="header-part">
+                        <ul class="list-inline">
+                            <li class="header_logo_li_1">
+                                <div class="" id="mainLogo">
+                                    <a href="https://www.icsi.edu/home">
+                                        <img src="~/Images/logo_full.png" alt="logo" class="img-responsive" />
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="header_logo_li_2">
+                                <div>
+                                    <div class="helplineNum">
+                                        <ul class="list-inline">
+
+                                            @*@if (Session["TotalUDINs"] != null && Session["TotalUsers"] != null)
+                                                {
+                                                    <li class="Registered">Users Registered: @Session["TotalUsers"]</li>
+                                                    <li class="Generate">Generated: @Session["TotalUDINs"]</li>
+                                                }*@
+
+                                            @*<li class="Registered">Users Registered: 87696</li>
+                                                <li class="Generate">Generated: 87696</li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="ClickHerCentertxt">
+                                    <h3>To change / update the email and mobile number, please <span><a href="#">Click Here </a></span></h3>
+
+                                    @if (Session["UserName"] != null)
+                                    {
+                                        <p>
+                                                Welcome: @Session["UserName"].ToString()
+                                            </p>
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <style>
+                        .menuBar ul li a {
+                            line-height: 1.2;
+                            color: #000;
+                            padding: 5px 12px !important;
+                        }
+                    </style>
+
+                    <div class="menuBar">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-center">
+
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                                <ul class="navbar-nav navbar-hdr-menu">
+                                    @if (Session["UserName"] != null)
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/home/Dashboard">Home</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                                Role Management
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="~/home/Menu">Menu</a>
+                                                <a class="dropdown-item" href="~/home/RoleMaster">Roles</a>
+                                                <a class="dropdown-item" href="~/home/WebApplication">Web Application</a>
+                                                <a class="dropdown-item" href="~/home/Application">Application</a>
+                                                <a class="dropdown-item" href="~/home/App_Module">App Module</a>
+                                                <a class="dropdown-item" href="~/home/responsibility">Responsibilities</a>
+                                                <a class="dropdown-item" href="~/home/screen">Screens</a>
+                                                <a class="dropdown-item" href="~/home/ScreenComponentMaster">Screen Components</a>
+                                                <a class="dropdown-item" href="~/home/ReportMaster">Reports</a>
+                                                <a class="dropdown-item" href="~/home/RoleMapping">Role Responsibility Mapping</a>
+                                                <a class="dropdown-item" href="#">Screen Mapping</a>
+                                                @*<a class="dropdown-item" href="#">Menu Mapping</a>*@
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                                User Management
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                @*<a class="dropdown-item" href="#">Roles</a>*@
+                                                <a class="dropdown-item" href="~/home/UserType">User Type</a>
+                                                <a class="dropdown-item" href="~/home/User">User</a>
+                                                <a class="dropdown-item" href="~/Home/UserRoleMapping">User Role Mapping</a>
+                                                <a class="dropdown-item" href="~/home/UserRespMapping">User Responsibility Mapping</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/home/Logout">Logout</a>
+                                        </li>
+                                    }
+                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*<section id="cilcke_here">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="ClickHerCentertxt">
+                            <h3>To change / update the email and mobile number, please <span><a href="#">Click Here </a></span></h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="helplineNum">
+                            <ul>
+                                <li class="Registered">Users Registered: 00000</li>
+                                <li class="Generate">Generated: 87696</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <section id="Ca_content_body">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <section id="ca_footer">
+        <div id="ca_footer_1">
+            <div class="container">
+                <div class="ca_disclaimer">
+                    <h6 class="primary-color">DISCLAIMER</h6>
+                    <p>
+
+                    </p>
+                    <p>
+
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="ca_footer_2">
+            <div class="container">
+                <div style="width:100%;">
+                    <div>
+                        <ul class="listinlineFooter" style="float: none; display: inline-block; margin: 0 auto; text-align: center; width: 100%;">
+                            <li>
+                            <li style="padding:0 10px;">
+                                <a href="https://smash.icsi.in/Scripts/Complaint/ComplaintForm." target="_blank">Helpdesk</a>
+                            </li>
+                            <li style="padding:0 10px;">
+                                <a href="~/PDF/TestingofStagingserveUDINlink.pdf" target="_blank">FAQs</a>
+                                @*@Html.ActionLink("FAQs", "download", "Home", new { Parameter = "FAQs" })*@
+                            </li>
+                            <li style="padding:0 10px;">                                
+                                @*<a href="#">Guidelines</a>*@
+                                @*@Html.ActionLink("Guidelines", "download", "Home",new { Parameter= "Guidelines" })*@
+                                <a href="~/PDF/UdinGuidelines.pdf" target="_blank">Guidelines</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="ca_copy_rights fr" style="float:none; font-style:italic;">
+                        <p> Copyright 2019 All rights reserved to the ICSI</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

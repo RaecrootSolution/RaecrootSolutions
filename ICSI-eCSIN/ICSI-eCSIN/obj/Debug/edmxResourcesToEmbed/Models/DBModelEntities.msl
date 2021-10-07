@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ICSI_eCSIN_Stimulate_ModelStoreContainer" CdmEntityContainer="ICSI_eCSIN_DBModelEntities">
+    <EntitySetMapping Name="tbleCSINGenerations">
+      <EntityTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.tbleCSINGeneration">
+        <MappingFragment StoreEntitySet="tbleCSINGeneration">
+          <ScalarProperty Name="EmployerMobileNo" ColumnName="EmployerMobileNo" />
+          <ScalarProperty Name="Remarks5" ColumnName="Remarks5" />
+          <ScalarProperty Name="Remarks4" ColumnName="Remarks4" />
+          <ScalarProperty Name="Remarks3" ColumnName="Remarks3" />
+          <ScalarProperty Name="Remarks2" ColumnName="Remarks2" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Sub_Remarks" ColumnName="Sub_Remarks" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="eCSINGenerationId" ColumnName="eCSINGenerationId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="eCSINGeneratedNo" ColumnName="eCSINGeneratedNo" />
+          <ScalarProperty Name="DateOfChangeMembershipNo" ColumnName="DateOfChangeMembershipNo" />
+          <ScalarProperty Name="RestorationOfMembership" ColumnName="RestorationOfMembership" />
+          <ScalarProperty Name="EmployeeDesignation" ColumnName="EmployeeDesignation" />
+          <ScalarProperty Name="EmployerCINNo" ColumnName="EmployerCINNo" />
+          <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+          <ScalarProperty Name="EmployerRegAdd" ColumnName="EmployerRegAdd" />
+          <ScalarProperty Name="DateOfOfferLetter" ColumnName="DateOfOfferLetter" />
+          <ScalarProperty Name="DateOfConsentLetter" ColumnName="DateOfConsentLetter" />
+          <ScalarProperty Name="DateOfAppointment" ColumnName="DateOfAppointment" />
+          <ScalarProperty Name="DateOfNoticeResig_NoticeOfTermination" ColumnName="DateOfNoticeResig_NoticeOfTermination" />
+          <ScalarProperty Name="DateOfCessationEmployment" ColumnName="DateOfCessationEmployment" />
+          <ScalarProperty Name="WebsiteOfEmployer" ColumnName="WebsiteOfEmployer" />
+          <ScalarProperty Name="EmployerPhoneNo" ColumnName="EmployerPhoneNo" />
+          <ScalarProperty Name="EmployerEmailId" ColumnName="EmployerEmailId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="RevokeDate" ColumnName="RevokeDate" />
+          <ScalarProperty Name="RevokeReason" ColumnName="RevokeReason" />
+          <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="CessationAcpReason" ColumnName="CessationAcpReason" />
+          <ScalarProperty Name="Subsidiarye_Status" ColumnName="Subsidiarye_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbleCSINGenerationHistories">
+      <EntityTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.tbleCSINGenerationHistory">
+        <MappingFragment StoreEntitySet="tbleCSINGenerationHistory">
+          <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+          <ScalarProperty Name="eCSINGenerationId" ColumnName="eCSINGenerationId" />
+          <ScalarProperty Name="PrevDesignation" ColumnName="PrevDesignation" />
+          <ScalarProperty Name="CurrentDesignation" ColumnName="CurrentDesignation" />
+          <ScalarProperty Name="DateOfChangeDesignation" ColumnName="DateOfChangeDesignation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGenerateeCSINs">
+      <EntityTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.tblGenerateeCSIN">
+        <MappingFragment StoreEntitySet="tblGenerateeCSIN">
+          <ScalarProperty Name="eCSINGenerationId" ColumnName="eCSINGenerationId" />
+          <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubsidiaryUsers">
+      <EntityTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.tblSubsidiaryUser">
+        <MappingFragment StoreEntitySet="tblSubsidiaryUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Membership_Number" ColumnName="Membership_Number" />
+          <ScalarProperty Name="Approval_Date" ColumnName="Approval_Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetTotalUsereCSIN" FunctionName="ICSI_eCSIN_Stimulate_Model.Store.GetTotalUsereCSIN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ICSI_eCSIN_Stimulate_Model.GetTotalUsereCSIN_Result">
+          <ScalarProperty Name="TotaleCSIN" ColumnName="TotaleCSIN" />
+          <ScalarProperty Name="TotalUsers" ColumnName="TotalUsers" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

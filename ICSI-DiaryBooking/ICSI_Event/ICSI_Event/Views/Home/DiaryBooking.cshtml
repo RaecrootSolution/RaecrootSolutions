@@ -1,0 +1,719 @@
+﻿@model ICSI_Event.Models.DiaryBooking
+@using ICSI_Event.Config
+@{
+    ViewBag.Title = "DiaryBooking";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+    bool noselected = false;
+    bool yesselected = false;
+    if (Model != null)
+    {
+        if (Model.IsYesNo == "2")
+        {
+            noselected = true;
+            yesselected = false;
+        }
+        else
+        {
+            yesselected = true;
+            noselected = false;
+        }
+    }
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="contain-all">
+    <div class="container form-field">
+
+        <form class="well form-horizontal" action=" " method="post" id="contact_form">
+            <fieldset id="fieldset">
+                <div class="addTrainingStructure paymentStructure">
+                    <h4 class="">Diary Booking</h4>
+                </div>
+                <div>
+
+
+                </div>
+                @*<div style="border:#ccc 1px solid; padding:20px; background:#eee; height:400px; margin-bottom:20px; text-align:center;">*@
+
+                @*<h4>Stall View Image </h4>*@
+                @*<img src="~/Images/ICSI47thEvent.png" alt="logo" style="width:100%;height:370px;" margin-bottom:40px; class="img-responsive" />*@
+
+
+                @*</div>*@
+
+                @*<div style="text-align:right; margin:20px auto;">
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#bookedStall">View Booked Stall</button>
+                    </div>*@
+
+                <!-- POP UP : View Booked Stall -->
+                <div class="modal fade" id="bookedStall" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title" style="margin:20px 0 0 20px;"><strong>Booked Stall</strong></h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="bg-primary" style="font-size:10px;">
+                                                <th>S.No.</th>
+                                                <th>Stall Number</th>
+                                                <th>Amount</th>
+                                                <th>GST Tax</th>
+                                                <th>Paid Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.lstBooked != null)
+                                            {
+                                                foreach (var item in Model.lstBooked)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Id</td>
+                                                        <td>@item.StallNumber</td>
+                                                        <td>@item.Amount</td>
+                                                        <td>@item.GST18Amount</td>
+                                                        <td>@item.TotalAmount</td>
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </form>
+        @using (Html.BeginForm("DiaryBooking", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                <div style="text-align:center">
+                    <p class="text-danger">
+                        @ViewBag.Message
+                    </p>
+                </div>
+                @*<div>
+                        <label id="lblicsigst"></label>
+                        ICSIGST Number :@Model.ICSIGST
+                    </div>*@
+                <label class="control-label col-md-4 col-sm-8">Name of the Member</label>
+                <div class="form-group row">
+                    <div class="col-sm-12 col-md-4">
+                        @if (Session["FullName"] != null)
+                        {
+                            @Html.EditorFor(model => model.MembershipName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Membership Name", @readonly = "readonly" } })
+                            // @Html.TextArea("Property", Session["FullName"].ToString(), new { @class = "form-control", style = "width:310px;height:35px", @readonly = "readonly" })
+
+                        }
+
+                        @*@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })*@
+                        @*<input type="text" name="UserId" value="<%=Session[" FullName"]%>*@
+                    </div>
+                </div>
+
+                <label class="control-label col-md-4 col-sm-8">Diary Available for Booking *</label>
+                <div class="col-md-4 selectoptionBg">
+                    @Html.DropDownListFor(M => M.StallNumberId, new SelectList(Model.lstNumber, "Id", "StallNo"), "-- Select Diary Number --", new { @class = "form-control", onchange = "getAmount()" })
+                    @Html.ValidationMessageFor(model => model.StallNumberId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Amount</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", name = "Amount", @readonly = true })
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">GST Amount</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.TextBoxFor(model => model.GST18Amount, new { @class = "form-control", name = "Amount", @readonly = true })
+
+                </div>
+            </div>
+            <div class="form-group row" id="dynamic">
+                <label class="control-label col-md-4 col-sm-8"> Total Amount</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.TextBoxFor(model => model.TotalAmount, new { @class = "form-control", name = "Amount", @readonly = true })
+
+                </div>
+            </div>
+
+            <div class="form-group row" id="rowOne">
+                <label class="control-label col-md-4 col-sm-8">Name to be printed on Diary 1</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.DiaryPName1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaryPName1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row" id="rowTwo">
+                <label class="control-label col-md-4 col-sm-8">Name to be printed on Diary 2</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.DiaryPName2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaryPName2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row" id="rowthree">
+                <label class="control-label col-md-4 col-sm-8">Name to be printed on Diary 3</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.DiaryPName3, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaryPName3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row" id="rowfour">
+                <label class="control-label col-md-4 col-sm-8">Name to be printed on Diary 4</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.DiaryPName4, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaryPName4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row" id="rowfive">
+                <label class="control-label col-md-4 col-sm-8">Name to be printed on Diary 5</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.DiaryPName5, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaryPName5, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group row">
+                    <label class="control-label col-md-4 col-sm-8">Stall Description *</label>
+                    <div class="col-sm-12 col-md-4">
+                        @Html.EditorFor(model => model.StatllDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StatllDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group row" style="display:none">
+                <label class="control-label col-md-4 col-sm-8">Stall Description *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.StallNumber, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Select GST</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.RadioButton("rdbgroup", "1", isChecked: @yesselected)&nbsp;@Html.Label("Yes")
+                    @Html.RadioButton("rdbgroup", "2", isChecked: @noselected)&nbsp;@Html.Label("No")
+                </div>
+            </div>
+            <div class="form-group row" id="AcceptGSTN">
+                <label class="control-label col-md-4 col-sm-8">GST Number</label>
+                @*<div id="AcceptGSTN"class="col-sm-12 col-md-4">
+                        @Html.EditorFor(model => model.GSTN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GSTN, "", new { @class = "text-danger" })
+                    </div>*@
+
+
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.GSTN, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+            //start Diary 1 to 5
+
+            // end Diary Name 1 to 5
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Address 1 *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.Add1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Add1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Address 2 </label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.Add2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Add2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Country *</label>
+                <div class="col-md-4 selectoptionBg">
+                    <select class="form-control panelInputs" id="sel1" name="sellist1" required>
+                        @*<option value=" ">Select</option>*@
+                        <option value="India">India</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">State *</label>
+                <div class="col-md-4 selectoptionBg">
+                    @Html.DropDownListFor(M => M.StateId, new SelectList(Model.lstState, "Id", "Name"), "-- Select Sate Name --", new { @class = "form-control", onchange = "getAmountBasedOnState()" })
+                    @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+
+                    @*@Html.Hidden("hidStatetext")*@
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">City *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Pin Code *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+
+            @*<div id="divCGST" class="form-group row" style="display:none">
+                    <label class="control-label col-md-4 col-sm-8" id="lblCGST">@AppConfig.CGSTTaxRate</label>
+                    <div class="col-sm-12 col-md-4">
+                        @Html.TextBoxFor(model => model.CGSTAmount, new { @class = "form-control", name = "CGSTAmount", @readonly = true })
+                    </div>
+                </div>
+
+                <div id="divSGST" class="form-group row" style="display:none">
+                    <label class="control-label col-md-4 col-sm-8" id="lblSGST">@AppConfig.SGSTTaxRate</label>
+                    <div class="col-sm-12 col-md-4">
+                        @Html.TextBoxFor(model => model.SGSTAmount, new { @class = "form-control", name = "SGSTAmount", @readonly = true })
+                    </div>
+                </div>
+
+                <div id="divIGST" class="form-group row" style="display:none">
+                    <label class="control-label col-md-4 col-sm-8" id="lblIGST">@AppConfig.IGSTTaxRate</label>
+                    <div class="col-sm-12 col-md-4">
+                        @Html.TextBoxFor(model => model.IGSTAmount, new { @class = "form-control", name = "IGSTAmount", @readonly = true })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group row">
+                    <label class="control-label col-md-4 col-sm-8">@AppConfig.GSTTaxRate</label>
+                    <div class="col-sm-12 col-md-4">
+                        @Html.TextBoxFor(model => model.GST18Amount, new { @class = "form-control", name = "GST18Amount", @readonly = true })
+
+                    </div>
+                </div>*@
+
+            <div class="form-group row" style="display:none">
+                <label class="control-label col-md-4 col-sm-8">Total Amount</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.TextBoxFor(model => model.TotalAmount, new { @class = "form-control", name = "TotalAmount", @readonly = true })
+
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Contact Person *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.ContactPersion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContactPersion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Mobile Number *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Email ID *</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8"> </label>
+                <div class="col-sm-12 col-md-4">
+                    <button type="submit" onclick="return ValidateGST();" class="btn btn-primary btn-lg"> Payment </button>
+                </div>
+            </div>
+
+        }
+
+        <input type="hidden" id="hidStateCode" />
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getstatecode() {
+        $.ajax
+            ({
+                url: '@Url.Action("GetStateCode", "Home")',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Id: +Id
+                }),
+                success: function (result) {
+                    $("#hidStateCode").val(result.statecode)
+                },
+                error: function () {
+                    alert("Whooaaa! Something went wrong..")
+                },
+            })
+    }
+
+    function getCityList() {
+        var Id = $("#StateId").val();
+        //var Text = $('#Resp_Type').children("option:selected").text();
+        //if (Id == 1 || Id == 2 || Id == 3 || Id == 4) {
+        //    $('#SelectedDive').show();
+        //}
+        //else {
+        //    $('#SelectedDive').hide();
+        //}
+        //$('#runtimelabel').text($('#Resp_Type').children("option:selected").text());
+        $.ajax
+            ({
+                url: '@Url.Action("GetCityList", "Home")',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Id: +Id
+
+
+                }),
+                success: function (result) {
+                    $("#CityId").html("");
+                    //if (Id == "1") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.WEB_APP_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == if (Id == "3") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.MODULE_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == "4") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.Screen_Name))
+                    //    })
+                    //}
+
+                    //$.each($.parseJSON(result), function (i, value) {
+                    //    $("#DropDown").append($('<option></option>').val(value.Value).html(value.Text))
+                    //})
+                    $.each($.parseJSON(result), function (i, value) {
+                        $("#CityId").append($('<option></option>').val(value.Id).html(value.Name))
+                    })
+
+
+                },
+                error: function () {
+                    alert("Whooaaa! Something went wrong..")
+                },
+            });
+    }
+
+    function getAmount() {
+
+        var Id = $("#StallNumberId").val();
+        GetDiaryName(Id);
+        //var Text = $('#Resp_Type').children("option:selected").text();
+        //if (Id == 1 || Id == 2 || Id == 3 || Id == 4) {
+        //    $('#SelectedDive').show();
+        //}
+        //else {
+        //    $('#SelectedDive').hide();
+        //}
+        //$('#runtimelabel').text($('#Resp_Type').children("option:selected").text());
+        $.ajax
+            ({
+                url: '@Url.Action("GetAmount", "Home")',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Id: +Id
+
+
+                }),
+                success: function (result) {
+                    var obj = JSON.parse(result);
+
+                    var amount = obj.StallAmount;
+                    var gstamount = (amount * 18) / 100;
+
+
+                    var totalAmount = amount + gstamount;
+                    var stallNumber = obj.StallNo;
+
+                    $("#Amount").attr("value", amount.toFixed(2));
+                    $("#GST18Amount").attr("value", gstamount.toFixed(2));
+                    $("#TotalAmount").attr("value", totalAmount.toFixed(2));
+                    $("#StallNumber").attr("value", stallNumber);
+
+
+                },
+                error: function () {
+                    alert("Whooaaa! Something went wrong..")
+                },
+            });
+
+
+    }
+
+    function ValidateGST() {
+        var value = $('#StallNumberId').val();
+        if (value != '') {
+            for (var val = 1; val <= value; val++) {
+
+                var name = 'DiaryPName' + val;
+                var checkvalue = $('#'+name).val();
+                if (checkvalue == '') {
+                    alert('Please Enter Name to be printed on Diary ' + val);
+                    return false;
+                }
+            }
+        }
+       // return true;
+
+        var radioValue = $("input[name='rdbgroup']:checked").val();
+        if (radioValue == 1) {
+            if ($('#GSTN').val() == '') {
+                alert('Please provide GST Number');
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    }
+    function getAmountBasedOnState() {
+        var Id = $("#StateId").val();
+
+        var Text = $('#StateId').children("option:selected").text();
+        if (Text == 'UP') {
+            $("#divCGST").show();
+            $("#divSGST").show();
+            $("#divIGST").hide();
+            //$("#GST18Amount").hide();
+
+        }
+        else {
+            $("#divCGST").hide();
+            $("#divSGST").hide();
+            $("#divIGST").show();
+            //$("#GST18Amount").show();
+        }
+
+    }
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#rowOne').hide();
+        $('#rowTwo').hide();
+        $('#rowthree').hide();
+        $('#rowfour').hide();
+        $('#rowfive').hide();
+
+
+        var radioValue = $("input[name='rdbgroup']:checked").val();
+        if (radioValue == 2) {
+            $('#AcceptGSTN').hide();
+        }
+        else {
+            $('#AcceptGSTN').show();
+        }
+        $('#GSTN').focusout(function () {
+            var code = this.value;
+            var radioValue = $("input[name='rdbgroup']:checked").val();
+            if (radioValue == 1) {
+                $.ajax
+                    ({
+                        url: '@Url.Action("GetStateByCode", "Home")',
+                        type: 'POST',
+                        datatype: 'application/json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            code: code
+
+
+                        }),
+                        success: function (result) {
+                            var obj = JSON.parse(result);
+
+                            // $('#StateId').val('UP');
+                            $('#StateId').val(obj);
+
+                        },
+                        error: function () {
+                            alert("Whooaaa! Something went wrong..")
+                        },
+                    });
+            }
+
+
+
+
+        });
+
+
+
+
+       $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "1") {
+                $("#AcceptGSTN").show();
+            }
+            else {
+
+                $('#GSTN').val('');
+                $("#AcceptGSTN").hide();
+                $('#StateId').val('2');
+                //getstatecode();
+                //if (getgst($("#hidStateCode").val(), "09") === "IGST") {
+
+                //    $('#divIGST').css('display', 'block');
+
+                //}
+                //else {
+                //    $('#divCGST').css('display', 'block');
+                //    $('#divSGST').css('display', 'block');
+                //}
+            }
+
+        });
+    });
+
+    //function getgst(buyerstate, ownerstate)
+    //{
+    //    if (buyerstate === ownerstate) {
+    //        return "CGSTSGST";
+    //    }
+    //    else {
+    //        return "IGST";
+    //    }
+    //}
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var Id = $("#StallNumberId").val();
+        if (Id != undefined || Id != 0) {
+            GetDiaryName(Id);
+        }
+    });
+
+    function GetDiaryName(vals) {
+
+        $('#rowOne').hide();
+        $('#rowTwo').hide();
+        $('#rowthree').hide();
+        $('#rowfour').hide();
+        $('#rowfive').hide();
+
+        $('#DiaryPName1').val('');
+        $('#DiaryPName2').val('');
+        $('#DiaryPName3').val('');
+        $('#DiaryPName4').val('');
+        $('#DiaryPName5').val('');
+
+
+
+        // var vals = $('#StallNumberId').val();
+
+
+        if (vals == "0") {
+
+            $('#rowOne').hide();
+            $('#rowTwo').hide();
+            $('#rowthree').hide();
+            $('#rowfour').hide();
+            $('#rowfive').hide();
+        }
+        else if (vals == "1") {
+
+            $('#rowOne').show();
+            $('#rowTwo').hide();
+            $('#rowthree').hide();
+            $('#rowfour').hide();
+            $('#rowfive').hide();
+        }
+        else if (vals == "2") {
+
+            $('#rowOne').show();
+            $('#rowTwo').show();
+            $('#rowthree').hide();
+            $('#rowfour').hide();
+            $('#rowfive').hide();
+        }
+        else if (vals == "3") {
+
+            $('#rowOne').show();
+            $('#rowTwo').show();
+            $('#rowthree').show();
+            $('#rowfour').hide();
+            $('#rowfive').hide();
+        }
+
+        else if (vals == "4") {
+
+            $('#rowOne').show();
+            $('#rowTwo').show();
+            $('#rowthree').show();
+            $('#rowfour').show();
+            $('#rowfive').hide();
+        }
+        else if (vals == "5") {
+
+            $('#rowOne').show();
+            $('#rowTwo').show();
+            $('#rowthree').show();
+            $('#rowfour').show();
+            $('#rowfive').show();
+        }
+
+    }
+
+    //$(document).ready(function () {
+    //    $("#StateId").change(function () {
+    //        var StateText = $("#StateId:selected").text();
+    //        $("#hidStatetext").val(StateText);
+    //    });
+    //});
+
+
+</script>

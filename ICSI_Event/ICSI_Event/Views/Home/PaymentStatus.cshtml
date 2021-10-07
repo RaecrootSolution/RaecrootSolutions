@@ -1,0 +1,50 @@
+﻿@model ICSI_Event.Models.PaymentDetail
+@{
+    ViewBag.Title = "PaymentStatus";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="contain-all">
+    <div class="container form-field">
+
+        <form class="well form-horizontal" action=" " method="post" id="contact_form">
+            <fieldset id="fieldset">
+                <div class="addTrainingStructure paymentStructure">
+                    <h4 class="">Payment Status</h4>
+                </div>
+                <form action="/action_page.php">
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p class="PaymentPara">Your request Id is: <label>@Model.RequestId</label></p>
+                                <p class="PaymentPara">Your transaction Id is: <label>@Model.TransactonId</label></p>
+                                <p class="PaymentPara">Your Payment of @Model.TotalAmount has been processed successfully.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        Payment Type:- <label class="PaymntLabel">@Model.PaymentType</label>
+                                    </li>
+                                    <li>Name:- <label class="PaymntLabel">@Model.Name</label></li>
+                                    <li>Mobile Number:- <label class="PaymntLabel"> @Model.RequestId</label> </li>
+                                    <li>Email Address:- <label class="PaymntLabel">@Model.Email</label> </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <button type="submit" class="btn btn-primary" >View Receipt</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </fieldset>
+        </form>
+    </div>
+</div>
+

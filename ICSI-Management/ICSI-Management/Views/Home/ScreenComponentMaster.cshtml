@@ -1,0 +1,360 @@
+﻿@model ICSI_Management.Models.ScreenComponent
+@{
+    ViewBag.Title = "ScreenComponentMaster";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>SCREEN COMPONENT MASTER</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("ScreenComponentMaster", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Screen</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+
+                    @Html.DropDownListFor(M => M.ScreenId, new SelectList(Model.lstScreen, "ID", "Screen_Name"), "-- Select Screen Name --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ScreenId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Mandatory Component</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+
+                    @Html.DropDownListFor(M => M.ManComId, new SelectList(Model.lstMndCom, "ManComId", "ManComName"), "-- Select Mandatory Component --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ScreenId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Order Number </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.OrderNumber, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Component Type</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+                    @Html.DropDownListFor(m => m.ComponentType, new List<SelectListItem>
+                    {
+                        new SelectListItem{Text="Hidden", Value="1"},
+                        new SelectListItem{Text="Text", Value="2"},
+                        new SelectListItem{Text="Password", Value="3"},
+                        new SelectListItem{Text="Radio Group", Value="4"},
+                        new SelectListItem{Text="Radio Button", Value="5"},
+                        new SelectListItem{Text="Checkbox", Value="6"},
+                        new SelectListItem{Text="Textarea", Value="7"},
+                        new SelectListItem{Text="Dropdown", Value="8"},
+                        new SelectListItem{Text="Submit Button", Value="9"},
+                        new SelectListItem{Text="Button", Value="10"},
+                        new SelectListItem{Text="List", Value="11"},
+                        new SelectListItem{Text="Image", Value="12"},
+                        new SelectListItem{Text="Div", Value="13"},
+                        new SelectListItem{Text="Span", Value="14"},
+                        new SelectListItem{Text="Anchor", Value="15"},
+                        new SelectListItem{Text="Form", Value="16"},
+                        new SelectListItem{Text="Table With Query", Value="17"},
+                        new SelectListItem{Text="Table", Value="18"},
+                        new SelectListItem{Text="Tr", Value="19"},
+                        new SelectListItem{Text="Td", Value="20"},
+                        new SelectListItem{Text="Th", Value="21"},
+                        new SelectListItem{Text="Report", Value="22"},
+                        new SelectListItem{Text="Custom", Value="23"},
+                        new SelectListItem{Text="Search", Value="24"},
+                        new SelectListItem{Text="Date", Value="25"},
+                        new SelectListItem{Text="DateTime", Value="26"}
+                        }, "Please select", new
+               {
+                   @class = "form-control"
+               })
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Component Content </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.ComponentContent, htmlAttributes: new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.ComponentContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Component Name </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ComponentName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComponentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Value  </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.ComponentValue, htmlAttributes: new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.ComponentValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Text</label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.ComponentText, htmlAttributes: new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.ComponentText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Style</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ComponentStyle, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComponentStyle, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Script</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ComponentScript, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComponentScript, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Screen Ref Method</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ScreenRefMethod, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ScreenRefMethod, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Class Name</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ComponentClassName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComponentClassName, "", new { @class = "text-danger" })
+
+                @Html.CheckBoxFor(model => model.ComponentClassStatic)
+                Component Class Static
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Component Method Name</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ComponentMethodName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ComponentMethodName, "", new { @class = "text-danger" })
+
+                @Html.CheckBoxFor(model => model.ComponentMethodStatic)
+                Component Method Static
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Schema Name</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.SchemaName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ColumnName, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Table Name</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.TableName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ColumnName, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Column Name</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ColumnName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ColumnName, "", new { @class = "text-danger" })
+
+                @Html.CheckBoxFor(model => model.ReadWrite)
+                Read and Write
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.IsMand)
+                    Mandatory
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">SQL Query</label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.SQL, htmlAttributes: new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.SQL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Where</label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Where, htmlAttributes: new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.Where, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-6">
+            <label class="col-md-3 control-label">Report</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+
+                    @Html.DropDownListFor(M => M.ReportId, new SelectList(Model.lstReport, "Id", "ReportName"), "-- Select Report Name --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ScreenId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">Screen Component Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Screen Name</th>
+                    <th>Order Number</th>
+                    <th>Component Type</th>
+                    <th>Component Content</th>
+                    <th>Component Name</th>
+                    <th>Component Value</th>
+                    <th>Component Text</th>
+                    <th>Component Style</th>
+                    <th>Component Script</th>
+                    <th>Screen Ref Method</th>
+                    <th>Component Class Name</th>
+                    <th>Component Class Static</th>
+                    <th>Component Method Name</th>
+                    <th>Component Class Static</th>
+                    <th>Schema Name</th>
+                    <th>Table Name</th>
+                    <th>Column Name</th>
+                    <th>Mandatory</th>
+                    <th>Read and Write</th>
+                    <th>Sql Query</th>
+                    <th>Where</th>
+                    <th>Report Name</th>
+                    <th>Mandatory Component</th>
+                    <th>Active</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.lst != null)
+                {
+                    foreach (var item in Model.lst)
+                    {
+                        //count++;
+                        //dt = Convert.ToDateTime(item.CreatedDate);
+                        //status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                        //dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                <tr>
+
+
+                    <td>@item.ScreenName</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.ComponentTypeName</td>                    
+                    <td>@item.ComponentContent</td>
+                    <td>@item.ComponentName</td>
+                    <td>@item.ComponentValue</td>
+                    <td>@item.ComponentText</td>
+                    <td>@item.ComponentStyle</td>
+                    <td>@item.ComponentScript</td>
+                    <td>@item.ScreenRefMethod</td>
+                    <td>@item.ComponentClassName</td>
+                    <td>@item.ComponentClassStatic</td>
+                    <td>@item.ComponentMethodName</td>
+                    <td>@item.ComponentMethodStatic</td>
+                    <td>@item.SchemaName</td>
+                    <td>@item.TableName</td>
+                    <td>@item.ColumnName</td>
+                    <td>@item.IsMand</td>
+                    <td>@item.ReadWrite</td>
+                    <td>@item.SQL</td>
+                    <td>@item.Where</td>
+                    <td>@item.ReportName</td>
+                    <td>@item.ManComName</td>
+                    <td>@item.Active</td>
+                    <td>
+
+                        <button type="submit" onclick="location.href='@Url.Action("ScreenComponentMaster", "Home" , new { id = item.Id })'">Edit</button>
+
+                    </td>
+
+
+
+                </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+

@@ -1,0 +1,1097 @@
+
+
+ @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+
+h1 ,h2 ,h3 ,h4 ,h5 ,h6, p{
+font-family: 'Roboto', sans-serif;
+}
+
+
+
+body{
+    margin: 0;
+    padding: 0;
+ }
+ .header-part {
+    max-width: 100%;
+    min-height:98px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+ }
+ #mainLogo {
+    width: 100%;
+    float: left;
+    padding: 0px;
+ }
+ #mainLogo img {
+    position: relative;
+    max-width: 52%;
+    padding-top:5px;
+ }
+ .Header img {
+    max-width: 300px;
+ }
+.helplineNum ul{
+    padding: 10px 0px 0px 0px;
+    margin: 0px;
+}
+.helplineNum li{
+    list-style: none;
+    line-height: 1.2;
+}
+.Registered{
+    color: #4862AF;
+    font-weight: 600;
+    }
+.Generate{
+        color: #4862AF;
+    font-weight: 600;
+    }
+ .menuBar{
+    background: -webkit-linear-gradient(top, #264d7f, #02143f);
+    background-color: #153063;
+    width: 100%;
+ }
+ .helplineNum {
+    text-align: center;
+}
+ #Icsi_top_header .header_logo_li_1{
+     width:60%;
+ }
+  #Icsi_top_header .header_logo_li_2{
+     width:38%;
+ }
+ .menuBar ul{
+        margin-left: 130px;
+ }
+ .menuBar ul li{
+    float: left;
+    list-style: none;
+ }
+ .menuBar ul li a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #dddddd;
+    line-height: 3;
+       padding: 12px 12px;
+ }
+ 
+/*--------- Updated Css ------ */
+
+.bg-dark {
+    background-color: #2D4690!important;
+    padding:0px;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0rem 2.8rem 0rem .5rem;
+}
+.menuBar{
+    min-height:31px;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color:#fff;
+    line-height: 31px;
+}
+.navbar-nav {
+    margin: 0px auto !important;
+}
+.Ca_sub_Text {
+    padding: 25px 50px 25px 50px;
+}
+#Ca_content_body .card-body{
+    padding:18px;
+    background-color: #2D4285;
+   
+}
+ .list-inline{
+    margin:0px;
+}
+ .list-inline li {
+    display: inline-block;
+    vertical-align: middle;
+}
+#Ca_content_body .list-inline li:nth-child(2){
+    width:60%;
+    padding-left:8px;
+}
+#Ca_content_body .protfolio_cards{
+    height: 115px;
+    margin: 10px 0px;
+}
+.caption-1 {
+  padding: 15px 0px 0px 0px;
+}
+.icsi_carousel{
+    margin:13px 0px 0px 0px;
+}
+#our-profiles .img-responsive{
+   height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    /* border-color: white; */
+    background: white;
+    display:block;
+margin: 20px auto 0px auto;
+border:1px solid #ccc;
+}
+
+#Ca_content_body .carousel-indicators li{
+      width: 10px;
+    height: 10px;
+    border-radius:25px;
+        background-color: #2d4690;
+        border:0px;  
+}
+
+.Tesxt_card{
+    text-align:center;
+  padding: 0px 0px 10px 0px;
+}
+#Ca_content_body .img-responsive{
+   height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    /* border-color: white; */
+    background: white;
+    display:block;
+margin: 20px auto 0px auto;
+border:1px solid #ccc;
+}
+#Ca_content_body .card {
+      box-shadow: 3px 2px 5px 2px #eae8e8;
+}
+.Ca_sub_Text h3 {
+background-color: #d4edda;
+    text-align: center;
+    border-radius: 11px;
+    padding: 10px;
+    color: #155724;
+    font-size: 17px;
+}
+.caption-1 h4{
+     color: #2d4690;
+    font-weight: 600;
+    line-height: 20px;
+    font-size:16px;
+    margin:0px;
+}
+.caption-2 {
+color:#2d4690;
+font-size:13px;
+}
+.ca_about_us {
+    padding: 15px 10px 10px 10px;
+}
+.ca_about_us h4{
+    color:#2D4483;
+    text-align: center;
+        font-size:18px;
+}
+.ca_about_us p{
+      color: #A7A8AB;
+    font-size: 13px;
+
+}
+div#loginformblock {
+    margin-top: 12px;
+}
+
+.formgheader {
+ text-align: center;
+ color: #2D4383;
+ padding:7px;
+ font-weight:bold;
+  font-size:18px;
+        }
+
+.verificationblock h4 {
+    font-size: 18px;
+}
+.submitbtn {
+text-align: center;
+ color: #ffffff;
+ /* background: #2D4383; */
+ }
+
+.submitbtn button {
+ background: #2D4383;
+border: none;
+  border-radius: 4px;
+width: 170px;
+ padding: 6px;
+ color: #ffffff;
+        }
+
+
+.providers {
+    padding: 15px 9px 15px 9px;
+}
+        .providers p {
+          text-align: center;
+          color: #2D4383;
+          text-decoration: underline;
+          font-weight: 500;
+          font-size: 14px;
+          padding: 0px 0px 5px 0px;
+          margin: 5px;
+        }
+
+ .formblock {
+ border-left: none;
+ padding-left:0;
+ border-top: none;
+border-right: none;
+ border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    outline: 0px !important;
+    box-shadow: none !important;
+  }
+.verificationblock {
+  text-align: center;
+   color: #2D4383;
+   background: #ffffff;
+ padding:15px;
+     padding: 24px 0px 24px 0px;
+    box-shadow: 3px 2px 5px 2px #c3c3c3;
+    }
+ .verifybtn {
+ text-align: center;
+  margin-top: 33px;
+}
+.verifybtn button{
+ text-align: center;
+ color: #ffffff;
+ background: #2D4383;
+   border: none;
+ border-radius: 4px;
+ width: 108px;
+  padding: 6px;
+ }
+  .verifybtn button :active{
+ background: #2D4383;
+    }
+.loginform{
+ background: #ffffff;
+  padding: 8px 0px 10px 0px;
+ }
+
+
+
+ .siderbarlgnform{
+  padding: 0px 10px 0px 10px;
+}
+ #verificationblock{
+ margin: 10px 0px 0px 0px;
+  box-shadow: 3px 2px 5px 2px #c3c3c3;
+       }
+
+
+#Ca_content_body {
+    padding: 2px 0px 10px 0px;
+}
+.first_time_sign_up{
+    float:right;
+}
+.what_new_cols {
+    padding: 0px;
+}
+.dummyTxt{
+   
+    font-weight: 300;
+    color: #848282;
+    font-size: 13px;
+    line-height: 21px;
+    letter-spacing: 0.2px;
+    margin: 0px;
+
+ }
+
+ .aboutICSITxt
+ {
+    padding: 10px 0 5px 0px;
+    color: #2C4383;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0px;
+ }
+
+ .dummySecondTxt{
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+  line-height: 20px;
+ }
+
+ .ClickHerCentertxt {
+    padding: 0px;
+    color: #901515;
+    margin: 0px auto 0px auto;
+ }
+ 
+ 
+ .ClickHerCentertxt h3{
+  text-align: Center;
+  margin: 0px;
+  font-size: 17px;
+  padding: 5px;
+  font-weight: 500;
+ }
+ 
+ .ClickHerCentertxt p{
+ text-align:Center;
+ font-size:14px;
+ }
+ #example1 {
+    padding: 4px 10px 37px 10px;
+      box-shadow: 3px 2px 5px 2px #eae8e8;
+    margin-top: 10px;
+}
+#example1 p {
+    padding: 6px 0px 5px 0px;
+    margin: 0px;
+}
+
+#example2 {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 3px 2px 5px 2px #eae8e8;
+}
+
+#example3 {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px 18px red;
+}
+  ul li{
+    color:blue;
+    line-height: 2;
+ }
+ #example1 ul{
+    margin: 0px;
+    padding-left: 25px;
+ }
+ .watSnWtXT {
+ color:#2E4CA5;
+ font-weight:500;
+ font-size:20px;
+ text-align:center;
+    margin: 0px 0px 10px 0px;
+ }
+#Icsi_top_header .container-fluid{
+       padding-left:0px;
+       padding-right:0px ;  
+     }
+     #ca_footer_1 {
+    background-color: #2d4690;
+}
+#ca_footer_1 h6{
+    color:#fff;
+    text-align: center;
+}
+#ca_footer_1{
+        padding:15px;
+}
+#ca_footer_2{
+    padding:6px;
+}
+#ca_footer_1 p{
+    color: #fff;
+    margin: 0px;
+    font-size: 13px;
+}
+#ca_footer_2 {
+        background-color: rgba(241, 236, 236, 0.78);
+}
+#ca_footer_2  p{
+    color:#2d4690;
+    text-align: center;
+    margin:0px;
+    font-size:13px;
+}
+.about_csi {
+   border: 1px solid rgba(0,0,0,.125);
+    margin: 10px 0px 15px 0px;
+    padding: 0px 15px 32px 15px;
+    box-shadow: 3px 2px 5px 2px #eae8e8;
+}
+#example1 p {
+    padding: 6px 0px 5px 0px;
+    margin:0px;
+}
+#ca_footer {
+    position: relative;
+    bottom: -25px;
+    width: 100%;
+}
+.profile_carousel{
+    padding:0px 0px 0px 15px;
+}
+.profile_carousel .carousel-caption{
+    position:unset;
+    padding-top:0px;
+}
+.profile_carousel .carousel-indicators{
+bottom:-22px;
+}
+.profile_carousel .carousel-indicators li{
+    background-color: #2d4690;
+    border-radius: 50px !important;
+    border: 1px solid transparent;
+    height: 8px;
+    width: 8px;
+}
+.what_new_cols{
+    padding:0px;
+}
+#example1 li{
+font-size: 13px;
+    line-height: 1.5;
+    color: #3998FF;
+}
+.Csi_readmore{
+     margin: 0px;
+    float: right;
+    font-size: 15px;
+    color: #2d4383;   
+}
+.Csi_readmore a{
+      color: #2d4383;     
+}
+.csi_protfolio_cards{
+    margin:10px 0px 0px 10px;
+    padding: 0px 0px 13px 0px;
+}
+.csi_member_login{
+     padding: 10px 0px 17px 0px;   
+}
+#our-profiles .card{
+    box-shadow:3px 2px 5px 2px #eae8e8;
+}
+ @media(max-width:768px){
+     #mainLogo{
+         width:100%;
+     }
+     #mainLogo img {
+    position: relative;
+    max-width: 100%;
+}
+     .ClickHerCentertxt{
+         width:100%;
+     }
+.header-part{
+      padding: 15px 15px 0px 15px;  
+}
+.helplineNum {
+    text-align: center;
+}
+.about_csi{
+    margin:10px;
+}
+.csi_protfolio_cards {
+    margin: 10px 0px 10px 0px;
+}
+#Icsi_top_header .header_logo_li_1 {
+    width: 100%;
+}
+#Icsi_top_header .header_logo_li_2 {
+    width: 100%;
+}
+#ca_footer_1 p{
+    text-align:center;
+}
+#our-profiles .card {
+    margin: 0px 0px 10px 0px;
+}
+#example1{
+    margin:10px;
+}
+.profile_carousel{
+    padding:0px;
+}
+.Csi_login_col {
+    padding: 0px;
+    margin: 0px 10px 5px 10px;
+}
+.Csi_profile_cards{
+     padding:0px 11px;   
+}
+#Ca_content_body {
+    padding: 0px 0px 10px 0px;
+}
+.icsi_carousel {
+    margin: 0px 0px 0px 0px;
+}
+.passwordList li{
+    width:100%;
+}
+#Ca_content_body .list-inline li:nth-child(2){
+     width:100%;   
+}
+.first_time_sign_up {
+    float: initial;
+}
+.providers {
+    padding: 0px 9px 0px 9px;
+}
+ }
+
+
+
+ /* Form 16 styles */
+
+ .loginformRegistrn{
+    border: 1px solid rgba(0,0,0,.125);
+    margin: 12px 0px 15px 0px;
+    padding: 15px 15px 47px 15px;
+    box-shadow: 3px 2px 5px 2px #c3c3c3;
+}
+
+.RegistrnFormPara{
+color:#666;
+margin:20px 0 20px 0;
+font-size:15px;
+padding-left: 20px;
+}
+
+.SendOtpBtn {
+    text-align: center;
+     color: #ffffff;
+     /* background: #2D4383; */
+     }
+    
+    .SendOtpBtn button {
+     background: #2D4383;
+    border: none;
+      border-radius: 4px;
+      width: 175px;
+     padding: 6px;
+     color: #ffffff;
+            }
+
+
+    
+#RegistrnFooter
+{
+    position: relative;
+    bottom: -20px;
+    width: 100%;
+}
+
+
+ /* End of Form 16 styles */
+
+
+  /* Form 19 styles */
+
+  .ForgotPwrdFirstPare{
+    color:#666;
+font-size:15px;
+padding-left: 20px;  
+margin-bottom: 0 !important;  
+}
+
+  .ForgotPwrdSecondPare{
+    color:#666;
+    margin:4px 0 20px 0;
+    font-size:15px;
+    padding-left: 20px;     
+  }
+
+  .UdINGenrtn{
+    color: #2D4383; 
+    font-weight: 600;
+}
+
+   /* End of Form 19 styles */
+
+      /* Form 31 styles */
+
+.GeneratbtnMain{
+    margin-top:35px;
+}
+  
+  #btnSearch,
+#btnClear{
+    display: inline-block;
+    vertical-align: top;
+    background-color: #2D4383 !important;
+    border: none;
+      border-radius: 4px;
+      width: 250px;
+     padding: 6px;
+     color: #ffffff;
+     text-align: center;
+     margin:0 auto;
+}
+  
+
+.formgheaderUDINgENRTD {
+    text-align: center;
+    color: #2D4383;
+    padding:40px 7px;
+    font-weight:bold;
+     font-size:18px;
+           }
+
+  @media only screen and (min-width:1200px)
+        {
+            .ExitLogoutBtn{
+                margin-left:20px !important;
+                   }
+        }  
+
+
+    /* End of Form 31 styles */
+
+
+     /*Styles of 22 nd form*/
+.valuesBlock {
+    display: block;
+    width:40%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.block {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    outline: 0px !important;
+    box-shadow: none !important;
+}
+h4.FiguresValues {
+    font-weight: 300;
+    font-size: 18px;
+}
+.checkForm {
+    padding: 12px 66px 0px 22px;   
+}
+.dropDown{
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    width:100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding: 0px 0px 5px 4px;
+    position: relative;
+    top: 22px;
+    color:#414242;
+}
+.containerCheckbox {
+    display: inline;
+    position: relative;
+    padding-left: 23px;
+    padding-right: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  } 
+  .containerCheckbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+  .containerCheckbox:hover input ~ .checkmark {
+    background-color: #ccc;
+  } 
+  .containerCheckbox input:checked ~ .checkmark {
+    background-color: #013370;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .containerCheckbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .containerCheckbox .checkmark:after {
+    left: 4px;
+    top: 2px;
+    width: 6px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+p.Formtype {
+    padding: 0px 0px 0px 8px;
+    margin-bottom: -24px;
+    color: #4a4848;
+}
+i.fa.fa-sort-desc {
+    font-size: 24px;
+    color: #4a4848;
+}
+.fa-info-circle {	
+		content: "\f003";
+		font-size: 12px;
+		border-radius: 50%;
+		padding: 2px;
+		background-color: white;
+		color: black;
+}
+span.icon {
+    display: inline-block;
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px black;
+    padding: -0.5em -1.4em;
+    padding: 0.5em 0.6em;
+    font-size: 6px;
+}
+span.icon {
+    display: inline-block;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px #080808;
+    padding: -0.5em -1.4em;
+    padding: 0.5em 0.6em;
+    font-size: 6px;
+    border-color: black;
+}
+ /*Styles of 22 nd form ends here*/
+
+  /*Styles of 25th form*/
+#rcorners1 {
+    margin: auto;
+    border-radius: 3px;
+    background: #E8F1FF;
+    width: 437px;
+    height: auto;
+    padding: 10px;
+}
+#rcorners1 p{font-size: 12px;
+    text-align: center;
+    color: #525151;}
+    input.form-control.otpText {
+    margin: 10px auto;
+}
+.otpForm{
+    display: block;
+    width: 75%;
+    padding: .375rem .75rem;  
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.blockk {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    outline: 0px !important;
+    box-shadow: none !important;
+}
+.valueee {
+    display: block;
+    width:143%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    /* border: 1px solid #ced4da; */
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.otpText{
+    margin:10px auto;
+}
+.FiguresVal{font-weight: bold;
+    font-size: 16px;}
+    table, th, td {
+  
+  border-collapse: collapse;
+}
+th{
+color: #0a0a0a;
+    font-weight: 300;
+}
+th, td {
+
+  padding: 5px;
+}
+h5.documentType {
+    color: #666;
+    font-weight: normal;
+    font-size: 15px;
+    padding-right: 30px;
+}
+    /*Styles of 25 nd form ends here*/
+
+
+
+  /* Form 40 styles */
+
+.redMandtry{
+    color:red;
+    }
+
+    .ComplaintStatusTxt {
+        padding: 12px 10px 4px;
+        color: #777;
+        font-weight: normal;
+        margin: 25px auto 0px auto;
+        text-align: center;
+        background-color: #e8f1ff;
+        box-shadow: 3px 2px 5px 2px #c3c3c3;
+     }
+
+     .ToChangeTxt{
+         padding-left:0;
+         padding-right: 0;
+     }
+
+.CheckComplntStatusTxt
+{
+    padding: 12px 10px 4px;
+    color: #fff;
+    font-weight: normal;
+    margin: 25px auto 0px auto;
+    text-align: center;
+    background-color: #073074;
+    box-shadow: 3px 2px 5px 2px #c3c3c3;
+
+}
+
+
+  /* End of  Form 40 styles */
+
+
+    /* Form 35 styles */
+
+  .table td, .table th{
+border-bottom:1px solid #dee2e6; 
+border-top: none;
+font-size: 13px;
+color:#777;
+  }
+  
+  .revokeDocOL{
+    padding-left: 18px;
+  }
+
+  /* End of  Form 35 styles */
+
+  /* Form 39 styles */
+
+  .VerifyBtn {
+    text-align: center;
+     color: #ffffff;
+     /* background: #2D4383; */
+     }
+    
+    .VerifyBtn button {
+     background: #2D4383;
+    border: none;
+      border-radius: 4px;
+      width: 250px;
+     padding: 6px;
+     color: #ffffff;
+            }
+
+  /* End of  Form 39 styles */
+
+
+    /*Styles of 34th form*/
+    thead.tableHead {
+        background-color: #2d4690;
+        color: white;
+    }
+    th.theadd {
+        font-weight: 400;
+    }
+    ol {
+      
+        padding-left: 17px;
+    }
+    button.printGreen {
+        /* background-color: green; */
+        background: -webkit-linear-gradient(top, #264d7f, #02143f);
+        background: #1D9419;
+        border: none;
+        border-radius: 4px;
+            width: 85px;
+        padding: 8px;
+        color: #ffffff;
+        font-weight: 600;
+            font-size: 12px;
+        
+    }
+    button.revokeRed {
+          /* background-color: green; */
+        background: -webkit-linear-gradient(top, #264d7f, #02143f);
+        background: #AA0503;
+        border: none;
+        border-radius: 4px;
+           width: 93px;
+        padding: 8px;
+        color: #ffffff;
+        font-weight: 600;
+         font-size: 12px;
+            margin-top: 3px;
+    }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    p.statuActive {
+        
+    }
+    .inline-buttons .one-third {
+        text-align: center;
+    }
+    .butnn button {
+        background-color: #4CAF50;
+        border: 1px solid green;
+        color: white;
+        padding: 6px 24px;
+        cursor: pointer;
+        /* float: right; */
+        
+        margin-left: 8px;
+    }
+    button.printList {
+        background-color: #1d9419;
+        /* float: right; */
+        
+    }
+    button.printList2 {
+        margin-left: 945px;
+        background-color: #aa0503;
+        border: 1px solid #aa0503;
+        border-radius: 3px;
+    }
+    
+
+    thead.tableHead tr th.theadd {
+        color: #fff;
+        vertical-align: middle;
+    }
+    #PrintListBtn  {
+            background: #1d9419;
+            border: none;
+              border-radius: 4px;
+              width: 125px;
+             padding: 6px;
+             color: #ffffff;
+             display: inline-block;
+             vertical-align: top;
+                    text-align: center;
+             margin:0 auto;
+    }
+     
+        #DownloadListBtn  {
+         background: #aa0503;
+        border: none;
+          border-radius: 4px;
+          width: 125px;
+         padding: 6px;
+         color: #ffffff;
+         display: inline-block;
+         vertical-align: top;
+                 text-align: center;
+         margin:0 auto;
+    }
+    
+.PrintDownloadButtns
+{
+    margin:0 0 10px 0;
+}
+    
+      /*Styles of  34th form ends here*/
+
+      /* Form 38 styles */
+
+      .formgheaderSecondHeading {
+        text-align: center;
+        color: #2D4383;
+        padding:0;
+        font-weight:bold;
+         font-size:18px;
+               }
+    .requrdFildsTxt{
+        color:#666;
+        padding-left:10px;
+    }
+
+       /*End of Form 38 styles */
+       @media only screen and (max-width: 600px) {
+           .containerCheckbox {
+    position: relative;
+    padding-left: 18px;
+    padding-right: 30px;
+    font-size: 9px;
+}
+.checkForm {
+    padding: 16px 54px 0px 11px;
+}
+h5.documentType {
+        font-size: 10px;
+    padding-right: 0px;
+    font-weight: normal;
+    color: #666;
+}
+}
+
+/*css added on 1july 2019*/
+
+.listinlineFooter {
+    padding-left: 0;
+    list-style: none;
+    margin-left: 0px;
+    float: left;
+    font-size: 14px;
+}
+
+    .listinlineFooter > li {
+        display: inline-block;
+        padding-right: 5px;
+        padding-left: 5px;
+        line-height: 0px;
+    }
+
+.fr {
+    float: right;
+}
+
+#ca_footer_2 {
+    overflow: hidden;
+    line-height: 23px;
+}
+
+    .submitbtn input {
+        text-align: center;
+        color: #ffffff;
+        background: #2D4383;
+        border: none;
+        border-radius: 4px;
+        width: 108px;
+        padding: 6px;
+    }
+

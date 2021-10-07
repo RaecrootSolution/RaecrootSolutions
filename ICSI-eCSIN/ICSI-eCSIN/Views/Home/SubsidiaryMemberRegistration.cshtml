@@ -1,0 +1,70 @@
+﻿@model ICSI_eCSIN.Models.SubsidiaryMemberRegistration
+@{
+    ViewBag.Title = "Subsidiary Member Registration";
+    Layout = "~/Views/Shared/_LayoutLoginAdmin.cshtml";
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+<div class="m-1 mx-1">
+    <p class="p-1 text-center" style="background:#ccc;">Subsidiary Member Registration</p>
+</div>
+
+@using (Html.BeginForm("SubsidiaryMemberRegistration", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("successfully"))
+    {
+        color = "green";
+    }
+<div class="border my-3 py-3" style="box-shadow:#ccc 5px 6px 6px;">
+    @*<label class="text-danger">@ViewBag.ErrorMsg</label>*@
+    <div class="form-group col-md-6">
+        <label style="color:@color">@Message</label>
+    </div>
+    <div class="px-4 py-3">
+        <div class="row">
+            <label class="control-label col-md-4 offset-md-1" for="Membership_Number_:">Membership Number :</label>
+            <div class="form-group col-md-6">
+                @Html.EditorFor(model => model.MembershipNumer, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Enter Membership Number (ex : A1234/F1234)" } })
+                @Html.ValidationMessageFor(model => model.MembershipNumer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="px-4 py-3">
+        <div class="row">
+            <label class="control-label col-md-4 offset-md-1" for=" ">Approval Date :</label>
+            <div class="form-group col-md-6">
+                @Html.EditorFor(model => model.ApprovalDate, new { htmlAttributes = new { id = "APD", @class = "form-control formblock", placeholder = "(DD/MM/YYYY)", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.ApprovalDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="submitbtn">
+        <button type="submit">Generate Subsidiary</button>
+    </div>
+</div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#APD').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+1"
+        });
+    });
+</script>

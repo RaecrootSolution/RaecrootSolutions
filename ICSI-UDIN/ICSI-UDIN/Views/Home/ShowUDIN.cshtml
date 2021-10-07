@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "ShowUDIN";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    //DateTime dt = DateTime.Now;
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "green";
+   // DateTime dt = DateTime.Now;
+}
+
+
+<div class="my-5 text-center" style="min-height:250px;">
+    <label class="lead text-center text-success"> <strong>  @Html.Raw(Message); </strong></label>
+</div>
+
+

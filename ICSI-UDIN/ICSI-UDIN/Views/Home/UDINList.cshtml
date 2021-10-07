@@ -1,0 +1,127 @@
+﻿@model IEnumerable<ICSI_UDIN.Models.RP_GetUDINList_Result>
+@{
+    /**/
+
+    ViewBag.Title = "UDINList";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+    int count = 0;
+    DateTime dt = new DateTime();
+    string status = string.Empty;
+    DateTime dtSign = new DateTime();
+    
+}
+
+<div class="container">
+
+    <div id="loginformRegistrn">
+
+        <div class="card loginformRegistrn">
+            <div>
+                <h4 class="formgheader">List of UDIN Documents</h4>
+
+            </div>
+
+            <div class="row PrintDownloadButtns">
+                <div class="col-sm-12 text-right">
+                    @*<button id="PrintListBtn" class="center-block">Print List</button>*@
+                    <button id="DownloadListBtn" class="ExitLogoutBtn center-block" style="background-color: rgb(45, 70, 144); color:#fff;" type="button" onclick="location.href='@Url.Action("ExportToExcel", "Home",@ViewBag.MembershipNumber)'">Download List</button>
+                </div>
+            </div>
+
+            <form>
+
+                <div style="overflow-x:auto;">
+                    <table class="table">
+                        <thead class="tableHead">
+                            <tr>
+                                @*<th class="theadd">S.No</th>*@
+                                <th class="theadd">UDIN</th>
+                                <th class="theadd">Membership Name/No.</th>
+                                <th class="theadd">Document Type</th>
+                                <th class="theadd">UDIN Creation Date</th>
+                                <th class="theadd">Date Of Signing</th>
+                                <th class="theadd">Financial Year</th>
+                                <th class="theadd">Client Name</th>
+                                <th class="theadd">CIN/PAN/Aadhar Number</th>
+                                @*<th class="theadd">PAN Number</th>
+        <th class="theadd">Aadhar Number</th>*@
+                                <th class="theadd">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.Message == "")
+                            {
+                                foreach (var item in Model)
+                                {
+                                    count++;
+                                    dt = Convert.ToDateTime(item.CreatedDate);
+                                    status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                                    dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                                    DateTime dtrevoke = DateTime.Now.AddDays(-7);
+
+                            <tr>
+                                @*<td>@count</td>*@
+
+                                <td>@item.MembershipNumber</td>
+                                <td>@item.MRN</td>
+                                <td>@item.DocumentType</td>
+                                <td>@dt.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                                <td>@dtSign.ToString("dd/MM/yyyy")</td>
+                                <td>@item.FinancialYear</td>
+                                <td>@item.ClientName</td>
+
+                                <td>@item.CINNumber  @item.PANNumber   @item.AadharNumber</td>
+
+                                <td>
+                                    <p class="statuActive">@status</p>
+                                    <button type="submit" class="printGreen" style="display:none">Print UDIN</button>
+
+
+                                    @if (item.IsValid == "Y" || item.IsValid == "1")
+                                    {
+                                        if (dtSign >= dtrevoke)
+                                        {
+                                            <button type="button" class="revokeRed" style="background-color: rgb(45, 70, 144); color:#fff;" onclick="location.href='@Url.Action("CancelUDIN", "Home", @item)'">Revoke UDIN</button>
+                                        }
+                                    }
+                                </td>
+
+
+
+                            </tr>
+
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@ViewBag.Message</td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+                @*<div class="SendOtpBtn">
+                        <button type="submit">Submit</button>
+                    </div>*@
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DisableButton(img) {
+
+       $(function () {
+        $("#divDOB").datetimepicker({
+            pickTime: false,
+            orientation: "left",
+        });
+    });
+
+    }
+</script>

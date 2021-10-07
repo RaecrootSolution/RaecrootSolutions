@@ -1,0 +1,116 @@
+﻿@model ICSI_UDIN.Models.UDINSearch
+@{
+    ViewBag.Title = "SearchUDIN";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+<div id="loginformblock">
+    <div class="card loginformRegistrn">
+        <h3 class="formgheader">Search UDIN</h3>
+        <form action="~/Home/SearchUDIN" method="post">
+
+            <div>
+                <p class="text-danger">@ViewBag.Mesaage1</p>
+            </div>
+
+            <div class="form-group siderbarlgnform">
+                <label class="text-danger" id="msg"></label>
+                @Html.TextBoxFor(model => model.UDIN, new { @class = "form-control formblock", id = "udinno", name = "udinno", placeholder = "Unique Document Identification Number (UDIN)" })
+                @Html.ValidationMessageFor(model => model.UDIN, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group siderbarlgnform">
+                @Html.TextBoxFor(model => model.FinancialYear, new { @class = "form-control formblock", id = "financialYear", name = "financialYear", placeholder = "Financial Year" })
+                @Html.ValidationMessageFor(model => model.FinancialYear, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group siderbarlgnform">
+                @Html.TextBoxFor(model => model.MembershipNo, new { @class = "form-control formblock", id = "MembershipNo", name = "MembershipNo", placeholder = "Membership No" })
+                @Html.ValidationMessageFor(model => model.MembershipNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group siderbarlgnform">
+                @Html.TextBoxFor(model => model.MembershipName, new { @class = "form-control formblock", id = "MembershipName", name = "MembershipName", placeholder = "Membership Name" })
+                @Html.ValidationMessageFor(model => model.MembershipName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group siderbarlgnform">
+                @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { id = "fromDate", @class = "form-control formblock", placeholder = "From Date", @readonly = "true" } })
+                @*@Html.TextBoxFor(model => model.FromDate, new { @class = "form-control formblock", id = "fromDate", name = "fromDate", placeholder = "FromDate (DD/MM/YYYY)" })*@
+                @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group siderbarlgnform">
+                @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { id = "toDate", @class = "form-control formblock", placeholder = "To Date", @readonly = "true" } })
+                @*@Html.TextBoxFor(model => model., new { @class = "form-control formblock", id = "financialYear", name = "financialYear", placeholder = "ToDate (DD/MM/YYYY)" })*@
+                @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="SendOtpBtn">
+                <button type="submit" onclick="return CheckDate();">Search</button>
+
+
+            </div>
+            <div>
+                <p style="background-color:red">@ViewBag.Mesaage</p>
+            </div>
+            <div>
+                <p style="background-color:red"> @ViewBag.Session </p>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- jQuery UI CSS Reference -->
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#fromDate').datepicker({
+            dateFormat: "mm/dd/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            onClose: function () {
+                validate($(this).val());
+            }
+        });
+        $('#toDate').datepicker({
+            dateFormat: "mm/dd/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            onClose: function () {
+                validate($(this).val());
+            }
+        });
+    });
+    function validate(dateText) {
+        var fromDAte = new Date(document.getElementById("fromDate").value);
+        var toDAte = new Date(document.getElementById("toDate").value);
+        if (fromDAte <=toDAte ) {
+            document.getElementById("msg").innerHTML = "";
+        }
+    }
+    function CheckDate() {
+        var fromDAte = new Date(document.getElementById("fromDate").value);
+        var toDAte = new Date(document.getElementById("toDate").value);
+        document.getElementById("msg").innerHTML = "";
+        if (fromDAte > toDAte) {
+            document.getElementById("msg").innerHTML = "To Date should be greater than From Date";
+            return false;
+        }
+        return true;
+       
+    }
+
+</script>
+
+
+

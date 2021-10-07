@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ICSI_eCSIN.Models.eCSINDetails>
+@{
+    /**/
+
+    ViewBag.Title = "UpdateMemberDetails";
+    Layout = "~/Views/Shared/_LayoutLoginAdmin.cshtml";
+    int count = 0;
+    DateTime dt = new DateTime();
+    string status = string.Empty;
+    DateTime dtAPt = new DateTime();
+    DateTime dtCT = new DateTime();
+   
+}
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;font:bold;">Member's eCSIN List</p>
+</div>
+
+<div class="container">
+
+    <div id="loginformRegistrn">
+        <div class="card loginformRegistrn">
+            <div class="row PrintDownloadButtns">
+                <div class="col-sm-12 text-right">
+                    <button id="DownloadListBtn" class="ExitLogoutBtn center-block" style="background-color: rgb(45,
+0, 144); color:#fff;" type="button" onclick="location.href='@Url.Action("ExportToExcel", "Home",@ViewBag.MembershipNumber)'">
+                        Download List
+                    </button>
+                </div>
+            </div>
+            <form>
+                <div style="overflow-x:auto;">
+                    <table class="table">
+                        <thead class="tableHead">
+                            <tr>
+                                <th class="theadd">S.No</th>
+                                <th class="theadd">eCSIN Number</th>
+                                <th class="theadd">Date of eCSIN</th>
+                                <th class="theadd">CIN Number</th>
+                                <th class="theadd">PAN Number</th>
+                                <th class="theadd">Name of Company/Firm/Individual</th>
+                                @*<th class="theadd">Date of Cessation</th>*@
+                                <th class="theadd">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.Message == "")
+                            {
+                                foreach (var item in Model)
+                                {
+                                    count++;
+                                    dt = Convert.ToDateTime(item.CreatedDate);
+                                    dtAPt = Convert.ToDateTime(item.DateOfAppointment);
+                                    dtCT = Convert.ToDateTime(item.DateOfCessationEmployment);
+                                    status = item.Status == true ? "Active" : "InActive";
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.eCSINGeneratedNo</td>
+                                <td>@dt.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                                <td>@item.EmployerCINNo</td>
+                                <td>@item.PANNumber</td>
+                                <td>@item.EmployerName</td>
+
+                                @*@if (item.DateOfCessationEmployment != null)
+                                {
+                                    <td>@dtCT.ToString("dd/MM/yyyy")</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }*@
+                                <td>
+                                    <p class="statuActive">@status</p>
+                                    <button type="submit" class="printGreen" style="display:none">Print eCSIN</button>
+                                    @if (item.Status == true)
+                                    {
+                                        <button type="button" class="revokeRed" style="background-color: rgb(45, 70, 144); color:#fff;" onclick="location.href='@Url.Action("UpdateMemberDetaileCSIN", "Home", @item)'">Update eCSIN</button>
+                                    }
+                                </td>
+                            </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@ViewBag.Message</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>              
+            </form>
+        </div>
+    </div>
+</div>
+

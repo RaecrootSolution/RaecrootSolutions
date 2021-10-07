@@ -1,0 +1,93 @@
+﻿@model PaymentGateway.Models.Receipt
+@{
+    ViewBag.Title = "Receipt";
+}
+
+
+@{
+    if (Model != null)
+    {
+
+        <div>
+            <input type="hidden" value="@Html.Raw(Model.strPgTranId)" id="hdnReqId" />
+            <input type="hidden" value="@Html.Raw(Model.url)" id="hdnUrl" />
+            <input type="hidden" value="@Html.Raw(Model.sskey)" id="hdnSskey" />
+            <input type="hidden" value="@Html.Raw(Model.ofid)" id="hdnofid" />
+            <input type="hidden" value="@Html.Raw(Model.scid)" id="hdnScid" />
+            <input type="hidden" value="@Html.Raw(Model.userid)" id="hdnUserid" />
+        </div>
+        @*<form class="well form-horizontal" action="..\Home\Home" method="post" id="contact_form" enctype="multipart/form-data">
+            <div class="contain-all">
+                <div class="container form-field">
+                    <div id="rid">
+                        <div class="addTrainingStructure paymentStructure">
+                            <h4 class="">Payment Status</h4>
+                        </div>*@
+
+        @*<div id="rid">
+                @Html.Raw(Model.html)
+            </div>
+            <div id="btnin" class="row">
+                <div class="col-md-7">
+                    <button type="button" class="btn btn-primary AppliedSearchBtn" onclick="window.print();" style="margin-left:15px;">
+                        <span class="glyphicon glyphicon-print"></span> Print
+                    </button>
+                    <button type="button" class="btn btn-primary AppliedSearchBtn" onclick="loadHome()"> Home</button>
+                </div>
+            </div>*@
+
+        <script type="text/javascript">
+
+            loadHome()
+            function loadHome() {
+                var trid = $('#hdnReqId').val();
+                var url = $('#hdnUrl').val();
+                var sskey = $('#hdnSskey').val();
+                var ofid = $('#hdnofid').val();
+                var scid = $('#hdnScid').val();
+                var userid = $('#hdnUserid').val();
+                var pg = 'pg';
+                var pt = 'receipt';
+                //var btnin = document.getElementById('btnin');
+                //btnin.style.display = 'none';
+               // var btrid = document.getElementById('rid');
+                //var html =  "@Html.Raw(Model.strEncryptedHTML)";
+                var refId = "@Html.Raw(Model.iRefId)";
+                var nxtScnId = "@Html.Raw(Model.strNxtScnID)";
+                var loginid = "@Html.Raw(Model.strLoginId)";
+                var txSuccess = "@Html.Raw(Model.isTxSuccess)";
+                var recTmpID = "@Html.Raw(Model.recTmplId)";
+                var frm = document.createElement('form');
+                frm.action = url;
+                frm.method = "POST";
+                frm.appendChild(createInputHidden('trid', trid));
+                frm.appendChild(createInputHidden('u', userid));
+                frm.appendChild(createInputHidden('s', pg));
+                frm.appendChild(createInputHidden('si', scid));
+                frm.appendChild(createInputHidden('ofid', ofid));
+                frm.appendChild(createInputHidden('sskey', sskey));
+                frm.appendChild(createInputHidden('pt', pt));
+                //frm.appendChild(createInputHidden('html', html));
+                frm.appendChild(createInputHidden('refId', refId));
+                frm.appendChild(createInputHidden('nextScreen', nxtScnId));
+                frm.appendChild(createInputHidden('loginid', loginid));
+                frm.appendChild(createInputHidden('txSuccess', txSuccess));
+                frm.appendChild(createInputHidden('recTmpID', recTmpID));
+
+                document.body.appendChild(frm);
+                frm.submit();
+            }
+
+            function createInputHidden(nm, vl) {
+                var hi = document.createElement('input');
+                hi.type = 'hidden';
+                hi.name = nm;
+                hi.value = vl;
+                return hi;
+            }
+
+        </script>
+
+    }
+}
+

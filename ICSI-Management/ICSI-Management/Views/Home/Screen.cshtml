@@ -1,0 +1,230 @@
+﻿@model ICSI_Management.Models.Screen
+@{
+    ViewBag.Title = "Screen";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>SCREEN</strong></h3>
+    </div>
+
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("Screen", "Home"))
+    {
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> App Module Name</label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.AppModuleId, new SelectList(Model.lstAppModule, "Id", "ModuleName"), "-- Select App Module Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AppModuleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Mandatory Screen</label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.MandScreenId, new SelectList(Model.mandSList, "MandScreenId", "MandScreenName"), "-- Select Mandatory Screen Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AppModuleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label class="col-md-3 control-label"> Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Name, new { htmlAttributes = new { @class = "form-control", @onkeyup = "myFunction()" } })
+                @Html.ValidationMessageFor(model => model.Screen_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Title </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Screen Sym Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Sym_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_Sym_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> File Name</label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_File_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_File_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Style </label>
+            <div class="col-md-6">
+                @*<textarea class="form-control" rows="4"></textarea>*@
+                @Html.TextAreaFor(model => model.Screen_Style, new { @cols = "72", @rows = "4" })
+                @Html.ValidationMessageFor(model => model.Screen_Style, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Content</label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Screen_Content, new { @cols = "72", @rows = "4" })
+                @Html.ValidationMessageFor(model => model.Screen_Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Script </label>
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Screen_Script, new { @cols = "72", @rows = "4" })
+                @Html.ValidationMessageFor(model => model.Screen_Script, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> Class Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Class_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_Class_Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @*<label> <input type="checkbox"> Static</label>*@
+                <label> @Html.CheckBoxFor(m => m.Screen_Class_Static)&nbsp;Static</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Reff Class Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Ref_Class_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_Ref_Class_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Method Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Screen_Method_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Screen_Method_Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                <label> @Html.CheckBoxFor(m => m.Screen_Method_Static)&nbsp;Static</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Schema Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Schema_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Table_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Table Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Table_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Table_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Action </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Action_TX, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Action_TX, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label> @Html.CheckBoxFor(m => m.Active)&nbsp;Active</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update </button>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    <div class="table-responsive pt-5">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Screen Name</th>
+                    <th>Title</th>
+                    <th>File Name</th>
+                    <th>Class Name</th>
+                    <th>Reff Class Name</th>
+                    <th>Method Name</th>
+                    <th>Schema Name</th>
+                    <th>Table Name</th>
+                    <th>Screen Name</th>
+                    <th>App Module Name</th>
+                    <th>Mand Screen Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.lstScreen)
+                {
+                <tr>
+                    <td>@item.Screen_Name</td>
+                    <td>@item.Screen_Title</td>
+                    <td>@item.Screen_File_Name</td>
+                    <td>@item.Screen_Class_Name</td>
+                    <td>@item.Screen_Ref_Class_Name</td>
+                    <td>@item.Screen_Method_Name</td>
+                    <td>@item.Schema_Name</td>
+                    <td>@item.Table_Name</td>
+                    <td>@item.Screen_Name</td>
+                    <td>@item.AppModuleName</td>
+                    <td>@item.MandScreenName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Screen", new { @id = @item.ID })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    function myFunction() {
+        $('#Screen_Sym_Name').val(document.getElementById("Screen_Name").value.toUpperCase().replace(/ /g, "_"));
+    }
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>

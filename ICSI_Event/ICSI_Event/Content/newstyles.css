@@ -1,0 +1,2363 @@
+#datepicker2{width:240px;}
+#datepicker1{width:240px;}
+#datepicker5{width:198px;}
+#datepicker6{width:198px;}
+#datepicker7{width:198px;}
+#datepicker8{width:198px;}
+#datepicker9{width:192px;}
+#datepicker32{width:234px;}
+#datepicker31{width:234px;}
+#datepicker3 {
+    width: 83px;
+}
+#datepicker4 {
+    width: 83px;
+}
+
+.gj-picker.gj-picker-md.timepicker {
+    position: absolute;
+    left: 40%;
+    /* width: 100%; */
+    top: auto !important;
+    
+}
+
+.form-group .input-group>.form-control {
+    border-radius: unset;
+}
+
+#header{
+    color:gray;
+}
+form#contact_form {
+    background-color: #ffffff;
+     min-height: 20px;
+     padding:7px 19px 0px 19px;
+       border: 1px solid #ffffff;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 253, 253, 0.05);
+    box-shadow: inset 0 1px 1px rgba(255, 253, 253, 0.05);
+    
+}
+fieldset {
+    background-color: white;
+}
+
+.form-inline .input-group>.form-control{
+    width:100%;
+}
+
+.form-inline .input-group>.form-control{
+    border-radius: unset;
+}
+
+.save_css{margin-right:10px;}
+
+.selectoptionBg select{
+    padding:0 12px 0 !important;
+}
+
+ /*Styles of 29th form*/
+
+/*29th form styles ends here*/
+
+
+.btn{
+    border-radius: 3px;
+}
+
+/* Header styles */
+
+
+    
+/* End of Header styles * /
+
+
+
+/* Footer styles */
+
+footer {
+    margin: 0px;
+    background: #222 repeat-x scroll 0 0;
+    margin-top: 25px;
+    font-size: 12px;
+}
+.footerContainer{
+    padding:0px 0px 10px;
+}
+.icsiFooter .container{
+    max-width: 1000px;
+}
+.icsiFooter{
+    color: #ccc;
+}
+.icsiFooter li a{
+color:#ccc;
+font-size: 11px;
+text-transform: uppercase;
+}
+.icsiFooter li a:hover{
+color:#ccc;
+}
+.icsiFooterMenu{
+        border-bottom: 2px solid #ccc;
+    padding: 10px;
+}
+.icsiFooter p{
+    padding-top: 10px;
+}
+.no-padding{
+    padding: 0px;
+}
+.no-margin{
+    margin:0px auto;
+}
+/* End of Footer styles */
+
+/*Styles of  2ndHeader*/
+body{
+    margin: 0;
+    padding: 0;
+ }
+ .header-part {
+    max-width: 100%;
+    min-height: 98px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+ }
+
+ .list-inline{
+     margin:0;
+ }
+
+ #Icsi_top_header .header_logo_li_1 {
+    width: 60%;
+}
+.list-inline li {
+    display: inline-block;
+    vertical-align: middle;
+}
+ul li {
+    color: blue;
+    line-height: 2;
+}
+
+ #mainLogo{
+    width: 100%;
+    float: left;
+    padding: 0px;
+ }
+
+ #mainLogo img {
+    position: relative;
+    max-width: 52%;
+    padding-top: 5px;
+ }
+ .Header img {
+    max-width: 300px;
+ }
+ .helplineNum p {
+    color: #024879;
+    margin: 0px;
+    text-align: right;
+    line-height: 39px;
+    font-size: 14px;
+ }
+ .helplineNum span {
+    font-weight: bold;
+ }
+ /* .menuBar{
+    background: -webkit-linear-gradient(top, #264d7f, #02143f);
+    background-color: #153063;
+    width: 100%;
+    min-height: 37px;
+ } */
+ .menuBar{
+    background: -webkit-linear-gradient(top, #264d7f, #02143f);
+    background-color: #153063;
+    width: 100%;
+ }
+ /* .menuBar ul{
+        margin-left: 130px;
+ }
+ .menuBar ul li{
+    float: left;
+    list-style: none;
+ }
+ .menuBar ul li a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #dddddd;
+    line-height: 3;
+    font-weight: 600;
+     padding: 12px 12px;
+ } */
+ /* 2ndHeader*/
+ 
+ .contain-all {
+    max-width: 1000px;
+    width: 100%;
+       padding-top: 0px;
+    margin: 0 auto;
+ }
+ .container.form-field{
+    max-width: 1000px;
+    padding: 20px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    min-height: 350px;
+ }
+ .addTrainingStructure.paymentStructure 
+ {
+    color: #fbf9f9;
+    font-weight: 400;
+    background-color: #0C4EB0;
+    line-height: 2;
+    margin-bottom: 22px;
+    margin-top: -13px;
+    
+ }
+ .addTrainingStructure.paymentStructure  h4 {
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+ }
+ 
+ /* End of 2ndHeader*/
+
+
+
+/* New styles */
+
+/* Form 33 styles */
+
+.OriginalDurInput{
+width:52.5%;
+}
+
+/* End o Form 33 styles */
+
+/* Form 36 styles */
+
+.addTrainingStructure {
+    color: black;
+    font-weight: 600;
+}
+
+.FacultyMasterTxT{
+    color: black;
+    font-weight: 600;
+    margin-bottom: 27PX;
+}
+
+
+legend.addTrainingStructureLegend
+{
+margin-bottom: 0;
+}
+
+#main-logo {
+    transition: 0.0s all;
+    overflow: hidden;
+    padding-top:10px;
+}
+
+#main-logo img {
+    position: relative;
+}
+
+.header img {
+    max-width: 300px;
+}
+
+.header_Circles{
+float:right;
+}
+
+.main_Header{
+    border-bottom:1px solid #ccc;
+}
+
+.main_Header header {
+    display: inline-block;
+}
+
+.circle {
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border:1px solid #666;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .circleBlue{
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border:1px solid blue;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .form-group .control-label.FormtxtLeft{
+      text-align: left;
+      padding-left: 30px;
+  }
+  .form-group .control-label.FormtxtRight {
+    /* text-align: left; */
+    padding-left: 30px;
+	text-align:center;
+}
+
+  .SubmitBtn{
+    margin-left: 14px;
+    margin-top: 30px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    float:right;
+    background-color: #2d4690;
+  }
+
+
+.SubmitAddNewBtn{
+    border-color: #3a719a;
+    padding: 7px 20px;
+    float:right;
+    margin-right: 12px !important;
+    font-weight: bold;
+    background-color: #2d4690;  
+}
+  
+.ApprvTrainingCertfctAddNewBtn{
+    border-color: #3a719a;
+    padding: 7px 20px;
+    width:377px;
+    margin-right: 12px !important;
+    font-weight: bold;
+    background-color: #2d4690;  
+}
+
+#Icsi_top_header .container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+  .SearchCrtSubmitBtn{
+    margin:18px 0px 0 10px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+    float: right;
+  }
+   .SearchCrtSubmitBtn2{
+        margin: 18px 0px 10px 10px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+    float: right;
+  }
+
+  .SearchCrtSubmitBtn1{
+    margin:18px 26px 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+    float: right;
+  }
+
+  .gj-datepicker-bootstrap [role=right-icon] button {
+    width: 38px;
+    height: 34px;
+    position: absolute;
+    border-radius: unset;
+    border: 1px solid #ced4da;
+}
+
+input#datepicker {
+    border-radius: unset;
+}
+
+.LogoSpacing{
+    padding-left:0;
+}
+
+input[type="text"]:focus{
+    background-color: #e6e6e6;
+    border-color: #000;
+    box-shadow: none;
+}
+
+/* End of Form 36 styles */
+
+/* Form 25 styles */
+
+.text-on-pannel {
+    background: #fff none repeat scroll 0 0;
+    height: auto;
+    margin-left: 6px;
+    padding: 3px 5px;
+    position: absolute;
+    margin-top: -39px;
+  }
+
+  .searchCtr{
+      border-radius: unset;
+      border-color: #000;
+  }
+  .searchResults{
+    border-radius: unset;
+    border-color: #000;
+    padding-top:0 !important;  
+  }
+
+  .DocPanel{
+      padding:30px !important;
+  }
+  
+ .panel-body {
+    padding-top: 30px !important;
+  }
+
+  .fontBold{
+      font-weight: 600;
+  }
+
+.panelSpacing{
+    padding-left: 0;
+}
+
+.paidtxt{
+    padding-left:43px;
+}
+
+
+.form-group .control-label.PanelFormLabeltextLeft{
+    padding-left: 45px;
+    text-align: left;
+      }
+
+    .PanelFormLabeltextLeft {
+        text-align: left;
+        padding-top:15px !important;
+    }
+    
+    label.col-md-2.control-label.PanelFormLabeltextLeft.panelInputsLabel {
+        text-align: left;
+    }
+
+    label.col-md-2.control-label.PanelFormLabeltextLeft.FormInputsLabel {
+        text-align: left;
+    }
+/* #datepickerConf1{
+	width:70%;
+}
+#datepickerConf2{
+	width:70%;
+} */
+.cal_css{ width: calc(100% - 38px);}
+.margin_spacing{
+	margin-left:0px !important;
+	margin-right:0px !important; 
+}
+.selectCalndrForm{
+    margin-top:15px !important;
+}
+
+.SelectCalndrAftr:after{
+    top:15px !important;
+}
+
+.PanelMangAttdnctxtLeft{
+    padding-top:15px;
+    text-align: left;
+}
+
+.form-group .control-label.PanelMangAttdnctxtLeft{
+    padding-left: 45px;
+    text-align: left;
+    }
+    
+ label.col-md-2.control-label.PanelMangAttdnctxtLeft.panelInputsLabel {
+        text-align: left;
+    }
+
+
+.ManageAttndcSpacing{
+padding-top:15px !important;
+}
+
+.TrainingInputLbl{
+    width: 14%;
+}
+
+
+.form-group .control-label.AppliedTrainingTxt{
+    padding-left: 45px;
+    text-align: left;
+    }
+
+.AppliedTrainingTxt{
+    text-align: left !important;
+    padding-top:15px;
+}
+
+label.col-md-2.control-label.AppliedTrainingTxt.panelInputsLabel {
+    text-align: left;
+}
+
+
+.form-group .control-label.PanelFormtxtLeft{
+padding-left: 45px;
+text-align: left;
+}
+
+.PanelFormtxtLeft {
+    text-align: left;
+}
+
+label.col-md-2.control-label.PanelFormtxtLeft.panelInputsLabel {
+    text-align: left;
+}
+
+.panelInputsLabel{
+    width:12%;
+}
+.panelInputsCityLabel{
+    margin-top:50px;
+}
+
+.SearchCritCourse{
+    margin-top:50px;
+}
+
+.panelInputs{
+    box-shadow: none;
+}
+
+.panelInputsMain{
+width: 21%;
+}
+
+.panelInputsTrainingTypMaster{
+    width:36%;
+}
+
+
+
+.ApplidTrngInputs{
+    width:91%;
+}
+
+.TextNameLeft{
+    text-align: left !important;
+}
+.TextNameLeftApplic{
+    text-align: left !important;
+    padding-left:43px;
+}
+
+.FacltyNamTxt {
+    text-align: left !important;
+    margin-bottom: 15px; 
+}
+
+th.searchResultsHeading {
+    color: #009ee0;
+    font-size:13px;
+    text-align: center;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th
+{    border:1px solid #000;
+    text-align: center;
+    font-size: 13px !important;
+  }
+
+  table.table-bordered > thead > tr > th{
+    border:1px solid #000 !important;
+  }
+
+  .selectoptionBg select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:#ffffff;
+    float: right;
+    padding: 0px 24px;
+    font-size: 15px;
+    line-height: 1.75;
+    }
+    .selectoptionBg:after{
+     content: '\f0d7';
+      font: normal normal normal 17px/1 FontAwesome;
+      color: #ffffff;
+      right: -1%;
+      font-size: 22px;
+      top: 0px;
+      height: 34px;
+      z-index: 100;
+      padding: 6px 10px 0px 10px;
+      border: 1px solid #adafb2;
+      position: absolute;
+      pointer-events: none;
+      background:#0C4EB0;
+     
+    }
+	.selectoptionBg1:after{
+     content: '\f0d7';
+      font: normal normal normal 17px/1 FontAwesome;
+      color: #ffffff;
+      right: -1%;
+      font-size: 22px;
+      top: 0px;
+      height: 34px;
+      z-index: 100;
+      padding: 6px 10px 0px 10px;
+      border: 1px solid #adafb2;
+      position: absolute;
+      pointer-events: none;
+      background:#c1e3fc;
+     
+    }
+
+@media only screen and (min-width:1200px){
+    
+    .ApprovTraingUpBtn{
+        margin: 0px 60px 4px 0;
+    border-color: #3a719a;
+    padding: 6px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+    float: right;
+    }
+	button.btn.btn-primary.bioUploadBtn {
+    margin-left: -240px;
+	background-color: #2d4690;
+}
+	.copyright em {
+    float: right;
+    position: relative;
+    bottom: 8px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.form-check-inline.custom-control.form-control-lg span.RepeatChckbxTxt {
+    padding-bottom: 9px;
+}
+    
+.panelInputsSub{
+    width: 100%;  
+}
+
+.TableFormWeb_Hidden{
+    display: none;
+}
+
+.InputsPaddingSpace{
+    padding-top:15px;
+}
+
+.SearchresultsEditBtn{
+    margin-left:20px !important;
+}
+
+.TrngTypeSpacing{
+    margin-right: 0 !important;
+}
+
+.TrainingTypeSpacing{
+    padding-right: 0 !important;
+    float: right;
+}
+
+label.col-md-2.control-label.AppliedTrainingTxt.TrainingTypeMastrInputs {
+    text-align: left;
+}
+
+
+.TrainingTypeMastrInputs{
+    width:14%;
+}
+
+
+
+.facultyMstrLabel{
+    padding-top:15px !important;
+       width:7%;
+        }
+
+.AddTrainingStructrLabel{
+    width:22%;
+}
+
+ .TrainingSchdlLabelTxt {
+            text-align: left;
+            padding-top: 15px !important;
+        }
+ .TraingSchdlLeftLablTxt {
+            text-align: left !important;
+        } 
+
+ .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){
+    border-radius:10px;
+}
+
+.btn-group>.btn-group:last-child:not(:first-child)>.btn:first-child{
+    border-radius:10px;
+}
+
+.SearchResultChckboxAlign{
+    padding-left: 26px;
+}
+
+
+
+
+}
+
+/* End of Form 25 styles */
+
+
+/* Form 8 styles */
+
+.CancelTrangFooter{
+    display: flex;
+    border-top: unset;
+}
+
+.CancelTrangHeader{
+padding:0;
+height: 20px;
+}
+
+.CancelTrangTitle{
+    background-color: #008cff;
+    padding: 3px 4px;
+    color: #fff;
+    font-weight: 600;
+}
+
+button.close.CancelTrangCloseBtn{
+    margin-top: -29px;
+    width: 25px;
+    height: 30px;
+    opacity: 0.7;
+}
+
+/* End of Form 8 styles */
+/* .table-bordered {
+    width: 97%;
+  }
+  .table-bordered tbody {
+    height: 230px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  .table-bordered thead, .table-bordered tbody, .table-bordered tr, .table-bordered td, .table-bordered th {
+    display: block;
+  }
+  .table-bordered tbody td, .table-bordered thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+  } */
+
+
+/* Form 11 styles */
+
+.uploadTrainingBtn{
+    margin:0 60px 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+}
+.uploadTrainingBtnn{
+    margin:0 60px 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+}
+
+.panelInputsUploadTrainingMastr {
+    width: 30%;
+}
+
+.panelInputsUploadSub{
+    width:94% !important;  
+    border-radius: unset;
+}
+.uploadPrvwLink{
+    color:#000;
+    text-decoration: underline;
+}
+
+.AttendanceAbsntRadioTxt{
+    padding-left:5px;
+    }
+    
+.AttendancePresntRadioTxt{
+    padding-right: 10px; 
+    padding-left:5px;
+        }
+    
+.UploadSubBtn{
+    margin:15px 0 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    float:right;
+    font-weight: bold;
+    background-color: #2d4690;
+}
+
+/* @media only screen and (min-width:1200px){
+.header img {
+    max-width: 300px !important;
+    height: 95px;
+}
+} */
+
+
+@media only screen and (min-width:1200px){
+
+.well.form-horizontal .container-fluid .btn-group .UploadSubBtn {
+    float: left;
+    margin-left: -18px;
+}
+
+
+.cancelTrainingBtn {
+    float: right;
+    font-weight: bold;
+    border-color: #3a719a;
+    background-color: #2d4690;
+}
+.ApproveTrangCertificateBtns {
+    float: right;
+}
+
+/*.tableUploadTraining{
+    margin: 0;
+    width: 1264px;
+}*/
+span.AddTrainingMstr {
+    padding-left: 5px;
+}
+
+.AddTrainingRadioBtn {
+    margin-left: 0 !important;
+}
+
+span.AddtrainingRadiobtn {
+    line-height: 25px;
+    padding-left: 4px;
+}
+
+
+}
+
+
+/* End of Form 11 styles */
+
+
+/* Form 13b styles */
+
+.panelTraingTopicInputsSub{
+width:90%;
+}
+
+.TopicMasterInputLabel{
+    width:15%;
+}
+
+
+.RepeatChckbxTxt{
+font-weight: normal;
+padding-left:8px;
+}
+
+.custom-control-label::before, 
+.custom-control-label::after {
+    top: .8rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* End of Form 11 styles */
+
+/* Form 13b styles */
+
+
+.TopicMasterSearchBtn{
+    margin: 14px 0 0 14px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;  
+    float:right;
+}
+
+.SearchAddBtn{
+    margin-right:13px !important;
+}
+
+.TopicMastrSearchAddBtn{
+    margin-right:13px !important;
+    margin-top: 15px; 
+}
+
+/* End of Form 13b styles */
+
+
+/* Form 14 styles */
+
+.FacMappngSubmitBtn{
+    border-color: #3a719a;
+    padding: 7px 20px;
+    float:right;
+    font-weight: bold;
+    background-color: #2d4690; 
+}
+
+
+@media only screen and (min-width:1200px){
+
+.panelTFacultyTopicMapping{
+    width:117%;
+    }
+    .FacMappngSubmitBtn{
+        margin-left:0;
+    }
+
+}
+
+/* End of Form 14 styles */
+
+
+/* .AppliedTrainingnputsLabel{
+width:16%;
+} */
+
+
+/* Form 16 styles */
+
+.SessionFblList{
+    font-weight: 600;
+    color:#333;
+}
+
+.SessionFbDatelList{
+    font-weight: 600;
+    color:#333;
+    padding-left:0 !important;
+}
+
+
+
+@media only screen and (min-width:1200px){
+.SessnFbInput{
+    width:100%;
+}
+.RemarksWidth{
+    width:200px !important;
+}
+
+.form-check-inline.AttendcRadioBtn {
+    padding-right: 12px;
+}
+
+.FaculyCutyTxt{
+    padding-left: 27px;
+}
+
+}
+
+/* End of Form 16 styles */
+
+
+/* Form 19 styles */
+
+.BrwLink{
+text-decoration: underline;
+color: blue;
+}
+
+.form-check-inline {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 0;
+    margin-right: .75rem;
+}
+
+
+/* End of Form 19 styles */
+
+
+/* Form 26 styles */
+
+.FormInputsLabelNam{
+    width:17%;
+}
+
+.facultyTopicMappngLabel{
+    width: 14%;
+    text-align: left !important;
+}
+/* 
+.FormInputsLabel{
+    width:17%;
+}
+ */
+
+/* End of Form 26 styles */
+
+/*Styles of  form 28 */
+.input-group.col-md-5.timePicker{float: left;}  
+.input-group.col-md-5.timePicker1{ display: inline-block;}
+span.input-group-addon.DateTimepick {
+  padding: 6px;
+}
+/* 28th Form styles ended here*/
+
+
+/*Styles of 12 th form*/
+.FeedbackStructure h4 {
+  font-size: 21px;
+  font-weight: 100;
+  color: #616161;
+  font-family: arial;
+line-height: inherit;
+}
+.form-group .listGroups {
+  padding: left;
+  padding-left: 6px;
+}
+.radioGroups label #FeedbackradioBtn {
+  height: 21px;
+  width: 25px;
+  background-color: #fff;
+  border: 1px dashed #666;
+  margin-top: 1px;
+  margin-left: -24px;
+}
+h4.listItem {
+  padding-left: inherit;
+  font-size: 18px;
+  font-family: arial;
+}
+.input-group.col-md-9.radioGroups {
+    padding: inherit;
+}
+.input-group.col-md-4.radioGroups {
+  padding: inherit;
+}
+label#commentBox {
+  line-height: 2;
+  padding: inherit;
+}
+textarea#comment {
+  margin-top: 9px;
+}
+.checkboxTxt{padding: initial;}
+label.radio-inline {
+  margin-left: 6px;
+}
+label#commentBox {
+      font-weight: 600;
+}
+/*End of styles 12*/
+
+
+/*Styles of 30th Form*/
+.monthsSelect{ padding-right: 0px;}
+.input-group.col-md-1.selectoptionBg.monthsSelectSize{
+   
+    margin-left: 15px;
+    display: inline-block;
+}
+
+   .icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+   position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    width: 28px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: -3px;
+    right: 0px;
+}
+select#monthText {
+    font-size: 13px;
+    float: left;
+    padding: 3px;
+}
+/* 30th Form styles ended here*/
+/*Styles of 26th Form*/
+#datePick #datePickSub{
+    padding:1px;
+}
+
+/* 26th Form styles ended here*/
+
+/* Bootstrap time Picker */
+
+
+
+
+/* End of Bootstrap time Picker */
+
+
+/* Form 20 styles */
+
+@media only screen and (min-width:1200px){
+    button.btn.btn-primary.RegstrShrtBtn{
+        border-color: #3a719a;
+        padding: 7px 20px;
+        font-weight: bold;
+        float: right;
+        background-color: #2d4690;
+    }
+    
+
+.panelInputsAddTrainingLabel{
+width:15%;
+}
+
+.monthsSelect {
+    padding-right: 0px;
+    margin-right: 15px;
+}
+
+.RegisterShrtTrmTrainigLabl{
+    width:16%;
+    }
+
+.tableAddTrngSessions
+{
+    width: 100%;
+}
+
+.ManageSessionAttendInputs{
+    padding-left:0;
+
+}
+
+.SelctYrForm{
+    padding-top:20px !important;
+}
+
+.SelctYrSpacing{
+    padding-top: 10px;
+}
+
+.RegstrShrtBtn{
+    margin:10px 35px 0px 0px;
+    float: right;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+}
+
+.registrShrtmForm {
+    margin-top:20px;
+}
+
+
+}
+
+/* End of Form 20 styles */
+
+
+/*Styles of  form 24 */
+input#radioBtn {
+    height: 17px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px dashed #666;
+    margin-top: 1px;
+    margin-left: -24px;
+}
+.circle1 {
+    height: 17px;
+    width: 17px;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 50%;
+    margin-top: 8px;
+        display: inline-flex;
+  }
+  input#trainingText {
+    background-color: #e8e8ea;
+}
+input#balanceText {
+    background-color: #e8e8ea;
+}
+
+.input-group.col-md-12.AppliedTrngInput.selectoptionBg {
+    margin-top: 7px;
+}
+
+.AppliedTrngInput{
+    width: 99%;  
+}
+
+.input-group.col-md-7.AppliedTrngInput.selectoptionBg {
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
+
+/* .FormInputsLabel {
+    width: 16%;
+} */
+.input-group.col-md-7.panelInputsSub.selectoptionBg {
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+label.col-md-2.control-label.PanelFormtxtLeft.FormInputsLabel {
+    text-align: left;
+}
+
+
+input#venueText{
+    margin-top: 6px;
+}
+span.input-group-addon {
+    background-color: white;
+}
+div#datetimepicker1 {
+    margin-top: 6px;
+}
+
+.TopicMastrLabel{
+    padding-top:15px !important;
+}
+
+.TopicMastrBox{
+    padding-bottom:7px;
+}
+
+
+.input-group-addon {
+    padding: 6px 1px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+div#datePick {
+    margin-top: 6px;
+}
+
+/*Styles of 12 th form*/
+.FeedbackStructure h4 {
+    font-size: 21px;
+    font-weight: 100;
+    color: #616161;
+    font-family: arial;
+ line-height: inherit;
+ }
+ .form-group .listGroups {
+    padding: left;
+    padding-left: 6px;
+ }
+ .radioGroups label #FeedbackradioBtn {
+    height: 21px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px dashed #666;
+    margin-top: 1px;
+    margin-left: -24px;
+ }
+ h4.listItem {
+    padding-left: inherit;
+    font-size: 18px;
+    font-family: arial;
+ }
+ .input-group.col-md-4.radioGroups {
+    padding-left: inherit;
+ }
+ label.radio-inline {
+    padding: 17px;
+ }
+ .form-horizontal .radio-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 16px;
+ }
+ 
+label#commentBox {
+    font-weight: 600;
+}
+ /*End of styles 12*/
+ 
+ /*Styles of 22nd Form*/
+ .notification .badge {
+    padding: 5px 8px;
+    border-radius: 26%;
+    background: #863AE5;
+    color: white;
+    position: relative;
+    top: -11px;
+    left: -2px;
+ }
+
+ .ApprvTraingspn{
+padding-left:6px;
+ }
+
+ .notification1 .badge {
+    padding: 5px 9px;
+    border-radius: 26%;
+    background: #863AE5;
+    color: white;
+    position: relative;
+    top: -32px;
+    right: -273px;
+ }
+ a {
+    color: #121213;
+    text-decoration: none;
+}
+/*End of styles 22*/
+.input-group.col-md-12.panelInputsSub.selectoptionBg {
+    margin-top: 7px;
+}
+
+/*Styles of 31 st Form*/
+span#datePickSub {
+    padding: 9px;
+}
+button.btn.btn-info.SubmitDraftBtn {
+    margin-top: 17px;
+	background-color: #2d4690;
+    font-weight: 700;
+}
+button.btn.btn-primary.AddMoreBtn {
+      width: 76px;
+    text-align: center;
+    background-color: #2d4690;
+    font-weight: 600;
+    padding: 7px 5px 6px;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+
+/* 31st Form styles ended here*/
+
+/* Mobile Responsive screens */
+
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    /* your css rules for ipad portrait */
+  
+  .PoweredBySpan {
+      position: relative;
+      top: 6px;
+  }
+
+.footerContainer{text-align:center;}
+
+.icsiFooter p{
+        float:none !important;
+    }
+
+  #mainLogo {
+      width: 665px;
+  }
+  .menuBar ul {
+      margin-left: 63px;
+  }
+  .menuBar ul {
+    margin-left: 119px;
+    display: inline-grid;
+}
+
+  }
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) {
+  /* Styles */
+ 
+  .PoweredBySpan {
+      position: relative;
+      top: 6px;
+  }
+
+  
+  /* .menuBar ul {
+      margin-left: 64px;
+  } */
+  }
+
+  @media (max-width: 767px){
+           .menuBar ul {
+    margin-left: 119px;
+    display: inline-grid;
+        }
+	#mainLogo {
+    /*width: 98%;*/
+    float: left;
+    padding: 5px;
+}
+
+.helplineNum p{
+   text-align:center;
+}
+.contain-all {
+    max-width: 1000px;
+    width: 94%;
+}
+.list-inline>li {
+    display: block;
+}
+.icsiFooter p {
+   
+    text-align: center;
+}
+.powerby {
+    float: none !important;
+}
+.mobilInput {
+    margin-left: 12px;
+}
+.input-group.radioPadding {
+    padding: inherit;
+}
+.headingModule h4 {
+    font-size: 15px;
+}
+.list-group.fontTxtPay{
+    font-size: smaller;
+}
+.cvMobile {
+    margin-left: 27px;
+}
+.previewBtn{
+        float: right;
+      margin-right: 0px;
+}
+  } 
+
+  /* End of Mobile Responsive screens */
+
+  /*--------- Updated Css ------ */
+
+  .bg-dark {
+    background-color: #2D4690!important;
+    padding:0px;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0rem 5rem 0rem .5rem;
+}
+.menuBar{
+    min-height:31px;
+}
+.navbar{
+    min-height:31px;
+}
+
+#Icsi_top_header .header_logo_li_2{
+    width:38%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#fff;
+    line-height: 31px;
+}
+.Ca_sub_Text {
+    padding: 25px 50px 25px 50px;
+}
+.menuBar ul{
+    margin-left: 119px;
+}
+.menuBar ul li{
+float: left;
+list-style: none;
+}
+.menuBar ul li a{
+font-size: 14px;
+text-decoration: none;
+color: #dddddd;
+line-height: 3;
+   padding: 12px 12px;
+}
+
+.nav-link{
+    display: block;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+    padding: 4px 10px 0px 38px;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+     color: #d2c2c2;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #2d4690;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #2d4690;
+}
+
+
+
+@media (max-width: 480px){
+ .menuBar ul {
+    /* margin-left: 119px; */
+    display: inline-grid;
+    }
+
+}
+h4.feedbackStructure{
+    font-size: 15px;
+    line-height: 20px;
+}
+
+input[type=checkbox], input[type=radio]{
+    width:20px;
+    height:18px;
+}
+.uploadAttdnTxt{
+    padding-top:15px;
+}
+
+
+@media only screen and (min-width:1200px){
+h5.listItem.FormtxtLeft.FacltyNamTxt{
+    font-size: 17px;
+    padding-left: 27px;
+}
+
+h5.listItem.FormtxtLeft.FacltyNamTxt {
+    margin-top: 5px;
+}
+
+.ApproveTrainingBtngROUP{
+    margin: 0 auto;
+    width: 755px;
+}
+
+
+}
+
+li.list-inline-item.SessionFblList {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
+}
+
+.notification .badge{
+    border-radius: unset;
+}
+
+.checkbox-inline input[type=checkbox]{
+    top: 5px;
+}
+.NewrequstRadiobtn{
+    margin-left:0 !important;
+}
+
+
+
+   
+
+  /* End of Mobile Responsive screens */
+
+  /*--------- Updated Css ------ */
+
+  .bg-dark {
+    background-color: #2D4690!important;
+    padding:0px;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0rem 5rem 0rem .5rem;
+}
+.menuBar{
+    min-height:31px;
+}
+.navbar{
+    min-height:31px;
+}
+
+#Icsi_top_header .header_logo_li_2{
+    width:38%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#fff;
+    line-height: 31px;
+}
+.Ca_sub_Text {
+    padding: 25px 50px 25px 50px;
+}
+.menuBar ul{
+    margin-left: 119px;
+}
+.menuBar ul li{
+float: left;
+list-style: none;
+}
+.menuBar ul li a{
+font-size: 14px;
+text-decoration: none;
+color: #dddddd;
+line-height: 3;
+   padding: 12px 12px;
+}
+
+.nav-link{
+    display: block;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+     color: #d2c2c2;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #2d4690;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #2d4690;
+}
+@media  (min-width:320px) and (max-width:410px){
+    .container.form-field{
+        max-width:100% !important;
+    }
+    .container.forms_fieldss{
+        max-width:100% !important;
+    }    
+
+}
+@media  (min-width:414px) and (max-width:520px){
+    .container.form-field{
+        max-width:100% !important;
+    }
+    .container.forms_fieldss{
+        max-width:100% !important;
+    }    
+
+}
+@media (max-width: 768px){
+
+    button.btn.btn-primary.ApprovTraingUpBtn {
+        margin-left: 10px;
+        border-color: #3a719a;
+        font-weight: bold;
+        background-color: #2d4690;
+    }
+
+.TableFormMobile_Hidden{
+    display: none;
+}
+.RepeatChckbxTxt{
+    padding-top:7px;
+}
+
+.AttendanceAbsntRadioTxt , .AttendancePresntRadioTxt{
+    padding-bottom: 3px;
+}
+.registerFacltyNamTxt{
+    margin-top: 12px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+.ApprvTrainingStatusMobil{
+    margin-top: 12px;
+}
+.menuBar ul {
+    margin-left: 11px;
+}
+.container.form-field{
+    max-width: 90%;
+    padding:20px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    min-height: 350px;
+}
+.container.forms_fieldss{
+    max-width:90%;
+    padding:0px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    min-height: 350px;
+}
+
+.ManageAttndcSpacing{
+    padding-top:0;
+    margin-left:0;
+}
+
+.SubmitAddNewBtn {
+    display: inline;
+    margin-top: 5px;
+}
+.tableSearchResults th , .tableSearchResults td{
+    font-size:12px !important;
+}
+.traingDuratnInput{
+    width:50% !important;    
+}
+.mobilInput {
+    margin-left:0px;
+}
+
+ #Icsi_top_header .header_logo_li_1 {
+    width: 100%;
+}
+#Icsi_top_header .header_logo_li_2 {
+    width: 100%;
+}
+.navbar-expand-md .navbar-toggler {
+    display: none;
+}
+.helplineNum p{
+    text-align: center;
+}
+.menuBar ul {
+    display: inline-grid;
+    }
+   .FormInputsLabel {
+    width: 100%;
+    margin-top: 0px;
+}
+form#contact_form{
+    padding:0px 6px;
+}
+.form_date_pickers {
+   width:90%;
+}
+
+.AppliedTrngFacltyNamTxt{
+    margin-bottom: 0 !important;
+    
+}
+
+.form_date_picker{
+    width:100%;
+}
+#datepicker2{width:97%;}
+#datepicker1{width:97%;}
+#datepicker3{width:100%;}
+#datepicker4{width:100%;}
+#datepicker5{width:108%;}
+#datepicker6{width:108%;}
+#datepicker7{width:108%;}
+#datepicker8{width:108%;}
+#datepicker9{width:108%;}
+#datepicker13{width:99% !important;}
+#datepicker14{width:99% !important;}
+#datepicker31{width:110%;}
+#datepicker32{width:110%;}
+#datepicker16 {
+       width: 108% !important;
+}
+#datepicker17 {
+       width: 103% !important;
+}
+#datepicker18 {
+       width: 108% !important;
+}
+#datepicker19 {
+       width: 108% !important;
+}
+
+
+#mainLogo img {
+    position: relative;
+    max-width: 80%;
+    padding-top: 5px;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th
+{    border:1px solid #000;
+    text-align: center;
+    font-size: 13px;
+  }
+  .uploadTrainingBtn {
+   
+    margin-top: 8px;
+    margin-left: 30px;
+}
+.input-group.radioGroups {
+   
+    padding: inherit;
+    
+}
+h4.listItem {
+    padding-left: inherit;
+    font-size: 14px;
+    font-family: arial;
+}
+h4.feedbackStructure {
+     font-size: 14px;
+}
+.addTrainingStructure {
+    font-size: 12px;
+}
+label#commentBox {
+    padding: initial;
+}
+.panelTraingTopicInputsSub.selectoptionBg {
+    /*width: 100%;*/
+}
+
+.TrainingTypeSubmitAddNewBtn {
+  
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    background-color: #2d4690;
+    float: right;
+}
+.ApprvTrainingCertfctAddNewBtn {
+    border-color: #3a719a;
+    padding: 10px 0px;
+    width: 301px;
+    /* margin-right: 12px !important; */
+    font-weight: bold;
+    background-color: #2d4690;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 14px;
+    float:right;
+}
+.panelInputsTrainingTypMaster {
+    width: 100%; 
+}
+/*button.btn.btn-primary.RegstrShrtBtn {
+    margin-left: 28px;
+    margin-top: 6px;
+}*/
+.facultyTopicMappngLabel {
+    width: 40%;
+}
+.panelInputsMain {
+    width: 100%;
+}
+.panelInputsLabel {
+    width: 40%;
+}
+
+.FormInputsLabelNam {
+    width: 37%;
+}
+.form-group.upperBtn {
+    margin-bottom: 0px;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+    padding: 0px 0px 0px 0px;
+}
+
+
+.contain-all {
+    max-width: 1000px;
+width: 94%;
+}
+button.navbar-toggle {
+    float: left;
+}
+/* .copyright em {
+  
+	font-size: 12px;
+    color: #ccc;
+    position: relative;
+    bottom: 2px;
+    left: 174px;
+} */
+.copyright {
+    text-align: center;
+    color: #ccc;
+}
+.panel-body {
+    padding-top: 22px !important;
+}
+.DocPanel {
+    padding: 12px !important;
+}
+.mobilInputTxt {
+    margin-left: 7px;
+}
+.FacltyNamTxt {
+    text-align: left !important;
+    margin-left:0px;
+    margin-bottom: 0px;
+   
+    }
+.uploadTrainingBtnn {
+    margin-top: 8px;
+    margin-left: 35px;
+}
+label.radio-inline {
+    width: -webkit-fill-available;
+}
+textarea#comment {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+.mobilInput2 {
+    margin-left: 0px;
+}
+.TopicMasterInputLabel {
+    width: 40%;
+}
+.TrainingInputLbl {
+    width: 40%;
+}
+.mobilInput3 {
+    margin-left: 10px;
+}
+.mobileInput5{
+	margin-left:14px;
+}
+input.form-check-input.absTxt {
+    margin-left: -13px;
+}
+.mobilInput4 {
+    margin-left: 7px;
+}
+button.btn.btn-primary.RegstrShrtBtn {
+    margin-top: 15px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    float: right;
+    background-color: #2d4690;
+    margin-right: 40px;
+}
+label.radio-inline.NewrequstRadiobtn {
+    padding-left: 32px;
+}
+.selectoptionBg1:after {
+    content: '\f0d7';
+    font: normal normal normal 17px/1 FontAwesome;
+    color: #ffffff;
+    right: 0%;
+    font-size: 22px;
+    top: 0px;
+    height: 34px;
+    z-index: 100;
+    padding: 6px 9px 0px 10px;
+    border: 1px solid #adafb2;
+    position: absolute;
+    pointer-events: none;
+    background: #c1e3fc;
+}
+.SearchCrtSubmitBtn1{
+    margin:18px 18px 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+   
+  }
+  .panelInputsCityLabel {
+     margin-top: 0px; 
+}
+#datepicker3{width: 105%;
+   
+    margin-left: -18px;}
+	#datepicker4{width: 105%;
+   
+    margin-left: -18px;}
+	.FacltyNamTxt1{
+		margin-left:-15px;
+	}
+	button.btn.btn-primary.bioUploadBtn {
+  margin-left:16px;  
+    margin-top: 10px;
+}
+ 
+.input-group.col-md-6.col-xs-11.mobilInput6 {
+    margin-left: 34px;
+}
+.mobilInput7{
+    margin-left:0px;
+}
+
+.traingDuratnInput {
+    width: 97.5% !important;
+} 
+button.btn.btn-primary.AddMoreBtn {
+    width: 76px;
+  text-align: center;
+  background-color: #2d4690;
+  font-weight: 600;
+  padding: 7px 5px 6px;
+  font-size: 13px;
+  margin-top: 16px;
+  float:right;
+}
+button.btn.btn-info.SubmitDraftBtn {
+    margin-top: 17px;
+    background-color: #2d4690;
+    font-weight: 700;
+    float: right;
+    margin-left: 4px;
+}
+.input.form-control.picker33{
+    margin-top: -7px !important;
+}
+.ButtonListng{
+    float: right;
+    margin-right: -14px;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px){
+    #Icsi_top_header .header_logo_li_1 {
+        width: 100%;
+    }
+    #Icsi_top_header .header_logo_li_2 {
+        width: 100%;
+    }
+    .navbar-expand-md .navbar-toggler {
+        display: none;
+    }
+.form-horizontal .control-label {
+    padding-top: 15px;
+}
+}
+
+
+
+
+.form-group .control-label.AddTrainingSessionsTxT{
+    padding-left: 30px;
+    text-align: left;
+    }
+    
+    .AddTrainingSessionsTxT {
+        text-align: left;
+    }
+    
+    label.col-md-2.control-label.AddTrainingSessionsTxT.panelInputsLabel {
+        text-align: left;
+    }
+
+    #datepicker13{
+        width: 242px;
+    }
+
+    #datepicker14{
+        width: 242px;
+    }
+
+    .SessionFeebackFormSpacingInputs{
+        margin-bottom: 10px;
+    }
+
+    .SessionFeedbckPopupSpacing{
+        margin-top:16px !important;
+    }
+
+    .traingDuratnInput{
+        width:29.5%;    
+    }
+
+    
+    #datepicker16,  #datepicker17, #datepicker18, #datepicker19 {
+        width: 231px;
+    }
+
+    .ApprovtraingCertifctSelctoptionBg select{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background:#ffffff;
+        float: right;
+        padding: 0 3px 0 !important;
+        width: 85px !important;
+        font-size: 15px;
+        line-height: 1.75;
+        }
+        .ApprovtraingCertifctSelctoptionBg:after{
+         content: '\f0d7';
+          font: normal normal normal 17px/1 FontAwesome;
+          color: #ffffff;
+          right: -1%;
+          font-size: 22px;
+          top: 0px;
+          height: 34px;
+          z-index: 100;
+          padding: 6px 10px 0px 10px;
+          border: 1px solid #adafb2;
+          position: absolute;
+          pointer-events: none;
+          background:#c1e3fc;
+         
+        }
+
+.SelectYearSessionfdbckLabel  {
+    margin-top:12px !important;
+}
+
+
+/* Modal styles */
+
+.modal-header.cancelTrain {
+    background-color: #0C4EB0;
+    color: white;
+    
+}
+.modal-header {
+    padding: 8px;
+	padding: 0px;
+	}
+  
+/* span.closeBtn {
+    background-color: #182D3E;
+    border-radius: 50%;
+    width: 199px;
+    height: 136px;
+    position: relative;
+    left: 9px;
+    top: 1px;
+    padding: 6px 12px 12px 12px;
+  
+    border: 2px solid white;
+	    opacity: 1.5;
+	    padding: 0px 10px 0px 9px;
+} */
+button.btn.btn-primary.subBtn {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #3a719a;
+    width: 80px;
+    font-size: 15px;
+    font-weight: bold;
+	}
+	/* .close {
+    float: right;
+    font-size: 45px;
+    color: #000;
+    filter: alpha(opacity=20);
+    opacity: 1.2;
+} */
+.close {
+    float: right;
+    font-size: 26px;
+    border: 2px solid #fff !important;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: 500;
+    color: #fff !important;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    line-height: 1;
+    margin: 6px 10px !important;
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+ }
+
+/* .close:focus, .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: 2.5;
+} */
+h4#exampleModalLabel {
+    font-weight: bold;
+    margin-left: 12px;
+    line-height: 43px;
+}
+
+/* End of Modal styles */
+
+button.btn.btn-primary.mr-auto.subBtn {
+    margin-top: 16px;
+    float: right;
+}
+
+.modal-content.ModalHeightAuto {
+    height: 220px;
+}
+
+.ReasonTxt{
+    padding-bottom: 3px;
+}
+
+textarea.form-control{
+    border-radius: unset;
+}
+/* */
+.datatable_faculty th{white-space: nowrap;text-transform:uppercase;}
+.toolbar {
+    float: right;
+}
+.excel{
+	    float: right;
+    font-size: 22px;
+    color: #008000;
+}
+.important{
+	color:red;
+	font-size:12px;
+	top:0px;
+}
+.block{
+	margin-top:10px;
+}
+.text_area{
+	width: 100% !important;
+}
+.bg_primary {
+    background-color: #0C4EB0 !important;
+	color:#ffffff !important;
+}
+.spacing1{
+	margin-top:10px;
+}
+.input-group[class*=col-] {
+    /* float: none; */
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+.datatable_faculty th{
+	background: #2d4690;
+    color: #ffffff;
+}
+div.dataTables_wrapper div.dataTables_paginate {
+  
+    margin-top: 6px !important;
+}
+ label.radio_css{
+   
+	padding:0px 17px !important;
+ }
+ .spacing{
+	margin-top:20px;
+ }
+ 
+ .nav-color {
+   background: #083b82;
+   color: white;
+   border-radius: 0px;
+}
+.iconColor {
+   /* background: #fff; */
+   background-color: #fff !important;
+   border-color: #083b82;
+}
+.toggleBorder {
+   border-color: #083b82 !important;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fdfdfd;
+   font-size: 15px;
+   padding-left:50px;
+   
+}
+.navbar-default .navbar-nav>li>a:hover {
+  color: #fdfdfd;
+  
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+   border-color: #083b82;;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+   background-color: #083b82;;
+}
+
+ 
+ @media (max-width: 991px) {
+   .navbar-header {
+       float: none;
+   }
+   .navbar-toggle {
+       display: block;
+   }
+
+   .navbar-collapse {
+       border-top: 1px solid transparent;
+       box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+   }
+   .navbar-collapse.collapse {
+       display: none!important;
+   }
+   .navbar-nav {
+       float: none!important;
+       margin: 7.5px -15px;
+   }
+   .navbar-nav>li {
+       float: none;
+   }
+   .navbar-nav>li>a {
+       padding-top: 10px;
+       padding-bottom: 10px;
+   }
+   .navbar-text {
+       float: none;
+       margin: 15px 0;
+   }
+   /* since 3.1.0 */
+   .navbar-collapse.collapse.in { 
+       display: block!important;
+   }
+   .collapsing {
+       overflow: hidden!important;
+   }
+  
+}
+@media screen and (max-width: 767px) {
+ div.dataTables_wrapper div.dataTables_length{text-align:left !important;}
+
+}
+
+
+
+

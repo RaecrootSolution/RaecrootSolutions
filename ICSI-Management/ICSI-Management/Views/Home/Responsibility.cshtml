@@ -1,0 +1,261 @@
+﻿@model ICSI_Management.Models.Responsibility
+@{
+    ViewBag.Title = "Responsibilities";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+    int id = 0;
+    if (Model != null)
+    {
+        id = Model.ID;
+    }
+
+}
+
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>Responsibilities</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("Responsibility", "Home"))
+    {
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Responsibility Type</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+                    @Html.DropDownListFor(m => m.Resp_Type, new List<SelectListItem>
+                    {
+                        new SelectListItem{Text="Web Application", Value="1"},
+                        new SelectListItem{Text="Application", Value="2"},
+                        new SelectListItem{Text="Module", Value="3"},
+                        new SelectListItem{Text="Screen", Value="4"},
+                        new SelectListItem{Text="Functionality", Value="5"},
+                        new SelectListItem{Text="Report", Value="6"},
+                        new SelectListItem{Text="Approve", Value="7"},
+                        new SelectListItem{Text="Reject", Value="8"}
+               }, "Please select", new
+               {
+                   @class = "form-control",
+                   onchange = "getList()"
+               })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-4" id="SelectedDive" style="display:none">
+            <label class="col-md-3 control-label" id="runtimelabel">Coming Soon</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+                    @*<select id="DropDown" name="DropDown" class="form-control"></select>*@
+
+                    @Html.DropDownListFor(M => M.RefId, new SelectList(Model.lstDropDown, "Value", "Text"), new { @class = "form-control" })
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Responsibility Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Resp_Name, new { htmlAttributes = new { @class = "form-control", @onkeyup = "myFunction()" } })
+                @Html.ValidationMessageFor(model => model.Resp_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Responsibility Description </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Resp_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Resp_Desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Responsibility Symbolic Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Resp_Sym_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Resp_Sym_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label> @Html.CheckBoxFor(m => m.Active)&nbsp;Active</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label> @Html.CheckBoxFor(m => m.Read_Write)&nbsp;Read and Write</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    <script type="text/javascript">
+        function myFunction() {
+            $('#Resp_Sym_Name').val(document.getElementById("Resp_Name").value.toUpperCase().replace(/ /g, "_"));
+        }
+    </script>
+
+    <div class="table-responsive pt-5">
+        @*<h5 class="mb-3">Report Table</h5>*@
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Resp. Name</th>
+                    <th>Resp. Desc.</th>
+                    <th>Resp. Sym. Name</th>
+                    <th>Resp. Type</th>
+                    @*<th>Ref Name</th>*@
+                    <th>Active</th>
+                    <th>Read & Write</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.lstResponsibility)
+                {
+                    string Acessed = string.Empty;
+                    if (item.Read_Write == true)
+                    {
+                        Acessed = "Read & Write";
+                    }
+                    else
+                    {
+                        Acessed = "Read";
+                    }
+
+                    <tr>
+                        <td>@item.Resp_Name</td>
+                        <td>@item.Resp_Desc</td>
+                        <td>@item.Resp_Sym_Name</td>
+                        <td>@item.RespTypeName</td>
+                        @*<td>@item.RefName</td>*@
+                        <td>@item.Active</td>
+                        <td>@Acessed</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Responsibility", new { value = @item.ID, id = "edit", onclick = " return javascript:ShowData()" })
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#edit').click(function () {
+            alert();
+
+        })
+    });
+    function Go() {
+
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+
+    @if(id!=0)
+    {
+        @:ShowData();
+    }
+    function ShowData(id) {        
+        $('#SelectedDive').show();
+
+        getList();
+            }
+            function getList() {
+                var Id = $("#Resp_Type").val();
+                var Text = $('#Resp_Type').children("option:selected").text();
+                if (Id == 1 || Id == 2 || Id == 3 || Id == 4) {
+            $('#SelectedDive').show();
+                }
+                else {
+            $('#SelectedDive').hide();
+                }
+        $('#runtimelabel').text($('#Resp_Type').children("option:selected").text());
+        $.ajax
+            ({
+                url: '/Home/GetDropdownList',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Id: +Id
+
+
+                }),
+                success: function (result) {
+                    $("#DropDown").html("");
+                    $("#RefId").html("");
+
+                    //if (Id == "1") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.WEB_APP_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == if (Id == "3") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.MODULE_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == "4") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.Screen_Name))
+                    //    })
+                    //}
+
+                        //$.each($.parseJSON(result), function (i, value) {
+                        //    $("#DropDown").append($('<option></option>').val(value.Value).html(value.Text))
+                        //})
+                    $.each($.parseJSON(result), function (i, value) {
+                        $("#RefId").append($('<option></option>').val(value.Value).html(value.Text))
+                    })
+
+
+                },
+                error: function () {
+                alert("Whooaaa! Something went wrong..")
+                },
+            });
+    }
+
+</script>
+
+

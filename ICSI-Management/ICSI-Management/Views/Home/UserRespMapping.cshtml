@@ -1,0 +1,137 @@
+﻿@model ICSI_Management.Models.UserRespMapping
+@{
+    ViewBag.Title = "User Responsibility Mapping";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        function moveItems(origin, dest) {
+            $(origin).find(':selected').appendTo(dest);
+        }
+
+        function moveAllItems(origin, dest) {
+            $(origin).children().appendTo(dest);
+        }
+
+        $('#left').click(function () {
+            moveItems('#sbTwo', '#sbOne');
+        });
+
+        $('#right').on('click', function () {
+            moveItems('#sbOne', '#sbTwo');
+        });
+
+        $('#leftall').on('click', function () {
+            moveAllItems('#sbTwo', '#sbOne');
+        });
+
+        $('#rightall').on('click', function () {
+            moveAllItems('#sbOne', '#sbTwo');
+        });
+    });
+
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-left text-center py-4"><strong>USER RESPONSIBILITY MAPPING</strong></h3>
+    </div>
+
+    @using (Html.BeginForm("UserRespMapping", "Home"))
+    {
+
+        <div class="form-group row">
+            <label class="col-md-1 control-label">User </label>
+            <div class="col-md-9">
+                <div class="selectdiv">
+                    @Html.DropDownListFor(M => M.User_Id, new SelectList(Model.lstUsers, "Id", "UserName"), "-- Select User Name --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.User_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-4 align-items-center">
+            <div class="col-5 col-sm-4 offset-sm-1">
+                <div class="p-1">
+                    <label>Available</label>
+                    @Html.DropDownListFor(M => M.lstResponsibilities, new SelectList(Model.lstResponsibilities, "ID", "Resp_Name"), new { @class = "form-control", @id = "sbOne", @multiple = "multiple" })
+                </div>
+            </div>
+            <div class="col-2 col-sm-1 text-center">
+                <div class="my-3"><button type="button" class="font-weight-bold" id="right"> >> </button></div>
+                <div class="my-3"><button type="button" class="font-weight-bold" id="left"> << </button></div>
+            </div>
+            <div class="col-5 col-sm-4">
+                <div class="p-1">
+                    <label>Allocated</label>
+                    @Html.DropDownListFor(M => M.SelectedRes, new SelectList(Model.lstResponsibilityByUserId, "Resp_Id", "RespName"), new { @class = "form-control", @id = "sbTwo", @multiple = "multiple" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label text-danger">@Convert.ToString(TempData["Message"]) </label>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-1 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn"> Add </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn"> Update </button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+    <div class="table-responsive pt-5">
+        @*<h5 class="mb-3">Report Table</h5>*@
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>User Name</th>
+                    <th>Resp. Name</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.lstUserRespMapping)
+                {
+                    string RespName = item.RespName.Remove(item.RespName.Length - 1, 1);
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@RespName</td>
+                        <td>@item.Active</td>
+                        <td>
+                            @Html.ActionLink("Edit", "UserRespMapping", new { @id = @item.User_Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

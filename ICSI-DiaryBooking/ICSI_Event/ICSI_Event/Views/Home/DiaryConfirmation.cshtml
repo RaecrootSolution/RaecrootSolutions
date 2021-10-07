@@ -1,0 +1,112 @@
+﻿@model ICSI_Event.Models.DiaryBooking
+@{
+    ViewBag.Title = "DiaryConfirmation";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+}
+@using (Html.BeginForm("DiaryConfirmation", "Home"))
+{
+    @Html.AntiForgeryToken()
+    <div class="contain-all">
+        <div class="container form-field">
+
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset id="fieldset">
+                    <div class="addTrainingStructure paymentStructure">
+                        <h4 class="">Diary Booking Confirmation</h4>
+                    </div>
+
+                    <div>
+                        <div class="col-md-8">
+                            <ul class="list-unstyled">
+                                @*<li>Request ID : <label class="PaymntLabel">9900092459</label> </li>*@
+                                <li>
+                                    Customer Name :
+                                    @if (Session["FullName"] != null)
+                                    {<label class="PaymntLabel"> @Session["FullName"].ToString() </label>}
+                                </li>
+                                <li>Mobile Number : <label class="PaymntLabel"> @Model.MobileNo </label> </li>
+                                <li>Email : <label class="PaymntLabel"> @Model.Email</label> </li>
+                                <li>GST/UIN No.: <label class="PaymntLabel">@Model.GSTN</label> </li>
+                                <li>
+                                    Billing Address: <label class="PaymntLabel" style="word-break:break-all;">
+                                        @Model.Add1 , @Model.Add2
+                                    </label>
+                                </li>
+                                <li>City : <label class="PaymntLabel">@Model.City</label> </li>
+                                <li>State : <label class="PaymntLabel">@Model.StateName</label> </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>S.No.</th>
+                                            @*<th>Item Description</th>*@
+                                            @*<th>SAC Code</th>*@
+                                            <th>Diary Description</th>
+                                            <th>Price</th>
+                                            @*<th>GST</th>*@
+                                            @if (Model.SGSTAmount != 0)
+                                            {
+                                                <th>SGST Amount</th>
+                                            }
+                                            @if (Model.CGSTAmount != 0)
+                                            {
+                                                <th>CGST Amount</th>
+                                            }
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <th>IGST Amount</th>
+                                            }
+                                            <th>Total (Rs.)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            @*<td>@Model.StallNumber</td>*@
+                                            @*<td>@Model.SACCODE</td>*@
+                                            <td>@Model.Description</td>
+                                            <td>@Model.Amount</td>
+                                            @*<td>@Model.GST18Amount</td>*@
+                                            @if (Model.SGSTAmount != 0)
+                                            {
+                                                <td>@Model.SGSTAmount</td>
+                                            }
+                                            @if (Model.CGSTAmount != 0)
+                                            {
+                                                <td>@Model.CGSTAmount</td>
+                                            }
+                                            @if (Model.IGSTAmount != 0)
+                                            {
+                                                <td>@Model.IGSTAmount</td>
+                                            }
+                                            <td>@Model.TotalAmount</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-primary" style="margin-left:15px;" onclick="location.href='@Url.Action("DiaryBooking", "Home")'">Cancel</button>
+                    </div>
+
+            </form>
+
+        </div>
+    </div>
+}
+
+
+
+
+
+
+

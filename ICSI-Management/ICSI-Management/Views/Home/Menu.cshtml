@@ -1,0 +1,178 @@
+﻿@model ICSI_Management.Models.Menu
+@{
+    ViewBag.Title = "AppModule";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>Menu</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("Menu", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Web Application Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.WebAppId, new SelectList(Model.WebApps, "Id", "WebAppName"), "-- Select Web Application Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WebAppId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Parent Menu Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.ParentMenuId, new SelectList(Model.ParentMenues, "Id", "MenuName"), "-- Select Parent Menu Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ParentMenuId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Screen Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.ScreenId, new SelectList(Model.screens, "ID", "Screen_Name"), "-- Select Screen Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ScreenId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Menu Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.MenuName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Menu Label Name </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.MenuLabelName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MenuLabelName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Order Number </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.OrderNumber, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">Module Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Web Application Name</th>
+                    <th>Parent Menu Name</th>
+                    <th>Menu Name</th>
+                    <th>Menu Label Name</th>
+                    <th>Order Number</th>
+                    <th>Screen Name</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AllMenues != null)
+                {
+                    foreach (var item in Model.AllMenues)
+                    {
+                        //count++;
+                        //dt = Convert.ToDateTime(item.CreatedDate);
+                        //status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                        //dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                <tr>
+                    @*<td>@count</td>*@
+
+                    <td>@item.WebAppName</td>
+                    <td>@item.ParentMenuName</td>
+                    <td>@item.MenuName</td>
+                    <td>@item.MenuLabelName</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.ScreenName</td>
+                    @*<td>@dtSign.ToString("dd/MM/yyyy hh:mm:ss")</td>*@
+                    <td>@item.Active</td>
+                    @*<td>@item.ClientName</td>
+
+        <td>@item.CINNumber  @item.PANNumber   @item.AadharNumber</td>*@
+
+                    <td>
+
+                        <button type="submit" onclick="location.href='@Url.Action("Menu", "Home" , new { id = item.Id })'">Edit</button>
+
+                    </td>
+
+
+
+                </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>

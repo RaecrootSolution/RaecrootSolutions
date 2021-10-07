@@ -1,0 +1,1873 @@
+#datepicker2{width:240px;}
+#datepicker1{width:240px;}
+#datepicker5{width:198px;}
+#datepicker6{width:198px;}
+/* #datepicker7{width:198px;}
+#datepicker8{width:198px;} */
+#datepicker9{width:192px;}  
+#datepicker32{width:234px;}
+#datepicker31{width:234px;}
+.cal_css{ width: calc(100% - 38px);}
+.gj-picker.gj-picker-md.timepicker {
+    position: absolute;
+    left: 40%;
+    /* width: 100%; */
+    top: auto !important;
+    
+}
+.form-group .input-group>.form-control {
+    border-radius: unset;
+}
+#header{
+    color:gray;
+}
+form#contact_form {
+    background-color: #ffffff;
+     min-height: 20px;
+     padding:0;
+       border: 1px solid #ffffff;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 253, 253, 0.05);
+    box-shadow: inset 0 1px 1px rgba(255, 253, 253, 0.05);
+    }
+fieldset {
+    background-color: white;
+}
+.form-inline .input-group>.form-control{
+    width:101%;
+}
+.form-inline .input-group>.form-control{
+    border-radius: unset;
+}
+.selectoptionBg select{
+    padding:0 12px 0 !important;
+}
+
+ /*Styles of 29th form*/
+.btn{
+    border-radius: 3px;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #053d7c;
+    padding: 0px;
+    margin: 0px;
+    background: #222 repeat-x scroll 0 0;
+    margin-top: 25px;
+}
+.footer_cont {
+    max-width: 1000px;
+    width: 100%;
+    padding: 5px 0px;
+    margin: 0 auto;
+}
+.Footerclear{
+    clear: both;
+}
+.foot_menu {
+    padding: 0px;
+    margin: 0px;
+}
+.foot_menu ul {
+    padding: 10px 0px;
+    text-align: center;
+    margin: 0px;
+}
+.foot_menu ul li:first-child {
+    border-left: none;
+}
+.foot_menu ul li {
+    padding: 0px 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-left: 1px #ccc solid;
+    display: inline-block;
+}
+.foot_menu ul li a {
+    font-size: 11px;
+    text-transform: uppercase;
+    float: left;
+    color: #ccc;
+    text-decoration: none;
+}
+a:link {
+    outline: medium none;
+}
+.foot_menu p {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+    line-height: 22px;
+    clear: both;
+    padding: 5px 0px;
+    border-top: 2px #999 solid;
+    margin: 0px;
+}
+.copyright {
+    padding: 3px 0px;
+}
+
+.copyright p {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+    line-height: 18px;
+    clear: both;
+    float: left;
+    margin: 0px;
+}
+.copyright img {
+    position: relative;
+    top: 6px;
+    left: 3px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+/* End of Footer styles */
+
+
+.gj-datepicker-bootstrap [role=right-icon] button:hover{
+    background-color:#ddd;
+}
+
+.gj-datepicker-bootstrap .gj-icon:hover{
+    color:#000;
+}
+
+/*Styles of  2ndHeader*/
+body{
+    margin: 0;
+    padding: 0;
+ }
+ .header-part {
+    max-width: 100%;
+    min-height: 98px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+ }
+ .list-inline{
+     margin:0;
+ }
+ #Icsi_top_header .header_logo_li_1 {
+    width: 60%;
+}
+.list-inline li {
+    display: inline-block;
+    vertical-align: middle;
+}
+ul li {
+    color: #222;
+    font-weight: 600;
+    line-height: 2;
+}
+ #mainLogo{
+    /* width: 100%; */
+    float: left;
+    padding: 0px;
+ }
+ #mainLogo img {
+    position: relative;
+    max-width: 52%;
+    padding-top: 5px;
+ }
+ /* .Header img {
+    max-width: 300px;
+ } */
+ .helplineNum p {
+    color: #024879;
+    margin: 0px;
+    text-align: right;
+    line-height: 39px;
+    font-size: 14px;
+ }
+ .helplineNum span {
+    font-weight: bold;
+ }
+ .menuBar{
+    background: -webkit-linear-gradient(top, #264d7f, #02143f);
+    background-color: #153063;
+    width: 100%;
+ }
+
+ /* 2ndHeader*/
+ 
+ .contain-all {
+    max-width: 1060px;
+    width: 100%;
+       padding-top: 0px;
+    margin: 0 auto;
+ }
+ .container.form-field{
+    max-width: 1060px;
+    padding: 20px 30px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    height:auto;
+    min-height: 550px;
+ }
+ .addTrainingStructure.paymentStructure 
+ {
+    color: #fbf9f9;
+    font-weight: 400;
+    background-color: #0C4EB0;
+    line-height: 2;
+    margin-bottom: 22px;
+    margin-top: -13px;
+    
+ }
+ .addTrainingStructure.paymentStructure  h4 {
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+ }
+.addTrainingStructure {
+    color: black;
+    font-weight: 600;
+}
+#main-logo {
+    transition: 0.0s all;
+    overflow: hidden;
+    padding-top:10px;
+}
+#main-logo img {
+    position: relative;
+}
+.header img {
+    max-width: 300px;
+}
+.main_Header{
+    border-bottom:1px solid #ccc;
+}
+
+.main_Header header {
+    display: inline-block;
+}
+  .form-group .control-label.FormtxtLeft{
+      text-align: left;
+      padding-left: 30px;
+  }
+  .form-group .control-label.FormtxtRight {
+    /* text-align: left; */
+    padding-left: 30px;
+	text-align:center;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+  .SubmitBtn{
+    margin-left: 14px;
+    margin-top: 30px;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    font-weight: bold;
+    float:right;
+    background-color: #2d4690;
+  }
+.SubmitAddNewBtn{
+    border-color: #0c4eb0;
+    padding: 7px 20px;
+    float: right;
+    margin-right: 12px !important;
+    font-weight: bold;
+    background-color: #0c4eb0;
+}
+.SubmitAddNewBtn:hover{
+    border-color: #0c4eb0;
+    background-color: #0c4eb0;
+}  
+#Icsi_top_header .container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+  .gj-datepicker-bootstrap [role=right-icon] button {
+    width: 38px;
+    height: 34px;
+    position: absolute;
+    border-radius: unset;
+    border: 1px solid #ced4da;
+}
+input#datepicker {
+    border-radius: unset;
+}
+.LogoSpacing{
+    padding-left:0;
+}
+input[type="text"]:focus{
+    background-color: #e6e6e6;
+    border: #ccc !important;
+    box-shadow: none;
+}
+
+.text-on-pannel {
+    background: #fff none repeat scroll 0 0;
+    height: auto;
+    margin-left: 6px;
+    padding: 3px 5px;
+    position: absolute;
+    margin-top: -39px;
+  }
+  .searchCtr{
+      border-radius: unset;
+      border-color: #000;
+  }
+  .searchResults{
+    border-radius: unset;
+    border-color: #000;
+    padding-top:0 !important;  
+  }
+ .panel-body {
+    padding-top: 30px !important;
+  }
+  .fontBold{
+      font-weight: 600;
+  }
+.panelSpacing{
+    padding-left: 0;
+}
+.selectCalndrForm{
+    margin-top:15px !important;
+}
+.SelectCalndrAftr:after{
+    top:15px !important;
+}
+.SearchCritCourse{
+    margin-top:50px;
+}
+.panelInputs{
+    box-shadow: none;
+}
+th.searchResultsHeading {
+    color: #009ee0;
+    font-size:13px;
+    text-align: center;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th
+{    border:1px solid #000;
+    text-align: center;
+    font-size: 13px !important;
+  }
+  table.table-bordered > thead > tr > th{
+    border:1px solid #0C4EB0 !important;
+    background-color: #0C4EB0;
+    color: #fff;
+  }
+
+  .selectoptionBg select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:#ffffff;
+    float: right;
+    padding: 0px 24px;
+    font-size: 15px;
+    line-height: 1.75;
+    }
+    .selectoptionBg select:focus{
+        box-shadow: none !important;
+        border:1px solid #ccc;
+         }
+
+         input:focus{
+            border:1px solid #ccc !important;  
+         }
+    .selectoptionBg:after{
+     content: '\f0d7';
+      font: normal normal normal 17px/1 FontAwesome;
+      color: #ffffff;
+      right: -1%;
+      font-size: 22px;
+      top: 0px;
+      height: 34px;
+      z-index: 100;
+      padding: 6px 10px 0px 10px;
+      border: 1px solid #adafb2;
+      position: absolute;
+      pointer-events: none;
+      background:#0C4EB0;
+     
+    }
+	.selectoptionBg1:after{
+     content: '\f0d7';
+      font: normal normal normal 17px/1 FontAwesome;
+      color: #ffffff;
+      right: -1%;
+      font-size: 22px;
+      top: 0px;
+      height: 34px;
+      z-index: 100;
+      padding: 6px 10px 0px 10px;
+      border: 1px solid #adafb2;
+      position: absolute;
+      pointer-events: none;
+      background:#0C4EB0;
+     
+    }
+
+@media only screen and (min-width:1200px){
+
+
+    .selectoptionBgPayment:after{
+        right:-1% !important;
+            }
+
+    .selectoptionBg:after{
+right:5%;
+    }
+   
+    /* .ApplyCoachingDatePickerWid {
+        width: 88% !important;
+    } */
+
+	.copyright em {
+    float: right;
+    position: relative;
+    bottom: 8px;
+    font-size: 12px;
+    color: #ccc;
+}
+#LogoCenter img{
+    position: relative;
+    max-width: 57%;
+    padding-top: 5px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
+.ROChapterLabl{
+    padding-top: 25px !important;
+}
+.RecordsRow{
+        margin-top: -10px;
+        margin-bottom: 10px;
+}
+.ExcelIcon{
+    margin-top: 12px;
+}
+
+.form-check-inline.custom-control.form-control-lg span.RepeatChckbxTxt {
+    padding-bottom: 9px;
+}
+   
+.panelInputsSub{
+    width: 100%;  
+}
+.TableFormWeb_Hidden{
+    display: none;
+}
+.PaymentModeLabel{
+    padding-top: 21px !important;
+}
+ .TraingSchdlLeftLablTxt {
+            text-align: left !important;
+        } 
+ .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){
+    border-radius:10px;
+}
+.btn-group>.btn-group:last-child:not(:first-child)>.btn:first-child{
+    border-radius:10px;
+}
+
+}
+.UploadSubBtn{
+    margin:15px 0 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+    float:right;
+    font-weight: bold;
+    background-color: #2d4690;
+}
+
+@media only screen and (min-width:1200px){
+
+.well.form-horizontal .container-fluid .btn-group .UploadSubBtn {
+    float: left;
+    margin-left: -18px;
+}
+.HiddenScroll{
+    overflow-x:hidden;
+}
+
+.ApproveTrangCertificateBtns {
+    float: right;
+}
+
+}
+
+.custom-control-label::before, 
+.custom-control-label::after {
+    top: .8rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+@media only screen and (min-width:1200px){
+.form-check-inline.AttendcRadioBtn {
+    padding-right: 12px;
+}
+}
+
+.form-check-inline {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 0;
+    margin-right: .75rem;
+}
+
+/*Styles of  form 28 */
+.input-group.col-md-5.timePicker{float: left;}  
+.input-group.col-md-5.timePicker1{ display: inline-block;}
+span.input-group-addon.DateTimepick {
+  padding: 6px;
+}
+
+.form-group .listGroups {
+  padding: left;
+  padding-left: 6px;
+}
+.radioGroups label #FeedbackradioBtn {
+  height: 21px;
+  width: 25px;
+  background-color: #fff;
+  border: 1px dashed #666;
+  margin-top: 1px;
+  margin-left: -24px;
+}
+h4.listItem {
+  padding-left: inherit;
+  font-size: 18px;
+  font-family: arial;
+}
+.input-group.col-md-9.radioGroups {
+    padding: inherit;
+}
+.input-group.col-md-4.radioGroups {
+  padding: inherit;
+}
+textarea#comment {
+  margin-top: 9px;
+}
+
+
+/*Styles of 30th Form*/
+.input-group.col-md-1.selectoptionBg.monthsSelectSize{
+       margin-left: 15px;
+    display: inline-block;
+}
+   .icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+   position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    width: 28px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: -3px;
+    right: 0px;
+}
+
+
+#datePick #datePickSub{
+    padding:1px;
+}
+
+@media only screen and (min-width:1200px){
+    
+
+.panelInputsAddTrainingLabel{
+width:15%;
+}
+
+
+.RegisterShrtTrmTrainigLabl{
+    width:16%;
+    }
+
+.tableAddTrngSessions
+{
+    width: 100%;
+}
+
+.ManageSessionAttendInputs{
+    padding-left:0;
+
+}
+
+.SelctYrForm{
+    padding-top:20px !important;
+}
+
+.SelctYrSpacing{
+    padding-top: 10px;
+}
+
+.registrShrtmForm {
+    margin-top:20px;
+}
+
+}
+  input#trainingText {
+    background-color: #e8e8ea;
+}
+input#balanceText {
+    background-color: #e8e8ea;
+}
+.input-group.col-md-12.AppliedTrngInput.selectoptionBg {
+    margin-top: 7px;
+}
+
+.AppliedTrngInput{
+    width: 99%;  
+}
+.input-group.col-md-7.AppliedTrngInput.selectoptionBg {
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
+.input-group.col-md-7.panelInputsSub.selectoptionBg {
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+label.col-md-2.control-label.PanelFormtxtLeft.FormInputsLabel {
+    text-align: left;
+}
+span.input-group-addon {
+    background-color: white;
+}
+div#datetimepicker1 {
+    margin-top: 6px;
+}
+
+.input-group-addon {
+    padding: 6px 1px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+div#datePick {
+    margin-top: 6px;
+}
+
+/*Styles of 12 th form*/
+
+ .form-group .listGroups {
+    padding: left;
+    padding-left: 6px;
+ }
+ .radioGroups label #FeedbackradioBtn {
+    height: 21px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px dashed #666;
+    margin-top: 1px;
+    margin-left: -24px;
+ }
+ h4.listItem {
+    padding-left: inherit;
+    font-size: 18px;
+    font-family: arial;
+ }
+ .input-group.col-md-4.radioGroups {
+    padding-left: inherit;
+ }
+ label.radio-inline {
+    padding: 17px;
+ }
+ .form-horizontal .radio-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 16px;
+ }
+
+
+ a {
+    color: #121213;
+    text-decoration: none;
+}
+/*End of styles 22*/
+.input-group.col-md-12.panelInputsSub.selectoptionBg {
+    margin-top: 7px;
+}
+
+/*Styles of 31 st Form*/
+
+button.btn.btn-info.SubmitDraftBtn {
+    margin-top: 17px;
+	background-color: #0c4eb0;
+    font-weight: 700;
+    margin-right: 20px;
+}
+button.btn.btn-primary.AddMoreBtn {
+      width: 110px;
+    text-align: center;
+    background-color: #0c4eb0;
+    font-weight: 600;
+    padding: 7px 5px 6px;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+
+/* Mobile Responsive screens */
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    /* your css rules for ipad portrait */
+  
+  .PoweredBySpan {
+      position: relative;
+      top: 6px;
+  }
+  .menuBar ul {
+      margin-left: 63px;
+  }
+  .menuBar ul {
+    margin-left: 119px;
+    display: inline-grid;
+}
+  }
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) {
+  /* Styles */
+ 
+  .PoweredBySpan {
+      position: relative;
+      top: 6px;
+  }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) { 
+           .menuBar ul {
+    margin-left: 119px;
+    display: inline-grid;
+        }
+  } 
+
+  /* End of Mobile Responsive screens */
+
+  /*--------- Updated Css ------ */
+
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0rem 5rem 0rem .5rem;
+}
+.menuBar{
+    min-height:31px;
+}
+.navbar{
+    min-height:31px;
+}
+
+#Icsi_top_header .header_logo_li_2{
+    width:38%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#fff;
+    line-height: 31px;
+}
+
+.menuBar ul{
+    margin-left: 119px;
+}
+.menuBar ul li{
+float: left;
+list-style: none;
+}
+.menuBar ul li a{
+font-size: 14px;
+text-decoration: none;
+color: #dddddd;
+line-height: 3;
+   padding: 12px 12px;
+}
+.nav-link{
+    display: block;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+    padding: 4px 10px 0px 38px;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+     color: #d2c2c2;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #2d4690;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #2d4690;
+}
+
+
+@media (max-width: 480px){
+ .menuBar ul {
+    /* margin-left: 119px; */
+    display: inline-grid;
+    }
+}
+
+input[type=checkbox], input[type=radio]{
+    width:20px;
+    height:18px;
+}
+li.list-inline-item.SessionFblList {
+    padding-right: 0;
+    padding-left: 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
+}
+.checkbox-inline input[type=checkbox]{
+    top: 5px;
+}
+  
+  /* End of Mobile Responsive screens */
+
+  /*--------- Updated Css ------ */
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0rem 5rem 0rem .5rem;
+}
+.menuBar{
+    min-height:31px;
+}
+.navbar{
+    min-height:31px;
+}
+
+#Icsi_top_header .header_logo_li_2{
+    width:38%;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color:#fff;
+    line-height: 31px;
+}
+.menuBar ul{
+    margin-left: 82px;
+}
+.menuBar ul li{
+float: left;
+list-style: none;
+}
+.menuBar ul li a{
+font-size: 14px;
+text-decoration: none;
+color: #dddddd;
+line-height: 3;
+   padding: 12px 12px;
+}
+.nav-link{
+    display: block;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+     color: #d2c2c2;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #2d4690;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #2d4690;
+}
+@media  (min-width:320px) and (max-width:520px){
+    .container.form-field{
+        max-width:100% !important;
+    }
+    .container.forms_fieldss{
+        max-width:100% !important;
+    }    
+}
+@media (max-width: 768px){
+    
+
+.AppliedCoachingDatepickr{
+    width:100%;
+}
+/* .selectoptionBg:after{
+right:3% !important;
+} */
+
+
+    #LogoCenter img{
+        max-width: 100%;
+        padding-bottom: 20px;
+    }
+.PaymentModePara{
+    text-indent: -9px;
+}
+.EndDatePicker{
+    margin-left: -7px !important;
+    margin-top: 10px;
+}
+.TableFormMobile_Hidden{
+    display: none;
+}
+.menuBar ul {
+    margin-left: 11px;
+}
+.container.form-field{
+    max-width: 90%;
+    padding:20px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    min-height: 350px;
+}
+.container.forms_fieldss{
+    max-width:90%;
+    padding:0px;
+    box-shadow: 0px 2px 6px 2px #ccc;
+    background-color: #fff;
+    clear: both;
+    min-height: 350px;
+}
+.SubmitAddNewBtn {
+    display: inline;
+    margin-top: 5px;
+}
+.tableSearchResults th , .tableSearchResults td{
+    font-size:12px !important;
+}
+ #Icsi_top_header .header_logo_li_1 {
+    width: 100%;
+}
+#Icsi_top_header .header_logo_li_2 {
+    width: 100%;
+}
+.navbar-expand-md .navbar-toggler {
+    display: none;
+}
+.helplineNum p{
+    text-align: center;
+}
+.menuBar ul {
+    display: inline-grid;
+    }
+   .FormInputsLabel {
+    width: 100%;
+    margin-top: 0px;
+}
+.form_date_picker{
+    width:100%;
+}
+#datepicker2{width:97%;}
+#datepicker1{width:97%;}
+/* #datepicker3{width:100%;}
+#datepicker4{width:100%;} */
+#datepicker5{width:108%;}
+#datepicker6{width:108%;}
+/* #datepicker7{width:108%;}
+#datepicker8{width:108%;} */
+#datepicker9{width:108%;}
+#datepicker13{width:99% !important;}
+#datepicker14{width:99% !important;}
+#datepicker31{width:110%;}
+#datepicker32{width:110%;}
+/* #datepicker16{width:97%;} */
+/* #datepicker17{width:97%;} */
+/* #datepicker16{width:97%;} */
+/* #datepicker17{width:97%;} */
+
+#mainLogo img {
+    position: relative;
+    max-width: 80%;
+    padding-top: 5px;
+}
+.input-group.radioGroups {
+   
+    padding: inherit;
+    
+}
+h4.listItem {
+    padding-left: inherit;
+    font-size: 14px;
+    font-family: arial;
+}
+.addTrainingStructure {
+    font-size: 12px;
+}
+
+#newGroup{
+    width:91%;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+    padding: 0px 0px 0px 0px;
+}
+
+.contain-all {
+    max-width: 1050px;
+width: 94%;
+}
+button.navbar-toggle {
+    float: right;
+}
+
+.copyright {
+    text-align: center;
+    color: #ccc;
+}
+.panel-body {
+    padding-top: 22px !important;
+}
+
+label.radio-inline {
+    width: -webkit-fill-available;
+}
+textarea#comment {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+input.form-check-input.absTxt {
+    margin-left: -13px;
+}
+
+.selectoptionBg1:after {
+    content: '\f0d7';
+    font: normal normal normal 17px/1 FontAwesome;
+    color: #ffffff;
+    right: 0%;
+    font-size: 22px;
+    top: 0px;
+    height: 34px;
+    z-index: 100;
+    padding: 6px 9px 0px 10px;
+    border: 1px solid #adafb2;
+    position: absolute;
+    pointer-events: none;
+    background: #c1e3fc;
+}
+.SearchCrtSubmitBtn1{
+    margin:18px 18px 0 0;
+    border-color: #3a719a;
+    padding: 7px 20px;
+     }
+#datepicker3{
+       margin-left: -5px;
+}
+	#datepicker4{
+    margin-left: -6px;
+}
+ .input-group.col-md-6.col-xs-11.mobilInput6 {
+    margin-left: 34px;
+}
+button.btn.btn-primary.AddMoreBtn {
+    width: 76px;
+    text-align: center;
+    background-color: #2d4690;
+    font-weight: 600;
+    padding: 7px 5px 6px;
+    font-size: 13px;
+    margin-top: 17px;
+    float: right;
+    margin-right: 20px;
+}
+button.btn.btn-info.SubmitDraftBtn {
+    margin-top: 17px;
+    background-color: #2d4690;
+    font-weight: 700;
+    float: right;
+    margin-left: 4px;
+
+}
+.input.form-control.picker33{
+    margin-top: -7px !important;
+}
+
+}
+
+
+@media (max-width: 1024px){
+    #Icsi_top_header .header_logo_li_1 {
+        width: 100%;
+    }
+    #Icsi_top_header .header_logo_li_2 {
+        width: 100%;
+    }
+    .navbar-expand-md .navbar-toggler {
+        display: none;
+    }
+}
+
+    #datepicker13{
+        width: 242px;
+    }
+    #datepicker14{
+        width: 242px;
+    }
+    .SessionFeebackFormSpacingInputs{
+        margin-bottom: 10px;
+    }
+    .SessionFeedbckPopupSpacing{
+        margin-top:16px !important;
+    }
+
+/* Modal styles */
+
+.modal-header.cancelTrain {
+    background-color: #0C4EB0;
+    color: white;
+    
+}
+.modal-header {
+    padding: 8px;
+	padding: 0px;
+	}
+  button.btn.btn-primary.subBtn {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #3a719a;
+    width: 80px;
+    font-size: 15px;
+    font-weight: bold;
+	}
+.close {
+    float: right;
+    font-size: 26px;
+    border: 2px solid #fff !important;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: 500;
+    color: #fff !important;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    line-height: 1;
+    margin: 6px 10px !important;
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+ }
+h4#exampleModalLabel {
+    font-weight: bold;
+    margin-left: 12px;
+    line-height: 43px;
+}
+
+/* End of Modal styles */
+
+button.btn.btn-primary.mr-auto.subBtn {
+    margin-top: 16px;
+    float: right;
+}
+.modal-content.ModalHeightAuto {
+    height: 220px;
+}
+textarea.form-control{
+    border-radius: unset;
+}
+.ProceedHeadingModal{
+    line-height: 2.428571;
+    padding: 0 10px;
+  
+}
+.PaymentModePara{
+    color:#2D4690;
+    font-weight: 600;
+}
+ .scrollbar
+ {
+     margin-left: 30px;
+     float: left;
+     height: 300px;
+     width: 65px;
+     background: #F5F5F5;
+     overflow-y: scroll;
+     margin-bottom: 25px;
+ }
+  .PaymentPara{
+     background-color: #ecffeb;
+     border: 1px solid #3aca3a;
+     padding: 4px 10px;
+     border-radius: 3px;
+     display: block;
+     overflow: hidden;
+     font-weight: 500;
+ }
+ .PaymntLabel{
+     font-weight: 500 !important;
+ }
+
+ /* Footer styles */
+
+ footer {
+    /*background-color: #053d7c;*/
+    /*padding: 20px;*/
+    margin: 0px;
+    background: #222 repeat-x scroll 0 0;
+    margin-top: 25px;
+    font-size: 12px;
+ }
+ .footerContainer{
+    padding:0px 0px 10px;
+ }
+ .icsiFooter .container{
+    max-width: 1000px;
+ }
+ .icsiFooter{
+    color: #ccc;
+ }
+ .icsiFooter li a{
+ color:#ccc;
+ font-size: 11px;
+ text-transform: uppercase;
+ }
+ .icsiFooter li a:hover{
+ color:#ccc;
+ }
+ .icsiFooterMenu{
+        border-bottom: 2px solid #ccc;
+    padding: 10px;
+ }
+ .icsiFooter p{
+    padding-top: 10px;
+    text-align: center;
+ }
+ .no-padding{
+    padding: 0px;
+ }
+ .no-margin{
+    margin:0px auto;
+ }
+
+.pdfLink{
+    font-weight: 600;
+    text-decoration: underline;
+}
+.FontBold{
+    font-weight: 600;
+}
+.PDFPara{
+    margin:0;
+}
+.invoiceLink a{
+    text-decoration: underline;
+    text-align: center;
+    font-weight: 600;
+}
+.BlockMargin{
+    margin-top:25px;
+}
+
+.HideScroll{
+    overflow: hidden;
+}
+
+/* New styles */
+
+.form-horizontal .control-label{
+    text-align: left;
+}
+.form-control{
+    border-radius: unset;
+    box-shadow: none;
+}
+.panel.panel-primary.searchCtr .panel-body .row {
+    margin-left: -4px;
+}
+.CoachingBtn, .CoachingBtn:hover {
+    border-radius: 3px;
+    background-color: #0c4eb0;
+    color: #fff;
+    margin-right:30px;
+}
+
+.CoachingBtn:active{
+    color: #fff;
+}
+.date{
+    padding-left:5px;
+}
+.LeftPadding{
+    padding-left: 0;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th
+{
+    border-right: 1px solid #fff !important;
+}
+.CommentPadding{
+    padding-left: 15px;
+}
+.OnlineExamBoxPadding{
+    margin-top: 25px;
+}
+.GatewayPara{
+    color:#2d4690;
+    font-weight: 600;
+   margin:3px;
+}
+.PickerToLabelMobil{
+    padding: 8px 18px;
+}
+.GateMargin{
+    margin-top:20px;
+}
+.BlueColorTxt {
+    color:#2d4690;
+}
+
+.Quizpara{
+    font-weight: 600;
+    color:#2d4690;
+}
+input.form-check-input.QuizRadioInput
+{
+    height:11px;
+}
+.QuizFooter{
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+.Quizquestion{
+    margin-bottom: 70px;
+    padding-left:7px;
+}
+.RedStar{
+       color:red;
+}
+.modal{
+    top: 30%;
+}
+.modal-header{
+    border-bottom: 1px solid #c6c6c6;
+}
+
+@media only screen and (min-width:1200px){
+div.dataTables_wrapper div.dataTables_info{
+    padding-top: 25px !important;
+    }
+    .WebPic{
+        width: 80% !important;
+    }
+
+#mainLogo {
+    /* width: 75%; */
+    float: left;
+    padding: 8px;
+}
+.PickerToLabel{
+    padding: 8px 40px 6px 41px;
+}
+div.dataTables_length label {
+float: right;
+}
+
+#UserManual_length, #AppliedCoaching_length,#SearchOnline_length{
+    width:963px;
+}
+        div#datatable_faculty_info {
+        margin-top: 10px;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination{
+        margin: 21px 0 2px !important;
+        white-space: nowrap;
+    }
+    .menuBar ul{
+        margin-left: 114px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .StartDateBookingSeats{
+        padding-right: 0;
+    }
+  #AppliedCoaching_info,#UserManual_info,#SearchOnline_info{
+  padding: 14px 10px;
+    }
+#datepicker27{
+    margin-left:-1px;
+}
+.MobilPic{
+    width: 50% !important;
+}
+
+.EndDate .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group {
+    margin-right: -24px;
+}
+        .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group {
+        width: -webkit-fill-available;
+        margin-right: -6px;
+    }
+    #UserManual_length ,#AppliedCoaching_length, #SearchOnline_length{
+        text-align: left;
+        padding-top: 10px; padding-bottom: 5px;
+    }
+   div#mi-modal {
+        padding-right: 4px !important;
+    }
+    .panel.panel-primary.searchCtr .panel-body .row{
+        margin-left: -10px;
+    }
+    .text-on-pannel{
+        margin-left: -3px;
+    }
+.SearchOnlineExamrow
+{
+    margin-left: -11px !important;
+}
+.UserManualBtn{
+    margin-right: 28px !important;
+    margin-left: 0 !important;
+}
+.AddProceedBtn{
+    margin-right: 0px !important;
+    padding: 7px 10px; 
+}
+.EndDate{
+    padding-left:11px !important;
+}
+.startDate{
+    padding-left: 15px !important;
+}
+    .icsiFooter p{
+        float:none !important;
+    }
+    .CoachingBtn, .CoachingBtn:hover {
+        margin-right: 13px;
+    }
+    .ResultCloseBtn{
+        margin-right:33px;
+    }
+    .list-inline li{
+        display: block;
+    }
+    .date {
+        padding-left: 23px;
+    }
+    .SubmitBtn{
+        margin-top:15px;
+    }
+    .addTrainingStructure.paymentStructure h4{
+        padding:12px 19px;
+        font-size: 15px;
+    }
+    #mainLogo {
+        width: 90%;
+        float: none;
+        padding: 11px 0px 0px 26px;
+    }
+    button.btn.btn-primary.AddMoreBtn{
+        width:auto;
+        padding: 7px 10px 6px;
+    }
+    .PoweredBySpan{
+        top:1px;
+    }
+
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #2d4690;
+    box-shadow: none;
+}
+
+
+@media  (max-width: 1199px) {
+
+    .ipaddate {
+        width: 85% !important;
+    }
+}
+
+
+
+@media  (max-width: 991px) {
+
+ 
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+ 
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+   
+ }
+
+ .nav-color {
+    background: #083b82;
+    color: white;
+    border-radius: 0px;
+ }
+ .iconColor {
+    /* background: #fff; */
+    background-color: #fff !important;
+    border-color: #083b82;
+ }
+ .toggleBorder {
+    border-color: #083b82 !important;
+ }
+ .navbar-default .navbar-nav>li>a {
+   color: #fdfdfd;
+    font-size: 15px;
+   /* padding-left: 51px; */
+ }
+ .navbar-default .navbar-nav>li>a:hover {
+   color: #fdfdfd;
+   
+ }
+ .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #083b82;;
+ }
+ .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #083b82;;
+ }
+
+
+ /* @media only screen and (min-device-width: 991px) and (max-device-width: 1024px) {
+
+    .AppliedCoachingDatepickr {
+
+        width: 95%;
+    
+    }
+ } */
+
+
+
+ @media only screen and (min-device-width: 1199px) and (max-device-width:  1024px) {
+.TableFormMobile_Hidden{
+    display: none;
+}
+
+
+ }
+
+ @media only screen and (min-device-width: 1186px) and (max-device-width: 1030px) {
+    
+    .PickerToLabelMobil {
+        padding: 8px 25px !important;
+        }
+
+}
+
+
+ @media only screen and (min-device-width: 320px) and (max-device-width: 410px) {
+
+
+ }
+
+ @media only screen and (min-device-width: 414px) and (max-device-width: 520px) {
+
+
+}
+
+
+
+
+ @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .startDate {
+        padding-left: 23px !important;
+    }
+.UserManualStartDate{
+    padding-left: 4px !important;
+}
+
+    .IpadPic{
+        width: 90% !important;
+    }
+
+/* .ApplyCoachingDatPic{
+    width:85% !important;
+} */
+
+     /* #datepicker16,#datepicker17,#datepicker18,#datepicker19
+    {
+        width:90%;
+    }  */
+
+    .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group {
+        width: -webkit-fill-available;
+        margin-right: -13px;
+    }
+
+    .EndDate .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group {
+        margin-right: -24px;
+    }
+    .EndDate {
+        padding-left: 11px !important;
+    }
+
+    #datepicker3 { 
+        margin-left: -18px;
+    }
+    #datepicker4 {
+        margin-left: -18px;
+    }
+
+    .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group{
+        margin-right: 35px;
+    }
+
+    #AppliedCoaching_info, #UserManual_info, #SearchOnline_info{
+        padding-top: 31px;
+    }
+
+    #AppliedCoaching_paginate,#UserManual_paginate,#SearchOnline_paginate {
+        padding-top: 20px;
+    }
+
+    .control-label {
+        padding-bottom: 10px;
+    }
+    .EndDate {
+        padding-left: 64px !important;
+    }
+
+    .date.EndDate .gj-datepicker.gj-datepicker-bootstrap.gj-unselectable.input-group {
+        margin-left: -54px;
+    }
+.PaymentModeLabel{
+padding-bottom: 0;
+}
+
+.UserManualEndDate{
+    padding-left: 64px !important;
+    padding-right: 45px;
+}
+
+.NextButn{
+padding-top: 10px;
+}
+    .StartDateBookingSeats {
+        padding-right: 42px;
+    }
+
+ }
+
+ .pagination>li>a, .pagination>li>span {
+        color: #0c4eb0;
+    }
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  
+    background-color: #0c4eb0;
+    border-color: #0c4eb0;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th{
+    vertical-align: middle;
+}
+  table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after{
+  top:37%;
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px)
+ {
+.TableFormWeb_Hidden{
+    display: none;
+}
+
+
+
+}
+
+ @media only screen and (min-width: 1024px) and (max-width: 1199px)
+    {
+        .TableFormWeb_Hidden{
+            display: none;
+        }
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px)
+    {
+        .UserManalDatePickr{
+            width: 34%;
+        }
+
+        .AppliedCoachingDatepickr{
+            width: 34%;
+        }
+
+.UserManalToLabel{
+    padding:5px 19px 0 32px;
+}
+
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 766px)
+    {
+
+        .UserEndDateUserManalDatePickr{
+            width:91%;
+        }
+
+        
+      .UserManualStartDate{
+        padding-left: 11px !important;
+    }
+
+    }
+
+
+    @media only screen and (min-width: 320px) and (max-width: 990px)
+    {
+    .PickerToLabelMobil {
+        padding: 8px 10px;
+    }
+}
+
+    @media only screen and (min-width: 767px) and (max-width: 991px)
+    {
+      .UserManalDatePickr{
+          width:93%;
+      }
+
+      .UserManualStartDate{
+        padding-left: 6px !important;
+    }
+
+      .EndDateUserManalDatePickr{
+          width:90%
+      }
+
+      .UserEndDateUserManalDatePickr{
+          width:91%;
+      }
+
+    }
+    @media only screen and (min-width: 662px) and (max-width: 769px)
+    {
+      .UserManalDatPic {
+          width:95%;
+      }
+
+    }
+
+    @media only screen and (min-width: 0) and (max-width: 291px)
+    {
+
+    .AppliedCoachingDatepickr{
+        width:84%;
+    }
+    }
+
+    @media only screen and (min-width: 1199px) and (max-width: 1030px)
+    {
+        .PickerToLabelWeb{
+            padding: 8px 26px !important;
+        }
+
+    }
+
+
+@media only screen and (min-width: 643px) and (max-width: 745px)
+{
+  .UserManalDatPic {
+      width:107%;
+  }
+
+}
+
+@media screen and (max-width:767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {color:#fff !important;}
+}
+
+.SendOtpBtn {
+    text-align: center;
+    color: #ffffff;
+    /* background: #2D4383; */
+}
+
+    .SendOtpBtn button {
+        background: #2D4383;
+        margin-top:25px;
+        border: none;
+        border-radius: 4px;
+        width: 175px;
+        padding: 6px;
+        color: #ffffff;
+    }
+
+.pt-10 {
+padding-top:10px;}
+
+.gj-textbox-md {
+border:1px solid #ccc; font-size:14px;}
+.gj-datepicker-md [role=right-icon] {
+right:5px; top:5px;}
+
+.text-danger
+{
+  color:red;
+}
+
+ol li {
+    padding-bottom: 5px;
+}
+
+#ui-datepicker-div {
+width:18%}
+
+.ui-datepicker-calendar {
+width:100%}
+
+.receiptWidth {width:92%
+}
+.textWrap {
+    float: right;
+    word-break: break-all;
+}
+
+
+.textBottom {float:right; text-align:center;}
+.pt-40 {
+padding-right:40px;}
+.printLink a{
+  color:blue;
+}
+
+    
+
+
+
+    
+
+

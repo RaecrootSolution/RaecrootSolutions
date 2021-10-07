@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "GenerateOTP";
+}
+
+<h2>GenerateOTP</h2>
+
+@using (Html.BeginForm("GenerateNumericOTP", "OTP"))
+{
+    <table>
+        <tr>
+            <td>Click on button to Generate Numeric OTP :</td>
+            <td><input id="Submit1" type="submit" value="Generate OTP" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@ViewBag.otp</td>
+        </tr>
+    </table>
+}
+
+

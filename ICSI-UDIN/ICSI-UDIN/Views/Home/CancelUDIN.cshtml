@@ -1,0 +1,131 @@
+﻿
+@model ICSI_UDIN.Models.RP_GetUDINList_Result
+
+@{
+    ViewBag.Title = "CancelUDIN";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+    DateTime dt = new DateTime();
+    dt = Convert.ToDateTime(Model.CreatedDate);
+    DateTime dtSign = new DateTime();
+    dtSign = Convert.ToDateTime(Model.DateOfSigningDoc);
+}
+<form action="~/Home/CancelUDIN" method="post">
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                <h3 class="formgheader">Revoke Document</h3>
+                <div>
+                    <p class="text-danger">@ViewBag.Message</p>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UDIN Created Date/Time :</td>
+                            <td>@dt.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                        </tr>
+                        <tr>
+                            <td>Unique Document Identification Number(UDIN):</td>
+                            <td>@Model.MembershipNumber</td>
+                        </tr>
+
+                        <tr>
+                            <td>Client Name:</td>
+                            <td>@Model.ClientName</td>
+                        </tr>
+
+                        <tr>
+                            <td>Members Details:</td>
+                            <td>@Model.MemberDetails</td>
+                        </tr>
+                        <tr>
+                            <td>Document Type/Report:</td>
+                            @if (Model.TypesOfDocument == 1)
+                            {
+                                <td>Certificate</td>
+                            }
+                            else if (Model.TypesOfDocument == 2)
+                            {
+                                <td>Reports</td>
+                            }
+                            else if (Model.TypesOfDocument == 0)
+                            {
+                                <td>Others</td>
+                            }
+
+                        </tr>
+                        <tr>
+                            @if (Model.TypesOfDocument != 0)
+                            {
+                                <td>Type of Certificate/Report:</td>
+                                <td>@Model.DocumentType</td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>Date of Signing of Document:</td>
+                            <td>@dtSign.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        @*<tr>
+                                        <td>Figures/ Particulars:</td>
+                                        <td>
+                                            <ol class="revokeDocOL">
+                                                <li>2119 - 2020 ; Assessment Year</li>
+                                                <li>00000N:FRN</li>
+                                                <li>12345: Test</li>
+                                                <li>BTPPK1111B:PAN of the Assessee</li>
+                                            </ol>
+                                        </td>
+        <a href="~/Views/Home/CancelUDIN.cshtml">~/Views/Home/CancelUDIN.cshtml</a>
+                                    </tr>*@
+
+                        <tr>
+                            <td>Document Description: </td>
+                            <td>@Model.DocumentDescription</td>
+                        </tr>
+
+                        <tr>
+                            <td>Status:</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>*Enter reason to revoke this document:</td>
+                            <td>@Html.TextBoxFor(model => model.UDINRevokeReason)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="SendOtpBtn">
+                    
+                    <button type="submit" @{ @((ViewBag.Msg != "0") ? null : new { disabled = "disabled" })  } ;>Submit</button>
+                </div>
+
+
+            </div>
+
+            <div class="VerifyBtn">
+                <button style="display:none;" type="submit">VERIFY ANOTHER UDIN/EXIT</button>
+            </div>
+
+
+        </div>
+    </div>
+</form>
+@*<script type="text/javascript">
+
+@if (ViewBag.ErrorMsg != null)
+{
+    if (ViewBag.ErrorMsg == "1")
+    {
+        @:myFunction();
+    }
+}
+    function myFunction() {
+        var url = '@ViewBag.Path'
+        alert('Your UDIN has been revoked successfully');
+        window.location.href = '@ViewBag.Path';
+    }
+
+
+</script>*@

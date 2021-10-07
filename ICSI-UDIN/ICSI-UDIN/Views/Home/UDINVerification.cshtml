@@ -1,0 +1,129 @@
+﻿@model ICSI_UDIN.Models.UDINVerification
+
+@*@{
+        ViewBag.Title = "UDIN Verification";
+    }*@
+
+@using (Html.BeginForm("UDINVerification", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @*<hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h4>UDIN Verification</h4>*@
+
+
+
+        <div class="form-group">
+            <a href="~/Views/Home/UDINVerification.cshtml"></a>
+            <h3 class="formgheader">VERIFY UDIN AUTHORITIES/REGULATORS/BANKS/OTHERS</h3>
+            <h3 class="formgheaderSecondHeading">
+                (Please provide the following mandatory information to verify UDIN)
+            </h3>
+            <p class="requrdFildsTxt">All fields are required</p>
+
+
+            @Html.Label("*Verifier Name", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("*Enter Verifier Mobile Number", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("*Enter E-mail", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.Label("*Enter Unique UDIN to be Verified", htmlAttributes: new { @class = "control-label col-md-6" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MembershipNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MembershipNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("*captcha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.CaptchaCode)
+
+                <img id="imgUDINCaptcha" src="@Url.Action("GenerateCaptcha", "Home", new { New = 1 })" class="captcha"> &nbsp;&nbsp;
+                <a href="javascript:UDINCaptchaRefresh('imgUDINCaptcha')" class="refresh"><i class="fa fa-refresh"></i>Refresh</a>
+                @Html.ValidationMessageFor(model => model.CaptchaCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @ViewBag.anotp
+                    <input id="Submit1" type="submit" value="Generate OTP" class="btn btn-default" />
+                </div>
+            </div>*@
+        <div>
+
+        </div>
+    </div>
+
+
+    <div class="SendOtpBtn">
+        <button type="submit">Verify</button>
+    </div>
+
+    <div class="text-danger">
+        @if (ViewBag.VNF != null)
+        {
+            <p>
+                @ViewBag.VNF
+            </p>
+        }
+
+    </div>
+    <div class="text-danger">
+        @if (ViewBag.CaptchMessage != null)
+        {
+            <p>
+                @ViewBag.CaptchMessage
+            </p>
+        }
+
+    </div>
+}
+@*<div>
+        @Html.ActionLink("Verify", "Index")
+    </div>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+    function UDINCaptchaRefresh(img) {
+
+        $("#Captcha").val("");
+        var varCaptchaUrl = '@Url.Action("GenerateCaptcha", "Home")';
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var rnum = Math.floor(Math.random() * chars.length)
+        var varCaptchaUrl = varCaptchaUrl + '?New=1&randomcode=' + rnum;
+        document.getElementById(img).src = varCaptchaUrl;
+
+    }
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@{
+    Dictionary<string, string> DictParams = (Dictionary<string, string>)ViewBag.DictParams;
+    if (ViewBag.Error != "")
+    {
+        <h4>@ViewBag.Error</h4>
+    }
+
+    if (DictParams != null)
+    {
+        string URL = DictParams["URL"];
+        //string URL = DictParams["URL_W_PARAM"];
+        DictParams.Remove("URL");
+        string postget = DictParams.ContainsKey("POST_YN") ? DictParams["POST_YN"] : "GET";
+        DictParams.Remove("POST_YN");
+        System.Text.StringBuilder paramstr = new System.Text.StringBuilder();
+        foreach(var d in DictParams){
+            paramstr.Append("<input type='hidden' name='").Append(d.Key).Append("' value='").Append(d.Value).Append("'>");
+        }
+
+<form class="well form-horizontal" id="frmRazorPay" action=@Html.Raw(URL) method="@Html.Raw(postget)">
+    @Html.Raw(paramstr.ToString())
+    <input type="hidden" id="encRequest"
+           name="encRequest" value="" />
+    <input type="hidden" id="access_code"
+           name="access_code" value="" />   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("frmRazorPay").submit();
+
+        });
+    </script>
+</form>
+    }
+}
+

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICSI_eCSIN_Stimulate_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbleCSINGeneration">
+    <Key>
+      <PropertyRef Name="eCSINGenerationId" />
+    </Key>
+    <Property Name="eCSINGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="eCSINGeneratedNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DateOfChangeMembershipNo" Type="date" />
+    <Property Name="RestorationOfMembership" Type="varchar" MaxLength="50" />
+    <Property Name="EmployeeDesignation" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmployerCINNo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EmployerName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmployerRegAdd" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfOfferLetter" Type="date" Nullable="false" />
+    <Property Name="DateOfConsentLetter" Type="date" Nullable="false" />
+    <Property Name="DateOfAppointment" Type="date" Nullable="false" />
+    <Property Name="DateOfNoticeResig_NoticeOfTermination" Type="date" />
+    <Property Name="DateOfCessationEmployment" Type="date" />
+    <Property Name="WebsiteOfEmployer" Type="varchar" MaxLength="100" />
+    <Property Name="EmployerPhoneNo" Type="varchar" MaxLength="20" />
+    <Property Name="EmployerEmailId" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="RevokeDate" Type="datetime" />
+    <Property Name="RevokeReason" Type="nvarchar(max)" />
+    <Property Name="FinancialYear" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsAccepted" Type="bit" Nullable="false" />
+    <Property Name="PANNumber" Type="varchar" MaxLength="30" />
+    <Property Name="CessationAcpReason" Type="nvarchar(max)" />
+    <Property Name="Subsidiarye_Status" Type="bit" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="Sub_Remarks" Type="nvarchar(max)" />
+    <Property Name="Amount" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="Remarks2" Type="nvarchar(max)" />
+    <Property Name="Remarks3" Type="nvarchar(max)" />
+    <Property Name="Remarks4" Type="nvarchar(max)" />
+    <Property Name="Remarks5" Type="nvarchar(max)" />
+    <Property Name="EmployerMobileNo" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbleCSINGenerationHistory">
+    <Key>
+      <PropertyRef Name="HistoryId" />
+    </Key>
+    <Property Name="HistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eCSINGenerationId" Type="int" Nullable="false" />
+    <Property Name="PrevDesignation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CurrentDesignation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateOfChangeDesignation" Type="date" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblGenerateeCSIN">
+    <Key>
+      <PropertyRef Name="eCSINGenerationId" />
+    </Key>
+    <Property Name="eCSINGenerationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FinancialYear" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TotalCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSubsidiaryUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Membership_Number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Approval_Date" Type="date" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="15" />
+    <Property Name="EmailId" Type="varchar" MaxLength="300" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UserTypeID" Type="int" />
+  </EntityType>
+  <Association Name="FK_tbleCSINGeneration_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tbleCSINGeneration" Type="Self.tbleCSINGeneration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbleCSINGeneration">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbleCSINGenerationHistory_tbleCSINGeneration">
+    <End Role="tbleCSINGeneration" Type="Self.tbleCSINGeneration" Multiplicity="1" />
+    <End Role="tbleCSINGenerationHistory" Type="Self.tbleCSINGenerationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbleCSINGeneration">
+        <PropertyRef Name="eCSINGenerationId" />
+      </Principal>
+      <Dependent Role="tbleCSINGenerationHistory">
+        <PropertyRef Name="eCSINGenerationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetTotalUsereCSIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ICSI_eCSIN_Stimulate_ModelStoreContainer">
+    <EntitySet Name="tbleCSINGeneration" EntityType="Self.tbleCSINGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbleCSINGenerationHistory" EntityType="Self.tbleCSINGenerationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGenerateeCSIN" EntityType="Self.tblGenerateeCSIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubsidiaryUser" EntityType="Self.tblSubsidiaryUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbleCSINGeneration_tblUser" Association="Self.FK_tbleCSINGeneration_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tbleCSINGeneration" EntitySet="tbleCSINGeneration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbleCSINGenerationHistory_tbleCSINGeneration" Association="Self.FK_tbleCSINGenerationHistory_tbleCSINGeneration">
+      <End Role="tbleCSINGeneration" EntitySet="tbleCSINGeneration" />
+      <End Role="tbleCSINGenerationHistory" EntitySet="tbleCSINGenerationHistory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

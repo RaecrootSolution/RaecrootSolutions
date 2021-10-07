@@ -1,0 +1,103 @@
+﻿@model ICSI_eCSIN.Models.EditeCSIN
+@{
+    ViewBag.Title = "Edit eCSIN Generation";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">Update Designation</p>
+</div>
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+@using (Html.BeginForm("editCurrenteCSIN", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("Designation has been updated successfully"))
+    {
+        color = "green";
+    }
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                <div>
+                    @*<h4 class="formgheader">Update Designation</h4>*@
+                </div>
+                <label style="color:@color">@Message</label>
+                <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.MembershipNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                    </div>
+                <div class="form-group siderbarlgnform" style="display:none;">
+                        @Html.EditorFor(model => model.eCSINNumber, new { htmlAttributes = new { @class = "form-control formblock", @readonly = "readonly" } })
+                    </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Name of Company/Firm/Individual", @readonly = "readonly" } })
+                    @*@Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.EmployerCINNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer CIN Number", @maxlength = "21", @readonly = "readonly" } })
+                    @*@Html.ValidationMessageFor(model => model.EmployerCINNo, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.PrevEmpDesignation, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Previous Employee Designation", @readonly = "readonly" } })
+                    @*@Html.ValidationMessageFor(model => model.EmployeeDesignation, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.CurrentEmpDesignation, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Enter New Designation" } })
+                    @Html.ValidationMessageFor(model => model.CurrentEmpDesignation, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.EmployerRegAddress, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer Reg. Address", @readonly = "readonly" } })
+                    @*@Html.ValidationMessageFor(model => model.EmployerRegAddress, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform"style="display:none">
+
+                    @Html.EditorFor(Model => Model.DateOfOfferLetter, new { htmlAttributes = new { id = "DateOfOfferLetter", @class = "form-control formblock", placeholder = "Date of Offer Letter(DD/MM/YYYY)", @readonly = "true"} })
+                    @*@Html.ValidationMessageFor(model => model.DateOfOfferLetter, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.DateOfConsentLetter, new { htmlAttributes = new { id = "DateOfConsentLetter", @class = "form-control formblock", placeholder = "Date of Consent Letter(DD/MM/YYYY)", @readonly = "true" } })
+                    @*@Html.ValidationMessageFor(model => model.DateOfConsentLetter, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.DateOfAppointment, new { htmlAttributes = new { id = "DateOfAppointment", @class = "form-control formblock", placeholder = "Date of Appointment(DD/MM/YYYY)", @readonly = "true" } })
+                    @*@Html.ValidationMessageFor(model => model.DateOfAppointment, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.DateOfChangeDesignation, new { htmlAttributes = new { id = "DateOfChangeDesignation", @class = "form-control formblock", placeholder = "Date of Changed Designation(DD/MM/YYYY)" } })
+                    @Html.ValidationMessageFor(model => model.DateOfChangeDesignation, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="submitbtn">
+                    <button type="submit">Update eCSIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#DateOfChangeDesignation').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+1"
+
+        });
+    });
+</script>
+
+
+

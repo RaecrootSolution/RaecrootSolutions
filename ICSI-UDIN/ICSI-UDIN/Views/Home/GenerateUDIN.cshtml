@@ -1,0 +1,223 @@
+﻿@model ICSI_UDIN.Models.GenerateUDIN
+@{
+    ViewBag.Title = "GenerateUDIN";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    DateTime dt = DateTime.Now;
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+@using (Html.BeginForm("GenerateUDIN", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("UDIN has been generated successfully") || Message.Contains("Please refresh the page"))
+    {
+        color = "green";
+    }
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                <div>
+                    <h4 class="formgheader">Generate UDIN</h4>
+                </div>
+                <label style="color:@color">
+                    @Message
+                </label>
+                @*<form>*@
+                <div class="form-group siderbarlgnform">
+                    @*<input type="text" class="form-control formblock" id="email" placeholder="Membership Registration Number or MRN" name="email">*@
+                    @Html.EditorFor(model => model.MRNNumber, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                    @*@Html.ValidationMessageFor(model => model.MRNNumber, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group siderbarlgnform" style="display:none;">
+                    @Html.EditorFor(model => model.UDINNumber, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @*<input type="text" class="form-control formblock" id="pwd" placeholder="Client Name" name="pwd">*@
+                    @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Name of Company/Firm/Individual" } })
+                    @Html.ValidationMessageFor(model => model.ClientName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @*<input type="text" class="form-control formblock" id="pwd" placeholder="CIN Number" name="pwd">*@
+                    @*@Html.EditorFor(model => model.CINNumber, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "CIN Number", @maxlength = "21" } })*@
+                    @*@Html.DropDownList("ddlCPA", new List<SelectListItem>
+            {
+               new SelectListItem{ Text="--Select--", Value = "0" },
+               new SelectListItem{ Text="CIN", Value = "1" },
+               new SelectListItem{ Text="PAN", Value = "2" },
+               new SelectListItem{ Text="Aadhar", Value = "3" }
+            }, new { @onchange = "changecpa(this)" })*@
+
+
+                    @Html.DropDownListFor(m => m.Number, new List<SelectListItem>
+         { new SelectListItem{Text="CIN", Value="1"},
+           new SelectListItem{Text="PAN", Value="2"},
+                new SelectListItem{Text="Aadhar", Value="3"}}, "Please select", new { @onchange = "changecpa(this)" })
+                    @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+
+                    @Html.EditorFor(model => model.CINNumber, new { htmlAttributes = new { id = "edtC", @class = "form-control formblock", @placeholder = "Enter Number", Style = "display:none" } })
+                    @Html.ValidationMessageFor(model => model.CINNumber, "", new { @class = "text-danger" })
+                    @*@Html.EditorFor(model => model.PANNumber, new { htmlAttributes = new { id = "edtP", @class = "form-control formblock", @placeholder = "Enter PAN Number", Style = "display:none" } })
+            @Html.ValidationMessageFor(model => model.PANNumber, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.AdharNumber, new { htmlAttributes = new { id = "edtA", @class = "form-control formblock", @placeholder = "Enter Aadhar Number", Style = "display:none" } })
+            @Html.ValidationMessageFor(model => model.AdharNumber, "", new { @class = "text-danger" })*@
+                    @*@Html.ValidationMessageFor(model => model.CINNumber, "", new { @class = "text-danger" })*@
+
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @*<input type="text" class="form-control formblock" id="pwd" placeholder="Financial year" name="pwd">*@
+                    @Html.EditorFor(model => model.FinancialYear, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Financial year" } })
+                    @Html.ValidationMessageFor(model => model.FinancialYear, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group siderbarlgnform">
+
+                    @Html.EditorFor(model => model.FinancialYear_Remark, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Financial year Remark" } })
+
+                </div>
+
+                <div class="form-group checkForm">
+                    <label class="checkbox-inline">
+                        <h5 class="documentType">*Document Type:</h5>
+                    </label>
+                    @*<label class="containerCheckbox" onclick="checkboxclick();">
+                Certificates <span class="icon"><i class="fa fa-info" style="color:black;"></i></span>
+                <input type="checkbox" checked="checked" id="chkCertificates">
+                <span class="checkmark"></span>
+            </label>*@
+                    @*<label class="containerCheckbox">
+                Gst and Tax Audit <span class="icon"><i class="fa fa-info" style="color:black;"></i></span>
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>*@
+                    @*<label class="containerCheckbox" onclick="checkboxclick();">
+                Other Attest Functions<span class="icon"> <i class="fa fa-info" style="color:black;"></i></span>
+                <input type="checkbox" id="chkOther">
+                <span class="checkmark"></span>
+            </label>*@
+                    @Html.RadioButton("rdbgroup", "1", isChecked: true)&nbsp;@Html.Label("Certificates")
+                    @Html.RadioButton("rdbgroup", "2", isChecked: false)&nbsp;@Html.Label("Reports")
+                    @Html.RadioButton("rdbgroup", "3", isChecked: false)&nbsp;@Html.Label("Others")
+                </div>
+                <div class="form-group checkForm">
+                    <label class="checkbox-inline">
+                        @*<h5 class="documentType">UDIN initiative:</h5>*@
+                        <h5 class="documentType">Whether intimation to the previous incumbent has been given as per Rule 8:</h5>
+                    </label>
+                    @Html.RadioButton("rdbUDINgroup", "1", isChecked: true)&nbsp;@Html.Label("Yes")
+                    @Html.RadioButton("rdbUDINgroup", "2", isChecked: false)&nbsp;@Html.Label("No")
+                    @Html.RadioButton("rdbUDINgroup", "3", isChecked: false)&nbsp;@Html.Label("Not Applicable")
+                    <br />
+                    <label class="checkbox-inline">
+                        <h5 class="documentType"><a href="~/PDF/FormasperRule8.pdf" target="_blank">(Click here for download the draft intimation format)</a></h5>
+                    </label>
+                </div>
+                <div class="form-group siderbarlgnform" id="dvCertificate">
+                    @Html.DropDownListFor(model => model.CertificateId, new SelectList(Model.lstCertificates, "CertificateId", "CertificateName"), new { @class = "dropDown" })
+
+                </div>
+                <div class="form-group siderbarlgnform" id="dvDescription">
+
+                    @Html.EditorFor(model => model.DocDescription, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Document Description(Do not disclose client details)" } })
+                    @Html.ValidationMessageFor(model => model.DocDescription, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group siderbarlgnform">
+
+                    @Html.EditorFor(model => model.DateOfSigningDoc, new { htmlAttributes = new { id = "DateOfSigningDoc", @class = "form-control formblock", Value = dt.ToString("dd/MM/yyyy") } })
+
+
+                    @Html.ValidationMessageFor(model => model.DateOfSigningDoc, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="submitbtn">
+                    <button type="submit">Generate UDIN</button>
+                </div>
+
+                @*</form>*@
+
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    function changecpa(ddlCPA) {
+        var selectedText = ddlCPA.options[ddlCPA.selectedIndex].innerHTML;
+        var selectedValue = ddlCPA.value;
+
+        if (selectedValue == 0) {
+            document.getElementById("edtC").style.display = "none";
+         
+        }
+        else {
+            document.getElementById("edtC").style.display = "block";
+         
+
+        }
+        
+
+        
+
+
+    }
+    checkDocumentType();
+    function checkDocumentType() {
+        var radioValue = $("input[name='rdbgroup']:checked").val();
+        if (radioValue == 3) {
+            $('#dvCertificate').fadeOut();
+            $('#dvDescription').fadeIn();
+            //alert("Your are a - " + radioValue);
+        }
+        else if (radioValue == 2 || radioValue == 1) {
+            $('#dvDescription').fadeOut();
+            $('#dvCertificate').fadeIn();
+        }
+    }
+
+    $(document).ready(function () {
+        $("input[type='radio']").click(function () {
+            checkDocumentType();
+            var radioValue = $("input[name='rdbgroup']:checked").val();
+
+            $.ajax({
+                type: "POST",
+                url: "CertificateList?TypeOfDocument=" + radioValue + "",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    $("#CertificateId").empty();
+                    for (var i = 0; i < res.length; i++) {
+                        $("#CertificateId").append("<option value=" + res[i].CertificateId + ">" + res[i].CertificateName + "</option>");
+                    }
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#DateOfSigningDoc').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            minDate: '@DateTime.Now.AddDays(0).ToString("dd/MM/yyyy").Replace("-", "/")',
+            maxDate: '@DateTime.Now.AddDays(7).ToString("dd/MM/yyyy").Replace("-", "/")'
+        });
+    });
+</script>
+
+
+

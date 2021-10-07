@@ -1,0 +1,156 @@
+﻿@model ICSI_Management.Models.User
+@{
+    ViewBag.Title = "User";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>USER MASTER</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("User", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">User ID </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.UserId, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">User Type</label>
+            <div class="col-md-6">
+                <div class="selectdiv">
+                    @Html.DropDownListFor(m => m.UserTypeId, Model.usertypelst, "Please select", new
+                        {
+                           
+                            @class = "form-control"
+                        })
+                </div>
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">User Name </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Login ID  </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.LoginId, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LoginId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Login Password</label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.LoginPwd, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LoginPwd, "", new { @class = "text-danger" })
+            </div>
+        </div>        
+        <div class="form-group row">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+      
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">User Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>User ID</th>
+                    <th>User Type</th>
+                    <th>User Name</th>
+                    <th>Login ID </th>
+                    <th>Login Password  </th>                    
+                    <th>Active</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.lst != null)
+                {
+                    foreach (var item in Model.lst)
+                    {
+                        <tr>
+                            <td>@item.UserId</td>
+                            <td>@item.UserType</td>
+                            <td>@item.UserName</td>
+                            <td>@item.LoginId</td>
+                            <td>@item.LoginPwd</td>
+                            <td>@item.Active</td>
+                           
+                            <td>
+
+                                <button type="submit" onclick="location.href='@Url.Action("User", "Home" , new { id = item.Id })'">Edit</button>
+
+                            </td>
+
+
+
+                        </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+

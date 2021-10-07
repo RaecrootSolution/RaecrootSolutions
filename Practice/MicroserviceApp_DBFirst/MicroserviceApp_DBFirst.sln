@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceApp_DBFirst", "MicroserviceApp_DBFirst\MicroserviceApp_DBFirst.csproj", "{E6A0172B-097E-4785-9FA8-F4FFDD4A7FCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6A0172B-097E-4785-9FA8-F4FFDD4A7FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A0172B-097E-4785-9FA8-F4FFDD4A7FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A0172B-097E-4785-9FA8-F4FFDD4A7FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A0172B-097E-4785-9FA8-F4FFDD4A7FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F145B0D9-9B32-47E1-B639-7C337B2A697E}
+	EndGlobalSection
+EndGlobal

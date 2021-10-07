@@ -1,0 +1,166 @@
+﻿@model ICSI_Management.Models.Roles
+@{
+    ViewBag.Title = "RoleMaster";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+    
+
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>ROLE MASTER</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("RoleMaster", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Role Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @onkeyup = "myFunction()" } })
+                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Role Description </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.RoleDescription, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Role Symbolic Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RoleSysName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RoleSysName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">Role Order </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.RoleOrder, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" @disabled class="btn btn-primary SubmitBtn" onclick="return Go();"> Update</button>
+                    }
+                }
+                
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">Role Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Role Name</th>
+                    <th>Role Sys Name</th>
+                    <th>Role Description</th>
+                    <th>Role Order</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AllRoles != null)
+                {
+                    foreach (var item in Model.AllRoles)
+                    {
+                        //count++;
+                        //dt = Convert.ToDateTime(item.CreatedDate);
+                        //status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                        //dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                        <tr>
+                            @*<td>@count</td>*@
+
+                            <td>@item.RoleName</td>
+                            <td>@item.RoleSysName</td>
+                            <td>@item.RoleDescription</td>
+                            <td>@item.RoleOrder</td>
+                            @*<td>@dtSign.ToString("dd/MM/yyyy hh:mm:ss")</td>*@
+                            <td>@item.Active</td>
+                            @*<td>@item.ClientName</td>
+
+                                <td>@item.CINNumber  @item.PANNumber   @item.AadharNumber</td>*@
+
+                            <td>
+
+                                <button type="submit" onclick="location.href='@Url.Action("RoleMaster", "Home" , new { id = item.Id })'">Edit</button>
+
+                            </td>
+
+                        
+
+                        </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    
+    function myFunction() {
+        $('#RoleSysName').val(document.getElementById("RoleName").value.toUpperCase().replace(/ /g, "_"));
+    }
+    
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+

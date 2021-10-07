@@ -1,0 +1,90 @@
+﻿@model ICSI_Event.Models.PaymentDetail
+@{
+    ViewBag.Title = "PaymentDetail";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+}
+
+@using (Html.BeginForm("PaymentDetail", "Home"))
+
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        <div class="contain-all">
+            <div class="container form-field">
+
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <div class="addTrainingStructure">
+                        <h4 class="">Payment Details</h4>
+                    </div>
+
+
+                    <div class="">
+                        <div id="lable_P" class="row">
+                            <div class="col-md-10">
+                                <p class="PaymentPara">Your request Id is: <label>@ViewBag.ReqID</label></p>
+                                <p class="PaymentPara">Your transaction Id is: <label>@Session["RequetID"] </label></p>
+                                <p class="PaymentPara">
+                                    Your Diary Booking Request has been received.<br>
+                                    Please note this for all future communications.<br>
+                                    The Request id & Transaction id are generated for control purpose only and valid before actual payment starts.<br>
+                                    This does not confirm that payment has been received.<br>
+                                    ICSI has no responsibility for delay in payment due to any technical / non technical issues whatsoever.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="allModel" class="row">
+                            <div class="col-md-9">
+                                <ul class="list-unstyled">
+                                    <li>Name: 
+                                     @if (Session["FullName"] != null)
+                                    {<label class="PaymntLabel"> @Session["FullName"].ToString() </label>}
+                                    @*<label class="PaymntLabel">@Model.Name</label>*@
+                                    </li>
+                                    <li>Mobile Number: <label class="PaymntLabel"> @Model.MobileNuber </label> </li>
+                                    <li>Email Address: <label class="PaymntLabel">@Model.Email</label> </li>
+                                    <li>Amount:- <label class="PaymntLabel">@Model.TotalAmount</label> </li>
+                                    @*<li>Payment Mode:- <label class="PaymntLabel">@Model.PaymentMode</label> </li>*@
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div ID="ProcessPayment" class="row">
+                            <div class="col-md-9">
+                                <button type="submit" class="btn btn-primary btn-lg" id="btnSubmit">Proceed for Payment</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        Response.Redirect("DiaryBooking");
+    }
+
+
+}
+
+<script type="text/javascript">
+    @if(ViewBag.DisableButton!=null)
+    {
+        if(ViewBag.DisableButton == 1)
+        {
+          @:myFunction();
+       }
+    }
+    function myFunction() {
+        $("#btnSubmit").attr("disabled", true);
+    }
+</script>
+
+
+
+

@@ -1,0 +1,182 @@
+﻿@model ICSI_eCSIN.Models.eCSINDetails
+@{
+    ViewBag.Title = "CanceleCSIN";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+    DateTime dt = new DateTime();
+    dt = Convert.ToDateTime(Model.CreatedDate);
+    DateTime dtAppt = new DateTime();
+    dtAppt = Convert.ToDateTime(Model.DateOfAppointment);
+
+}
+<style>
+    /*#DateOfNoticeResig_NoticeOfTermination {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+    #DateOfCessationEmployment {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }*/
+
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">Cessation</p>
+</div>
+<form action="~/Home/CanceleCSIN" id="myForm" method="post">
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                @*<h3 class="formgheader">Cessation</h3>*@
+                <div>
+                    <p class="text-danger">@ViewBag.Message</p>
+                </div>
+
+
+                <table class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        @*<tr>
+            <td>Status Date:</td>
+            <td>@dt.ToString("dd/MM/yyyy")</td>
+        </tr>*@
+                        <tr>
+                            <td>eCSIN:</td>
+                            <td>@Model.eCSINGeneratedNo</td>
+                        </tr>
+                        <tr>
+                            <td>Members Name:</td>
+                            <td>@Model.MemberName</td>
+                        </tr>
+                        <tr>
+                            <td>CIN Number </td>
+                            <td>@Model.EmployerCINNo</td>
+                        </tr>
+                        <tr>
+                            <td>Employee Address:</td>
+                            <td>@Model.EmployerRegAdd</td>
+                        </tr>
+                        @*<tr>
+            <td>Date of Signing:</td>
+            <td>@dt.ToString("dd/MM/yyyy")</td>
+        </tr>*@
+                        @*<tr>
+            <td>Figures/ Particulars:</td>
+            <td>
+                <ol class="revokeDocOL">
+                    <li>2119 - 2020 ; Assessment Year</li>
+                    <li>00000N:FRN</li>
+                    <li>12345: Test</li>
+                    <li>BTPPK1111B:PAN of the Assessee</li>
+                </ol>
+            </td>
+
+        </tr>*@
+
+                        <tr>
+                            <td>Date of Appointment: </td>
+                            <td>@dtAppt.ToString("dd/MM/yyyy")</td>
+                        </tr>
+
+                        <tr>
+                            <td>Status:</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Enter Reason for Cessation:</td>
+                            <td>
+                                @*@Html.TextBoxFor(model => model.RevokeReason)*@
+                                @Html.TextAreaFor(model => model.RevokeReason, new { @cols = "100", @rows = "3" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Enter Date of Resignation Letter:</td>
+                            <td>
+                                @Html.EditorFor(model => model.DateOfNoticeResig_NoticeOfTermination1, new { htmlAttributes = new { id = "DateOfNoticeResig_NoticeOfTermination", @class = "form-control formblock", placeholder = "Enter Date", @readonly = "true", Value = "" } })
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Enter Date of Cessation from Employment:</td>
+                            <td>
+                                @Html.EditorFor(model => model.DateOfCessationEmployment1, new { htmlAttributes = new { id = "DateOfCessationEmployment", @class = "form-control formblock", placeholder = "Enter Date", @readonly = "true", Value = "" } })
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Cessation accepted by the Company/Board/management:</td>
+                            <td>
+                                @*Yes <input type="radio" name="radio" checked="checked" value="1">
+                No <input type="radio" name="radio" value="0">*@
+
+                                @Html.RadioButton("rdbgroup", "1", isChecked: true)&nbsp;@Html.Label("Yes")
+                                @Html.RadioButton("rdbgroup", "2", isChecked: false)&nbsp;@Html.Label("No")
+
+
+                            </td>
+
+                        </tr>
+                        <tr id="AcceptCessationReason">
+                            <td>Enter Reason for Cessation Accepted:</td>
+                            <td>
+                               
+                                @Html.TextAreaFor(model => model.CessationAcpReason, new { @cols = "100", @rows = "3" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="SendOtpBtn">
+                    <button id="submitBtn" type="submit">Submit</button>
+                </div>
+
+
+            </div>
+
+            <div class="VerifyBtn">
+                @*<button type="submit">VERIFY ANOTHER eCSIN/EXIT</button>*@
+            </div>
+
+
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#DateOfNoticeResig_NoticeOfTermination').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+        $('#DateOfCessationEmployment').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+      
+
+        $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "1") {
+                $("#AcceptCessationReason").show();
+            }
+            else {
+                $("#AcceptCessationReason").hide();
+            }
+
+        });
+    });
+
+</script>

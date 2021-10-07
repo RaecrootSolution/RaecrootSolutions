@@ -1,0 +1,112 @@
+﻿@model ICSI_eCSIN.Models.MemberRegistration
+@{
+    /**/
+    ViewBag.Title = "Membership Registation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">Membership Registration</p>
+</div> 
+
+@using (Html.BeginForm("MembershipRegistation", "Home"))
+{
+    <div class="container">
+        <div id="loginformblock">
+
+            <div class="card loginformRegistrn">
+                <h3 class="formgheader">FIRST TIME REGISTRATION FOR MEMBERS</h3>
+                <form>
+                    <p class="RegistrnFormPara">
+                        Please fill below details to register on eCSIN Portal. Credentials will
+                        sent on the Email ID as
+                        registered with ICSI
+                        <br />
+                        @if (ViewBag.ErrorMsg != Convert.ToString("1"))
+                        {
+                            <label class="text-danger">@ViewBag.ErrorMsg</label>
+                        }
+                        else
+                        {
+                            <label class="text-white">@ViewBag.ErrorMsg</label>
+                        }
+
+                    </p>
+                    <div class="form-group siderbarlgnform">
+                        <label>ACS/FCS:&nbsp;</label>
+                        @Html.DropDownList("premember", new List<SelectListItem>
+                        {
+                           new SelectListItem{ Text="--Select--", Value = "0" },
+                           new SelectListItem{ Text="A", Value = "1" },
+                           new SelectListItem{ Text="F", Value = "2" }
+                           //new SelectListItem{ Text="E", Value = "2" }
+                        },new { @class = "form-control formblock" })
+                        <label class="text-danger">@ViewBag.premember</label>
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @*<input type="text" class="form-control formblock" id="MRN" value="Membership Number (MRN)" name="MRN">*@
+                        @Html.EditorFor(model => model.MRN, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Number (MRN)" } })
+                        @Html.ValidationMessageFor(model => model.MRN, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @*<input type="text" class="form-control formblock" id="DOB" value="Date of Birth (DD/MM/YY)" name="DOB">*@
+
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { id = "DOB", @class = "form-control formblock", placeholder = "Date of Birth (DD/MM/YYYY)", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+
+                        @*@Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Date of Birth (DD/MM/YY)" } })
+                            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })*@
+                    </div>
+                    @*<div class="form-group siderbarlgnform">
+                            <input type="text" class="form-control formblock" id="pwd" value="Year of Enrolment" name="pwd">
+                        </div>*@
+                    <div class="SendOtpBtn">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+     $(document).ready(function () {
+         $('#DOB').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+1"
+        });
+    });
+
+    @*if (@ViewBag.ErrorMsg== 1) {
+        myFunction();
+    }*@
+
+    @if(ViewBag.ErrorMsg!=null)
+    {
+       if(ViewBag.ErrorMsg=="1")
+       {
+          @:myFunction();
+       }
+    }
+    function myFunction() {
+        var url = '@ViewBag.Path'
+        alert('Your Membership Number is Validated with ICSI, Please Click Ok! to create your Password.');
+        window.location.href = '@ViewBag.Path';
+
+    }
+</script>
+

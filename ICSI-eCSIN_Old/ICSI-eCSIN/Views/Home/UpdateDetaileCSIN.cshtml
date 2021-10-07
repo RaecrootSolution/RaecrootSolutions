@@ -1,0 +1,216 @@
+﻿@model ICSI_eCSIN.Models.UpdateDetails
+@{
+    ViewBag.Title = "Update eCSIN Details";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">Update Details</p>
+</div>
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+@using (Html.BeginForm("UpdateDetaileCSIN", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("successfully"))
+    {
+        color = "green";
+    }
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                <div>
+                    @*<h4 class="formgheader">Update Designation</h4>*@
+                </div>
+                <label style="color:@color">@Message</label>
+
+                @*<div class="form-group siderbarlgnform">
+        @Html.EditorFor(model =>model.MembershipNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+        </div>*@
+                <div class="form-group">
+
+                    @Html.Label("*Membership Number :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MembershipNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group siderbarlgnform" style="display:none;">
+                    @Html.EditorFor(model => model.eCSINNumber, new { htmlAttributes = new { @class = "form-control formblock", @readonly = "readonly" } })
+                </div>
+
+                @*<div class="form-group siderbarlgnform">
+        @Html.EditorFor(model => model.EmployerRegAddress, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer Reg. Address" } })
+        @Html.ValidationMessageFor(model => model.EmployerRegAddress, "", new { @class = "text-danger" })
+        </div>*@
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Employer Address :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.EmployerRegAddress, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer Reg. Address" } })
+                        @Html.ValidationMessageFor(model => model.EmployerRegAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*<div class="form-group siderbarlgnform">
+        @Html.EditorFor(Model => Model.DateOfOfferLetter, new { htmlAttributes = new { id = "DateOfOfferLetter", @class = "form-control formblock", placeholder = "Date of Offer Letter(DD/MM/YYYY)" } })
+        @Html.ValidationMessageFor(model => model.DateOfOfferLetter, "", new { @class = "text-danger" })
+        </div>*@
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Date Of Offer Letter :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(Model => Model.DateOfOfferLetter, new { htmlAttributes = new { id = "DateOfOfferLetter", @class = "form-control formblock", placeholder = "Date of Offer Letter(DD/MM/YYYY)" } })
+                        @Html.ValidationMessageFor(model => model.DateOfOfferLetter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group siderbarlgnform">
+         @Html.ValidationMessageFor(model => model.DateOfConsentLetter, "", new { @class = "text-danger" })
+         @Html.EditorFor(model => model.DateOfConsentLetter, new { htmlAttributes = new { id = "DateOfConsentLetter", @class = "form-control formblock", placeholder = "Date of Consent Letter(DD/MM/YYYY)" } })
+        </div>*@
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Date Of Consent Letter :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DateOfConsentLetter, new { htmlAttributes = new { id = "DateOfConsentLetter", @class = "form-control formblock", placeholder = "Date of Consent Letter(DD/MM/YYYY)" } })
+                        @Html.ValidationMessageFor(model => model.DateOfConsentLetter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*<div class="form-group siderbarlgnform">
+         @Html.EditorFor(model => model.DateOfAppointment, new { htmlAttributes = new { id = "DateOfAppointment", @class = "form-control formblock", placeholder = "Date of Appointment(DD/MM/YYYY)" } })
+         @Html.ValidationMessageFor(model => model.DateOfAppointment, "", new { @class = "text-danger" })
+        </div>*@
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Date Of Appointment :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DateOfAppointment, new { htmlAttributes = new { id = "DateOfAppointment", @class = "form-control formblock", placeholder = "Date of Appointment(DD/MM/YYYY)" } })
+                        @Html.ValidationMessageFor(model => model.DateOfAppointment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Phone Number of Employer :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneNoOfEmployer, new { htmlAttributes = new { id = "PhoneNoOfEmployer", @class = "form-control formblock", placeholder = "Phone Number of Employer (*)", @maxlength = "15" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNoOfEmployer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Email Id of Employer :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.EmployerEmailId, new { htmlAttributes = new { id = "EmployerEmailId", @class = "form-control formblock", placeholder = "Email Id of Employer (*)" } })
+                        @Html.ValidationMessageFor(model => model.EmployerEmailId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group">
+
+                    @Html.Label("*Website of Employer :", htmlAttributes: new { @class = "control-label col-md-6" })
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.WebsiteOfEmployer, new { htmlAttributes = new { id = "WebsiteOfEmployer", @class = "form-control formblock", placeholder = "Website of Employer (*)" } })
+                        @Html.ValidationMessageFor(model => model.WebsiteOfEmployer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="submitbtn">
+                    <button type="submit">Update eCSIN</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //var oldDateOfAppointment1 = $('#DateOfAppointment').val();
+        //var oldDateOfConsentLetter1 = $('#DateOfConsentLetter').val();
+        //var oldDateOfOfferLetter1 = $('#DateOfOfferLetter').val();
+        
+        //$('#DateOfAppointment').val(oldDateOfAppointment1).datepicker('getDate');
+        //$('#DateOfConsentLetter').val(oldDateOfConsentLetter1).datepicker('getDate');
+        //$('#DateOfOfferLetter').val(oldDateOfOfferLetter1).datepicker('getDate');
+
+        $('#DateOfOfferLetter').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0",
+            onSelect: function (date) {
+                var oldDateOfAppointment = $('#DateOfAppointment').val();
+                var oldDateOfConsentLetter = $('#DateOfConsentLetter').val();
+                var date1 = $('#DateOfOfferLetter').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#DateOfConsentLetter').datepicker("option", "minDate", newDate);
+                $('#DateOfAppointment').datepicker("option", "minDate", newDate);
+                $('#DateOfAppointment').val(oldDateOfAppointment);
+                $('#DateOfConsentLetter').val(oldDateOfConsentLetter);
+            }
+        });
+
+        $('#DateOfConsentLetter').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+            //onSelect: function (date) {
+            //    var date1 = $('#DateOfConsentLetter').datepicker('getDate');
+            //    var date = new Date(Date.parse(date1));
+            //    date.setDate(date.getDate());
+            //    var newDate = date.toDateString();
+            //    newDate = new Date(Date.parse(newDate));
+            //    $('#DateOfAppointment').datepicker("option", "minDate", newDate);
+            //}
+        });
+
+        $('#DateOfAppointment').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+        });
+    });
+</script>
+
+
+

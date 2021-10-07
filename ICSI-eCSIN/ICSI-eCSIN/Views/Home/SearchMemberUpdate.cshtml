@@ -1,0 +1,46 @@
+﻿@model ICSI_eCSIN.Models.SearchMember
+@{
+    /**/
+
+    ViewBag.Title = "Update Membership Details";
+    Layout = "~/Views/Shared/_LayoutLoginAdmin.cshtml";
+}
+<div class="m-1 mx-1">
+    <p class="p-1 text-center" style="background:#ccc;">Update eCSIN Details</p>
+</div>
+
+@using (Html.BeginForm("SearchMemberUpdate", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="loginformblock">
+        <div class="card loginformRegistrn">          
+            <div class="form-horizontal mb-5">
+                <div class="form-group md-offset-1">
+                    <h3 class="formgheader mt-3 control-label col-md-6 offset-md-3">Search Member</h3>
+                    <h3 class="formgheaderSecondHeading"></h3>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MembershipNumer, new { htmlAttributes = new { @class = "control-label col-md-7 offset-md-4", placeholder = "Enter Membership Number (ex : A1234/F1234)" } })
+                        @Html.ValidationMessageFor(model => model.MembershipNumer, "", new { @class = "text-danger offset-md-4" })
+                    </div>
+                </div>
+                <div class="text-danger" style="margin-left:305px;">
+                    @if (ViewBag.Message != null)
+                    {
+                        <p>
+                            @ViewBag.Message
+                        </p>
+                    }
+                </div>
+            </div>
+            <div class="SendOtpBtn">
+                <button type="submit">Search</button>
+            </div>
+            <div class="py-5"></div>
+        </div>
+    </div>
+}
+
+

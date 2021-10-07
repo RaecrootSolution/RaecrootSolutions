@@ -1,0 +1,31 @@
+﻿@using PaymentGateway.Entity
+@{
+    ViewBag.Title = "Payment Done";
+    Layout = "~/Views/Shared/_LayoutLoginDiary.cshtml";
+}
+
+
+<div class="my-5 text-center" style="min-height:320px;">
+    @if (ViewBag.Status == Convert.ToInt32(ePaymentStatus.Succ))
+    {
+        @*<h4>PaymentDone</h4>*@
+    <div class="my-5 text-center" style="min-height:320px;">
+        <label class="lead text-center text-success"> <strong>PaymentDone</strong></label>            @*<p>Your Payment is Successful, Transaction id is @ViewBag.TxnID</p>*@
+        @if (Session["RequetID"] != null)
+        {<p>Your Payment is Successful, Transaction id is @Session["RequetID"]</p>}
+        <p>You can download receipt from <b>"Print Receipt"</b> menu option</p>
+        @*<p class="printLink"><u> @Html.ActionLink("Print Receipt", "PaymentReciept", "Home")</u></p>*@
+    </div>
+    }
+    else
+    {
+        @*<h4>PaymentFail</h4>
+            <p>Your Payment is Failed.</p>*@
+        <div class="my-5 text-center" style="min-height:320px;">
+            <label class="lead text-center text-success"> <strong>Payment Fail</strong></label>
+            <p>Your Payment has been Failed.</p>
+        </div>
+    }
+</div>
+
+   

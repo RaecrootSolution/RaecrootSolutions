@@ -1,0 +1,108 @@
+﻿@model ICSI_eCSIN.Models.eCSINDetails
+@{
+    ViewBag.Title = "UpdateMember Detail eCSIN";
+    Layout = "~/Views/Shared/_LayoutLoginAdmin.cshtml";
+}
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;font:bold;">Update Member's eCSIN Details</p>
+</div>
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+
+@using (Html.BeginForm("UpdateMemberDetaileCSIN", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("successfully"))
+    {
+        color = "green";
+    }
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group col-md-6">
+                    <label style="color:@color">@Message</label>
+                </div>
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Membership Number :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.MemberNumber, new { htmlAttributes = new { @class = "form-control formblock", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Employee eCSIN Number :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.eCSINGeneratedNo, new { htmlAttributes = new { @class = "form-control formblock", @readonly = "readonly" } })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Name of Company/Firm/Individual :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(Model => Model.EmployerName, new { htmlAttributes = new { id = "EmployerName", @class = "form-control formblock", placeholder = "Name of Company/Firm/Individual (*)" } })
+                        @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Employer CIN Number :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.EmployerCINNo, new { htmlAttributes = new { id = "EmployerCINNo", @class = "form-control formblock", placeholder = "Employer CIN Number" } })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Employer PAN Number :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.PANNumber, new { htmlAttributes = new { id = "PANNumber", @class = "form-control formblock", placeholder = "Employer PAN Number" } })
+
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="row">
+                    @Html.Label("Website of Employer :", htmlAttributes: new { @class = "control-label col-md-4 offset-md-1" })
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.WebsiteOfEmployer, new { htmlAttributes = new { id = "WebsiteOfEmployer", @class = "form-control formblock", placeholder = "Website of Employer" } })
+                    </div>
+                </div>
+
+                <div class="form-group siderbarlgnform"></div>
+                <div class="form-group siderbarlgnform"></div>
+
+                <div class="submitbtn">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  
+</script>
+
+
+
+
+

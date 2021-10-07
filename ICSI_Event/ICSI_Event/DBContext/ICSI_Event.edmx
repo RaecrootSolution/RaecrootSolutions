@@ -1,0 +1,1116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ICSI_EventsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACK_SEQ_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIES_START_ID" Type="varchar" MaxLength="20" />
+          <Property Name="SERIES_CURRENT_ID" Type="varchar" MaxLength="20" />
+          <Property Name="ACTIVE_YN" Type="bit" />
+        </EntityType>
+        <EntityType Name="CITY_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="STATE_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EVENT_REGISTRATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENT_ID" Type="int" />
+          <Property Name="COMP_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="BILLING_ADDRESS_TX" Type="text" />
+          <Property Name="SHIPPING_ADDRESS_TX" Type="text" />
+          <Property Name="STATE_CODE_NM" Type="int" />
+          <Property Name="CITY_TX" Type="varchar" MaxLength="50" />
+          <Property Name="PIN_CODE_TX" Type="varchar" MaxLength="10" />
+          <Property Name="GSTIN" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL_TX" Type="varchar" MaxLength="50" />
+          <Property Name="MOB_NM_TX" Type="varchar" MaxLength="50" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" />
+          <Property Name="PASSWORD_TX" Type="varchar" MaxLength="50" />
+          <Property Name="APPROVED_YN" Type="bit" />
+          <Property Name="ACTIVE_YN" Type="bit" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="Stall_Nmber_Id" Type="int" />
+          <Property Name="STALLDESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="CONTACTPERSON" Type="nvarchar" MaxLength="50" />
+          <Property Name="AMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="GSTAMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="TOTALAMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="CGSTAMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="SGSTAMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="IGSTAMOUNT" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="UTGSTAMOUNT" Type="decimal" Precision="9" Scale="2" />
+        </EntityType>
+        <EntityType Name="EVENT_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENT_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="EVENT_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EVENT_DESC_TX" Type="text" />
+          <Property Name="START_DT" Type="datetime" Nullable="false" />
+          <Property Name="END_DT" Type="datetime" Nullable="false" />
+          <Property Name="REGISTRATION_START_DT" Type="datetime" Nullable="false" />
+          <Property Name="REGISTRATION_END_DT" Type="datetime" Nullable="false" />
+          <Property Name="GSTIN" Type="varchar" MaxLength="20" />
+          <Property Name="SAC_CODE_TX" Type="varchar" MaxLength="10" />
+          <Property Name="GL_CODE_TX" Type="varchar" MaxLength="20" />
+          <Property Name="ACTIVE_YN" Type="int" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ICSI_Events.dbo.EVENT_TYPE_T' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EVENT_TYPE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="EVENT_TYPE_NAME_TX" />
+            <PropertyRef Name="ACTIVE_YN" />
+            <PropertyRef Name="CREATED_DT" />
+            <PropertyRef Name="CREATED_BY" />
+            <PropertyRef Name="UPDATED_DT" />
+            <PropertyRef Name="UPDATED_BY" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENT_TYPE_NAME_TX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EVENT_TYPE_DESC_TX" Type="text" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EVENT_USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENT_ID" Type="int" />
+          <Property Name="REGISTER_ID" Type="int" />
+          <Property Name="COMP_NAME_TX" Type="varchar" MaxLength="50" />
+          <Property Name="BILLING_ADDRESS_TX" Type="text" />
+          <Property Name="SHIPPING_ADDRESS_TX" Type="text" />
+          <Property Name="STATE_CODE_NM" Type="int" />
+          <Property Name="CITY_NM" Type="int" />
+          <Property Name="PIN_CODE_TX" Type="varchar" MaxLength="10" />
+          <Property Name="GSTIN" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL_TX" Type="varchar" MaxLength="50" />
+          <Property Name="MOB_NM_TX" Type="varchar" MaxLength="50" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" />
+          <Property Name="PASSWORD_TX" Type="varchar" MaxLength="50" />
+          <Property Name="ACTIVE_YN" Type="bit" />
+          <Property Name="CREATED_DT" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="UPDATED_DT" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="Stall_Number_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="STALL_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STALL_NUMBER_NM" Type="nvarchar" MaxLength="50" />
+          <Property Name="AMOUNT_NM" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="STALL_DESCRIPTION_TX" Type="nvarchar(max)" />
+          <Property Name="STATUS_TX" Type="int" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STALL_TRANSACTION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EVENTREGISTRATION_ID" Type="int" />
+          <Property Name="REQUEST_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TRANSACTION_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TOTALAMOUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="INVOICE_NO" Type="varchar" MaxLength="50" />
+          <Property Name="INVOICE_DT" Type="datetime" />
+          <Property Name="SAC_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="RECEIPT_NO" Type="varchar" MaxLength="50" />
+          <Property Name="RECEIPT_DT" Type="datetime" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME_TX" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="STATE_CODE_TX" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPaymentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessId" Type="int" />
+          <Property Name="ProcessRequestId" Type="int" />
+          <Property Name="PaymentStatusID" Type="int" />
+          <Property Name="PayModeID" Type="int" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="TotalTax" Type="money" />
+          <Property Name="ConvenienceFee" Type="money" />
+          <Property Name="ProcessingFee" Type="money" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="ResponsePaymode" Type="varchar" MaxLength="100" />
+          <Property Name="ResponseCode" Type="varchar" MaxLength="100" />
+          <Property Name="ResponseTransactionID" Type="varchar" MaxLength="100" />
+          <Property Name="ResponseTransactionDate" Type="datetime" />
+          <Property Name="ResponseData" Type="varchar" MaxLength="2000" />
+          <Property Name="PGCode" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPaymentGatewayMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PGCode" Type="varchar" MaxLength="100" />
+          <Property Name="PGName" Type="varchar" MaxLength="200" />
+          <Property Name="PGType" Type="varchar" MaxLength="50" />
+          <Property Name="GatewayURL" Type="varchar" MaxLength="100" />
+          <Property Name="CheckSumKey" Type="varchar" MaxLength="100" />
+          <Property Name="MerchantId" Type="varchar" MaxLength="100" />
+          <Property Name="SubMerchantID" Type="varchar" MaxLength="100" />
+          <Property Name="RefernceNo" Type="varchar" MaxLength="100" />
+          <Property Name="ReturnURL" Type="varchar" MaxLength="100" />
+          <Property Name="ISActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPaymentStatusMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentStatusName" Type="varchar" MaxLength="100" />
+          <Property Name="PaymentStatusCode" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPayModeMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayModeName" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProcessMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessName" Type="varchar" MaxLength="100" />
+          <Property Name="ProcessDescription" Type="varchar" MaxLength="500" />
+          <Property Name="ProcessCode" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__tblPaymen__Payme__3C69FB99">
+          <End Role="tblPaymentStatusMaster" Type="Self.tblPaymentStatusMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaymentStatusMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="PaymentStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__PayMo__3D5E1FD2">
+          <End Role="tblPayModeMaster" Type="Self.tblPayModeMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPayModeMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="PayModeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__Proce__3E52440B">
+          <End Role="tblProcessMaster" Type="Self.tblProcessMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcessMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CITY_T_STATE_T">
+          <End Role="STATE_T" Type="Self.STATE_T" Multiplicity="1" />
+          <End Role="CITY_T" Type="Self.CITY_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITY_T">
+              <PropertyRef Name="STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="USPGetPGSourceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PGType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USPInsertPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Route" Type="varchar" Mode="In" />
+          <Parameter Name="ProcessRequestID" Type="int" Mode="In" />
+          <Parameter Name="PaymentStatusID" Type="int" Mode="In" />
+          <Parameter Name="PayModeID" Type="int" Mode="In" />
+          <Parameter Name="TotAmt" Type="money" Mode="In" />
+          <Parameter Name="TotalTax" Type="money" Mode="In" />
+          <Parameter Name="PGCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USPUpdatePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequestId" Type="int" Mode="In" />
+          <Parameter Name="ResponseCode" Type="varchar" Mode="In" />
+          <Parameter Name="ResponseTxnId" Type="varchar" Mode="In" />
+          <Parameter Name="ResponseTxnDt" Type="datetime" Mode="In" />
+          <Parameter Name="ResponseData" Type="varchar" Mode="In" />
+          <Parameter Name="PaymentStatusID" Type="int" Mode="In" />
+          <Parameter Name="PayMode" Type="varchar" Mode="In" />
+          <Parameter Name="ST" Type="money" Mode="In" />
+          <Parameter Name="ProcFee" Type="money" Mode="In" />
+          <Parameter Name="TotAmt" Type="money" Mode="In" />
+        </Function>
+        <EntityContainer Name="ICSI_EventsModelStoreContainer">
+          <EntitySet Name="ACK_SEQ_T" EntityType="Self.ACK_SEQ_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CITY_T" EntityType="Self.CITY_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVENT_REGISTRATION_T" EntityType="Self.EVENT_REGISTRATION_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVENT_T" EntityType="Self.EVENT_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVENT_USER_T" EntityType="Self.EVENT_USER_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STALL_T" EntityType="Self.STALL_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STALL_TRANSACTION_T" EntityType="Self.STALL_TRANSACTION_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATE_T" EntityType="Self.STATE_T" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentDetail" EntityType="Self.tblPaymentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentGatewayMaster" EntityType="Self.tblPaymentGatewayMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentStatusMaster" EntityType="Self.tblPaymentStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayModeMaster" EntityType="Self.tblPayModeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProcessMaster" EntityType="Self.tblProcessMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVENT_TYPE_T" EntityType="Self.EVENT_TYPE_T" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EVENT_TYPE_T].[ID] AS [ID], 
+    [EVENT_TYPE_T].[EVENT_TYPE_NAME_TX] AS [EVENT_TYPE_NAME_TX], 
+    [EVENT_TYPE_T].[EVENT_TYPE_DESC_TX] AS [EVENT_TYPE_DESC_TX], 
+    [EVENT_TYPE_T].[ACTIVE_YN] AS [ACTIVE_YN], 
+    [EVENT_TYPE_T].[CREATED_DT] AS [CREATED_DT], 
+    [EVENT_TYPE_T].[CREATED_BY] AS [CREATED_BY], 
+    [EVENT_TYPE_T].[UPDATED_DT] AS [UPDATED_DT], 
+    [EVENT_TYPE_T].[UPDATED_BY] AS [UPDATED_BY]
+    FROM [dbo].[EVENT_TYPE_T] AS [EVENT_TYPE_T]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tblPaymen__Payme__3C69FB99" Association="Self.FK__tblPaymen__Payme__3C69FB99">
+            <End Role="tblPaymentStatusMaster" EntitySet="tblPaymentStatusMaster" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__PayMo__3D5E1FD2" Association="Self.FK__tblPaymen__PayMo__3D5E1FD2">
+            <End Role="tblPayModeMaster" EntitySet="tblPayModeMaster" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__Proce__3E52440B" Association="Self.FK__tblPaymen__Proce__3E52440B">
+            <End Role="tblProcessMaster" EntitySet="tblProcessMaster" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CITY_T_STATE_T" Association="Self.FK_CITY_T_STATE_T">
+            <End Role="STATE_T" EntitySet="STATE_T" />
+            <End Role="CITY_T" EntitySet="CITY_T" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICSI_EventsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACK_SEQ_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIES_START_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SERIES_CURRENT_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CITY_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STATE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="STATE_T" Relationship="Self.FK_CITY_T_STATE_T" FromRole="CITY_T" ToRole="STATE_T" />
+        </EntityType>
+        <EntityType Name="EVENT_REGISTRATION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENT_ID" Type="Int32" />
+          <Property Name="COMP_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BILLING_ADDRESS_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SHIPPING_ADDRESS_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STATE_CODE_NM" Type="Int32" />
+          <Property Name="CITY_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_CODE_TX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GSTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MOB_NM_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APPROVED_YN" Type="Boolean" />
+          <Property Name="ACTIVE_YN" Type="Boolean" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="Stall_Nmber_Id" Type="Int32" />
+          <Property Name="STALLDESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CONTACTPERSON" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="GSTAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="TOTALAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="CGSTAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="SGSTAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="IGSTAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="UTGSTAMOUNT" Type="Decimal" Precision="9" Scale="2" />
+        </EntityType>
+        <EntityType Name="EVENT_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="EVENT_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EVENT_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="START_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="END_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REGISTRATION_START_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REGISTRATION_END_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GSTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SAC_CODE_TX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GL_CODE_TX" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EVENT_USER_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENT_ID" Type="Int32" />
+          <Property Name="REGISTER_ID" Type="Int32" />
+          <Property Name="COMP_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BILLING_ADDRESS_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SHIPPING_ADDRESS_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STATE_CODE_NM" Type="Int32" />
+          <Property Name="CITY_NM" Type="Int32" />
+          <Property Name="PIN_CODE_TX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GSTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MOB_NM_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" />
+          <Property Name="CREATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="Stall_Number_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="STALL_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STALL_NUMBER_NM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AMOUNT_NM" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="STALL_DESCRIPTION_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_TX" Type="Int32" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STALL_TRANSACTION_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENTREGISTRATION_ID" Type="Int32" />
+          <Property Name="REQUEST_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRANSACTION_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOTALAMOUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="INVOICE_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INVOICE_DT" Type="DateTime" Precision="3" />
+          <Property Name="SAC_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RECEIPT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RECEIPT_DT" Type="DateTime" Precision="3" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STATE_CODE_TX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CITY_T" Relationship="Self.FK_CITY_T_STATE_T" FromRole="STATE_T" ToRole="CITY_T" />
+        </EntityType>
+        <EntityType Name="tblPaymentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessId" Type="Int32" />
+          <Property Name="ProcessRequestId" Type="Int32" />
+          <Property Name="PaymentStatusID" Type="Int32" />
+          <Property Name="PayModeID" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalTax" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ConvenienceFee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ProcessingFee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ResponsePaymode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseTransactionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseTransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="ResponseData" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="PGCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPaymentStatusMaster" Relationship="Self.FK__tblPaymen__Payme__3C69FB99" FromRole="tblPaymentDetail" ToRole="tblPaymentStatusMaster" />
+          <NavigationProperty Name="tblPayModeMaster" Relationship="Self.FK__tblPaymen__PayMo__3D5E1FD2" FromRole="tblPaymentDetail" ToRole="tblPayModeMaster" />
+          <NavigationProperty Name="tblProcessMaster" Relationship="Self.FK__tblPaymen__Proce__3E52440B" FromRole="tblPaymentDetail" ToRole="tblProcessMaster" />
+        </EntityType>
+        <EntityType Name="tblPaymentGatewayMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PGCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PGName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PGType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GatewayURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CheckSumKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubMerchantID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RefernceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblPaymentStatusMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPaymentDetails" Relationship="Self.FK__tblPaymen__Payme__3C69FB99" FromRole="tblPaymentStatusMaster" ToRole="tblPaymentDetail" />
+        </EntityType>
+        <EntityType Name="tblPayModeMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayModeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPaymentDetails" Relationship="Self.FK__tblPaymen__PayMo__3D5E1FD2" FromRole="tblPayModeMaster" ToRole="tblPaymentDetail" />
+        </EntityType>
+        <EntityType Name="tblProcessMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblPaymentDetails" Relationship="Self.FK__tblPaymen__Proce__3E52440B" FromRole="tblProcessMaster" ToRole="tblPaymentDetail" />
+        </EntityType>
+        <EntityType Name="EVENT_TYPE_T">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="EVENT_TYPE_NAME_TX" />
+            <PropertyRef Name="ACTIVE_YN" />
+            <PropertyRef Name="CREATED_DT" />
+            <PropertyRef Name="CREATED_BY" />
+            <PropertyRef Name="UPDATED_DT" />
+            <PropertyRef Name="UPDATED_BY" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EVENT_TYPE_NAME_TX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EVENT_TYPE_DESC_TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE_YN" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CITY_T_STATE_T">
+          <End Role="STATE_T" Type="Self.STATE_T" Multiplicity="1" />
+          <End Role="CITY_T" Type="Self.CITY_T" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_T">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITY_T">
+              <PropertyRef Name="STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__Payme__3C69FB99">
+          <End Role="tblPaymentStatusMaster" Type="Self.tblPaymentStatusMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaymentStatusMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="PaymentStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__PayMo__3D5E1FD2">
+          <End Role="tblPayModeMaster" Type="Self.tblPayModeMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPayModeMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="PayModeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPaymen__Proce__3E52440B">
+          <End Role="tblProcessMaster" Type="Self.tblProcessMaster" Multiplicity="0..1" />
+          <End Role="tblPaymentDetail" Type="Self.tblPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProcessMaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblPaymentDetail">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ICSI_EventsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACK_SEQ_T" EntityType="Self.ACK_SEQ_T" />
+          <EntitySet Name="CITY_T" EntityType="Self.CITY_T" />
+          <EntitySet Name="EVENT_REGISTRATION_T" EntityType="Self.EVENT_REGISTRATION_T" />
+          <EntitySet Name="EVENT_T" EntityType="Self.EVENT_T" />
+          <EntitySet Name="EVENT_USER_T" EntityType="Self.EVENT_USER_T" />
+          <EntitySet Name="STALL_T" EntityType="Self.STALL_T" />
+          <EntitySet Name="STALL_TRANSACTION_T" EntityType="Self.STALL_TRANSACTION_T" />
+          <EntitySet Name="STATE_T" EntityType="Self.STATE_T" />
+          <EntitySet Name="tblPaymentDetails" EntityType="Self.tblPaymentDetail" />
+          <EntitySet Name="tblPaymentGatewayMasters" EntityType="Self.tblPaymentGatewayMaster" />
+          <EntitySet Name="tblPaymentStatusMasters" EntityType="Self.tblPaymentStatusMaster" />
+          <EntitySet Name="tblPayModeMasters" EntityType="Self.tblPayModeMaster" />
+          <EntitySet Name="tblProcessMasters" EntityType="Self.tblProcessMaster" />
+          <EntitySet Name="EVENT_TYPE_T" EntityType="Self.EVENT_TYPE_T" />
+          <AssociationSet Name="FK_CITY_T_STATE_T" Association="Self.FK_CITY_T_STATE_T">
+            <End Role="STATE_T" EntitySet="STATE_T" />
+            <End Role="CITY_T" EntitySet="CITY_T" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__Payme__3C69FB99" Association="Self.FK__tblPaymen__Payme__3C69FB99">
+            <End Role="tblPaymentStatusMaster" EntitySet="tblPaymentStatusMasters" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__PayMo__3D5E1FD2" Association="Self.FK__tblPaymen__PayMo__3D5E1FD2">
+            <End Role="tblPayModeMaster" EntitySet="tblPayModeMasters" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPaymen__Proce__3E52440B" Association="Self.FK__tblPaymen__Proce__3E52440B">
+            <End Role="tblProcessMaster" EntitySet="tblProcessMasters" />
+            <End Role="tblPaymentDetail" EntitySet="tblPaymentDetails" />
+          </AssociationSet>
+          <FunctionImport Name="USPGetPGSourceData" ReturnType="Collection(ICSI_EventsModel.USPGetPGSourceData_Result)">
+            <Parameter Name="PGType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USPInsertPayment" ReturnType="Collection(Int32)">
+            <Parameter Name="Route" Mode="In" Type="String" />
+            <Parameter Name="ProcessRequestID" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="PayModeID" Mode="In" Type="Int32" />
+            <Parameter Name="TotAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="TotalTax" Mode="In" Type="Decimal" />
+            <Parameter Name="PGCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USPUpdatePayment" ReturnType="Collection(ICSI_EventsModel.USPUpdatePayment_Result)">
+            <Parameter Name="RequestId" Mode="In" Type="Int32" />
+            <Parameter Name="ResponseCode" Mode="In" Type="String" />
+            <Parameter Name="ResponseTxnId" Mode="In" Type="String" />
+            <Parameter Name="ResponseTxnDt" Mode="In" Type="DateTime" />
+            <Parameter Name="ResponseData" Mode="In" Type="String" />
+            <Parameter Name="PaymentStatusID" Mode="In" Type="Int32" />
+            <Parameter Name="PayMode" Mode="In" Type="String" />
+            <Parameter Name="ST" Mode="In" Type="Decimal" />
+            <Parameter Name="ProcFee" Mode="In" Type="Decimal" />
+            <Parameter Name="TotAmt" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="USPGetPGSourceData_Result">
+          <Property Type="String" Name="PGCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PGName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PGType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GatewayURL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CheckSumKey" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MerchantId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubMerchantID" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RefernceNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ReturnURL" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USPUpdatePayment_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="ProcessId" Nullable="true" />
+          <Property Type="Int32" Name="ProcessRequestId" Nullable="true" />
+          <Property Type="Int32" Name="PaymentStatusID" Nullable="true" />
+          <Property Type="Int32" Name="PayModeID" Nullable="true" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="TotalTax" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="ConvenienceFee" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="ProcessingFee" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="19" />
+          <Property Type="String" Name="ResponsePaymode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResponseCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResponseTransactionID" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ResponseTransactionDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ResponseData" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="PGCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICSI_EventsModelStoreContainer" CdmEntityContainer="ICSI_EventsEntities">
+          <EntitySetMapping Name="ACK_SEQ_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.ACK_SEQ_T">
+              <MappingFragment StoreEntitySet="ACK_SEQ_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SERIES_START_ID" ColumnName="SERIES_START_ID" />
+                <ScalarProperty Name="SERIES_CURRENT_ID" ColumnName="SERIES_CURRENT_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CITY_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.CITY_T">
+              <MappingFragment StoreEntitySet="CITY_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENT_REGISTRATION_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.EVENT_REGISTRATION_T">
+              <MappingFragment StoreEntitySet="EVENT_REGISTRATION_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+                <ScalarProperty Name="COMP_NAME_TX" ColumnName="COMP_NAME_TX" />
+                <ScalarProperty Name="BILLING_ADDRESS_TX" ColumnName="BILLING_ADDRESS_TX" />
+                <ScalarProperty Name="SHIPPING_ADDRESS_TX" ColumnName="SHIPPING_ADDRESS_TX" />
+                <ScalarProperty Name="STATE_CODE_NM" ColumnName="STATE_CODE_NM" />
+                <ScalarProperty Name="CITY_TX" ColumnName="CITY_TX" />
+                <ScalarProperty Name="PIN_CODE_TX" ColumnName="PIN_CODE_TX" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="EMAIL_TX" ColumnName="EMAIL_TX" />
+                <ScalarProperty Name="MOB_NM_TX" ColumnName="MOB_NM_TX" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PASSWORD_TX" ColumnName="PASSWORD_TX" />
+                <ScalarProperty Name="APPROVED_YN" ColumnName="APPROVED_YN" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="Stall_Nmber_Id" ColumnName="Stall_Nmber_Id" />
+                <ScalarProperty Name="STALLDESCRIPTION" ColumnName="STALLDESCRIPTION" />
+                <ScalarProperty Name="CONTACTPERSON" ColumnName="CONTACTPERSON" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="GSTAMOUNT" ColumnName="GSTAMOUNT" />
+                <ScalarProperty Name="TOTALAMOUNT" ColumnName="TOTALAMOUNT" />
+                <ScalarProperty Name="CGSTAMOUNT" ColumnName="CGSTAMOUNT" />
+                <ScalarProperty Name="SGSTAMOUNT" ColumnName="SGSTAMOUNT" />
+                <ScalarProperty Name="IGSTAMOUNT" ColumnName="IGSTAMOUNT" />
+                <ScalarProperty Name="UTGSTAMOUNT" ColumnName="UTGSTAMOUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENT_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.EVENT_T">
+              <MappingFragment StoreEntitySet="EVENT_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENT_TYPE_ID" ColumnName="EVENT_TYPE_ID" />
+                <ScalarProperty Name="EVENT_NAME_TX" ColumnName="EVENT_NAME_TX" />
+                <ScalarProperty Name="EVENT_DESC_TX" ColumnName="EVENT_DESC_TX" />
+                <ScalarProperty Name="START_DT" ColumnName="START_DT" />
+                <ScalarProperty Name="END_DT" ColumnName="END_DT" />
+                <ScalarProperty Name="REGISTRATION_START_DT" ColumnName="REGISTRATION_START_DT" />
+                <ScalarProperty Name="REGISTRATION_END_DT" ColumnName="REGISTRATION_END_DT" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="SAC_CODE_TX" ColumnName="SAC_CODE_TX" />
+                <ScalarProperty Name="GL_CODE_TX" ColumnName="GL_CODE_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENT_USER_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.EVENT_USER_T">
+              <MappingFragment StoreEntitySet="EVENT_USER_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENT_ID" ColumnName="EVENT_ID" />
+                <ScalarProperty Name="REGISTER_ID" ColumnName="REGISTER_ID" />
+                <ScalarProperty Name="COMP_NAME_TX" ColumnName="COMP_NAME_TX" />
+                <ScalarProperty Name="BILLING_ADDRESS_TX" ColumnName="BILLING_ADDRESS_TX" />
+                <ScalarProperty Name="SHIPPING_ADDRESS_TX" ColumnName="SHIPPING_ADDRESS_TX" />
+                <ScalarProperty Name="STATE_CODE_NM" ColumnName="STATE_CODE_NM" />
+                <ScalarProperty Name="CITY_NM" ColumnName="CITY_NM" />
+                <ScalarProperty Name="PIN_CODE_TX" ColumnName="PIN_CODE_TX" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="EMAIL_TX" ColumnName="EMAIL_TX" />
+                <ScalarProperty Name="MOB_NM_TX" ColumnName="MOB_NM_TX" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PASSWORD_TX" ColumnName="PASSWORD_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="Stall_Number_Id" ColumnName="Stall_Number_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STALL_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.STALL_T">
+              <MappingFragment StoreEntitySet="STALL_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="STALL_NUMBER_NM" ColumnName="STALL_NUMBER_NM" />
+                <ScalarProperty Name="AMOUNT_NM" ColumnName="AMOUNT_NM" />
+                <ScalarProperty Name="STALL_DESCRIPTION_TX" ColumnName="STALL_DESCRIPTION_TX" />
+                <ScalarProperty Name="STATUS_TX" ColumnName="STATUS_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STALL_TRANSACTION_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.STALL_TRANSACTION_T">
+              <MappingFragment StoreEntitySet="STALL_TRANSACTION_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENTREGISTRATION_ID" ColumnName="EVENTREGISTRATION_ID" />
+                <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+                <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+                <ScalarProperty Name="TOTALAMOUNT" ColumnName="TOTALAMOUNT" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="INVOICE_NO" ColumnName="INVOICE_NO" />
+                <ScalarProperty Name="INVOICE_DT" ColumnName="INVOICE_DT" />
+                <ScalarProperty Name="SAC_CODE" ColumnName="SAC_CODE" />
+                <ScalarProperty Name="RECEIPT_NO" ColumnName="RECEIPT_NO" />
+                <ScalarProperty Name="RECEIPT_DT" ColumnName="RECEIPT_DT" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATE_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.STATE_T">
+              <MappingFragment StoreEntitySet="STATE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME_TX" ColumnName="NAME_TX" />
+                <ScalarProperty Name="STATE_CODE_TX" ColumnName="STATE_CODE_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentDetails">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.tblPaymentDetail">
+              <MappingFragment StoreEntitySet="tblPaymentDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="ProcessRequestId" ColumnName="ProcessRequestId" />
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+                <ScalarProperty Name="PayModeID" ColumnName="PayModeID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+                <ScalarProperty Name="ConvenienceFee" ColumnName="ConvenienceFee" />
+                <ScalarProperty Name="ProcessingFee" ColumnName="ProcessingFee" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ResponsePaymode" ColumnName="ResponsePaymode" />
+                <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+                <ScalarProperty Name="ResponseTransactionID" ColumnName="ResponseTransactionID" />
+                <ScalarProperty Name="ResponseTransactionDate" ColumnName="ResponseTransactionDate" />
+                <ScalarProperty Name="ResponseData" ColumnName="ResponseData" />
+                <ScalarProperty Name="PGCode" ColumnName="PGCode" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentGatewayMasters">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.tblPaymentGatewayMaster">
+              <MappingFragment StoreEntitySet="tblPaymentGatewayMaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PGCode" ColumnName="PGCode" />
+                <ScalarProperty Name="PGName" ColumnName="PGName" />
+                <ScalarProperty Name="PGType" ColumnName="PGType" />
+                <ScalarProperty Name="GatewayURL" ColumnName="GatewayURL" />
+                <ScalarProperty Name="CheckSumKey" ColumnName="CheckSumKey" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="SubMerchantID" ColumnName="SubMerchantID" />
+                <ScalarProperty Name="RefernceNo" ColumnName="RefernceNo" />
+                <ScalarProperty Name="ReturnURL" ColumnName="ReturnURL" />
+                <ScalarProperty Name="ISActive" ColumnName="ISActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentStatusMasters">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.tblPaymentStatusMaster">
+              <MappingFragment StoreEntitySet="tblPaymentStatusMaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PaymentStatusName" ColumnName="PaymentStatusName" />
+                <ScalarProperty Name="PaymentStatusCode" ColumnName="PaymentStatusCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayModeMasters">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.tblPayModeMaster">
+              <MappingFragment StoreEntitySet="tblPayModeMaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PayModeName" ColumnName="PayModeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProcessMasters">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.tblProcessMaster">
+              <MappingFragment StoreEntitySet="tblProcessMaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="ProcessDescription" ColumnName="ProcessDescription" />
+                <ScalarProperty Name="ProcessCode" ColumnName="ProcessCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENT_TYPE_T">
+            <EntityTypeMapping TypeName="ICSI_EventsModel.EVENT_TYPE_T">
+              <MappingFragment StoreEntitySet="EVENT_TYPE_T">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EVENT_TYPE_NAME_TX" ColumnName="EVENT_TYPE_NAME_TX" />
+                <ScalarProperty Name="EVENT_TYPE_DESC_TX" ColumnName="EVENT_TYPE_DESC_TX" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DT" ColumnName="UPDATED_DT" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USPGetPGSourceData" FunctionName="ICSI_EventsModel.Store.USPGetPGSourceData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ICSI_EventsModel.USPGetPGSourceData_Result">
+                <ScalarProperty Name="PGCode" ColumnName="PGCode" />
+                <ScalarProperty Name="PGName" ColumnName="PGName" />
+                <ScalarProperty Name="PGType" ColumnName="PGType" />
+                <ScalarProperty Name="GatewayURL" ColumnName="GatewayURL" />
+                <ScalarProperty Name="CheckSumKey" ColumnName="CheckSumKey" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="SubMerchantID" ColumnName="SubMerchantID" />
+                <ScalarProperty Name="RefernceNo" ColumnName="RefernceNo" />
+                <ScalarProperty Name="ReturnURL" ColumnName="ReturnURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USPInsertPayment" FunctionName="ICSI_EventsModel.Store.USPInsertPayment" />
+          <FunctionImportMapping FunctionImportName="USPUpdatePayment" FunctionName="ICSI_EventsModel.Store.USPUpdatePayment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ICSI_EventsModel.USPUpdatePayment_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="ProcessRequestId" ColumnName="ProcessRequestId" />
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+                <ScalarProperty Name="PayModeID" ColumnName="PayModeID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+                <ScalarProperty Name="ConvenienceFee" ColumnName="ConvenienceFee" />
+                <ScalarProperty Name="ProcessingFee" ColumnName="ProcessingFee" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ResponsePaymode" ColumnName="ResponsePaymode" />
+                <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+                <ScalarProperty Name="ResponseTransactionID" ColumnName="ResponseTransactionID" />
+                <ScalarProperty Name="ResponseTransactionDate" ColumnName="ResponseTransactionDate" />
+                <ScalarProperty Name="ResponseData" ColumnName="ResponseData" />
+                <ScalarProperty Name="PGCode" ColumnName="PGCode" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

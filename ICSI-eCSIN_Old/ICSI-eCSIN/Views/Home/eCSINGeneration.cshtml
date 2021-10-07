@@ -1,0 +1,163 @@
+﻿@model ICSI_eCSIN.Models.eCSINGeneration
+@{
+    ViewBag.Title = "eCSIN Generation";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">Generation eCSIN</p>
+</div>
+
+
+@using (Html.BeginForm("eCSINGeneration", "Home"))
+{
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "red";
+    if (Message.Contains("eCSIN has been generated successfully") || Message.Contains("Please refresh the page"))
+    {
+        color = "green";
+    }
+    <div class="container">
+        <div id="loginformblock">
+            <div class="card loginformRegistrn">
+                @*<div>
+            <h4 class="formgheader">Generate eCSIN</h4>
+        </div>*@
+                <label style="color:@color">@Message</label>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.MembershipNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                </div>
+                <div class="form-group siderbarlgnform" style="display:none;">
+                    @Html.EditorFor(model => model.eCSINGenerateNumber, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Membership Registration Number or MRN", @readonly = "readonly" } })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Name of Company/Firm/Individual (*)" } })
+                    @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
+                </div>
+                @*<div class="form-group siderbarlgnform">
+            @Html.EditorFor(model => model.EmployerCINNo, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer CIN /PAN Number (*)", @maxlength = "21" } })
+            @Html.ValidationMessageFor(model => model.EmployerCINNo, "", new { @class = "text-danger" })
+        </div>*@
+                <div class="form-group siderbarlgnform">
+                    @Html.DropDownListFor(m => m.Number, new List<SelectListItem>
+                     { new SelectListItem{Text="CIN", Value="1"},
+                       new SelectListItem{Text="PAN", Value="2"}}, "Please select", new { @onchange = "changecpa(this)" })
+                    @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.EmployerCINNo, new { htmlAttributes = new { id = "edtC", @class = "form-control formblock", @placeholder = "Enter Number", Style = "display:none" } })
+                    @Html.ValidationMessageFor(model => model.EmployerCINNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.EmployeeDesignation, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employee Designation (*)" } })
+                        @Html.ValidationMessageFor(model => model.EmployeeDesignation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.EmployerRegAddress, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Employer Registered Address (*)" } })
+                        @Html.ValidationMessageFor(model => model.EmployerRegAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.DateOfOfferLetter, new { htmlAttributes = new { id = "DateOfOfferLetter", @class = "form-control formblock", placeholder = "Date of Offer Letter(DD/MM/YYYY) (*)", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.DateOfOfferLetter, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.DateOfConsentLetter, new { htmlAttributes = new { id = "DateOfConsentLetter", @class = "form-control formblock", placeholder = "Date of Consent Letter(DD/MM/YYYY) (*)", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.DateOfConsentLetter, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.DateOfAppointment, new { htmlAttributes = new { id = "DateOfAppointment", @class = "form-control formblock", placeholder = "Date of Appointment(DD/MM/YYYY) (*)", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.DateOfAppointment, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.WebsiteOfEmployer, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Website of Employer" } })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.PhoneNoOfEmployer, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Phone Number of Employer (*)", @maxlength = "15" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNoOfEmployer, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group siderbarlgnform">
+                        @Html.EditorFor(model => model.EmailIdOfEmployer, new { htmlAttributes = new { @class = "form-control formblock", @placeholder = "Email Id of Employer (*)" } })
+                        @Html.ValidationMessageFor(model => model.EmailIdOfEmployer, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="submitbtn">
+                        <button type="submit">Generate eCSIN</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DateOfOfferLetter').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0",
+            onSelect: function (date) {
+                var date1 = $('#DateOfOfferLetter').datepicker('getDate');
+                var date = new Date(Date.parse(date1));
+                date.setDate(date.getDate());
+                var newDate = date.toDateString();
+                newDate = new Date(Date.parse(newDate));
+                $('#DateOfConsentLetter').datepicker("option", "minDate", newDate);
+                $('#DateOfAppointment').datepicker("option", "minDate", newDate);
+            }
+        });
+
+        $('#DateOfConsentLetter').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0",
+            //onSelect: function (date) {
+            //    var date1 = $('#DateOfConsentLetter').datepicker('getDate');
+            //    var date = new Date(Date.parse(date1));
+            //    date.setDate(date.getDate());
+            //    var newDate = date.toDateString();
+            //    newDate = new Date(Date.parse(newDate));
+            //    $('#DateOfAppointment').datepicker("option", "minDate", newDate);
+            //}
+        });
+
+        $('#DateOfAppointment').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+        });
+    });
+
+    function changecpa(ddlCPA) {
+        var selectedText = ddlCPA.options[ddlCPA.selectedIndex].innerHTML;
+        var selectedValue = ddlCPA.value;
+
+        if (selectedValue == 0) {
+            document.getElementById("edtC").style.display = "none";
+
+        }
+        else {
+            document.getElementById("edtC").style.display = "block";
+
+
+        }
+
+
+
+
+
+    }
+</script>
+
+
+

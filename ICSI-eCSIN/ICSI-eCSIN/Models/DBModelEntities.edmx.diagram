@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d4fb70dc962148ff96f4bc9a5fd911f7" Name="Diagram1">
+        <EntityTypeShape EntityType="ICSI_eCSIN_Stimulate_Model.tbleCSINGeneration" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_eCSIN_Stimulate_Model.tbleCSINGenerationHistory" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_eCSIN_Stimulate_Model.tblGenerateeCSIN" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_eCSIN_Stimulate_Model.tblSubsidiaryUser" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_eCSIN_Stimulate_Model.tblUser" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="ICSI_eCSIN_Stimulate_Model.FK_tbleCSINGeneration_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ICSI_eCSIN_Stimulate_Model.FK_tbleCSINGenerationHistory_tbleCSINGeneration" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

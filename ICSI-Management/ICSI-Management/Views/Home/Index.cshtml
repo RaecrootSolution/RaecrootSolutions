@@ -1,0 +1,79 @@
+﻿@model ICSI_Management.Models.Login
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+       
+
+        <div class="col-md-4 Csi_login_col">
+            <div id="loginformblock">
+                <div class="card loginform">
+                    <div>
+                        <h4 class="formgheader">Member Login</h4>
+                    </div>
+                    @*<form class="csi_member_login">*@
+                    @using (Html.BeginForm("Index", "Home"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @*<div class="form-group siderbarlgnform">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-control formblock" })
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control formblock" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group siderbarlgnform">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-control formblock" })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control formblock" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>*@
+
+                        <div class="form-group siderbarlgnform">
+                            @**  @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-control formblock" })*@
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { placeholder = "UserName (ex: A1234/F1432)", @class = "form-control formblock" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group siderbarlgnform">
+                            @* @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-control formblock" })*@
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control formblock" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="submitbtn">
+                            <input type="submit" value="Login" />
+                        </div>
+
+                        <div class="text-danger">
+                            @ViewBag.Message
+
+                        </div>
+                    }
+                    @*</form>*@
+                    <div class="providers">
+                        <ul class="list-inline passwordList">
+                            <li>
+                                <p> @Html.ActionLink("Forgot Password", "Forgotpassword")</p>
+
+                            </li>
+                            @*<li>
+                                    <p> @Html.ActionLink("Member Registration", "MembershipRegistation")</p>
+
+
+                                </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<div class="align-content-lg-between" style="height:20Px"></div>
+
+

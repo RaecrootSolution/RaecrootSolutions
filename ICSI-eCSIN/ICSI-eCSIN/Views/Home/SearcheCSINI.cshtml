@@ -1,0 +1,90 @@
+﻿@model ICSI_eCSIN.Models.SearcheCSIN
+@{
+    ViewBag.Title = "SearcheCSIN";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+}
+
+<style>
+    #ui-datepicker-div {
+        background: #fff;
+        border: #ccc 1px solid;
+        padding: 10px;
+    }
+</style>
+<div class="m-1 mx-1">
+    <p class="p-1 text-center" style="background:#ccc;">Search eCSIN</p>
+</div>
+
+<div id="loginformblock">
+    <div class="card loginformRegistrn">
+        @*<h3 class="formgheader">Search eCSIN</h3>*@
+        <h3></h3>
+        <form action="~/Home/SearcheCSINI" method="post">
+            @*<div class="form-group siderbarlgnform">
+                    @Html.TextBoxFor(model => model.eCSIN, new { @class = "form-control formblock", id = "eCSINno", name = "eCSINno", placeholder = "Unique Document Identification Number (eCSIN)" })
+                    @Html.ValidationMessageFor(model => model.eCSIN, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.TextBoxFor(model => model.FinancialYear, new { @class = "form-control formblock", id = "financialYear", name = "financialYear", placeholder = "Financial Year" })
+                    @Html.ValidationMessageFor(model => model.FinancialYear, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group siderbarlgnform">
+                    @Html.TextBoxFor(model => model.MembershipNo, new { @class = "form-control formblock", id = "MembershipNo", name = "MembershipNo", placeholder = "Membership No" })
+                    @Html.ValidationMessageFor(model => model.MembershipNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group siderbarlgnform">
+                    @Html.TextBoxFor(model => model.MembershipName, new { @class = "form-control formblock", id = "MembershipName", name = "MembershipName", placeholder = "Membership Name" })
+                    @Html.ValidationMessageFor(model => model.MembershipName, "", new { @class = "text-danger" })
+                </div>*@
+
+            <div class="form-group siderbarlgnform">
+                @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { id = "fromDate", @class = "form-control formblock", placeholder = "From Date", @readonly = "true" } })
+                @*@Html.TextBoxFor(model => model.FromDate, new { @class = "form-control formblock", id = "fromDate", name = "fromDate", placeholder = "FromDate (DD/MM/YYYY)" })*@
+                @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group siderbarlgnform">
+                @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { id = "toDate", @class = "form-control formblock", placeholder = "To Date", @readonly = "true" } })
+                @*@Html.TextBoxFor(model => model., new { @class = "form-control formblock", id = "financialYear", name = "financialYear", placeholder = "ToDate (DD/MM/YYYY)" })*@
+                @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+            </div>
+            
+            <div class="SendOtpBtn mt-4" >
+                <button type="submit">Search</button>
+
+
+            </div>
+            <div>
+
+                <p style="background-color:red">@ViewBag.Mesaage</p>
+            </div>
+            <div>
+                <p style="background-color:red"> @ViewBag.Session </p>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- jQuery UI CSS Referenc e -->
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#fromDate').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+1"
+        });
+        $('#toDate').datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+1"
+        });
+    });
+
+</script>
+
+
+

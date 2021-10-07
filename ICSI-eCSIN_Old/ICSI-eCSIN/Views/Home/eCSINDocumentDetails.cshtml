@@ -1,0 +1,151 @@
+﻿
+@model ICSI_eCSIN.Models.eCSINDetails
+@{
+    ViewBag.Title = "eCSINDocumentDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    DateTime deg = new DateTime();
+    DateTime dol = new DateTime();
+    DateTime dcl = new DateTime();
+    DateTime dod = new DateTime();
+    DateTime dng = new DateTime();
+    DateTime dce = new DateTime();
+    string status = string.Empty;
+    if (Model != null)
+    {
+
+
+        deg = Convert.ToDateTime(Model.CreatedDate);
+        dol = Convert.ToDateTime(Model.DateOfOfferLetter);
+        dcl = Convert.ToDateTime(Model.DateOfConsentLetter);
+        dod = Convert.ToDateTime(Model.DateOfAppointment);
+        dng = Convert.ToDateTime(Model.DateOfNoticeResig_NoticeOfTermination);
+        dce = Convert.ToDateTime(Model.DateOfCessationEmployment);
+
+        status = Model.Status == true ? "Active" : "InActive";
+
+
+    }
+}
+<style>
+    @@media print {
+        #printButton {
+            display: none;
+        }
+
+        #btn-Verification {
+            display: none;
+        }
+
+        #ca_footer {
+            display: none;
+        }
+    }
+</style>
+<div class="m-2 mx-3">
+    <p class="p-1 text-center" style="background:#ccc;">eCSIN Details of the Member</p>
+</div>
+
+<div class="container">
+    <div id="loginformblock">
+        <div class="card loginformRegistrn">
+            @*<h3 class="formgheader">Details of eCSIN</h3>*@
+            <form>
+                <table class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Date of eCSIN Generation:</td>
+                            <td>@deg.ToString("dd-MM-yyyy hh:mm:ss")</td>
+                        </tr>
+                        <tr>
+                            <td>Name of Member:</td>
+                            <td>@Model.MemberName</td>
+                        </tr>
+                        <tr>
+                            <td>Membership Id of CS Employee:</td>
+                            <td>@Model.MemberNumber</td>
+                        </tr>
+
+                        <tr>
+                            <td>Name of Employer:</td>
+                            <td>@Model.EmployerName</td>
+                        </tr>
+
+                        <tr>
+                            <td>CIN of Employer:</td>
+                            <td>@Model.EmployerCINNo</td>
+                        </tr>
+                        <tr>
+                            <td>Registered Address of Employer:</td>
+                            <td>@Model.EmployerRegAdd</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Offer Letter:</td>
+                            <td>@dol.ToString("dd-MM-yyyy")</td>
+                        </tr>
+
+                        <tr>
+                            <td>Date of Consent Letter: </td>
+                            <td>@dcl.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Appointment:</td>
+                            <td>@dod.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td>Enter Date of Resignation Letter:</td>
+                            @if (Model.DateOfNoticeResig_NoticeOfTermination == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@dng.ToString("dd-MM-yyyy")</td>
+                            }
+
+
+                        </tr>
+                        <tr>
+                            <td>Enter Date of Cessation from Employment:</td>
+                            @if (Model.DateOfCessationEmployment == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@dce.ToString("dd-MM-yyyy")</td>
+                            }
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="SendOtpBtn mt-4">
+                    <button type="button" id="printButton">Print</button>
+                </div>
+                <div>
+                    <p>@ViewBag.Message</p>
+                </div>
+            </form>
+        </div>
+
+        @*<div class="VerifyBtn">
+                <button type="button">VERIFY ANOTHER eCSIN/EXIT</button>
+            </div>*@
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#printButton").click(function () {
+
+
+        window.print();
+    });
+
+
+</script>
+
+

@@ -1,0 +1,166 @@
+﻿@model ICSI_Management.Models.Application
+@{
+    ViewBag.Title = "Application";
+    var disabled = "";
+    if (ViewBag.disabled != null)
+    {
+        disabled = ViewBag.disabled;
+    }
+}
+<div class="container mt-3">
+    <div class="mt-4">
+        <h3 class="text-center py-4"><strong>APPLICATION MASTER</strong></h3>
+    </div>
+    <div>
+        <p class="text-success">
+            @ViewBag.Message
+        </p>
+    </div>
+    @using (Html.BeginForm("Application", "Home"))
+    {
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Web Application Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.WebAppId, new SelectList(Model.WebApps, "Id", "WebAppName"), "-- Select Web Application Name --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WebAppId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Application Name </label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ApplicationName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicationName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Application Description </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.ApplicationDescription, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApplicationDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Schema Name  </label>
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.SchemaName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SchemaName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-4">
+            <label class="col-md-3 control-label">Mandatory Application Name </label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(M => M.MandAppId, new SelectList(Model.mandApps, "Id", "ApplicationName"), "-- Select Mandatory Application Name --", new { @class = "form-control" })
+                
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 control-label">  </label>
+            <div class="col-md-3">
+                <label>
+                    @Html.CheckBoxFor(model => model.Active)
+                    Active
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 control-label"> </label>
+            <div class="col-md-6">
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled> Add</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary SubmitBtn" @disabled onclick="return Go();"> Update</button>
+                    }
+                }
+            </div>
+        </div>
+
+    }
+
+
+    <div class="table-responsive pt-5">
+        <h5 class="mb-3">Application Table</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Application Name</th>
+                    <th>Application Description</th>
+                    <th>Web Application Name</th>
+                    <th>Schema Name</th>
+                    <th>Mandatory Application Name</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AllApplications != null)
+                {
+                    foreach (var item in Model.AllApplications)
+                    {
+                        //count++;
+                        //dt = Convert.ToDateTime(item.CreatedDate);
+                        //status = item.IsValid == "Y" ? "Active" : item.IsValid == "1" ? "Active" : "Revoked";
+                        //dtSign = Convert.ToDateTime(item.DateOfSigningDoc);
+                <tr>
+                    @*<td>@count</td>*@
+
+                    <td>@item.ApplicationName</td>
+                    <td>@item.ApplicationDescription</td>
+
+                    <td>@item.WebAppName</td>
+                    <td>@item.SchemaName</td>
+                    <td>@item.MandAppName</td>
+                    @*<td>@dtSign.ToString("dd/MM/yyyy hh:mm:ss")</td>*@
+                    <td>@item.Active</td>
+                    @*<td>@item.ClientName</td>
+
+        <td>@item.CINNumber  @item.PANNumber   @item.AadharNumber</td>*@
+
+                    <td>
+
+                        <button type="submit" onclick="location.href='@Url.Action("Application", "Home" , new { id = item.Id })'">Edit</button>
+
+                    </td>
+
+
+
+                </tr>
+
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>@ViewBag.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    
+    function Go() {
+        var ok = confirm("Are you sure to proceed for updating the data?");
+        if (ok) {
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
+

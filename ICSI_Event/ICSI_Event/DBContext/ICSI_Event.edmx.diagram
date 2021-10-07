@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a64eb16b2cb04b6fa235a0f4b3923d87" Name="Diagram1">
+        <EntityTypeShape EntityType="ICSI_EventsModel.ACK_SEQ_T" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.CITY_T" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.EVENT_REGISTRATION_T" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.EVENT_T" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.EVENT_USER_T" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.STALL_T" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.STALL_TRANSACTION_T" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.STATE_T" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.tblPaymentDetail" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.tblPaymentGatewayMaster" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.tblPaymentStatusMaster" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.tblPayModeMaster" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.tblProcessMaster" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ICSI_EventsModel.EVENT_TYPE_T" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ICSI_EventsModel.FK_CITY_T_STATE_T" ManuallyRouted="false" />
+        <AssociationConnector Association="ICSI_EventsModel.FK__tblPaymen__Payme__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="ICSI_EventsModel.FK__tblPaymen__PayMo__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="ICSI_EventsModel.FK__tblPaymen__Proce__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

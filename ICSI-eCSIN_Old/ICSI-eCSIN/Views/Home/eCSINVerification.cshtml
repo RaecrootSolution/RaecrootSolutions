@@ -1,0 +1,88 @@
+﻿@model ICSI_eCSIN.Models.eCSINVerification
+@{
+    ViewBag.Title = "eCSIN Verification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-1">
+    <p class="p-1 text-center" style="background:#ccc;">eCSIN Verification</p>
+</div>
+
+@using (Html.BeginForm("eCSINVerification", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="loginformblock">
+        <div class="card loginformRegistrn">
+            <div class="form-horizontal">
+
+                <div class="form-group">
+
+                    <h3 class="formgheader">VERIFY eCSIN AUTHORITIES/REGULATORS/BANKS/OTHERS</h3>
+                    <h3 class="formgheaderSecondHeading">
+                        (Please provide the following mandatory information to verify eCSIN)
+                    </h3>
+                    @*<p class="requrdFildsTxt">All fields are required</p>*@
+
+                </div>
+
+                <div class="form-group">
+                    @*@Html.Label("Enter Unique eCSIN", htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.eCSINNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Unique eCSIN" } })
+                        @Html.ValidationMessageFor(model => model.eCSINNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="SendOtpBtn">
+                <button type="submit">Verify</button>
+            </div>
+
+            <div class="text-danger">
+                @if (ViewBag.ErrorMsg != null)
+                {
+                    <p>
+                        @ViewBag.ErrorMsg
+                    </p>
+                }
+
+            </div>
+            <div class="text-danger">
+                @if (ViewBag.CaptchMessage != null)
+                {
+                    <p>
+                        @ViewBag.CaptchMessage
+                    </p>
+                }
+
+            </div>
+
+        </div>
+    </div>
+}
+@*<div>
+        @Html.ActionLink("Verify", "Index")
+    </div>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+    function eCSINCaptchaRefresh(img) {
+
+        $("#Captcha").val("");
+        var varCaptchaUrl = '@Url.Action("GenerateCaptcha", "Home")';
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var rnum = Math.floor(Math.random() * chars.length)
+        var varCaptchaUrl = varCaptchaUrl + '?New=1&randomcode=' + rnum;
+        document.getElementById(img).src = varCaptchaUrl;
+
+    }
+    </script>
+}

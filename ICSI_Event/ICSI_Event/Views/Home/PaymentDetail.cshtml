@@ -1,0 +1,76 @@
+﻿@model ICSI_Event.Models.PaymentDetail
+@{
+    ViewBag.Title = "PaymentDetail";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm("PaymentDetail", "Home"))
+
+{
+    if (Model != null)
+    {
+        @Html.AntiForgeryToken()
+        <div class="contain-all">
+            <div class="container form-field">
+
+                <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
+                    <div class="addTrainingStructure">
+                        <h4 class="">Payment Details</h4>
+                    </div>
+
+
+                    <div class="">
+                        <div id="lable_P" class="row">
+                            <div class="col-md-10">
+                                <p class="PaymentPara">Your request Id is: <label>@ViewBag.ReqID</label></p>
+                                <p class="PaymentPara">Your transaction Id is: <label>@Session["RequetID"] </label></p>
+                                <p class="PaymentPara">
+                                    Your Request has been received.<br>
+                                    Please note this is for all future communication.<br>
+                                    The request id and Transaction id is generated only for control purpose and before actual payment 	transaction starts.<br>
+                                    This does not confirm that payment has been received.<br>
+                                    Please print your challan and take to your nearest ICICI Bank branch for making payment.<br>
+                                    ICSI has no responsibility for delay in payment due to any technical / non technical issues whatsoever.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="allModel" class="row">
+                            <div class="col-md-9">
+                                <ul class="list-unstyled">
+                                    <li>Name: <label class="PaymntLabel">@Model.Name</label></li>
+                                    <li>Mobile Number: <label class="PaymntLabel"> @Model.MobileNuber </label> </li>
+                                    <li>Email Address: <label class="PaymntLabel">@Model.Email</label> </li>
+                                    <li>Amount:- <label class="PaymntLabel">@Model.TotalAmount</label> </li>
+                                    @*<li>Payment Mode:- <label class="PaymntLabel">@Model.PaymentMode</label> </li>*@
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div ID="ProcessPayment" class="row">
+                            <div class="col-md-9">
+                                <button type="submit" class="btn btn-primary btn-lg">Proceed for Payment</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        Response.Redirect("StallBooking");
+    }
+
+
+}
+
+
+
+
+
+

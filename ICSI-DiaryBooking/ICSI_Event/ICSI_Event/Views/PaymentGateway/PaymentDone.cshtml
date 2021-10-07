@@ -1,0 +1,21 @@
+﻿@using PaymentGateway.Entity
+@{
+    ViewBag.Title = "Payment Done";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div>
+    @if (ViewBag.Status == Convert.ToInt32(ePaymentStatus.Succ))
+    {
+        <h2>PaymentDone</h2>
+        <p>Your Payment is Successful, Transaction id is @ViewBag.TxnID</p>
+        <p> @Html.ActionLink("Print Receipt", "PaymentReciept", "Home")</p>
+    }
+    else
+    {
+        <h2>PaymentFail</h2>
+        <p>Your Payment is Failed.</p>
+    }
+</div>
+

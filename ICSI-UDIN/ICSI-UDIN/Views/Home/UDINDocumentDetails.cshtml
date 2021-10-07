@@ -1,0 +1,142 @@
+﻿
+@model ICSI_UDIN.Models.RP_UDINVerification_Result
+@{
+    ViewBag.Title = "UDINDocumentDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    DateTime dt = new DateTime();
+    DateTime dt1 = new DateTime();
+    string status = string.Empty;
+    if (Model != null)
+    {
+        dt = Convert.ToDateTime(Model.DateofSigingDoc);
+        dt1 = Convert.ToDateTime(Model.CreatedDate);
+        status = Model.IsValid == "Y" ? "Active" : Model.IsValid == "1" ? "Active" : "Revoked";
+
+
+    }
+}
+<style>
+    @@media print {
+        #printButton {
+            display: none;
+        }
+
+        #btn-Verification {
+            display: none;
+        }
+
+        #ca_footer {
+            display: none;
+        }
+    }
+</style>
+<div class="container">
+    <div id="loginformblock">
+        <div class="card loginformRegistrn">
+            <h3 class="formgheader">Document details</h3>
+            <form>
+                <table class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UDIN Created Date:</td>
+                            <td>@dt1.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td>Unique Document Identification Number(UDIN):</td>
+                            <td>@Model.UDINUniqueCode</td>
+                        </tr>
+                        <tr>
+                            <td>Members Details:</td>
+                            <td>@Model.MembershipDetilas</td>
+                        </tr>
+
+                        <tr>
+                            <td>Name of the  Company:</td>
+                            <td>@Model.ClientName</td>
+                        </tr>
+
+                        <tr>
+                            <td>Type of Certificate/Report:</td>
+                            @if (Model.TypeofCertificate == 1)
+                            {
+                                <td>Certificate</td>
+                            }
+                            else if (Model.TypeofCertificate == 2)
+                            {
+                                <td>Report</td>
+                            }
+                            else if (Model.TypeofCertificate == 0)
+                            {
+                                <td>Other</td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (Model.TypeofCertificate != 0)
+                            {
+                                <td>Document Type:</td>
+                                <td>@Model.DocumentType</td>
+                            }
+
+                        </tr>
+
+                        <tr>
+                            <td> Date of Signing of Document:</td>
+
+                            <td> @dt.ToString("dd-MM-yyyy") </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td> Document Description: </td>
+
+                            <td> @Model.DocumentDesription  </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td> Status:</ td >
+
+                            <td> @status </ td >
+
+                        </tr>
+
+                    </tbody>
+
+                            </table >
+
+
+                            <div class="SendOtpBtn">
+                            <button type="button" id="printButton">Print</button>
+
+                            
+                            
+                            </div>
+             <div>
+                 <p>@ViewBag.Message</p>
+             </div>
+         </form>
+     </div>
+
+                        @*<div class="VerifyBtn">
+        <button type="button">VERIFY ANOTHER UDIN/EXIT</button>
+    </div>*@
+</div>
+</div>
+
+<script type="text/javascript">
+    $("#printButton").click(function () {
+
+
+        window.print();
+    });
+
+
+</script>
+
+

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "acknowledgment";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@{
+    ViewBag.Title = "acknowledgment";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    string Message = ViewBag.Message == null ? string.Empty : ViewBag.Message;
+    string color = "green";
+}
+
+<div class="my-1">
+    <p class="p-1 text-center" style="background:#ccc;">Acknowledgment</p>
+</div>
+
+<div id="loginformblock">
+    <div class="card loginformRegistrn">
+        <div class="my-5 text-center" style="min-height:185px;">
+            <label class="lead text-center text-success"> <strong> @Message </strong></label>
+        </div>
+    </div>
+</div>
+
+
+

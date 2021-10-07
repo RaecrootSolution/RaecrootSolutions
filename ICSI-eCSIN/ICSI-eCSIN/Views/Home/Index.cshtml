@@ -1,0 +1,155 @@
+﻿@model ICSI_eCSIN.Models.Login
+@{
+    ViewBag.Title = "Welcome to";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div id="demo" class="icsi_carousel carousel slide" data-interval="false" data-ride="carousel">
+                    <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                        <li data-target="#demo" data-slide-to="1"></li>
+                        <li data-target="#demo" data-slide-to="2"></li>
+                    </ul>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="~/images/ecsin.jpg" alt="Los Angeles" width="100%" height="100%">
+                           
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/images/We_will_.jpg" alt="Chicago" width="100%" height="100%">
+
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/images/We_will_.jpg" alt="New York" width="100%" height="100%">
+
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 what_new_cols">
+                    <div class="about_csi">
+                        <h3 class="aboutICSITxt">ABOUT eCSIN</h3>
+                        <p Class="dummyTxt">
+                            In exercise of the powers conferred by clause (1) of Part II of the Second Schedule to the Company Secretaries Act, 1980 as amended by the Company Secretaries (Amendment) Act, 2006, the Council of the Institute of  Company Secretaries of India hereby issues the following guidelines.
+                        </p>
+                        <p class="Csi_readmore"><span>
+                            @*<a href="#"> Read More... </a>*@ 
+                             </span> </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6  profile_carousel">
+                    <div id="example1">
+                        <p class="watSnWtXT">Guidelines</p>
+                        <ul class="dummyTxt">
+                            @*<li style="color:#848282;">*@
+                            <p Class="dummyTxt">
+                                These Guidelines may be called the Employee Company Secretary Identification Number(eCSIN) Guidelines, 2019.
+                            </p>
+                            @*</li>*@
+                            @*<li style="color:#848282;">Prevent counterfeiting of various attestations / certifications.</li>*@
+                        </ul>
+                        <p class="Csi_readmore"><span><a href="~/PDF/eCSIN-Guidlines.pdf" target="_blank"> Read More... </a> </span> </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 Csi_login_col">
+            <div id="loginformblock">
+                <div class="card loginform">
+                    <div>
+                        <h4 class="formgheader">User Login</h4>
+                    </div>
+                    @*<form class="csi_member_login">*@
+                    @using (Html.BeginForm("Index", "Home"))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @*<div class="form-group siderbarlgnform">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-control formblock" })
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control formblock" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group siderbarlgnform">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-control formblock" })
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control formblock" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>*@
+
+                        <div class="form-group siderbarlgnform">
+                            @**  @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-control formblock" })*@
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { placeholder = "UserName(ex : A1234/F1234)", @class = "form-control formblock" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group siderbarlgnform">
+                            @* @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-control formblock" })*@
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control formblock" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="submitbtn">
+                            <input type="submit" value="Login" />
+                        </div>
+
+                        <div class="text-danger">
+                            @ViewBag.Message
+
+                        </div>
+                    }
+                    @*</form>*@
+                    <div class="providers">
+                        <ul class="list-inline passwordList">
+                            <li>
+                                <p> @Html.ActionLink("Forgot Password", "Forgotpassword")</p>
+
+                            </li>
+
+                            @*<li>
+                                <p> @Html.ActionLink("Change Password", "ChangePassword")</p>
+
+                            </li>*@
+
+                            @*<li>
+            <p> @Html.ActionLink("Member Registration", "MembershipRegistation")</p>
+
+
+        </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="verificationblock">
+                <div class="card verificationblock">
+                    <h4>Authorities/Regulators</h4>
+                    <h4>Banks/Others</h4>
+
+                    <div class="verifybtn">
+                        @*<button type="button">Verify UDIN</button>*@
+                        <button onclick="location.href='@Url.Action("eCSINVerification", "Home")'">Verify eCSIN</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="align-content-lg-between" style="height:20Px"></div>
+
+

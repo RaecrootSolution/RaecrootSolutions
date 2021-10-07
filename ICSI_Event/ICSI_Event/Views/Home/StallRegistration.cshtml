@@ -1,0 +1,310 @@
+﻿@model ICSI_Event.Models.EventsRegistration
+@{
+    ViewBag.Title = "StallRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="contain-all">
+    <div class="container form-field">
+        <div class="addTrainingStructure paymentStructure">
+            <h4 class="">Registration</h4>
+        </div>
+        <div>
+            <p class="text-success">
+                @ViewBag.Message
+            </p>
+        </div>
+        @using (Html.BeginForm("StallRegistration", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Event</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.DropDownListFor(M => M.EventId, new SelectList(Model.lstEvent, "Id", "Name"), new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Name of the Company</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Address 1</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.BillingAdd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BillingAdd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Address 2</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.ShipingAdd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShipingAdd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">State</label>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(M => M.StateId, new SelectList(Model.lstState, "Id", "Name"), "-- Select Sate Name --", new { @class = "form-control", onchange = "getCityList()" })
+                    
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">City</label>
+                <div class="col-md-4">
+                    @*@Html.DropDownListFor(M => M.StateId, new SelectList(Model.lstCountry, "Id", "Name"), new { @class = "form-control" })*@
+                    <select id="CityId" name="CityId" class="form-control"></select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Pin Code</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Mobile Number</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Email ID</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">User ID</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Password</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control",type="password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                 <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Re Password</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Nationality</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.ShipingAdd, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.ShipingAdd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">Date of Incorporation</label>
+                <div class="col-sm-12 col-md-4 col-xs-12">
+                    <div class="cal_css">
+                        @Html.EditorFor(model => model.ShipingAdd, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.ValidationMessageFor(model => model.ShipingAdd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8">GSTN Number</label>
+                <div class="col-sm-12 col-md-4">
+                    @Html.EditorFor(model => model.GSTN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GSTN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-md-4 col-sm-8"> </label>
+                <div class="col-sm-12 col-md-4">
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#message"> Submit </button>
+                </div>
+            </div>
+
+
+
+
+        }
+
+    </div>
+</div>
+
+<script>
+
+
+
+    $('#datepicker1').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+
+    function getCityList() {
+        var Id = $("#StateId").val();
+        //var Text = $('#Resp_Type').children("option:selected").text();
+        //if (Id == 1 || Id == 2 || Id == 3 || Id == 4) {
+        //    $('#SelectedDive').show();
+        //}
+        //else {
+        //    $('#SelectedDive').hide();
+        //}
+        //$('#runtimelabel').text($('#Resp_Type').children("option:selected").text());
+        $.ajax
+            ({
+                url: '/Home/GetCityList',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    Id: +Id
+
+
+                }),
+                success: function (result) {
+                    $("#CityId").html("");                    
+
+                    //if (Id == "1") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.WEB_APP_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == if (Id == "3") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.MODULE_NAME_TX))
+                    //    })
+                    //}
+                    // if (Id == "4") {
+                    //    $.each($.parseJSON(result), function (i, value) {
+                    //        $("#DropDown").append($('<option></option>').val(value.ID).html(value.Screen_Name))
+                    //    })
+                    //}
+
+                    //$.each($.parseJSON(result), function (i, value) {
+                    //    $("#DropDown").append($('<option></option>').val(value.Value).html(value.Text))
+                    //})
+                    $.each($.parseJSON(result), function (i, value) {
+                        $("#CityId").append($('<option></option>').val(value.Id).html(value.Name))
+                    })
+
+
+                },
+                error: function () {
+                    alert("Whooaaa! Something went wrong..")
+                },
+            });
+    }
+    //$(document).ready(function () {
+
+    //    var ddlCountry = $('#ddlCountry');
+    //    ddlCountry.append($("<option></option>").val('').html('Please Select Country'));
+    //    $.ajax({
+    //        url: 'http://localhost:54188/api/Cascading/CountryDetails',
+    //        type: 'GET',
+    //        dataType: 'json',
+    //        success: function (d) {
+    //            $.each(d, function (i, country) {
+    //                ddlCountry.append($("<option></option>").val(country.CountryId).html(country.CountryName));
+    //            });
+    //        },
+    //        error: function () {
+    //            alert('Error!');
+    //        }
+    //    });
+
+    //    //State details by country id
+
+    //    $("#ddlCountry").change(function () {
+    //        var CountryId = parseInt($(this).val());
+
+    //        if (!isNaN(CountryId)) {
+    //            var ddlState = $('#ddlState');
+    //            ddlState.empty();
+    //            ddlState.append($("<option></option>").val('').html('Please wait ...'));
+
+    //            debugger;
+    //            $.ajax({
+    //                url: 'http://localhost:54188/api/Cascading/StateDetails',
+    //                type: 'GET',
+    //                dataType: 'json',
+    //                data: { CountryId: CountryId },
+    //                success: function (d) {
+
+    //                    ddlState.empty(); // Clear the please wait
+    //                    ddlState.append($("<option></option>").val('').html('Select State'));
+    //                    $.each(d, function (i, states) {
+    //                        ddlState.append($("<option></option>").val(states.StateId).html(states.StateName));
+    //                    });
+    //                },
+    //                error: function () {
+    //                    alert('Error!');
+    //                }
+    //            });
+    //        }
+
+
+    //    });
+
+    //    //City Bind By satate id
+    //    $("#ddlState").change(function () {
+    //        var StateId = parseInt($(this).val());
+    //        if (!isNaN(StateId)) {
+    //            var ddlCity = $('#ddlCity');
+    //            ddlCity.append($("<option></option>").val('').html('Please wait ...'));
+
+    //            debugger;
+    //            $.ajax({
+    //                url: 'http://localhost:54188/api/Cascading/CityDetails',
+    //                type: 'GET',
+    //                dataType: 'json',
+    //                data: { stateId: StateId },
+    //                success: function (d) {
+
+
+    //                    ddlCity.empty(); // Clear the plese wait
+    //                    ddlCity.append($("<option></option>").val('').html('Select City Name'));
+    //                    $.each(d, function (i, cities) {
+    //                        ddlCity.append($("<option></option>").val(cities.CityId).html(cities.CityName));
+    //                    });
+    //                },
+    //                error: function () {
+    //                    alert('Error!');
+    //                }
+    //            });
+    //        }
+
+
+    //    });
+    //});
+
+</script>
+
+
+
