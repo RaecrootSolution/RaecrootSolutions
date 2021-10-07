@@ -1,0 +1,290 @@
+﻿
+@{
+    ViewBag.Title = "login";
+}
+
+@*<div class="contain-all">
+        <div class="container form-field">
+            @using (Html.BeginForm("login", "Home", FormMethod.Post, new { @id = "loginform" }))
+            {
+                <div class="form-group">
+                    <label id="lblMessage" style="font-weight:normal; color:red">@ViewBag.Message</label><br />
+                    <label for="email">Email/UserName:</label>
+                    <input type="text" value="@TempData["EmailID"]" id="email" name="email" placeholder="Enter email/user name" class="form-control" />
+                </div>
+                <div class="mt"></div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" value="@TempData["Password"]" id="password" name="password" placeholder="Enter password" class="form-control" />
+                    <input type="hidden" id="HidSKval" name="HidSKval" value="@ViewBag.HidSKval" />
+                    <input type="hidden" id="HidPassVal" name="HidPassVal" value="" />
+                    <input type="hidden" id="HidSaltPassVal" name="HidSaltPassVal" value="" />
+                    <p class="small"><a href="#">Forgot Password ?</a></p>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        @{
+                            if (@TempData["EmailID"] != null)
+                            {
+                                <input class="form-check-input" type="checkbox" name="remember" checked="checked">
+                            }
+                            else
+                            {
+                                <input class="form-check-input" type="checkbox" name="remember">
+                            }
+                        }
+                        Remember me
+                    </label>
+                </div>
+                <div class="form-group text-left">
+                    <button type="button" id="btnSubmit" class="btn btn-primary" onclick="formSubmit()">Submit</button>
+                </div>
+            }
+        </div>
+    </div>*@
+
+
+<!--New Index page-->
+<style type="text/css">
+    .homepg-bg {
+        width: 100%;
+        height: auto;
+        min-height: 520px;
+        background: url("../Content/images/home-bg.jpg") no-repeat fixed center;
+        background-size: cover;
+        padding-top: 0;
+        margin: -30px auto -25px auto;
+    }
+
+    .home-login-box {
+        width: 100%;
+        max-width: 550px;
+        height: auto;
+        min-height: 300px;
+        background-color: rgba(45, 70, 144, 0.4);
+        border-radius: 30px;
+        border: #fff 3px solid;
+        margin: 55px auto 30px;
+        padding: 60px 60px 20px 60px;
+        position: relative;
+    }
+
+    .home-login-icons {
+        position: absolute;
+        top: -60px;
+        left: 10%;
+    }
+
+    .home-login-icons img {
+        width: 90px;
+        height: 90px;
+        margin: 0 60px;
+    }
+
+    .home-form {
+        color: #083B82;
+    }
+
+    .home-form input {
+        border-color: #083B82;
+    }
+
+    .home-form a {
+        color: #083B82;
+        text-decoration: underline;
+        font-size: 12px;
+    }
+
+    .home-form p {
+        margin-top: 5px;
+    }
+
+    .home-form-btn {
+        background-color: #083B82;
+        padding: 8px 30px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    @@media (max-width:767px) {
+        .homepg-bg {
+            min-height: 450px;
+        }
+
+        .home-login-icons {
+            position: absolute;
+            top: -40px;
+            left: 10%;
+        }
+
+        .home-login-icons img {
+            width: 65px;
+            height: 65px;
+            margin: 0 40px;
+        }
+    }
+
+    .marque-text {
+        padding:30px 0;
+    }
+
+    @@media (max-width:767px) {
+        .marque-text {
+            padding:30px 0;
+        }
+    }
+
+    @@media (min-width:768px) and (max-width:1024px) {
+        .marque-text {
+            padding:30px 0;
+        }
+    }
+
+    .marque-text-bottom {
+        padding:30px 0;
+    }
+
+    @@media (max-width:767px) {
+        .marque-text-bottom {
+            padding:30px 0;
+        }
+    }
+
+    @@media (min-width:768px) and (max-width:1024px) {
+        .marque-text-bottom {
+            padding:30px 0;
+        }
+    }
+</style>
+
+<div class="homepg-bg">
+    <div class="marque-text">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 fontBold text-danger">
+                    <marquee>Students can log in through SMASH Credential (Smash user id i.e., student registration number and password). Forgot password- Please reset your password through Smash Portal i.e., <a target="_blank" class="text-danger" href="https://smash.icsi.in/scripts/GetPassword.aspx"><u>Click here</u></a> </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-login-box">
+        <div class="home-login-icons">
+            <img src="~/Content/Images/member-icon.png" />
+            <img src="~/Content/Images/student-icon.png" />
+        </div>
+        @*<form class="home-form">*@
+        @using (Html.BeginForm("login", "Home", FormMethod.Post, new { @id = "loginform", @class = "home-form" }))
+        {
+            <div class="form-group">
+                <label id="lblMessage" style="font-weight:normal; color:red">@ViewBag.Message</label>
+                <input type="hidden" id="HidSKval" name="HidSKval" value="@ViewBag.HidSKval" />
+                <input type="hidden" id="HidPassVal" name="HidPassVal" value="" />
+                <input type="hidden" id="HidSaltPassVal" name="HidSaltPassVal" value="" />
+            </div>
+            <div class="form-group">
+                <label><span class="glyphicon glyphicon-user"></span> Login</label>
+                <input type="text" class="form-control" value="@TempData["EmailID"]" id="email" name="email" />
+            </div>
+            <div class="form-group">
+                <label><span class="glyphicon glyphicon-lock"></span> Password</label>
+                <input type="password" class="form-control" value="@TempData["Password"]" id="password" name="password" />
+                @*<p><a href="#">Forgot Password ?</a></p>*@
+            </div>
+            <div class="form-group">
+                <label>
+                    @if (@TempData["EmailID"] != null)
+                    {
+                        <input type="checkbox" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" />
+                    }
+                    Remember Me
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="btnSubmit" class="btn btn-primary home-form-btn" onclick="formValidation()">Submit</button>
+            </div>
+            @*</form>*@
+        }
+    </div>
+
+
+    <div class="marque-text-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 fontBold text-center">
+                    <a href="~/Content/ICSI_Docs/circular stimulate.pdf" target="_blank" style="text-decoration:underline; font-weight:normal;"> Circular of 15 Days Specialised Training  </a><span style="padding-left:20px;"></span>
+                </div>
+
+                <div class="col-xs-12 fontBold text-danger mt-10">
+                    @*<marquee>
+                            <a href="~/Content/ICSI_Docs/Revised_announcement_for_eAcademicProgram.pdf" target="_blank" class="text-danger"> Revised schedule for 15 days e Academic programme including 08 days e EDP (03 Days e Governance and 05 days Skill Development) </a>
+                        </marquee>*@
+                    <marquee>
+                        For any kind of Technical support on e-governance (Training automation under stimulate)
+                        you may submit your queries under <a target="_blank" class="text-danger" href="http://support.icsi.edu"><u>www.support.icsi.edu</u></a>, please select the topic "training services" and
+                        sub topic queries related to "e governance automation in training services".
+                    </marquee>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--End New page-->
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#loginform').submit(function () {
+    //        var email = $('#email').val();
+    //        var password = $('#password').val();
+    //        if (email == '') {
+    //            $('#lblMessage').val("email/user name must be required.");
+    //            return false;
+    //        }
+    //        else if (password == '') {
+    //            $('#lblMessage').val("password must be required");
+    //            return false;
+    //        }
+    //        else {
+    //            return true;
+    //        }
+    //    });
+    //});
+
+    function formValidation() {
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        if (email == "") {
+            $('#lblMessage').html("email/user name must be required.");
+            return false;
+        }
+        else if (password == "") {
+            $('#lblMessage').html("password must be required");
+            return false;
+        }
+        else {
+            //return true;
+            formSubmit();
+        }
+    }
+
+    function formSubmit() {
+        var frmLogin = document.forms[0];
+        //var UserName = frmLogin.email;
+        var Pass = frmLogin.password;
+        var HidPassVal = frmLogin.HidPassVal;
+        var HidSaltPassVal = frmLogin.HidSaltPassVal;
+        var strSaltKey = frmLogin.HidSKval.value;
+        var strPW = hex_hmac_md5(Pass.value, "");
+        HidPassVal.value = strPW;
+        HidSaltPassVal.value = hex_hmac_md5(strPW, strSaltKey);
+        frmLogin.submit();
+    }
+</script>

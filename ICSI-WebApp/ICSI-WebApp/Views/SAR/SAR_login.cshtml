@@ -1,0 +1,197 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "SAR Login";
+    Layout = "~/Views/Shared/_CSRLayout.cshtml";
+}
+
+<!--New Index page-->
+<style type="text/css">
+        .homepg-bg {
+            width: 100%;
+            height: auto;
+            min-height: 520px;
+            background: url("../../Content/CSR/Images/home-bg_old.jpg") no-repeat fixed center;
+            background-size: cover;
+            padding: 50px 0 20px;
+            margin: -55px auto -25px auto;
+        }
+
+        .home-login-box {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            min-height: 300px;
+            background-color: rgba(45, 70, 144, 0.4);
+            border-radius: 30px;
+            border: #fff 3px solid;
+            margin: 55px auto 30px;
+            padding: 40px 60px 20px 60px;
+            position: relative;
+        }
+
+        .home-login-icons {
+            position: absolute;
+            top: -45px;
+            left: 28%;
+        }
+
+        .home-login-icons img {
+            width: 90px;
+            height: 90px;
+            margin: 0 60px;
+            border-radius: 50%;
+            border: #083B82 2px solid;
+        }
+
+        .home-form {
+            color: #083B82;
+        }
+
+        .home-form input {
+            border-color: #083B82;
+        }
+
+        .home-form a {
+            color: #083B82;
+            text-decoration: underline;
+            font-size: 12px;
+        }
+
+        .home-form p {
+            margin-top: 5px;
+        }
+
+    .home-form-btn {
+        background-color: #083B82;
+        padding: 8px 30px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    @@media (max-width:767px) {
+        .homepg-bg {
+            min-height: 450px;
+        }
+
+        .home-login-icons {
+            position: absolute;
+            top: -40px;
+            left: 25%;
+        }
+
+        .home-login-icons img {
+                width: 90px;
+                height: 90px;
+                margin: 0 40px;
+        }
+    }
+</style>
+
+
+@using (Html.BeginForm("SAR_login", "SAR", FormMethod.Post, new { @id = "sarloginform", @class = "home-form" }))
+{
+    <div class="homepg-bg">
+        <div class="home-login-box">
+            <!--<div class="home-login-icons">
+                <img src="~/Content/CSR/Images/csr-award-logo.jpg" />
+            </div>-->
+            <h2 class="text-center"><strong> 3<sup>rd</sup> ICSI Best Secretarial Audit Report Award. </strong> </h2>
+            <div>
+                <label id="lblMessage" style="font-weight:normal; color:red">@ViewBag.Message</label>
+                <input type="hidden" id="HidSKval" name="HidSKval" value="@ViewBag.HidSKval" />
+                <input type="hidden" id="HidPassVal" name="HidPassVal" value="" />
+                <input type="hidden" id="HidSaltPassVal" name="HidSaltPassVal" value="" />
+            </div>
+            <div class="form-group">
+                <label><span class="glyphicon glyphicon-user"></span> Login ID *</label>
+                @*<input type="text" class="form-control">*@
+                <input type="text" class="form-control" value="@TempData["EmailID"]" id="email" name="email" />
+            </div>
+            <div class="form-group">
+                <label><span class="glyphicon glyphicon-lock"></span> Password *</label>
+                @*<input type="password" class="form-control">*@
+                <input type="password" class="form-control" value="@TempData["Password"]" id="password" name="password" />
+            </div>
+            <div class="form-group">
+                @*<button type="button" class="btn btn-primary home-form-btn" onclick="window.location.href='question-master.html'">Login</button>*@
+                <button type="button" id="btnSubmit" class="btn btn-primary home-form-btn" onclick="formValidation()">Login</button>
+            </div>
+            <div class="form-group">
+                <p>Forgot Password? Please <a href="#" onclick="javascript:SAR_ScreenAction(535)"> <strong>Click Here</strong> </a> </p>
+                <p>New Registration. Please <a href="#" onclick="javascript:SAR_ScreenAction(534)"> <strong>Click Here</strong> </a> </p>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+    function formValidation() {
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        if (email == "") {
+            $('#lblMessage').html("email/user name must be required.");
+            return false;
+        }
+        else if (password == "") {
+            $('#lblMessage').html("password must be required");
+            return false;
+        }
+        else {
+            //return true;
+            //formSubmit();
+                $.ajax({
+                type: "GET",
+                url: "../SAR/ValidateRegistration?email=" + email,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                   if (!data) {
+                        alert("Registration is required for submitting SAR Award application."); 
+                    }
+                    else{
+                        formSubmit();
+                    }
+                },
+                error: function (r) {
+                    alert(r.responseText);
+                },
+                failure: function (r) {
+                    alert(r.responseText);
+                }
+            });
+        }
+    }
+
+    function formSubmit() {
+        var frmLogin = document.forms[0];
+        //var UserName = frmLogin.email;
+        var Pass = frmLogin.password;
+        var HidPassVal = frmLogin.HidPassVal;
+        var HidSaltPassVal = frmLogin.HidSaltPassVal;
+        var strSaltKey = frmLogin.HidSKval.value;
+        var strPW = hex_hmac_md5(Pass.value, "");
+        HidPassVal.value = strPW;
+        HidSaltPassVal.value = hex_hmac_md5(strPW, strSaltKey);
+        frmLogin.submit();
+    }
+
+    function SAR_ScreenAction(si, uq) {
+        var frm = document.createElement('form');
+        frm.method = "post";
+        frm.action = "../SAR/SAR";
+        var u = 'saranonymous';
+        frm.appendChild(createInputHidden('u', u));
+        frm.appendChild(createInputHidden('si', si));
+        if (uq)
+            frm.appendChild(createInputHidden('ui', uq));
+        frm.appendChild(createInputHidden('s', uq ? 'edit' : 'new'));        
+        document.body.appendChild(frm);
+        frm.submit();
+    }
+
+    $("#pHelpline").html("<span>For any Query</span>: sarwards@icsi.edu");
+</script>

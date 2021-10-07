@@ -1,0 +1,19 @@
+﻿@model PaymentGateway.Entity.PGMiddleURL
+
+<form method="post" id="paymentForm"
+      action="@Model.CheckoutUrl">
+    <input type="hidden" id="encRequest"
+           name="encRequest" value="" />
+    <input type="hidden" id="access_code"
+           name="access_code" value="" />
+</form>
+<div class="row" style="text-align:center">
+    <div class="small-12 large-12">
+        <div>Redirecting to payment gateway.Please wait...<br />do not refresh and close browser while it in progress.</div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+ $("#paymentForm").submit();
+</script>

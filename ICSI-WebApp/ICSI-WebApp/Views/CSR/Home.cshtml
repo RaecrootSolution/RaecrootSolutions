@@ -1,0 +1,65 @@
+﻿@model ICSI_WebApp.Models.Screen_T
+@{
+    Layout = "~/Views/Shared/_AfterLoginCSR.cshtml";
+}
+
+@{
+    if (Model != null)
+    {
+        if (Model.resActionClass != null)
+        {
+            if (Model.resActionClass.StatCode != null && Model.resActionClass.StatCode.Equals("0"))
+            {
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "");
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "" + Model.resActionClass.StatMessage + "");
+            }
+            else
+            {
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "");
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "" + Model.resActionClass.StatMessage + "");
+            }
+        }
+        else
+        {            
+            Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "");
+            Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "");
+        }
+        <form class="well form-horizontal" action="..\CSR\Home" method="post" id="contact_form" enctype="multipart/form-data">
+            <div class="contain-all" id="divMain">
+                <div class="container forms_fieldss form-field">
+                    @Html.Raw(Model.Screen_Style_Tx)
+                    <input type="hidden" value="@Session["USER_ID"]" name="u" id="u" />
+                    <input type="hidden" value="@Session["USER_ID_TX"]" name="userid_tx" id="userid_tx" />
+                    <input type="hidden" value="@Session["USER_TYPE_ID"]" name="user_type_id" id="user_type_id" />
+                    <input type="hidden" value="@ViewBag.MenuId" name="m" id="m" />
+                    <input type="hidden" value="@Model.Action_Tx" name="s" id="s" />
+                    <input type="hidden" value="@Model.ID" name="screenid" id="screenid" />
+                    <input type="hidden" value="1" name="FIN_YEAR_ID" id="FIN_YEAR_ID" />
+                    @Html.Raw(Model.Screen_Content_Tx)
+                </div>
+            </div>
+        </form>
+        @Html.Raw(Model.Screen_Script_Tx)        
+    }
+}
+
+
+<script type="text/javascript">
+    GetFinYear();
+    function GetFinYear() {
+        var condition = "SHOW_YEAR_YN-1";
+
+        $.ajax({
+            type: "POST",
+            url: "GetDropDownData?TableName=FINANCIAL_YEAR_T&condition=" + condition + "&schema=CSR",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+                var obj = jQuery.parseJSON(res);
+                if (obj.length > 0) {
+                    $("#FIN_YEAR_ID").val(obj[0].ID);
+                }
+            }
+        });
+    }    
+</script>

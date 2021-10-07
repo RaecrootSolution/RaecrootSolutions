@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_DelegateLayout.cshtml";
+}
+
+
+<!--New Index page-->
+<div class="contain-all">
+    <div class="container form-field">
+        <form class="form-horizontal" action=" " method="post">
+
+            <h1 class="text-center fontBold text-primary mb-30">
+                Upcoming Events Calendar <br>
+                <span class="small"> (National / Region / Chapter) </span>
+            </h1>
+
+            <div class="addTrainingStructure paymentStructure text-center" style="padding:8px 10px; margin-bottom:10px;">
+                <div class="row">
+
+                    <div class="col-xs-3 text-left mt-5">
+                        <span class="glyphicon glyphicon-menu-left small"> </span>
+                        <strong> <a id="1" onclick="click1()" style="color:#fff;"><label id="01">October</label></a> </strong>
+                    </div>
+                    <div class="col-xs-6" style="font-size:20px; font-weight:bold;">
+                        <a id="2" onclick="click2()" style="color:#fff;"><label id="02">November 2020</label></a> <span class="glyphicon glyphicon-menu-down small"> </span>
+                    </div>
+                    <div class="col-xs-3 text-right mt-5">
+                        <strong> <a id="3" onclick="click3()" style="color:#fff;"><label id="03">December</label></a> </strong>
+                        <span class="glyphicon glyphicon-menu-right small"> </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="EventDspl" class="table-responsive">
+            </div>
+
+
+
+
+
+            <!-- <div class="row mt-10 pb-30">
+                <div class="col-xs-6 col-md-2 mt-30">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='delegate_registration_details.html'"> Register </button>
+                </div>
+                <div class="col-xs-6 col-md-2 mt-30">
+                    <button type="button" class="btn btn-primary" onclick="history.back()"> Back </button>
+                </div>
+            </div> -->
+
+        </form>
+    </div>
+
+</div> <!-- /.container -->
+<!--End New page-->
+
+<script type="text/javascript">
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const d = new Date();
+    var curmnth = d.getMonth();
+    var CurrentMonth = monthNames[d.getMonth()];
+    var CurrentYear = (new Date).getFullYear();
+    $(document).ready(function () {
+        debugger
+        if (curmnth == 0) {
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[11]);
+            $("#03").text(monthNames[d.getMonth() + 1]);
+        }
+        else if (curmnth == 11) {
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[d.getMonth() - 1]);
+            $("#03").text(monthNames[0]);
+        }
+        else {
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[d.getMonth() - 1]);
+            $("#03").text(monthNames[d.getMonth() + 1]);
+        }
+        $("#EventDspl").empty();
+
+        var formdatatot = new FormData();
+        formdatatot.append("MNTH_NM", curmnth+1);
+        formdatatot.append("YEAR_NM", CurrentYear);
+        formdatatot.append("Comp_ID", 226);
+        formdatatot.append('ICSI_SCHEMA', 'RO');
+        $.ajax({
+            type: "POST",
+            url: "AjaxDataRO",
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formdatatot,
+            success: function (res) {
+                var obj = jQuery.parseJSON(res);
+                if (obj.length > 0) {
+                    var htmlstr = "";
+                    htmlstr += "<table class='table table-bordered table-hover'><thead><tr class='active'><th> DATE OF EVENT </th><th> EVENT DETAILS </th>"
+                    htmlstr += "<th> NUMBER OF DAYS </th><th> ACTION </th></tr></thead><tbody>"
+                    var origin = window.location.origin;
+                    for (var i = 0; i < obj.length; i++) {
+                        htmlstr += "<tr>";
+                        htmlstr += "<td>";
+                        htmlstr += "" + obj[i].EVENT_DT + " </td>"
+                        htmlstr += "<td> " + obj[i].EVENT_NAME_TX + " </td>"
+                        htmlstr += "<td> " + obj[i].DAY_NM + " </td>"
+                        htmlstr += "<td> <a class='btn btn-primary btn-xs' onclick='screenAction(488," + obj[i].ID +")'> View Details </a> </td>";
+                        htmlstr += "</tr>";
+                    }
+                    htmlstr += "</tbody></table>";
+                    $("#EventDspl").append(htmlstr);
+                }
+            }
+        });
+
+    });
+
+    function click1() {
+        debugger
+        curmnth = curmnth - 1;
+        CurrentMonth = monthNames[curmnth];
+        if (curmnth < 0) {
+            curmnth = 11;
+            CurrentYear = CurrentYear - 1;
+            CurrentMonth = monthNames[curmnth];
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[0]);
+        }
+        else if (curmnth == 0) {
+            CurrentMonth = monthNames[curmnth];
+            curmnth = 12;
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[1]);
+
+            curmnth = 0;
+
+        }
+        else if (curmnth == 11) {
+            CurrentMonth = monthNames[curmnth];
+            CurrentYear = CurrentYear - 1;
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[0]);
+
+        }
+        else {
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[curmnth + 1]);
+        }
+        $("#EventDspl").empty();
+
+        var formdatatot = new FormData();
+        formdatatot.append("MNTH_NM", curmnth+1);
+        formdatatot.append("YEAR_NM", CurrentYear);
+        formdatatot.append("Comp_ID", 226);
+        formdatatot.append('ICSI_SCHEMA', 'RO');
+        $.ajax({
+            type: "POST",
+            url: "AjaxDataRO",
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formdatatot,
+            success: function (res) {
+                debugger
+                var obj = jQuery.parseJSON(res);
+                if (obj.length > 0) {
+                    var htmlstr = "";
+                    htmlstr += "<table class='table table-bordered table-hover'><thead><tr class='active'><th> DATE OF EVENT </th><th> EVENT DETAILS </th>"
+                    htmlstr += "<th> NUMBER OF DAYS </th><th> ACTION </th></tr></thead><tbody>"
+                    var origin = window.location.origin;
+                    for (var i = 0; i < obj.length; i++) {
+                        htmlstr += "<tr>";
+                        htmlstr += "<td>";
+                        htmlstr += "" + obj[i].EVENT_DT + " </td>"
+                        htmlstr += "<td> " + obj[i].EVENT_NAME_TX + " </td>"
+                        htmlstr += "<td> " + obj[i].DAY_NM + " </td>"
+                        htmlstr += "<td> <a class='btn btn-primary btn-xs' onclick='screenAction(488," + obj[i].ID +")'> View Details </a> </td>";
+                        htmlstr += "</tr>";
+                    }
+                    htmlstr += "</tbody></table>";
+                    $("#EventDspl").append(htmlstr);
+                }
+            }
+        });
+    }
+
+    function click3() {
+        debugger
+        curmnth = curmnth + 1;
+        CurrentMonth = monthNames[curmnth];
+        if (curmnth == 12) {
+            curmnth = 0;
+            CurrentYear = CurrentYear + 1;
+            CurrentMonth = monthNames[curmnth];
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[11]);
+            $("#03").text(monthNames[curmnth + 1]);
+        }
+        else if (curmnth == 13) {
+            curmnth = 1;
+            CurrentMonth = monthNames[curmnth];
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[0]);
+            $("#03").text(monthNames[curmnth + 1]);
+        }
+        else if (curmnth == 11) {
+            CurrentMonth = monthNames[curmnth];
+
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[0]);
+
+        }
+        else {
+            $("#02").text(CurrentMonth + " " + CurrentYear);
+            $("#01").text(monthNames[curmnth - 1]);
+            $("#03").text(monthNames[curmnth + 1]);
+        }
+        $("#EventDspl").empty();
+
+        var formdatatot = new FormData();
+        formdatatot.append("MNTH_NM", curmnth+1);
+        formdatatot.append("YEAR_NM", CurrentYear);
+        formdatatot.append("Comp_ID", 226);
+        formdatatot.append('ICSI_SCHEMA', 'RO');
+        $.ajax({
+            type: "POST",
+            url: "AjaxDataRO",
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formdatatot,
+            success: function (res) {
+                var obj = jQuery.parseJSON(res);
+                if (obj.length > 0) {
+                    var htmlstr = "";
+                    htmlstr += "<table class='table table-bordered table-hover'><thead><tr class='active'><th> DATE OF EVENT </th><th> EVENT DETAILS </th>"
+                    htmlstr += "<th> NUMBER OF DAYS </th><th> ACTION </th></tr></thead><tbody>"
+                    var origin = window.location.origin;
+                    for (var i = 0; i < obj.length; i++) {
+                        htmlstr += "<tr>";
+                        htmlstr += "<td>";
+                        htmlstr += "" + obj[i].EVENT_DT + " </td>"
+                        htmlstr += "<td> " + obj[i].EVENT_NAME_TX + " </td>"
+                        htmlstr += "<td> " + obj[i].DAY_NM + " </td>"
+                        htmlstr += "<td> <a class='btn btn-primary btn-xs' onclick='screenAction(488," + obj[i].ID +")'> View Details </a> </td>";
+                        htmlstr += "</tr>";
+                    }
+                    htmlstr += "</tbody></table>";
+                    $("#EventDspl").append(htmlstr);
+                }
+            }
+        });
+    }
+</script>

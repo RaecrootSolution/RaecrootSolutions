@@ -1,0 +1,42 @@
+﻿@model ICSI_WebApp.Models.Screen_T
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (Model != null)
+    {
+        if (Model.resActionClass != null)
+        {
+            if (Model.resActionClass.StatCode != null && Model.resActionClass.StatCode.Equals("0"))
+            {
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "");
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "" + Model.resActionClass.StatMessage + "");
+            }
+            else
+            {
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "");
+                Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "" + Model.resActionClass.StatMessage + "");
+            }
+        }
+        else
+        {
+            Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#Message", "");
+            Model.Screen_Content_Tx = Model.Screen_Content_Tx.Replace("#ERRMessage", "");
+        }
+        <form class="well form-horizontal" action="..\Home\Home" method="post" id="contact_form" enctype="multipart/form-data">
+            <div class="contain-all">
+                <div class="container forms_fieldss form-field">
+                    @Html.Raw(Model.Screen_Style_Tx)
+                    <input type="hidden" value="@Session["USER_ID"]" name="u" id="u" />
+                    <input type="hidden" value="@Session["USER_ID_TX"]" name="userid_tx" id="userid_tx" />
+                    <input type="hidden" value="@ViewBag.MenuId" name="m" id="m" />
+                    <input type="hidden" value="@Model.Action_Tx" name="s" id="s" />
+                    <input type="hidden" value="@Model.ID" name="screenid" id="screenid" />
+                    @Html.Raw(Model.Screen_Content_Tx)
+                </div>
+            </div>
+        </form>
+        @Html.Raw(Model.Screen_Script_Tx)
+    }
+}

@@ -1,0 +1,45 @@
+﻿<div id="dvreceiptBody">
+
+    @Html.Raw(ViewBag.Html)
+</div>
+<input type="hidden" name="u" id="u" value="@ViewBag.userId" />
+<input type="hidden" name="uq" id="uq" value="@ViewBag.uniqueId" />
+<input type="hidden" name="si" id="si" value="@ViewBag.nxtScnId" />
+<input type="hidden" name="loginid" id="loginid" value="@ViewBag.UserName" />
+<div id="btnin" class="row">
+    <div class="col-md-7">
+        <button type="button" class="btn btn-primary AppliedSearchBtn" onclick="print();" style="margin-left:15px;">
+            <span class="glyphicon glyphicon-print"></span> Print
+        </button>
+        <button type="button" class="btn btn-primary AppliedSearchBtn" onclick="loadHome()"> Home</button>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#imgLogo").attr("src", "/Content/Images/logo_full_latest.png");
+    });
+    function loadHome() {
+        var frm = document.createElement('form');
+        frm.method = "post";
+        frm.action = "../Home/Home";
+        var u = document.getElementById('u').value;
+        var si = document.getElementById('si').value;
+        var uq = document.getElementById('uq').value;
+        if (si && si != "" && si != "0") {
+            frm.appendChild(createInputHidden('u', u));
+            frm.appendChild(createInputHidden('si', si));
+            if (uq && uq != "" && uq != "0")
+                frm.appendChild(createInputHidden('ui', uq));
+            frm.appendChild(createInputHidden('s', 'new'));
+        }
+        document.body.appendChild(frm);
+        frm.submit();
+    }
+
+    function print() {
+        var prtContent = document.getElementById("contact_form");
+        var WinPrint = window.open('', '_blank', 'width=screen.availWidth,height=screen.availHeight');
+        WinPrint.document.write('<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></head><body onload="window.print()">' + prtContent.innerHTML + '</body></html>');
+        WinPrint.document.close();
+    }
+</script>
