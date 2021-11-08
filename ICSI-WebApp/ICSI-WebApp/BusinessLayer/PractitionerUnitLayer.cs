@@ -18,6 +18,159 @@ namespace ICSI_WebApp.BusinessLayer
 {
     public class PractitionerUnitLayer
     {
+        public ActionClass beforeAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+        public ActionClass afterAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm)
+        {
+            ActionClass act = new ActionClass();
+            string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
+            string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
+            string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
+            string forwardTo = frm["FORWARD_TO"].ToString();
+            string internalRemarks = frm["INTERNAL_REMARKS"].ToString();
+            string remarksForMember = frm["REMARKS_FOR_MEMBER"].ToString();
+            return act;
+        }
+
+        public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            DataTable dt = new DataTable();
+            string UserName = string.Empty;
+            if (HttpContext.Current.Session["LOGIN_ID"] != null)
+            {
+                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
+            }
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+
+        /// <summary>
+        /// Created  by Soni Saroj
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public ActionClass afterCSBFRegistration(int WEB_APP_ID, FormCollection frm)
+        {
+            Dictionary<string, object> dataCsbfRegistration = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstCsbfData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstCsbfData1 = new List<Dictionary<string, object>>();
+
+            List<Dictionary<string, object>> lstData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+            ActionClass actionClass = new ActionClass();
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            int ID = 0;
+
+            dataCsbfRegistration.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
+            dataCsbfRegistration.Add("DATE_OF_ENTRY_TX", frm["DATE_OF_ENTRY"].ToString());
+            dataCsbfRegistration.Add("GOOD_HEALTH_YN", frm["APPROVE_NM"].ToString() == "1" ? true : false);
+            dataCsbfRegistration.Add("REF_MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+            dataCsbfRegistration.Add("USER_ID_TX", Convert.ToInt32(frm["u"]));
+            dataCsbfRegistration.Add("STATUS_TX", "Pending");
+            dataCsbfRegistration.Add("SCHEME_ID_NM", frm["SCHEME_ID_NM"].ToString());
+            lstCsbfData1.Add(dataCsbfRegistration);
+            lstCsbfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REGISTARTION_T", 0, 0, lstCsbfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfData));
+            if (Convert.ToInt32(actionClass.StatCode) >= 0)
+            {
+                JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                DataTable dtb = new DataTable();
+                if (userdata.HasValues)
+                {
+                    foreach (JProperty val in userdata.Properties())
+                    {
+                        if (val.Name == "CSBF_REGISTARTION_T")
+                        {
+                            dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                            ID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                        }
+                    }
+                }
+            }
+            dataCsbfRegistration.Clear();
+            lstCsbfData1.Clear();
+            lstCsbfData.Clear();
+
+            Dictionary<string, object> dataNominations = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
+            dataNominations.Add("REF_ID", ID);
+            dataNominations.Add("NOMINEE_NAME_TX", frm["NOMINEE_NAME_TX"].ToString());
+            dataNominations.Add("NOMINEE_AGE_TX", frm["NOMINEE_AGE_TX"].ToString());
+            dataNominations.Add("NOMINEE_RELATION_TO_SUBSCRIBER_TX", frm["NOMINEE_RELATION_TO_SUBSCRIBER_TX"].ToString());
+            dataNominations.Add("NOMINEE_EMAIL_TX", frm["NOMINEE_EMAIL_TX"].ToString());
+            dataNominations.Add("NOMINEE_PHONE_TX", frm["NOMINEE_PHONE_TX"].ToString());
+            dataNominations.Add("NOMINEE_ADDRESS_TX", frm["NOMINEE_ADDRESS_TX"].ToString());
+            lstNominationsfData1.Add(dataNominations);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_NOMINEE_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+            dataNominations.Clear();
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+
+
+            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
+            dataRequestHistory.Add("REF_ID", ID);
+            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
+            dataRequestHistory.Add("REQUEST_TYPE", "Medical Reimbursement");
+            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
+            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
+            lstRequestHistoryData1.Add(dataRequestHistory);
+            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
+            dataRequestHistory.Clear();
+            lstRequestHistoryData.Clear();
+            lstRequestHistoryData1.Clear();
+
+
+
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+            Dictionary<string, object> d;
+            if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_1"])))
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_" + i + ""])))
+                    {
+                        string Name = Convert.ToString(frm["NAME_TX_" + i + ""]);
+                        string Age = Convert.ToString(frm["AGE_TX_" + i + ""]);
+
+                        string RELATION_TO_SUB = Convert.ToString(frm["RELATION_TO_SUB_TX_" + i + ""]);
+                        string EMAIL_ID = Convert.ToString(frm["EMAIL_TX_" + i + ""]);
+                        string PHONE_NUMBER = Convert.ToString(frm["PHONE_TX_" + i + ""]);
+                        string ADDRESS = Convert.ToString(frm[" " + i + ""]);
+
+                        data.Add("REF_ID", ID);
+                        data.Add("NAME_TX", Name);
+                        data.Add("AGE_TX", Age);
+                        data.Add("RELATION_TO_SUBSCRIBER_TX", RELATION_TO_SUB);
+                        data.Add("EMAIL_TX", EMAIL_ID);
+                        data.Add("PHONE_TX", PHONE_NUMBER);
+                        data.Add("ADDRESS_TX", ADDRESS);
+
+                        lstData1.Add(data);
+                        lstData.Add(Util.UtilService.addSubParameter("Training", "CSBF_DEPENDANTS_RELATION_T ", 0, 0, lstData1, conditions));
+                        actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
+                        data.Clear();
+                        lstData.Clear();
+                        lstData1.Clear();
+                    }
+                }
+            }
+
+            frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
+            return actionClass;
+        }
 
         public ActionClass beforePeerRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
