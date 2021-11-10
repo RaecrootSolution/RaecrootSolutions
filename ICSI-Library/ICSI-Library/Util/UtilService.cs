@@ -1648,7 +1648,7 @@ namespace ICSI_WebApp.Util
                             {
                                 List<Screen_Comp_T> l = new List<Screen_Comp_T>();
                                 l.Add(s.ScreenCompList[i]);
-                                sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-4 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-8  '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
+                                sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-5 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-7  '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
                                 if (s.ScreenCompList[i].Comp_Type_Nm == (Int32)HTMLTag.DROPDOWN_WITH_QUERY)
                                     sb.Append(" selectoptionBg");
                                 if (s.ScreenCompList[i].compNameTx != null && !s.ScreenCompList[i].compNameTx.StartsWith("MANSCR_"))
@@ -1675,7 +1675,7 @@ namespace ICSI_WebApp.Util
                             {
                                 List<Screen_Comp_T> l = new List<Screen_Comp_T>();
                                 l.Add(s.ScreenCompList[i]);
-                                sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-4 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-8  '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
+                                sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-5 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-7 '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
                                 if (s.ScreenCompList[i].Comp_Type_Nm == (Int32)HTMLTag.DROPDOWN_WITH_QUERY)
                                     sb.Append(" selectoptionBg");
                                 if (s.ScreenCompList[i].compNameTx != null && !s.ScreenCompList[i].compNameTx.StartsWith("MANSCR_"))
@@ -1703,7 +1703,7 @@ namespace ICSI_WebApp.Util
                         {
                             List<Screen_Comp_T> l = new List<Screen_Comp_T>();
                             l.Add(s.ScreenCompList[i]);
-                            sb.Append("<div class='col-md-6'><div class='form-inline'><label class='col-md-4 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-8  '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
+                            sb.Append("<div class='col-md-6'><div class='form-inline'><label class='col-md-5 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>").Append(s.ScreenCompList[i].compTextTx).Append("</label><div class='col-md-7  '><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub");
                             if (s.ScreenCompList[i].Comp_Type_Nm == (Int32)HTMLTag.DROPDOWN_WITH_QUERY)
                                 sb.Append(" selectoptionBg");
                             sb.Append(" '><input type='hidden' name='COND_").Append(s.ScreenCompList[i].compNameTx).Append("' value='").Append(s.ScreenCompList[i].where).Append("' >");
@@ -5784,8 +5784,8 @@ namespace ICSI_WebApp.Util
                     if (rptComp.Comp_Type_Nm == (Int32)HTMLTag.DROPDOWN_WITH_QUERY || rptComp.Comp_Type_Nm == (Int32)HTMLTag.LIST)
                     {
                         sb.Append("<input type='hidden' name='scmpid' value='").Append(rptComp.Id).Append("'>");
-                        sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-4 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>")
-                          .Append(rptComp.compTextTx).Append("</label><div class='col-md-8'><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub")
+                        sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-5 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>")
+                          .Append(rptComp.compTextTx).Append("</label><div class='col-md-7'><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub")
                           .Append(" selectoptionBg")
                           .Append(" '><input type='hidden' name='COND_").Append(rptComp.compNameTx).Append("' value='").Append(rptComp.where).Append("' >");
                         rptComp.compNameTx = "SCRH_" + rptComp.compNameTx;
@@ -5800,8 +5800,8 @@ namespace ICSI_WebApp.Util
                     {
                         sb.Append("<input type='hidden' name='rept_id' value='").Append(rptComp.reportId).Append("'>");
                         sb.Append("<input type='hidden' name='scmpid' value='").Append(rptComp.Id).Append("'>");
-                        sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-4 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>")
-                          .Append(rptComp.compTextTx).Append("</label><div class='col-md-8 pt-10'><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub")
+                        sb.Append("<div class='col-md-6' style='margin - top: 7px;'><div class='form-inline'><label class='col-md-5 control-label TrainingSchdlLabelTxt FormInputsLabel FacltyNamTxt FacltyNamTxt'>")
+                          .Append(rptComp.compTextTx).Append("</label><div class='col-md-7 pt-10'><div class='input-group col-md-7 col-xs-11 col-xs-11 IpadInput mobilInput3 panelInputsSub")
                           .Append(" '><input type='hidden' name='COND_").Append(rptComp.compNameTx).Append("' value='").Append(rptComp.where).Append("' >");
                         rptComp.compNameTx = "SCRH_" + rptComp.compNameTx;
                         sb.Append(rptComp.compContentTx);
