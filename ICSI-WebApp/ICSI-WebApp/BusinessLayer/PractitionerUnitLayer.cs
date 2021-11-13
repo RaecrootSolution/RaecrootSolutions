@@ -24,14 +24,38 @@ namespace ICSI_WebApp.BusinessLayer
         }
         public ActionClass afterAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm)
         {
-            ActionClass act = new ActionClass();
+            ActionClass actionClass = new ActionClass();
             string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
             string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
             string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
             string forwardTo = frm["FORWARD_TO"].ToString();
             string internalRemarks = frm["INTERNAL_REMARKS"].ToString();
             string remarksForMember = frm["REMARKS_FOR_MEMBER"].ToString();
-            return act;
+
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+
+            Dictionary<string, object> dataNominations = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
+            dataNominations.Add("LIFE_MEMBERSHIP_NUMBER_TX", lifeTimeMembershipNumber);
+            dataNominations.Add("AMOUNT_OF_MEDICAL_REIMBURSEMENT_TX", amount);
+            dataNominations.Add("ACTION_TX", string.Empty);
+            dataNominations.Add("FORWARD_TO_TX", forwardTo);
+            dataNominations.Add("INTERNAL_REMARKS_TX", internalRemarks);
+            dataNominations.Add("REMARKS_FOR_MEMBER_TX", remarksForMember);
+            lstNominationsfData1.Add(dataNominations);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_REIMBURSEMENT_APPROVAL_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+            dataNominations.Clear();
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+
+            return actionClass;
         }
 
         public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
@@ -138,7 +162,7 @@ namespace ICSI_WebApp.BusinessLayer
             Dictionary<string, object> d;
             if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_1"])))
             {
-                for (int i = 1; i <= 5; i++)
+                for (int i = 1; i <= Convert.ToInt32(frm["TOTAL_DEPEDENT"]); i++)
                 {
                     if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_" + i + ""])))
                     {
@@ -148,7 +172,7 @@ namespace ICSI_WebApp.BusinessLayer
                         string RELATION_TO_SUB = Convert.ToString(frm["RELATION_TO_SUB_TX_" + i + ""]);
                         string EMAIL_ID = Convert.ToString(frm["EMAIL_TX_" + i + ""]);
                         string PHONE_NUMBER = Convert.ToString(frm["PHONE_TX_" + i + ""]);
-                        string ADDRESS = Convert.ToString(frm[" " + i + ""]);
+                        string ADDRESS = Convert.ToString(frm["ADDRESS_TX_" + i + ""]);
 
                         data.Add("REF_ID", ID);
                         data.Add("NAME_TX", Name);
