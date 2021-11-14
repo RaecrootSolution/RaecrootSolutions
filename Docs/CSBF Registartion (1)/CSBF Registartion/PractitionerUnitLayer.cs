@@ -1,5 +1,4 @@
-﻿using ICSI_Library.Membership;
-using ICSI_WebApp.Models;
+﻿using ICSI_WebApp.Models;
 using ICSI_WebApp.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,309 +17,6 @@ namespace ICSI_WebApp.BusinessLayer
 {
     public class PractitionerUnitLayer
     {
-        public ActionClass beforeAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm, Screen_T screen)
-        {
-            return UtilService.beforeLoad(WEB_APP_ID, frm);
-        }
-        public ActionClass afterAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm)
-        {
-            ActionClass actionClass = new ActionClass();
-            string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
-            string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
-            string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
-            string forwardTo = frm["FORWARD_TO"].ToString();
-            string internalRemarks = frm["INTERNAL_REMARKS"].ToString();
-            string remarksForMember = frm["REMARKS_FOR_MEMBER"].ToString();
-
-            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
-            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
-            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
-            AppUrl = AppUrl + "/AddUpdate";
-            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
-            Dictionary<string, object> conditions = new Dictionary<string, object>();
-
-            Dictionary<string, object> dataNominations = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
-            dataNominations.Add("LIFE_MEMBERSHIP_NUMBER_TX", lifeTimeMembershipNumber);
-            dataNominations.Add("AMOUNT_OF_MEDICAL_REIMBURSEMENT_TX", amount);
-            dataNominations.Add("ACTION_TX", string.Empty);
-            dataNominations.Add("FORWARD_TO_TX", forwardTo);
-            dataNominations.Add("INTERNAL_REMARKS_TX", internalRemarks);
-            dataNominations.Add("REMARKS_FOR_MEMBER_TX", remarksForMember);
-            lstNominationsfData1.Add(dataNominations);
-            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_REIMBURSEMENT_APPROVAL_T", 0, 0, lstNominationsfData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-            dataNominations.Clear();
-            lstNominationsfData.Clear();
-            lstNominationsfData1.Clear();
-
-            return actionClass;
-        }
-
-        public ActionClass beforeCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
-        {
-            DataTable dt = new DataTable();
-            string UserName = string.Empty;
-            if (HttpContext.Current.Session["LOGIN_ID"] != null)
-            {
-                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
-            }
-            return UtilService.beforeLoad(WEB_APP_ID, frm);
-        }
-        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm)
-        {
-            Dictionary<string, object> eduAllowanceEntity = new Dictionary<string, object>();
-            Dictionary<string, object> bankEntity = new Dictionary<string, object>();
-            Dictionary<string, object> child1Entity = new Dictionary<string, object>();
-            Dictionary<string, object> child2Entity = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
-            int eduAllowanceID = 0;
-
-            Dictionary<string, object> conditions = new Dictionary<string, object>();
-            ActionClass actionClass = new ActionClass();
-            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
-            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
-            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
-            AppUrl = AppUrl + "/AddUpdate";
-            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
-            int bankRefID = 0;
-
-            bankEntity.Add("BANK_NAME_TX", frm["BANK_NAME_TX"].ToString());
-            bankEntity.Add("ACCOUNT_NUMBER_TX ", frm["ACCOUNT_NUMBER_TX"].ToString());
-            bankEntity.Add("ACCOUNT_HOLDER_NAME_TX ", frm["ACCOUNT_HOLDER_NAME_TX"].ToString());
-            bankEntity.Add("IFSC_CODE_TX ", frm["IFSC_CODE_TX"].ToString());
-            bankEntity.Add("APPLICANT_REMARKS_TX", frm["APPLICANT_REMARKS_TX"].ToString());
-
-            if (bankEntity["BANK_NAME_TX"].ToString().Trim().Length > 0)
-            {
-                lstNominationsfData1.Add(bankEntity);
-                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_BANK_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
-                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-                if (Convert.ToInt32(actionClass.StatCode) >= 0)
-                {
-                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-                    DataTable dtb = new DataTable();
-                    if (userdata.HasValues)
-                    {
-                        foreach (JProperty val in userdata.Properties())
-                        {
-                            if (val.Name == "CSBF_BANK_DETAILS_T")
-                            {
-                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-                                bankRefID = Convert.ToInt32(dtb.Rows[0]["ID"]);
-                            }
-                        }
-                    }
-                }
-                lstNominationsfData.Clear();
-                lstNominationsfData1.Clear();
-            }
-            if (frm["REG_ID"].ToString().Trim().Length > 0)
-            {
-                eduAllowanceEntity.Add("REF_ID", frm["REG_ID"].ToString());
-                eduAllowanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
-                eduAllowanceEntity.Add("REF_NUMBER_TX", "0");
-                eduAllowanceEntity.Add("BANK_REF_ID", bankRefID);
-                lstNominationsfData1.Add(eduAllowanceEntity);
-
-                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
-                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-                if (Convert.ToInt32(actionClass.StatCode) >= 0)
-                {
-                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-                    DataTable dtb = new DataTable();
-                    if (userdata.HasValues)
-                    {
-                        foreach (JProperty val in userdata.Properties())
-                        {
-                            if (val.Name == "CSBF_EDU_ALLOWANCE_REQUEST_T")
-                            {
-                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-                                eduAllowanceID = Convert.ToInt32(dtb.Rows[0]["ID"]);
-                            }
-                        }
-                    }
-                    //lstNominationsfData1[0]["REF_NUMBER_TX"] = "EA" + eduAllowanceID.ToString("00000###");
-                    //lstNominationsfData.Clear();
-                    //conditions.Add("ID", eduAllowanceID);
-                    //lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
-                    //actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
-                    ////actionClass = UtilService.insertOrUpdate("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", lstNominationsfData1);
-                }
-
-
-                lstNominationsfData.Clear();
-                lstNominationsfData1.Clear();
-            }
-            child1Entity.Add("NAME_TX", frm["CHILD1_NAME_TX"].ToString());
-            child1Entity.Add("REF_ID", eduAllowanceID);
-            child1Entity.Add("AGE_TX", frm["CHILD1_AGE_TX"].ToString());
-            child1Entity.Add("RELATION_TO_SUBSCRIBER_TX", frm["CHILD1_RELATION_TO_SUBSCRIBER_TX"].ToString());
-            child1Entity.Add("PHONE_TX", frm["CHILD1_PHONE_TX"].ToString());
-            child1Entity.Add("EMAIL_TX", frm["CHILD1_EMAIL_TX"].ToString());
-            child1Entity.Add("ADDRESS_TX", frm["CHILD1_ADDRESS_TX"].ToString());
-
-            child2Entity.Add("REF_ID", eduAllowanceID);
-            child2Entity.Add("NAME_TX", frm["NAME_TX"].ToString());
-            child2Entity.Add("AGE_TX", frm["AGE_TX"].ToString());
-            child2Entity.Add("RELATION_TO_SUBSCRIBER_TX", frm["RELATION_TO_SUBSCRIBER_TX"].ToString());
-            child2Entity.Add("PHONE_TX", frm["PHONE_TX"].ToString());
-            child2Entity.Add("EMAIL_TX", frm["EMAIL_TX"].ToString());
-            child2Entity.Add("ADDRESS_TX", frm["ADDRESS_TX"].ToString());
-            
-            lstNominationsfData1.Add(child1Entity);
-            if(child2Entity["NAME_TX"].ToString().Trim().Length > 0)
-                    lstNominationsfData1.Add(child2Entity);
-            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_CHILD_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-            
-            lstNominationsfData.Clear();
-            lstNominationsfData1.Clear();
-            
-            //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
-            
-            return actionClass;
-        }
-
-        public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
-        {
-            DataTable dt = new DataTable();
-            string UserName = string.Empty;
-            if (HttpContext.Current.Session["LOGIN_ID"] != null)
-            {
-                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
-            }
-            return UtilService.beforeLoad(WEB_APP_ID, frm);
-        }
-
-        /// <summary>
-        /// Created  by Soni Saroj
-        /// </summary>
-        /// <param name=""></param>
-        /// <param name=""></param>
-        /// <returns></returns>
-        public ActionClass afterCSBFRegistration(int WEB_APP_ID, FormCollection frm)
-        {
-            Dictionary<string, object> dataCsbfRegistration = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstCsbfData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstCsbfData1 = new List<Dictionary<string, object>>();
-
-            List<Dictionary<string, object>> lstData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            Dictionary<string, object> conditions = new Dictionary<string, object>();
-            ActionClass actionClass = new ActionClass();
-            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
-            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
-            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
-            AppUrl = AppUrl + "/AddUpdate";
-            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
-            int ID = 0;
-
-            dataCsbfRegistration.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
-            dataCsbfRegistration.Add("DATE_OF_ENTRY_TX", frm["DATE_OF_ENTRY"].ToString());
-            dataCsbfRegistration.Add("GOOD_HEALTH_YN", frm["APPROVE_NM"].ToString() == "1" ? true : false);
-            dataCsbfRegistration.Add("REF_MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
-            dataCsbfRegistration.Add("USER_ID_TX", Convert.ToInt32(frm["u"]));
-            dataCsbfRegistration.Add("STATUS_TX", "Pending");
-            dataCsbfRegistration.Add("SCHEME_ID_NM", frm["SCHEME_ID_NM"].ToString());
-            lstCsbfData1.Add(dataCsbfRegistration);
-            lstCsbfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REGISTARTION_T", 0, 0, lstCsbfData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfData));
-            if (Convert.ToInt32(actionClass.StatCode) >= 0)
-            {
-                JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-                DataTable dtb = new DataTable();
-                if (userdata.HasValues)
-                {
-                    foreach (JProperty val in userdata.Properties())
-                    {
-                        if (val.Name == "CSBF_REGISTARTION_T")
-                        {
-                            dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-                            ID = Convert.ToInt32(dtb.Rows[0]["ID"]);
-                        }
-                    }
-                }
-            }
-            dataCsbfRegistration.Clear();
-            lstCsbfData1.Clear();
-            lstCsbfData.Clear();
-
-            Dictionary<string, object> dataNominations = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
-            dataNominations.Add("REF_ID", ID);
-            dataNominations.Add("NOMINEE_NAME_TX", frm["NOMINEE_NAME_TX"].ToString());
-            dataNominations.Add("NOMINEE_AGE_TX", frm["NOMINEE_AGE_TX"].ToString());
-            dataNominations.Add("NOMINEE_RELATION_TO_SUBSCRIBER_TX", frm["NOMINEE_RELATION_TO_SUBSCRIBER_TX"].ToString());
-            dataNominations.Add("NOMINEE_EMAIL_TX", frm["NOMINEE_EMAIL_TX"].ToString());
-            dataNominations.Add("NOMINEE_PHONE_TX", frm["NOMINEE_PHONE_TX"].ToString());
-            dataNominations.Add("NOMINEE_ADDRESS_TX", frm["NOMINEE_ADDRESS_TX"].ToString());
-            lstNominationsfData1.Add(dataNominations);
-            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_NOMINEE_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-            dataNominations.Clear();
-            lstNominationsfData.Clear();
-            lstNominationsfData1.Clear();
-
-
-            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
-            dataRequestHistory.Add("REF_ID", ID);
-            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
-            dataRequestHistory.Add("REQUEST_TYPE", "Medical Reimbursement");
-            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
-            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
-            lstRequestHistoryData1.Add(dataRequestHistory);
-            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
-            dataRequestHistory.Clear();
-            lstRequestHistoryData.Clear();
-            lstRequestHistoryData1.Clear();
-
-
-
-            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            Dictionary<string, object> d;
-            if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_1"])))
-            {
-                for (int i = 1; i <= Convert.ToInt32(frm["TOTAL_DEPEDENT"]); i++)
-                {
-                    if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_" + i + ""])))
-                    {
-                        string Name = Convert.ToString(frm["NAME_TX_" + i + ""]);
-                        string Age = Convert.ToString(frm["AGE_TX_" + i + ""]);
-
-                        string RELATION_TO_SUB = Convert.ToString(frm["RELATION_TO_SUB_TX_" + i + ""]);
-                        string EMAIL_ID = Convert.ToString(frm["EMAIL_TX_" + i + ""]);
-                        string PHONE_NUMBER = Convert.ToString(frm["PHONE_TX_" + i + ""]);
-                        string ADDRESS = Convert.ToString(frm["ADDRESS_TX_" + i + ""]);
-
-                        data.Add("REF_ID", ID);
-                        data.Add("NAME_TX", Name);
-                        data.Add("AGE_TX", Age);
-                        data.Add("RELATION_TO_SUBSCRIBER_TX", RELATION_TO_SUB);
-                        data.Add("EMAIL_TX", EMAIL_ID);
-                        data.Add("PHONE_TX", PHONE_NUMBER);
-                        data.Add("ADDRESS_TX", ADDRESS);
-
-                        lstData1.Add(data);
-                        lstData.Add(Util.UtilService.addSubParameter("Training", "CSBF_DEPENDANTS_RELATION_T ", 0, 0, lstData1, conditions));
-                        actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
-                        data.Clear();
-                        lstData.Clear();
-                        lstData1.Clear();
-                    }
-                }
-            }
-
-            frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
-            return actionClass;
-        }
 
         public ActionClass beforePeerRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
@@ -396,6 +92,108 @@ namespace ICSI_WebApp.BusinessLayer
 
 
 
+        public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            DataTable dt = new DataTable();
+            string UserName = string.Empty;
+            if (HttpContext.Current.Session["LOGIN_ID"] != null)
+            {
+                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
+            }
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+
+        /// <summary>
+        /// Created  by Soni Saroj
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public ActionClass afterCSBFRegistration(int WEB_APP_ID, FormCollection frm)
+        {
+            List<Dictionary<string, object>> lstData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+            ActionClass actionClass = new ActionClass();
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            int ID = 0;
+            actionClass = afterSubmit(WEB_APP_ID, frm);
+            if (Convert.ToInt32(actionClass.StatCode) >= 0)
+            {
+                JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                DataTable dtb = new DataTable();
+                if (userdata.HasValues)
+                {
+                    foreach (JProperty val in userdata.Properties())
+                    {
+                        if (val.Name == screen.Table_Name_Tx)
+                        {
+                            dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                            ID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                        }
+
+                    }
+                }
+            }
+            if (frm["hdnName"] != null && frm["hdnAge"] != string.Empty && frm["hdnRelation"] != null &&
+                frm["hdnEmail"] != null && frm["hdnPhone"] != null && frm["hdnAddress"] != null)
+            {
+                string strName = frm["hdnName"].ToString();
+                string strAge = frm["hdnAge"].ToString();
+                string strRelation = frm["hdnRelation"].ToString();
+                string strEmail = frm["hdnEmail"].ToString();
+                string strPhone = frm["hdnPhone"].ToString();
+                string strAddress = frm["hdnAddress"].ToString();
+                var Name = (strName ?? string.Empty).Split(',');
+                var Age = (strAge ?? string.Empty).Split(',');
+                var Relation = (strRelation ?? string.Empty).Split(',');
+                var Email = (strEmail ?? string.Empty).Split(',');
+                var Phone = (strPhone ?? string.Empty).Split(',');
+                var Address = (strAddress ?? string.Empty).Split(',');
+                for (int i = 0; i < Name.Length; i++)
+                {
+                    if (Name[i].ToString() != string.Empty)
+                    {
+                        //data.Add("PU_ID", ID);
+                        data.Add("NAME_TX", Name[i].ToString());
+                        data.Add("AGE_TX", Age[i].ToString());
+                        data.Add("RELATION_TO_SUBSCRIBER_TX", Relation[i].ToString());
+                        data.Add("EMAIL_TX", Email[i].ToString());
+                        data.Add("PHONE_TX", Phone[i].ToString());
+                        data.Add("ADDRESS_TX", Address[i].ToString());
+
+                        HttpPostedFile himageFileName = HttpContext.Current.Request.Files[0] as HttpPostedFile;
+                        HttpPostedFile hSignatureFileName = HttpContext.Current.Request.Files[1] as HttpPostedFile;
+                        if (himageFileName != null && !string.IsNullOrEmpty(himageFileName.FileName))
+                        {
+                            string FolderNameImage  = "UploadImage " + "\\";
+                            string _pathImage = Util.UtilService.getDocumentPath(FolderNameImage);
+                            string _FullPathImage = _pathImage + "\\" + Convert.ToString(himageFileName.FileName);
+                            data.Add("IMAGE_FILE_NAME_TX", _FullPathImage);
+                        }
+                        if (hSignatureFileName != null && !string.IsNullOrEmpty(hSignatureFileName.FileName))
+                        {
+                            string FolderNameSignature = "UploadImage " + "\\";
+                            string _pathSignature = Util.UtilService.getDocumentPath(FolderNameSignature);
+                            string _FullPathSignature = _pathSignature + "\\" + Convert.ToString(hSignatureFileName.FileName);
+                            data.Add("SIGNATURE_FILE_NAME_TX", _FullPathSignature);
+                        }
+                        lstData1.Add(data);
+                        lstData.Add(Util.UtilService.addSubParameter("Training", "CSBF_DEPENDANTS_RELATION_T ", 0, 0, lstData1, conditions));
+                        actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
+                        data.Clear();
+                        lstData.Clear();
+                        lstData1.Clear();
+                    }
+                }
+            }
+            return actionClass;
+        }
 
         public ActionClass beforePUQuestionnaire(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
@@ -405,16 +203,6 @@ namespace ICSI_WebApp.BusinessLayer
             {
                 UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
             }
-
-            Dictionary<string, object> conds = new Dictionary<string, object>();
-            conds.Add("ACTIVE_YN", 1);
-
-            DataTable dtServices = Util.UtilService.getData("Membership", "PU_SERVICES", conds, null, 0, 100);
-
-            if (dtServices != null && dtServices.Rows != null && dtServices.Rows.Count > 0)
-                screen.Screen_Content_Tx = screen.Screen_Content_Tx.Replace("@ServiceCount", Convert.ToString(dtServices.Rows.Count));
-            else
-                screen.Screen_Content_Tx = screen.Screen_Content_Tx.Replace("@ServiceCount", string.Empty);
             return UtilService.beforeLoad(WEB_APP_ID, frm);
         }
 
@@ -427,54 +215,24 @@ namespace ICSI_WebApp.BusinessLayer
             AppUrl = AppUrl + "/AddUpdate";
             Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
 
+
+
             try
-            {                
-                frm["s"] = "update";                
+            {
+                //if (HttpContext.Current.Session["PuId"] != null && HttpContext.Current.Session["PuId"].ToString() != string.Empty)
+                //{
+                //    frm["ui"] = (HttpContext.Current.Session["PuId"].ToString());
+                //    frm["ID"] = (HttpContext.Current.Session["PuId"].ToString());                   
+                frm["s"] = "update";
+                //    frm["UPD_TX"] = System.DateTime.Now.ToString();
+                //}
                 frm["APPLICATION_STATUS_TX"] = "Allocated";
-
-
-                Dictionary<string, object> conditions = new Dictionary<string, object>();
-                conditions.Add("USER_ID", HttpContext.Current.Session["USER_ID"]);
-                DataTable dt = UtilService.getData("Membership","PEER_REGISTRATION_T", conditions, null, 0, 1);
-                string strMemNo = string.Empty;
-                if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
-                {
-                    if (dt.Rows[0]["MEMBER_DOB"] != DBNull.Value) frm["MEMBER_DOB_TX"] = Convert.ToString(dt.Rows[0]["MEMBER_DOB"]);
-                    else frm["MEMBER_DOB_TX"] = string.Empty;
-
-                    if (dt.Rows[0]["MEMBER_NO_TX"] != DBNull.Value)
-                    {
-                        strMemNo = Convert.ToString(dt.Rows[0]["MEMBER_NO_TX"]);
-                        if(strMemNo.Substring(0,1) == "F") frm["MEMBER_TYPE_TX"] = "FCS";
-                        else frm["MEMBER_TYPE_TX"] = "ACS";
-
-                        frm["MEMBER_NUM_TX"] = strMemNo.Substring(1,strMemNo.Length-1);
-                    }
-                    else frm["MEMBER_NO_TX"] = string.Empty;
-                }
-                
-                MembershipDetails ObjMemberShip = new MembershipDetails();
-                if (!string.IsNullOrEmpty(strMemNo))
-                {
-                    ICSIDataMembers dataDtls = ObjMemberShip.GetMembershipData(strMemNo);
-                    if (dataDtls != null)
-                    {
-                        frm["COP_NM"] = dataDtls.CP_NO;
-                        if(!string.IsNullOrEmpty(dataDtls.CP_NO) && dataDtls.CP_NO != "0" )
-                            frm["COP_STATUS_TX"] = "Active";
-                    }
-                    else
-                    {
-                        frm["COP_NM"] = string.Empty;
-                        frm["COP_STATUS_TX"] = string.Empty;
-                    }
-                }
-                else
-                {
-                    frm["COP_NM"] = string.Empty;
-                    frm["COP_STATUS_TX"] = string.Empty;
-                }
-                frm["BLOCK_YR_TX"] = string.Empty;
+                frm["MEMBER_TYPE_TX"] = "ACS";
+                frm["MEMBER_NUM_TX"] = "123456";
+                frm["BLOCK_YR_TX"] = "2015";
+                frm["COP_STATUS_TX"] = "Active";
+                frm["MEMBER_DOB_TX"] = "21/11/1987";
+                frm["COP_NM"] = "123456789";
                 actionClass = afterSubmit(WEB_APP_ID, frm);
                 int ID = 0;
                 if (Convert.ToInt32(actionClass.StatCode) >= 0)
@@ -499,17 +257,16 @@ namespace ICSI_WebApp.BusinessLayer
                     HttpContext.Current.Session["PuId"] = ID;
                     List<Dictionary<string, object>> lstData = new List<Dictionary<string, object>>();
                     List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
-                    conditions = new Dictionary<string, object>();
+                    Dictionary<string, object> conditions = new Dictionary<string, object>();
                     Dictionary<string, object> data = new Dictionary<string, object>();
 
                     string quest = string.Empty;
                     //Insert records in PU_Ques_Ans table
                     data.Clear();
                     data.Add("PU_ID", ID);
-                    int serviceQuesCount = Convert.ToInt32(frm["hdnServiceQuestCount"]);
                     for (int j = 1; j <= 2; j++)
                     {
-                        for (int i = 1; i <= serviceQuesCount; i++)
+                        for (int i = 1; i <= 12; i++)
                         {
                             quest = "FY" + j + "_Q" + i + "_TX";
                             data.Add(quest, frm[quest]);
@@ -570,8 +327,7 @@ namespace ICSI_WebApp.BusinessLayer
                     data.Add("PU_ID", ID);
                     data.Add("CITY_TX", frm["RES_CITY_TX"]);
                     data.Add("STATE_TX", frm["RES_STATE_TX"]);
-                    if (!string.IsNullOrEmpty(frm["RES_PIN_NM"])) data.Add("PIN_NM", Convert.ToInt32(frm["RES_PIN_NM"]));
-                    else data.Add("PIN_NM", string.Empty);
+                    data.Add("PIN_NM", Convert.ToInt32(frm["RES_PIN_NM"]));
                     data.Add("IS_RESIDENCE_YN", 1);
                     HttpContext.Current.Session["PU_PROF_CITY"] = frm["CITY_TX"];
                     HttpContext.Current.Session["PU_RES_CITY"] = frm["RES_CITY_TX"];
@@ -589,11 +345,9 @@ namespace ICSI_WebApp.BusinessLayer
                         string SL_NO = frm["hSL_NO"];
                         string NAME_ADDRESS_TX = frm["hNAME_ADDRESS_TX"].ToString();
                         string REVIWED_YEAR = frm["hREVIWED_YEAR"].ToString();
-                        string UP_PARTNER_NAME = frm["hPARTNER_NAME_TX"].ToString();
                         var SL = (SL_NO ?? string.Empty).Split(',');
                         var NA = (NAME_ADDRESS_TX ?? string.Empty).Split(',');
                         var RY = (REVIWED_YEAR ?? string.Empty).Split(',');
-                        var PN = (UP_PARTNER_NAME ?? string.Empty).Split(',');
 
                         for (int i = 0; i < SL.Length; i++)
                         {
@@ -605,7 +359,7 @@ namespace ICSI_WebApp.BusinessLayer
                                 data.Add("PU_ID", ID);
                                 data.Add("NAME_ADDRESS_TX", NA[i].ToString());
                                 data.Add("YEAR_PEER_REVIEWED", Convert.ToInt32(RY[i].ToString()));
-                                data.Add("UP_PARTNER_NAME_TX", PN[i].ToString());
+
                                 lstData1.Add(data);
                                 lstData.Add(Util.UtilService.addSubParameter("Membership", "PU_PEER_REVIEWED ", 0, 0, lstData1, conditions));
                                 actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
@@ -681,8 +435,8 @@ namespace ICSI_WebApp.BusinessLayer
                             }
                         }
                     }
-                    
                     //  Particulars of Company Secretaries
+
                     if (frm["CNAME_TX"] != null && frm["CNAME_TX"] != string.Empty)
                     {
                         string CNAME_TX = frm["CNAME_TX"];
@@ -716,7 +470,6 @@ namespace ICSI_WebApp.BusinessLayer
                             }
                         }
                     }
-                    
                     //partners / company secretaries employed
                     if (frm["hPR_NAME"] != null && frm["hPR_NAME"] != string.Empty)
                     {
@@ -754,18 +507,20 @@ namespace ICSI_WebApp.BusinessLayer
                     }
 
                     //  PU have any branch offices
-                    if (frm["hMEMBER_INCHARGE"] != null && frm["hMEMBER_INCHARGE"] != string.Empty)
+                    if (frm["hSR_NM"] != null && frm["hSR_NM"] != string.Empty)
                     {
                         string SR_NM = frm["hSR_NM"].ToString();
                         string MEMBER_INCHARGE = frm["hMEMBER_INCHARGE"].ToString();
                         string M_NM = frm["hM_NM"].ToString();
                         string LOCATION = frm["hLOCATION"].ToString();
-                        string TURNOVER = frm["hTURNOVER"].ToString();                        
+                        string TURNOVER = frm["hTURNOVER"].ToString();
+                        string BSTATE = frm["hBSTATE"].ToString();
                         string ADDRESS = frm["hADDRESS"].ToString();
 
                         var sr_nm = (SR_NM ?? string.Empty).Split(',');
                         var mincharge = (MEMBER_INCHARGE ?? string.Empty).Split(',');
-                        var location = (LOCATION ?? string.Empty).Split(',');                        
+                        var location = (LOCATION ?? string.Empty).Split(',');
+                        var bstate = (BSTATE ?? string.Empty).Split(',');
                         var m_nm = (M_NM ?? string.Empty).Split(',');
                         var turnover = (TURNOVER ?? string.Empty).Split(',');
                         var address = (ADDRESS ?? string.Empty).Split(',');
@@ -773,14 +528,16 @@ namespace ICSI_WebApp.BusinessLayer
                         for (int i = 0; i < sr_nm.Length; i++)
                         {
                             if (sr_nm[i].ToString() != string.Empty)
-                            {   
+                            {
+
+                                //data.Add("SR_NM", Convert.ToInt32(sr_nm[i]));
                                 data.Add("PU_ID", ID);
                                 data.Add("MEMBER_INCHARGE_TX", mincharge[i].ToString());
-                                data.Add("M_NM", Convert.ToString(m_nm[i]));
+                                data.Add("M_NM", Convert.ToInt32(m_nm[i]));
                                 data.Add("LOCATION_TX", location[i].ToString());
                                 data.Add("ADDRESS_TX", address[i].ToString());
                                 data.Add("TURNOVER_NM", Convert.ToInt32(turnover[i]));
-                          //      data.Add("PU_STATE_TX", bstate[i].ToString());
+                                data.Add("PU_STATE_TX", bstate[i].ToString());
 
                                 lstData1.Add(data);
                                 lstData.Add(Util.UtilService.addSubParameter("Membership", "PU_BRANCH_OFFICE", 0, 0, lstData1, conditions));
@@ -791,58 +548,6 @@ namespace ICSI_WebApp.BusinessLayer
                             }
                         }
 
-                    }
-
-                    //PU have any directors
-                    if (frm["hdnDirectorPartnerName"] != null && frm["hdnDirectorCompanyName"] != string.Empty)
-                    {                        
-                        string strDirPartnerName = frm["hdnDirectorPartnerName"].ToString();
-                        string strDirCompanyName = frm["hdnDirectorCompanyName"].ToString();                        
-                        var PN = (strDirPartnerName ?? string.Empty).Split(',');
-                        var CN = (strDirCompanyName ?? string.Empty).Split(',');
-
-                        for (int i = 0; i < PN.Length; i++)
-                        {
-                            if (PN[i].ToString() != string.Empty)
-                            {   
-                                data.Add("PU_ID", ID);
-                                data.Add("DIR_PARTNER_NAME_TX", PN[i].ToString());
-                                data.Add("COMPANY_NAME_TX", CN[i].ToString());
-
-                                lstData1.Add(data);
-                                lstData.Add(Util.UtilService.addSubParameter("Membership", "PU_DIRECTOR ", 0, 0, lstData1, conditions));
-                                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
-                                data.Clear();
-                                lstData.Clear();
-                                lstData1.Clear();
-                            }
-                        }
-                    }
-
-                    //PU have any peer review codes
-                    if (frm["hdnPRPartnerName"] != null && frm["hdnPRCode"] != string.Empty)
-                    {                        
-                        string strPRPartnerName = frm["hdnPRPartnerName"].ToString();
-                        string strPRCode = frm["hdnPRCode"].ToString();                        
-                        var NA = (strPRPartnerName ?? string.Empty).Split(',');
-                        var prCd = (strPRCode ?? string.Empty).Split(',');
-
-                        for (int i = 0; i < NA.Length; i++)
-                        {
-                            if (NA[i].ToString() != string.Empty)
-                            {
-                                data.Add("PU_ID", ID);
-                                data.Add("PR_PARTNER_NAME_TX", NA[i].ToString());
-                                data.Add("PEER_REVIEWER_CODE", prCd[i].ToString());
-
-                                lstData1.Add(data);
-                                lstData.Add(Util.UtilService.addSubParameter("Membership", "PU_PEER_REVIEWED_CODE ", 0, 0, lstData1, conditions));
-                                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
-                                data.Clear();
-                                lstData.Clear();
-                                lstData1.Clear();
-                            }
-                        }
                     }
                 }
 
@@ -855,7 +560,6 @@ namespace ICSI_WebApp.BusinessLayer
             }
             return actionClass;
         }
-
 
         public ActionClass beforeQuestionnaire1(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
@@ -1161,6 +865,26 @@ namespace ICSI_WebApp.BusinessLayer
         {
 
             ActionClass actionClass = new ActionClass();
+            //string PU_ID = string.Empty;
+            //DataTable dt = new DataTable();
+            //if (frm["ui"] != string.Empty)
+            //{
+            //    PU_ID = frm["ui"].ToString();
+
+            //    Dictionary<string, object> conditions = new Dictionary<string, object>();
+            //    conditions.Add("QID", 48);
+            //    conditions.Add("ID", Convert.ToInt32(PU_ID));
+
+            //    JObject jdata = DBTable.GetData("qfetch", conditions, "SCREEN_COMP_T", 0, 100, "Training");
+
+            //    DataTable dtt = new DataTable();
+            //    foreach (JProperty property in jdata.Properties())
+            //    {
+            //        if (property.Name == "qfetch")
+            //            dt = JsonConvert.DeserializeObject<DataTable>(property.Value.ToString());
+            //    }
+            //}
+            frm["s"] = "edit";
             actionClass = beforeLoad(WEB_APP_ID, frm);
             return actionClass;
         }
@@ -1338,136 +1062,6 @@ namespace ICSI_WebApp.BusinessLayer
                 actionClass.StatMessage = ex.Message;
                 actionClass.StatCode = "-1";
             }
-            return actionClass;
-        }
-
-        public ActionClass beforeCSBFFinancialAssistanceRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
-        {
-            DataTable dt = new DataTable();
-            string UserName = string.Empty;
-            if (HttpContext.Current.Session["LOGIN_ID"] != null)
-            {
-                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
-            }
-            return UtilService.beforeLoad(WEB_APP_ID, frm);
-        }
-
-        public ActionClass afterCSBFFinancialAssistanceRequest(int WEB_APP_ID, FormCollection frm)
-        {
-            Dictionary<string, object> dataCsbfFinancialAssistanceRequest = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstCsbfData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstCsbfData1 = new List<Dictionary<string, object>>();
-
-            List<Dictionary<string, object>> lstData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            Dictionary<string, object> conditions = new Dictionary<string, object>();
-            ActionClass actionClass = new ActionClass();
-            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
-            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
-            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
-            AppUrl = AppUrl + "/AddUpdate";
-            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
-            int ID = 0;
-
-            //dataCsbfFinancialAssistanceRequest.Add("REF_NUMBER_TX", frm["REF_NUMBER_TX"].ToString());
-            //dataCsbfFinancialAssistanceRequest.Add("DOD_DT", frm["DOD_DT"].ToString());
-            //dataCsbfFinancialAssistanceRequest.Add("BANK_REF_ID", frm["BANK_REF_ID"].ToString());
-            //dataCsbfFinancialAssistanceRequest.Add("AMOUNT_NM", frm["AMOUNT_NM"].ToString());
-            //dataCsbfFinancialAssistanceRequest.Add("REF_ID", Convert.ToInt32(frm["u"]));            
-            //lstCsbfData1.Add(dataCsbfFinancialAssistanceRequest);
-            //lstCsbfData.Add(Util.UtilService.addSubParameter("CSBF", "CSBF_FINANCIAL_ASSISTANCE_REQUEST_T", 0, 0, lstCsbfData1, conditions));
-            //actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfData));
-            //if (Convert.ToInt32(actionClass.StatCode) >= 0)
-            //{
-            //    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-            //    DataTable dtb = new DataTable();
-            //    if (userdata.HasValues)
-            //    {
-            //        foreach (JProperty val in userdata.Properties())
-            //        {
-            //            if (val.Name == "CSBF_FINANCIAL_ASSISTANCE_REQUEST_T")
-            //            {
-            //                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-            //                ID = Convert.ToInt32(dtb.Rows[0]["ID"]);
-            //            }
-            //        }
-            //    }
-            //}
-            //dataCsbfFinancialAssistanceRequest.Clear();
-            //lstCsbfData1.Clear();
-            //lstCsbfData.Clear();
-
-            //Dictionary<string, object> dataNominations = new Dictionary<string, object>();
-            //List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
-            //List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
-            //dataNominations.Add("REF_ID", ID);
-            //dataNominations.Add("NOMINEE_NAME_TX", frm["NOMINEE_NAME_TX"].ToString());
-            //dataNominations.Add("NOMINEE_AGE_TX", frm["NOMINEE_AGE_TX"].ToString());
-            //dataNominations.Add("NOMINEE_RELATION_TO_SUBSCRIBER_TX", frm["NOMINEE_RELATION_TO_SUBSCRIBER_TX"].ToString());
-            //dataNominations.Add("NOMINEE_EMAIL_TX", frm["NOMINEE_EMAIL_TX"].ToString());
-            //dataNominations.Add("NOMINEE_PHONE_TX", frm["NOMINEE_PHONE_TX"].ToString());
-            //dataNominations.Add("NOMINEE_ADDRESS_TX", frm["NOMINEE_ADDRESS_TX"].ToString());
-            //lstNominationsfData1.Add(dataNominations);
-            //lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_NOMINEE_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
-            //actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-            //dataNominations.Clear();
-            //lstNominationsfData.Clear();
-            //lstNominationsfData1.Clear();
-
-
-            //Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
-            //List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
-            //List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
-            //dataRequestHistory.Add("REF_ID", ID);
-            //dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
-            //dataRequestHistory.Add("REQUEST_TYPE", "Medical Reimbursement");
-            //dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
-            //dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
-            //lstRequestHistoryData1.Add(dataRequestHistory);
-            //lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
-            //actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
-            //dataRequestHistory.Clear();
-            //lstRequestHistoryData.Clear();
-            //lstRequestHistoryData1.Clear();
-
-
-
-            //List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-            //Dictionary<string, object> d;
-            //if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_1"])))
-            //{
-            //    for (int i = 1; i <= Convert.ToInt32(frm["TOTAL_DEPEDENT"]); i++)
-            //    {
-            //        if (!string.IsNullOrEmpty(Convert.ToString(frm["NAME_TX_" + i + ""])))
-            //        {
-            //            string Name = Convert.ToString(frm["NAME_TX_" + i + ""]);
-            //            string Age = Convert.ToString(frm["AGE_TX_" + i + ""]);
-
-            //            string RELATION_TO_SUB = Convert.ToString(frm["RELATION_TO_SUB_TX_" + i + ""]);
-            //            string EMAIL_ID = Convert.ToString(frm["EMAIL_TX_" + i + ""]);
-            //            string PHONE_NUMBER = Convert.ToString(frm["PHONE_TX_" + i + ""]);
-            //            string ADDRESS = Convert.ToString(frm["ADDRESS_TX_" + i + ""]);
-
-            //            data.Add("REF_ID", ID);
-            //            data.Add("NAME_TX", Name);
-            //            data.Add("AGE_TX", Age);
-            //            data.Add("RELATION_TO_SUBSCRIBER_TX", RELATION_TO_SUB);
-            //            data.Add("EMAIL_TX", EMAIL_ID);
-            //            data.Add("PHONE_TX", PHONE_NUMBER);
-            //            data.Add("ADDRESS_TX", ADDRESS);
-
-            //            lstData1.Add(data);
-            //            lstData.Add(Util.UtilService.addSubParameter("Training", "CSBF_DEPENDANTS_RELATION_T ", 0, 0, lstData1, conditions));
-            //            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstData));
-            //            data.Clear();
-            //            lstData.Clear();
-            //            lstData1.Clear();
-            //        }
-            //    }
-            //}
-
-            frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             return actionClass;
         }
     }
