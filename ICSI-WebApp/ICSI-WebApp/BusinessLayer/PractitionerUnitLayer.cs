@@ -34,6 +34,132 @@ namespace ICSI_WebApp.BusinessLayer
             return act;
         }
 
+        public ActionClass beforeCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            DataTable dt = new DataTable();
+            string UserName = string.Empty;
+            if (HttpContext.Current.Session["LOGIN_ID"] != null)
+            {
+                UserName = HttpContext.Current.Session["LOGIN_ID"].ToString();
+            }
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm)
+        {
+            Dictionary<string, object> eduAllowanceEntity = new Dictionary<string, object>();
+            Dictionary<string, object> bankEntity = new Dictionary<string, object>();
+            Dictionary<string, object> child1Entity = new Dictionary<string, object>();
+            Dictionary<string, object> child2Entity = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
+            int eduAllowanceID = 0;
+
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+            ActionClass actionClass = new ActionClass();
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            int bankRefID = 0;
+
+            bankEntity.Add("BANK_NAME_TX", frm["BANK_NAME_TX"].ToString());
+            bankEntity.Add("ACCOUNT_NUMBER_TX ", frm["ACCOUNT_NUMBER_TX"].ToString());
+            bankEntity.Add("ACCOUNT_HOLDER_NAME_TX ", frm["ACCOUNT_HOLDER_NAME_TX"].ToString());
+            bankEntity.Add("IFSC_CODE_TX ", frm["IFSC_CODE_TX"].ToString());
+            bankEntity.Add("APPLICANT_REMARKS_TX", frm["APPLICANT_REMARKS_TX"].ToString());
+
+            if (bankEntity["BANK_NAME_TX"].ToString().Trim().Length > 0)
+            {
+                lstNominationsfData1.Add(bankEntity);
+                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_BANK_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
+                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+                if (Convert.ToInt32(actionClass.StatCode) >= 0)
+                {
+                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                    DataTable dtb = new DataTable();
+                    if (userdata.HasValues)
+                    {
+                        foreach (JProperty val in userdata.Properties())
+                        {
+                            if (val.Name == "CSBF_BANK_DETAILS_T")
+                            {
+                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                                bankRefID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                            }
+                        }
+                    }
+                }
+                lstNominationsfData.Clear();
+                lstNominationsfData1.Clear();
+            }
+            if (frm["REG_ID"].ToString().Trim().Length > 0)
+            {
+                eduAllowanceEntity.Add("REF_ID", frm["REG_ID"].ToString());
+                eduAllowanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
+                eduAllowanceEntity.Add("REF_NUMBER_TX", "0");
+                eduAllowanceEntity.Add("BANK_REF_ID", bankRefID);
+                lstNominationsfData1.Add(eduAllowanceEntity);
+
+                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+                if (Convert.ToInt32(actionClass.StatCode) >= 0)
+                {
+                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                    DataTable dtb = new DataTable();
+                    if (userdata.HasValues)
+                    {
+                        foreach (JProperty val in userdata.Properties())
+                        {
+                            if (val.Name == "CSBF_EDU_ALLOWANCE_REQUEST_T")
+                            {
+                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                                eduAllowanceID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                            }
+                        }
+                    }
+                    //lstNominationsfData1[0]["REF_NUMBER_TX"] = "EA" + eduAllowanceID.ToString("00000###");
+                    //lstNominationsfData.Clear();
+                    //conditions.Add("ID", eduAllowanceID);
+                    //lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+                    //actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
+                    ////actionClass = UtilService.insertOrUpdate("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", lstNominationsfData1);
+                }
+
+
+                lstNominationsfData.Clear();
+                lstNominationsfData1.Clear();
+            }
+            child1Entity.Add("NAME_TX", frm["CHILD1_NAME_TX"].ToString());
+            child1Entity.Add("REF_ID", eduAllowanceID);
+            child1Entity.Add("AGE_TX", frm["CHILD1_AGE_TX"].ToString());
+            child1Entity.Add("RELATION_TO_SUBSCRIBER_TX", frm["CHILD1_RELATION_TO_SUBSCRIBER_TX"].ToString());
+            child1Entity.Add("PHONE_TX", frm["CHILD1_PHONE_TX"].ToString());
+            child1Entity.Add("EMAIL_TX", frm["CHILD1_EMAIL_TX"].ToString());
+            child1Entity.Add("ADDRESS_TX", frm["CHILD1_ADDRESS_TX"].ToString());
+
+            child2Entity.Add("REF_ID", eduAllowanceID);
+            child2Entity.Add("NAME_TX", frm["NAME_TX"].ToString());
+            child2Entity.Add("AGE_TX", frm["AGE_TX"].ToString());
+            child2Entity.Add("RELATION_TO_SUBSCRIBER_TX", frm["RELATION_TO_SUBSCRIBER_TX"].ToString());
+            child2Entity.Add("PHONE_TX", frm["PHONE_TX"].ToString());
+            child2Entity.Add("EMAIL_TX", frm["EMAIL_TX"].ToString());
+            child2Entity.Add("ADDRESS_TX", frm["ADDRESS_TX"].ToString());
+            
+            lstNominationsfData1.Add(child1Entity);
+            if(child2Entity["NAME_TX"].ToString().Trim().Length > 0)
+                    lstNominationsfData1.Add(child2Entity);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_CHILD_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+            
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+            
+            //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
+            
+            return actionClass;
+        }
+
         public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             DataTable dt = new DataTable();
