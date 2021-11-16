@@ -21,10 +21,14 @@ namespace ICSI_WebApp.BusinessLayer
         public ActionClass beforeAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             return UtilService.beforeLoad(WEB_APP_ID, frm);
+            //string compid = "";
+            //compid = Convert.ToString((screen.ScreenComponents.Where(x => x.Comp_Type_Nm == 27)).ToList()[0].Id);
+            //return UtilService.searchLoad(WEB_APP_ID, frm, screen.Action_Tx, compid, Convert.ToString(screen.ID));
         }
         public ActionClass afterAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm)
         {
             ActionClass actionClass = new ActionClass();
+            string id = frm["hidUI"].ToString();            
             string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
             string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
             string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
@@ -39,18 +43,18 @@ namespace ICSI_WebApp.BusinessLayer
             Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
             Dictionary<string, object> conditions = new Dictionary<string, object>();
 
+            conditions.Add("ID", Convert.ToInt32(id));
             Dictionary<string, object> dataNominations = new Dictionary<string, object>();
             List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
             List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
-            dataNominations.Add("LIFE_MEMBERSHIP_NUMBER_TX", lifeTimeMembershipNumber);
-            dataNominations.Add("AMOUNT_OF_MEDICAL_REIMBURSEMENT_TX", amount);
+            dataNominations.Add("ID", Convert.ToInt32(id));
             dataNominations.Add("ACTION_TX", string.Empty);
             dataNominations.Add("FORWARD_TO_TX", forwardTo);
             dataNominations.Add("INTERNAL_REMARKS_TX", internalRemarks);
             dataNominations.Add("REMARKS_FOR_MEMBER_TX", remarksForMember);
             lstNominationsfData1.Add(dataNominations);
-            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_REIMBURSEMENT_APPROVAL_T", 0, 0, lstNominationsfData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
             dataNominations.Clear();
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
