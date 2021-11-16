@@ -18,6 +18,19 @@ namespace ICSI_WebApp.BusinessLayer
 {
     public class PractitionerUnitLayer
     {
+
+
+        public ActionClass beforeAprroveEducationRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+
+        public ActionClass afterAprroveEducationRequest(int WEB_APP_ID, FormCollection frm)
+        {
+            ActionClass actionClass = new ActionClass();
+            return actionClass;
+        }
+
         public ActionClass beforeAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             return UtilService.beforeLoad(WEB_APP_ID, frm);
@@ -28,13 +41,19 @@ namespace ICSI_WebApp.BusinessLayer
         public ActionClass afterAprroveMedicalReimbursement(int WEB_APP_ID, FormCollection frm)
         {
             ActionClass actionClass = new ActionClass();
-            string id = frm["hidUI"].ToString();            
+            string id = frm["hidUI"].ToString();
             string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
             string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
             string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
+
+            string status = frm["radio1"].ToString();
             string forwardTo = frm["FORWARD_TO"].ToString();
             string internalRemarks = frm["INTERNAL_REMARKS"].ToString();
             string remarksForMember = frm["REMARKS_FOR_MEMBER"].ToString();
+
+            string forwardToText = "";
+            if(forwardTo == "18")
+            { forwardToText = "DD/AD/JD"; }
 
             string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
             string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
@@ -48,12 +67,29 @@ namespace ICSI_WebApp.BusinessLayer
             List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
             List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
             dataNominations.Add("ID", Convert.ToInt32(id));
-            dataNominations.Add("ACTION_TX", string.Empty);
-            dataNominations.Add("FORWARD_TO_TX", forwardTo);
+            dataNominations.Add("STATUS_NM", Convert.ToInt32(status));
+            dataNominations.Add("PENDING_WITH_NM", Convert.ToInt32(forwardTo));
+            dataNominations.Add("AMOUNT_NM", Convert.ToDecimal(frm["AMOUNT_OF_REIMBURSEMENT_TX"]));
+            lstNominationsfData1.Add(dataNominations);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
+            dataNominations.Clear();
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+            conditions.Clear();
+
+            dataNominations.Add("APPROVE_NM", Convert.ToInt32(status));
+            dataNominations.Add("REF_ID", Convert.ToInt32(id));
+            dataNominations.Add("REQUEST_TYPE_NM", 2);
+            dataNominations.Add("FORWARD_BY", string.Empty);
+            dataNominations.Add("FORWARDED_BY_ID", Convert.ToInt32(frm["u"].ToString()));
+            dataNominations.Add("FORWARD_TO", forwardToText);
+            dataNominations.Add("FORWARDED_TO_ID", Convert.ToInt32(forwardTo));
+            dataNominations.Add("FORWARD_DATE", DateTime.Now);
             dataNominations.Add("INTERNAL_REMARKS_TX", internalRemarks);
             dataNominations.Add("REMARKS_FOR_MEMBER_TX", remarksForMember);
             lstNominationsfData1.Add(dataNominations);
-            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_FORWARDING_HISTORY_T", 0, 0, lstNominationsfData1, conditions));
             actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
             dataNominations.Clear();
             lstNominationsfData.Clear();
@@ -173,18 +209,18 @@ namespace ICSI_WebApp.BusinessLayer
             child2Entity.Add("PHONE_TX", frm["PHONE_TX"].ToString());
             child2Entity.Add("EMAIL_TX", frm["EMAIL_TX"].ToString());
             child2Entity.Add("ADDRESS_TX", frm["ADDRESS_TX"].ToString());
-            
+
             lstNominationsfData1.Add(child1Entity);
-            if(child2Entity["NAME_TX"].ToString().Trim().Length > 0)
-                    lstNominationsfData1.Add(child2Entity);
+            if (child2Entity["NAME_TX"].ToString().Trim().Length > 0)
+                lstNominationsfData1.Add(child2Entity);
             lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_CHILD_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
             actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-            
+
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
-            
+
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
-            
+
             return actionClass;
         }
 
@@ -432,14 +468,14 @@ namespace ICSI_WebApp.BusinessLayer
             Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
 
             try
-            {                
-                frm["s"] = "update";                
+            {
+                frm["s"] = "update";
                 frm["APPLICATION_STATUS_TX"] = "Allocated";
 
 
                 Dictionary<string, object> conditions = new Dictionary<string, object>();
                 conditions.Add("USER_ID", HttpContext.Current.Session["USER_ID"]);
-                DataTable dt = UtilService.getData("Membership","PEER_REGISTRATION_T", conditions, null, 0, 1);
+                DataTable dt = UtilService.getData("Membership", "PEER_REGISTRATION_T", conditions, null, 0, 1);
                 string strMemNo = string.Empty;
                 if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
                 {
@@ -449,14 +485,14 @@ namespace ICSI_WebApp.BusinessLayer
                     if (dt.Rows[0]["MEMBER_NO_TX"] != DBNull.Value)
                     {
                         strMemNo = Convert.ToString(dt.Rows[0]["MEMBER_NO_TX"]);
-                        if(strMemNo.Substring(0,1) == "F") frm["MEMBER_TYPE_TX"] = "FCS";
+                        if (strMemNo.Substring(0, 1) == "F") frm["MEMBER_TYPE_TX"] = "FCS";
                         else frm["MEMBER_TYPE_TX"] = "ACS";
 
-                        frm["MEMBER_NUM_TX"] = strMemNo.Substring(1,strMemNo.Length-1);
+                        frm["MEMBER_NUM_TX"] = strMemNo.Substring(1, strMemNo.Length - 1);
                     }
                     else frm["MEMBER_NO_TX"] = string.Empty;
                 }
-                
+
                 MembershipDetails ObjMemberShip = new MembershipDetails();
                 if (!string.IsNullOrEmpty(strMemNo))
                 {
@@ -464,7 +500,7 @@ namespace ICSI_WebApp.BusinessLayer
                     if (dataDtls != null)
                     {
                         frm["COP_NM"] = dataDtls.CP_NO;
-                        if(!string.IsNullOrEmpty(dataDtls.CP_NO) && dataDtls.CP_NO != "0" )
+                        if (!string.IsNullOrEmpty(dataDtls.CP_NO) && dataDtls.CP_NO != "0")
                             frm["COP_STATUS_TX"] = "Active";
                     }
                     else
@@ -685,7 +721,7 @@ namespace ICSI_WebApp.BusinessLayer
                             }
                         }
                     }
-                    
+
                     //  Particulars of Company Secretaries
                     if (frm["CNAME_TX"] != null && frm["CNAME_TX"] != string.Empty)
                     {
@@ -720,7 +756,7 @@ namespace ICSI_WebApp.BusinessLayer
                             }
                         }
                     }
-                    
+
                     //partners / company secretaries employed
                     if (frm["hPR_NAME"] != null && frm["hPR_NAME"] != string.Empty)
                     {
@@ -764,12 +800,12 @@ namespace ICSI_WebApp.BusinessLayer
                         string MEMBER_INCHARGE = frm["hMEMBER_INCHARGE"].ToString();
                         string M_NM = frm["hM_NM"].ToString();
                         string LOCATION = frm["hLOCATION"].ToString();
-                        string TURNOVER = frm["hTURNOVER"].ToString();                        
+                        string TURNOVER = frm["hTURNOVER"].ToString();
                         string ADDRESS = frm["hADDRESS"].ToString();
 
                         var sr_nm = (SR_NM ?? string.Empty).Split(',');
                         var mincharge = (MEMBER_INCHARGE ?? string.Empty).Split(',');
-                        var location = (LOCATION ?? string.Empty).Split(',');                        
+                        var location = (LOCATION ?? string.Empty).Split(',');
                         var m_nm = (M_NM ?? string.Empty).Split(',');
                         var turnover = (TURNOVER ?? string.Empty).Split(',');
                         var address = (ADDRESS ?? string.Empty).Split(',');
@@ -777,14 +813,14 @@ namespace ICSI_WebApp.BusinessLayer
                         for (int i = 0; i < sr_nm.Length; i++)
                         {
                             if (sr_nm[i].ToString() != string.Empty)
-                            {   
+                            {
                                 data.Add("PU_ID", ID);
                                 data.Add("MEMBER_INCHARGE_TX", mincharge[i].ToString());
                                 data.Add("M_NM", Convert.ToString(m_nm[i]));
                                 data.Add("LOCATION_TX", location[i].ToString());
                                 data.Add("ADDRESS_TX", address[i].ToString());
                                 data.Add("TURNOVER_NM", Convert.ToInt32(turnover[i]));
-                          //      data.Add("PU_STATE_TX", bstate[i].ToString());
+                                //      data.Add("PU_STATE_TX", bstate[i].ToString());
 
                                 lstData1.Add(data);
                                 lstData.Add(Util.UtilService.addSubParameter("Membership", "PU_BRANCH_OFFICE", 0, 0, lstData1, conditions));
@@ -799,16 +835,16 @@ namespace ICSI_WebApp.BusinessLayer
 
                     //PU have any directors
                     if (frm["hdnDirectorPartnerName"] != null && frm["hdnDirectorCompanyName"] != string.Empty)
-                    {                        
+                    {
                         string strDirPartnerName = frm["hdnDirectorPartnerName"].ToString();
-                        string strDirCompanyName = frm["hdnDirectorCompanyName"].ToString();                        
+                        string strDirCompanyName = frm["hdnDirectorCompanyName"].ToString();
                         var PN = (strDirPartnerName ?? string.Empty).Split(',');
                         var CN = (strDirCompanyName ?? string.Empty).Split(',');
 
                         for (int i = 0; i < PN.Length; i++)
                         {
                             if (PN[i].ToString() != string.Empty)
-                            {   
+                            {
                                 data.Add("PU_ID", ID);
                                 data.Add("DIR_PARTNER_NAME_TX", PN[i].ToString());
                                 data.Add("COMPANY_NAME_TX", CN[i].ToString());
@@ -825,9 +861,9 @@ namespace ICSI_WebApp.BusinessLayer
 
                     //PU have any peer review codes
                     if (frm["hdnPRPartnerName"] != null && frm["hdnPRCode"] != string.Empty)
-                    {                        
+                    {
                         string strPRPartnerName = frm["hdnPRPartnerName"].ToString();
-                        string strPRCode = frm["hdnPRCode"].ToString();                        
+                        string strPRCode = frm["hdnPRCode"].ToString();
                         var NA = (strPRPartnerName ?? string.Empty).Split(',');
                         var prCd = (strPRCode ?? string.Empty).Split(',');
 
@@ -1359,7 +1395,7 @@ namespace ICSI_WebApp.BusinessLayer
         public ActionClass afterCSBFFinancialAssistanceRequest(int WEB_APP_ID, FormCollection frm)
         {
             Dictionary<string, object> financialAssistanceEntity = new Dictionary<string, object>();
-            Dictionary<string, object> bankEntity = new Dictionary<string, object>();            
+            Dictionary<string, object> bankEntity = new Dictionary<string, object>();
             List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
             List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
             int financialAssistanceID = 0;
@@ -1427,12 +1463,12 @@ namespace ICSI_WebApp.BusinessLayer
                                 financialAssistanceID = Convert.ToInt32(dtb.Rows[0]["ID"]);
                             }
                         }
-                    }                    
+                    }
                 }
                 lstNominationsfData.Clear();
                 lstNominationsfData1.Clear();
             }
-            
+
             actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
 
             lstNominationsfData.Clear();
