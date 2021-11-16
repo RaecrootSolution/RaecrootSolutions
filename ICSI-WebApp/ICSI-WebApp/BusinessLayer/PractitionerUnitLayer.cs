@@ -123,6 +123,7 @@ namespace ICSI_WebApp.BusinessLayer
                 eduAllowanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
                 eduAllowanceEntity.Add("REF_NUMBER_TX", "0");
                 eduAllowanceEntity.Add("BANK_REF_ID", bankRefID);
+                eduAllowanceEntity.Add("PENDING_WITH_NM", 16);
                 lstNominationsfData1.Add(eduAllowanceEntity);
 
                 lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_EDU_ALLOWANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
@@ -1405,6 +1406,7 @@ namespace ICSI_WebApp.BusinessLayer
                 financialAssistanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
                 financialAssistanceEntity.Add("REF_NUMBER_TX", "0");
                 financialAssistanceEntity.Add("BANK_REF_ID", bankRefID);
+                financialAssistanceEntity.Add("PENDING_WITH_NM", 16);
                 lstNominationsfData1.Add(financialAssistanceEntity);
 
                 lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_FINANCIAL_ASSISTANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
@@ -1452,7 +1454,7 @@ namespace ICSI_WebApp.BusinessLayer
 
         public ActionClass afterCSBFMedicalExpenseRequest(int WEB_APP_ID, FormCollection frm)
         {
-            Dictionary<string, object> financialAssistanceEntity = new Dictionary<string, object>();
+            Dictionary<string, object> medicalExpenseEntity = new Dictionary<string, object>();
             Dictionary<string, object> bankEntity = new Dictionary<string, object>();
             List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
             List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
@@ -1499,11 +1501,12 @@ namespace ICSI_WebApp.BusinessLayer
             }
             if (frm["REG_ID"].ToString().Trim().Length > 0)
             {
-                financialAssistanceEntity.Add("REF_ID", frm["REG_ID"].ToString());
-                financialAssistanceEntity.Add("MEDICAL_REIMBURSEMENT_FOR_TX", frm["MEDICAL_REIMBURSEMENT_FOR_TX"].ToString());
-                financialAssistanceEntity.Add("REF_NUMBER_TX", "0");
-                financialAssistanceEntity.Add("BANK_REF_ID", bankRefID);
-                lstNominationsfData1.Add(financialAssistanceEntity);
+                medicalExpenseEntity.Add("REF_ID", frm["REG_ID"].ToString());
+                medicalExpenseEntity.Add("MEDICAL_REIMBURSEMENT_FOR_TX", frm["MEDICAL_REIMBURSEMENT_FOR_TX"].ToString());
+                medicalExpenseEntity.Add("REF_NUMBER_TX", "0");
+                medicalExpenseEntity.Add("BANK_REF_ID", bankRefID);
+                medicalExpenseEntity.Add("PENDING_WITH_NM", 16);
+                lstNominationsfData1.Add(medicalExpenseEntity);
 
                 lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
                 actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
