@@ -311,6 +311,21 @@ namespace ICSI_WebApp.BusinessLayer
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
 
+            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
+            dataRequestHistory.Add("REF_ID", eduAllowanceID);
+            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+            dataRequestHistory.Add("REQUEST_TYPE", "Education Allowance");
+            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
+            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
+            lstRequestHistoryData1.Add(dataRequestHistory);
+            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
+            dataRequestHistory.Clear();
+            lstRequestHistoryData.Clear();
+            lstRequestHistoryData1.Clear();
+
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
 
             return actionClass;
@@ -404,7 +419,7 @@ namespace ICSI_WebApp.BusinessLayer
             List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
             dataRequestHistory.Add("REF_ID", ID);
             dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["FCS_MEMBERSHIP_NUMBER_TX"].ToString());
-            dataRequestHistory.Add("REQUEST_TYPE", "Medical Reimbursement");
+            dataRequestHistory.Add("REQUEST_TYPE", "CSBF Registration");
             dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
             dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
             lstRequestHistoryData1.Add(dataRequestHistory);
@@ -1567,6 +1582,21 @@ namespace ICSI_WebApp.BusinessLayer
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
 
+            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
+            dataRequestHistory.Add("REF_ID", financialAssistanceID);
+            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+            dataRequestHistory.Add("REQUEST_TYPE", "Financial Assistance");
+            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
+            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
+            lstRequestHistoryData1.Add(dataRequestHistory);
+            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
+            dataRequestHistory.Clear();
+            lstRequestHistoryData.Clear();
+            lstRequestHistoryData1.Clear();
+
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
 
             return actionClass;
@@ -1665,6 +1695,21 @@ namespace ICSI_WebApp.BusinessLayer
 
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
+
+            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
+            dataRequestHistory.Add("REF_ID", financialAssistanceID);
+            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+            dataRequestHistory.Add("REQUEST_TYPE", "Medical Expense");
+            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
+            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
+            lstRequestHistoryData1.Add(dataRequestHistory);
+            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
+            dataRequestHistory.Clear();
+            lstRequestHistoryData.Clear();
+            lstRequestHistoryData1.Clear();
 
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
 
