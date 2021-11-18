@@ -373,6 +373,7 @@ namespace ICSI_WebApp.BusinessLayer
             dataCsbfRegistration.Add("USER_ID_TX", Convert.ToInt32(frm["u"]));
             dataCsbfRegistration.Add("STATUS_TX", "Pending");
             dataCsbfRegistration.Add("SCHEME_ID_NM", frm["SCHEME_ID_NM"].ToString());
+            dataCsbfRegistration.Add("LIFE_MEMBERSHIP_NUMBER_TX", frm["u"].ToString());
             lstCsbfData1.Add(dataCsbfRegistration);
             lstCsbfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REGISTARTION_T", 0, 0, lstCsbfData1, conditions));
             actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfData));
@@ -1713,6 +1714,90 @@ namespace ICSI_WebApp.BusinessLayer
 
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
 
+            return actionClass;
+        }
+
+        public ActionClass beforeApproveFinancialAssistance(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+        public ActionClass afterApproveFinancialAssistance(int WEB_APP_ID, FormCollection frm)
+        {
+            ActionClass actionClass = new ActionClass();
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+            Dictionary<string, object> dataNominations = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstNominationsfData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
+
+            string requestId = frm["hidUI"].ToString();
+            int currentRoleId = Convert.ToInt32(frm["ROLE_ID"].ToString());
+            string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
+            string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
+            string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
+
+            string status = frm["radio1"].ToString();
+            string forwardToRole = frm["FORWARD_TO"].ToString();
+            string internalRemarks = frm["INTERNAL_REMARKS"].ToString();
+            string remarksForMember = frm["REMARKS_FOR_MEMBER"].ToString();
+
+            string forwardToText = "";
+            if (forwardToRole == "18")
+                forwardToText = "DD/AD/JD";
+            if (forwardToRole == "17")
+                forwardToText = "HOD";
+
+            if (Convert.ToInt32(status) == 2) //Call For
+            {
+                if (currentRoleId == 18 || currentRoleId == 17)
+                    forwardToRole = "16";
+                else if (currentRoleId == 16)
+                    forwardToRole = "-1";// Return back to member
+            }
+
+            string forwardByName = string.Empty;
+            if (currentRoleId == 16)
+                forwardByName = "DO";
+            else if (currentRoleId == 18)
+                forwardByName = "JD";
+            else if (currentRoleId == 18)
+                forwardByName = "HOD";
+
+            conditions.Add("ID", Convert.ToInt32(requestId));
+            dataNominations.Add("ID", Convert.ToInt32(requestId));
+            dataNominations.Add("STATUS_NM", Convert.ToInt32(status));
+            dataNominations.Add("PENDING_WITH_NM", Convert.ToInt32(forwardToRole));
+            dataNominations.Add("AMOUNT_NM", Convert.ToDecimal(frm["AMOUNT_OF_REIMBURSEMENT_TX"]));
+            lstNominationsfData1.Add(dataNominations);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_FINANCIAL_ASSISTANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstNominationsfData));
+            dataNominations.Clear();
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+            conditions.Clear();
+
+            dataNominations.Add("APPROVE_NM", Convert.ToInt32(status));
+            dataNominations.Add("REF_ID", Convert.ToInt32(requestId));
+            dataNominations.Add("REQUEST_TYPE_NM", 2);
+            dataNominations.Add("FORWARD_BY", forwardByName);
+            dataNominations.Add("FORWARDED_BY_ID", Convert.ToInt32(frm["u"].ToString()));
+            dataNominations.Add("FORWARD_TO", forwardToText);
+            dataNominations.Add("FORWARDED_TO_ID", Convert.ToInt32(forwardToRole));
+            dataNominations.Add("FORWARD_DATE", DateTime.Now);
+            dataNominations.Add("INTERNAL_REMARKS_TX", internalRemarks);
+            dataNominations.Add("REMARKS_FOR_MEMBER_TX", remarksForMember);
+            lstNominationsfData1.Add(dataNominations);
+            lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_FORWARDING_HISTORY_T", 0, 0, lstNominationsfData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+            dataNominations.Clear();
+            lstNominationsfData.Clear();
+            lstNominationsfData1.Clear();
+
+            frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             return actionClass;
         }
     }

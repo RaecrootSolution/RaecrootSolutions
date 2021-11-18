@@ -3739,14 +3739,14 @@ namespace ICSI_WebApp.Util
                                                         }
                                                         if (dt.Rows[i]["REQUEST_TYPE_TX"].ToString() == "FINANCIAL ASSISTANCE IN CASE OF MEMBER DEATH")
                                                         {
-                                                            if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
+                                                            if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(956).Append(")' ");
                                                         }
                                                     }
                                                     else
-                                                    {                                                        
+                                                    {
                                                         if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
-                                                        
-                                                    } 
+
+                                                    }
                                                     sb.Append(">").Append(editcaption).Append("</a></td>");
                                                 }
                                                 else
