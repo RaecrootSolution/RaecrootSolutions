@@ -3725,8 +3725,28 @@ namespace ICSI_WebApp.Util
                                                 else proceed = true;
                                                 if (proceed)
                                                 {
+
                                                     sb.Append("<td><a href='#'");
-                                                    if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
+                                                    if (screen.Screen_Name_Tx == "Admin Track Financial Assistance Request")
+                                                    {
+                                                        if (dt.Rows[i]["REQUEST_TYPE_TX"].ToString() == "EDUCATION ALLOWANCE")
+                                                        {
+                                                            if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append("955").Append(")' ");
+                                                        }
+                                                        if (dt.Rows[i]["REQUEST_TYPE_TX"].ToString() == "MEDICAL REIMBURSEMENT")
+                                                        {
+                                                            if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
+                                                        }
+                                                        if (dt.Rows[i]["REQUEST_TYPE_TX"].ToString() == "FINANCIAL ASSISTANCE IN CASE OF MEMBER DEATH")
+                                                        {
+                                                            if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
+                                                        }
+                                                    }
+                                                    else
+                                                    {                                                        
+                                                        if (isIdExists) sb.Append(" onclick='loadRecord(").Append(dt.Rows[i]["ID"].ToString()).Append(",").Append(edit_scr_id).Append(")' ");
+                                                        
+                                                    } 
                                                     sb.Append(">").Append(editcaption).Append("</a></td>");
                                                 }
                                                 else
