@@ -393,9 +393,9 @@ namespace ICSI_WebApp.BusinessLayer
                 Mul_tblData.Add("COURIER_ID", frm["COURIER_ID"]);
                 Mul_tblData.Add("MODEOFDELIVERY_TX", frm["DELIVERY_MODE_ID"]);
                 Mul_tblData.Add("DELIVERYSTATUS_TX", frm["sellist1"]);
-                Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);
-                Mul_tblData.Add("DISPATCHDATE_DT", Convert.ToDateTime(frm["DISPATCH_DT"]));
-                Mul_tblData.Add("DELIVERYDATE_DT", Convert.ToDateTime(frm["DELIVERY_DT"]));
+                Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);                
+                Mul_tblData.Add("DISPATCHDATE_DT", DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                Mul_tblData.Add("DELIVERYDATE_DT", DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));                
                 lstData1.Add(Mul_tblData);
                 string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]) + "/AddUpdate";
                 string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
