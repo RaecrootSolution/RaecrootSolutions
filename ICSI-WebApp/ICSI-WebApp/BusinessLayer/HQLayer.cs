@@ -390,7 +390,7 @@ namespace ICSI_WebApp.BusinessLayer
                     FRM1["s"] = "insert";
                 }                
                 Mul_tblData.Add("ID", frm["ID"]);
-                Mul_tblData.Add("COURIENAME_TX", frm["COURIER_ID"]);
+                Mul_tblData.Add("COURIER_ID", frm["COURIER_ID"]);
                 Mul_tblData.Add("MODEOFDELIVERY_TX", frm["DELIVERY_MODE_ID"]);
                 Mul_tblData.Add("DELIVERYSTATUS_TX", frm["sellist1"]);
                 Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);
