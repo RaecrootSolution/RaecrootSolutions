@@ -396,6 +396,7 @@ namespace ICSI_WebApp.BusinessLayer
                 Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);
                 Mul_tblData.Add("DISPATCHDATE_DT", DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
                 Mul_tblData.Add("DELIVERYDATE_DT", DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                Mul_tblData.Add("DISPATCHSTATUS_TX", "Dispatched");
                 lstData1.Add(Mul_tblData);
                 string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]) + "/AddUpdate";
                 string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
