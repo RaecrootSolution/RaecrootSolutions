@@ -323,7 +323,7 @@ namespace ICSI_WebApp.BusinessLayer
                 lstData1 = new List<Dictionary<string, object>>();
                 lstData = new List<Dictionary<string, object>>();
                 Mul_tblData = new Dictionary<string, object>();
-               // DateTime dispatchdt;
+                // DateTime dispatchdt;
                 //DateTime deliverydt;
                 FRM1.Add("s", "update");
                 if (frm["u"] != null && frm["u"] != "")
@@ -365,7 +365,7 @@ namespace ICSI_WebApp.BusinessLayer
                 if (frm["DISPATCH_DT"] != null && frm["DISPATCH_DT"] != "")
                 {
                     FRM1.Add("DISPATCH_DT", frm["DISPATCH_DT"]);
-                   // dispatchdt = DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    // dispatchdt = DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
                 if (frm["DELIVERY_DT"] != null && frm["DELIVERY_DT"] != "")
                 {
@@ -374,7 +374,7 @@ namespace ICSI_WebApp.BusinessLayer
                 }
                 //FRM1.Add("VALID_YN", "1");
                 //FRM1.Add("EXPIRED_YN", "0");
-                
+
                 conditions.Clear();
                 conditions.Add("ACTIVE_YN", 1);
                 conditions.Add("ID", frm["ID"]);
@@ -388,14 +388,14 @@ namespace ICSI_WebApp.BusinessLayer
                 else
                 {
                     FRM1["s"] = "insert";
-                }                
+                }
                 Mul_tblData.Add("ID", frm["ID"]);
                 Mul_tblData.Add("COURIER_ID", frm["COURIER_ID"]);
                 Mul_tblData.Add("MODEOFDELIVERY_TX", frm["DELIVERY_MODE_ID"]);
                 Mul_tblData.Add("DELIVERYSTATUS_TX", frm["sellist1"]);
-                Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);                
+                Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);
                 Mul_tblData.Add("DISPATCHDATE_DT", DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
-                Mul_tblData.Add("DELIVERYDATE_DT", DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));                
+                Mul_tblData.Add("DELIVERYDATE_DT", DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
                 lstData1.Add(Mul_tblData);
                 string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]) + "/AddUpdate";
                 string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
@@ -553,7 +553,7 @@ namespace ICSI_WebApp.BusinessLayer
 
                 if (innerresult)
                 {
-                   // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+                    // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
                 }
             }
             return act;
@@ -2392,6 +2392,25 @@ namespace ICSI_WebApp.BusinessLayer
 
             return Util.UtilService.searchLoad(WEB_APP_ID, frm, ScreenType, Convert.ToString(sid));
         }
+        public ActionClass searchTracMedicalApproval(int WEB_APP_ID, FormCollection frm, string ScreenType, string sid, string screenId = "", Screen_T screen = null)
+        {
+            long forwardto = 0;
+            int userid = 0;
+
+            if (HttpContext.Current.Session["USER_ID"] != null)
+            {
+                int.TryParse(Convert.ToString(HttpContext.Current.Session["USER_ID"]), out userid);
+            }
+            UserData uSER_DATA = new UserData();
+            uSER_DATA = ((ICSI_WebApp.Util.UserData)HttpContext.Current.Session["USER_DATA"]);
+            var ROLE_ID = uSER_DATA.USER_ROLE_T.AsEnumerable().Where(myRow => myRow.Field<long>("USER_ID") == userid).Select(x => x.Field<long>("ROLE_ID")).FirstOrDefault();
+
+            forwardto = ROLE_ID;
+            frm.Add("COND_PENDING_WITH_NM", "AND =");
+            frm.Add("SCRH_PENDING_WITH_NM", Convert.ToString(forwardto));
+
+            return Util.UtilService.searchLoad(WEB_APP_ID, frm, ScreenType, Convert.ToString(sid));
+        }
 
         public ActionClass beforeUploadCertificateDispatch(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
@@ -2454,7 +2473,7 @@ namespace ICSI_WebApp.BusinessLayer
                         List<Dictionary<string, object>> lstData1 = new List<Dictionary<string, object>>();
                         string applicationSchema = Util.UtilService.getApplicationScheme(screen);
                         Dictionary<string, object> conditions;
-                        
+
                         Dictionary<string, object> Mul_tblData;
 
                         for (int i = 0; i < dt.Rows.Count; i++)
@@ -2706,7 +2725,7 @@ namespace ICSI_WebApp.BusinessLayer
                 if (list.Count > 0)
                     act = UtilService.insertOrUpdate("Training", "MEM_ACS_DEP_BENEIFICIARY_TX", list);
             }
-            
+
             return act;
         }
 
