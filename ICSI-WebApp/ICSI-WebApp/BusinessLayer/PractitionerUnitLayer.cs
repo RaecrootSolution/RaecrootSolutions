@@ -52,12 +52,16 @@ namespace ICSI_WebApp.BusinessLayer
             string forwardToText = "";
             if (forwardToRole == "18")
                 forwardToText = "DD/AD/JD";
-            if (forwardToRole == "17")
+            else if (forwardToRole == "17")
                 forwardToText = "HOD";
+            else if (forwardToRole == "25")
+                forwardToText = "Secretary";
+            else if (forwardToRole == "36")
+                forwardToText = "President";
 
             if (Convert.ToInt32(status) == 2) //Call For
             {
-                if (currentRoleId == 18 || currentRoleId == 17)
+                if (currentRoleId == 18 || currentRoleId == 17 || currentRoleId == 25 || currentRoleId == 36)
                     forwardToRole = "16";
                 else if (currentRoleId == 16)
                     forwardToRole = "-1";// Return back to member
@@ -68,8 +72,15 @@ namespace ICSI_WebApp.BusinessLayer
                 forwardByName = "DO";
             else if (currentRoleId == 18)
                 forwardByName = "JD";
-            else if (currentRoleId == 18)
+            else if (currentRoleId == 17)
                 forwardByName = "HOD";
+            else if (currentRoleId == 25)
+                forwardByName = "Secretary";
+
+            if (Convert.ToInt32(status) == 4 || Convert.ToInt32(status) == 5)
+            {
+                forwardToRole = "0";
+            }
 
             conditions.Add("ID", Convert.ToInt32(requestId));
             dataNominations.Add("ID", Convert.ToInt32(requestId));
@@ -136,15 +147,24 @@ namespace ICSI_WebApp.BusinessLayer
             string forwardToText = "";
             if (forwardToRole == "18")
                 forwardToText = "DD/AD/JD";
-            if (forwardToRole == "17")
+            else if(forwardToRole == "17")
                 forwardToText = "HOD";
+            else if (forwardToRole == "25")
+                forwardToText = "Secretary";
+            else if (forwardToRole == "36")
+                forwardToText = "President";
 
             if (Convert.ToInt32(status) == 2) //Call For
             {
-                if(currentRoleId == 18 || currentRoleId == 17)
+                if (currentRoleId == 18 || currentRoleId == 17 || currentRoleId == 25 || currentRoleId == 36)
                     forwardToRole = "16";
                 else if (currentRoleId == 16)
                     forwardToRole = "-1";// Return back to member
+            } 
+
+            if(Convert.ToInt32(status) == 4 || Convert.ToInt32(status) == 5)
+            {
+                forwardToRole = "0";
             }
 
             string forwardByName = string.Empty;
@@ -152,8 +172,10 @@ namespace ICSI_WebApp.BusinessLayer
                 forwardByName = "DO";
             else if (currentRoleId == 18)
                 forwardByName = "JD";
-            else if(currentRoleId == 18)
+            else if (currentRoleId == 17)
                 forwardByName = "HOD";
+            else if (currentRoleId == 25)
+                forwardByName = "Secretary";
 
             conditions.Add("ID", Convert.ToInt32(requestId));            
             dataNominations.Add("ID", Convert.ToInt32(requestId));
@@ -1750,13 +1772,22 @@ namespace ICSI_WebApp.BusinessLayer
                 forwardToText = "DD/AD/JD";
             if (forwardToRole == "17")
                 forwardToText = "HOD";
+            else if (forwardToRole == "25")
+                forwardToText = "Secretary";
+            else if (forwardToRole == "36")
+                forwardToText = "President";
 
             if (Convert.ToInt32(status) == 2) //Call For
             {
-                if (currentRoleId == 18 || currentRoleId == 17)
+                if (currentRoleId == 18 || currentRoleId == 17 || currentRoleId == 25 || currentRoleId == 36)
                     forwardToRole = "16";
                 else if (currentRoleId == 16)
                     forwardToRole = "-1";// Return back to member
+            }
+
+            if (Convert.ToInt32(status) == 4 || Convert.ToInt32(status) == 5)
+            {
+                forwardToRole = "0";
             }
 
             string forwardByName = string.Empty;
