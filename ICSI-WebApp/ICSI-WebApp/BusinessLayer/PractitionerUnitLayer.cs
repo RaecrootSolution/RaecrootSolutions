@@ -19,7 +19,49 @@ namespace ICSI_WebApp.BusinessLayer
     public class PractitionerUnitLayer
     {
 
+        public ActionClass beforeMemberTranscriptRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            return UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
 
+        /// <summary>
+        /// Created  by Soni Saroj
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public ActionClass afterMemberTranscriptRequest(int WEB_APP_ID, FormCollection frm)
+        {
+            Dictionary<string, object> dataMemberTranscriptRequest = new Dictionary<string, object>();
+            List<Dictionary<string, object>> lstMTData = new List<Dictionary<string, object>>();
+            List<Dictionary<string, object>> lstMTData1 = new List<Dictionary<string, object>>();
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            Dictionary<string, object> conditions = new Dictionary<string, object>();
+            ActionClass actionClass = new ActionClass();
+            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            AppUrl = AppUrl + "/AddUpdate";
+            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+            int id = 0;
+
+            dataMemberTranscriptRequest.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+            dataMemberTranscriptRequest.Add("PURPOSE_OF_TRANSCRIPT_TX", frm["PURPOSE_OF_TRANSCRIPT_TX"].ToString());
+            dataMemberTranscriptRequest.Add("TOTAL_TRANSCRIPT_REQUIRED_NM", Convert.ToInt32(frm["TOTAL_TRANSCRIPT_REQUIRED_NM"].ToString()));
+            dataMemberTranscriptRequest.Add("TOTAL_TRANSCRIPT_LOCAL_ADDRESS_NM", Convert.ToInt32(frm["TOTAL_TRANSCRIPT_LOCAL_ADDRESS_NM"].ToString()));
+            dataMemberTranscriptRequest.Add("TOTAL_TRANSCRIPT_OVERSEAS_ADDRESS_NM", Convert.ToInt32(Convert.ToInt32(frm["TOTAL_TRANSCRIPT_OVERSEAS_ADDRESS_NM"])));
+            dataMemberTranscriptRequest.Add("OVERSEAS_REFERENCE_NO_TX", frm["OVERSEAS_REFERENCE_NO_TX"].ToString());
+            dataMemberTranscriptRequest.Add("STATUS_NM", 1);
+            dataMemberTranscriptRequest.Add("PENDING_WITH_NM", 16);
+
+            lstMTData1.Add(dataMemberTranscriptRequest);
+            lstMTData.Add(Util.UtilService.addSubParameter("Training", "MT_TRANSCRIPT_REQUESTS_T", 0, 0, lstMTData1, conditions));
+            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstMTData));
+
+            frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
+            return actionClass;
+        }
         public ActionClass beforeAprroveEducationRequest(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             return UtilService.beforeLoad(WEB_APP_ID, frm);
