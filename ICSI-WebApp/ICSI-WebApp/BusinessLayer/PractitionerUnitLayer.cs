@@ -134,7 +134,7 @@ namespace ICSI_WebApp.BusinessLayer
             List<Dictionary<string, object>> lstNominationsfData1 = new List<Dictionary<string, object>>();
 
             string requestId = frm["hidUI"].ToString();
-            int currentRoleId = Convert.ToInt32(frm["ROLE_ID"].ToString()); 
+            int currentRoleId = Convert.ToInt32(frm["ROLE_ID"].ToString());
             string membershipNumber = frm["MEMBERSHIP_NUMBER"].ToString();
             string lifeTimeMembershipNumber = frm["LIFE_MEMBERSHIP_NUMBER"].ToString();
             string amount = frm["AMOUNT_OF_REIMBURSEMENT_TX"].ToString();
@@ -147,7 +147,7 @@ namespace ICSI_WebApp.BusinessLayer
             string forwardToText = "";
             if (forwardToRole == "18")
                 forwardToText = "DD/AD/JD";
-            else if(forwardToRole == "17")
+            else if (forwardToRole == "17")
                 forwardToText = "HOD";
             else if (forwardToRole == "25")
                 forwardToText = "Secretary";
@@ -160,9 +160,9 @@ namespace ICSI_WebApp.BusinessLayer
                     forwardToRole = "16";
                 else if (currentRoleId == 16)
                     forwardToRole = "-1";// Return back to member
-            } 
+            }
 
-            if(Convert.ToInt32(status) == 4 || Convert.ToInt32(status) == 5)
+            if (Convert.ToInt32(status) == 4 || Convert.ToInt32(status) == 5)
             {
                 forwardToRole = "0";
             }
@@ -177,7 +177,7 @@ namespace ICSI_WebApp.BusinessLayer
             else if (currentRoleId == 25)
                 forwardByName = "Secretary";
 
-            conditions.Add("ID", Convert.ToInt32(requestId));            
+            conditions.Add("ID", Convert.ToInt32(requestId));
             dataNominations.Add("ID", Convert.ToInt32(requestId));
             dataNominations.Add("STATUS_NM", Convert.ToInt32(status));
             dataNominations.Add("PENDING_WITH_NM", Convert.ToInt32(forwardToRole));
@@ -394,7 +394,10 @@ namespace ICSI_WebApp.BusinessLayer
             dataCsbfRegistration.Add("REF_MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
             dataCsbfRegistration.Add("USER_ID_TX", Convert.ToInt32(frm["u"]));
             dataCsbfRegistration.Add("STATUS_TX", "Pending");
-            dataCsbfRegistration.Add("SCHEME_ID_NM", frm["SCHEME_ID_NM"].ToString());
+            if (frm["SCHEME_ID_NM"] != null)
+            {
+                dataCsbfRegistration.Add("SCHEME_ID_NM", frm["SCHEME_ID_NM"].ToString());
+            }
             dataCsbfRegistration.Add("LIFE_MEMBERSHIP_NUMBER_TX", frm["u"].ToString());
             lstCsbfData1.Add(dataCsbfRegistration);
             lstCsbfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REGISTARTION_T", 0, 0, lstCsbfData1, conditions));
