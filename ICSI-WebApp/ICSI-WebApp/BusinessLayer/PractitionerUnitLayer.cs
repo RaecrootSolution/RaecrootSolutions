@@ -338,7 +338,7 @@ namespace ICSI_WebApp.BusinessLayer
             return UtilService.beforeLoad(WEB_APP_ID, frm);
         }
 
-        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm)
+        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm) 
         {
             Dictionary<string, object> eduAllowanceEntity = new Dictionary<string, object>();
             Dictionary<string, object> bankEntity = new Dictionary<string, object>();
@@ -1872,6 +1872,7 @@ namespace ICSI_WebApp.BusinessLayer
                 financialAssistanceEntity.Add("REF_NUMBER_TX", "0");
                 financialAssistanceEntity.Add("BANK_REF_ID", bankRefID);
                 financialAssistanceEntity.Add("PENDING_WITH_NM", 16);
+                financialAssistanceEntity.Add("STATUS_NM", 6);
                 lstNominationsfData1.Add(financialAssistanceEntity);
 
                 lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_FINANCIAL_ASSISTANCE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
@@ -1985,6 +1986,7 @@ namespace ICSI_WebApp.BusinessLayer
                 medicalExpenseEntity.Add("MEDICAL_REIMBURSEMENT_FOR_TX", frm["MEDICAL_REIMBURSEMENT_FOR_TX"].ToString());
                 medicalExpenseEntity.Add("REF_NUMBER_TX", "0");
                 medicalExpenseEntity.Add("BANK_REF_ID", bankRefID);
+                medicalExpenseEntity.Add("STATUS_NM", 6);
                 medicalExpenseEntity.Add("PENDING_WITH_NM", 16);
                 lstNominationsfData1.Add(medicalExpenseEntity);
 
@@ -2091,8 +2093,10 @@ namespace ICSI_WebApp.BusinessLayer
                 forwardByName = "DO";
             else if (currentRoleId == 18)
                 forwardByName = "JD";
-            else if (currentRoleId == 18)
+            else if (currentRoleId == 17)
                 forwardByName = "HOD";
+            else if (currentRoleId == 25)
+                forwardByName = "Secretary";
 
             conditions.Add("ID", Convert.ToInt32(requestId));
             dataNominations.Add("ID", Convert.ToInt32(requestId));
