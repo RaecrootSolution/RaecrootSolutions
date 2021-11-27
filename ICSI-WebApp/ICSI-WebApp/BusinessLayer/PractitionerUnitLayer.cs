@@ -361,81 +361,82 @@ namespace ICSI_WebApp.BusinessLayer
             //if ((frm["UPD_DOCS"] == null || frm["UPD_DOCS"].Trim() == "") && (HttpContext.Current.Request.Files[0] != null || frm["isremove"] != "0"))
             if ((frm["UPD_DOCS"] == null || frm["UPD_DOCS"].Trim() == "") && (HttpContext.Current.Request.Files[0] != null || frm["isremove"] != "0"))
             {
-                ActionClass act = null;
-                if (frm["isremove"] == "1")
+                //ActionClass act = null;
+                //if (frm["isremove"] == "1")
 
-                {
-                    frm["s"] = "update";
-                    frm.Add("ID", frm["removeid"]);
-                    frm.Add("ACTIVE_YN", "0");
-                    string filePath = frm["PATH_TX"];
-                    System.IO.File.Delete(filePath);
+                //{
+                //    frm["s"] = "update";
+                //    frm.Add("ID", frm["removeid"]);
+                //    frm.Add("ACTIVE_YN", "0");
+                //    string filePath = frm["PATH_TX"];
+                //    System.IO.File.Delete(filePath);
 
-                    List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-                    Dictionary<string, object> d = new Dictionary<string, object>();
+                //    List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+                //    Dictionary<string, object> d = new Dictionary<string, object>();
 
-                    d["ID"] = frm["removeid"];
-                    d["ACTIVE_YN"] = "0";
-                    // d["REMOVE_NM"] = frm["REMOVE_NM"];
+                //    d["ID"] = frm["removeid"];
+                //    d["ACTIVE_YN"] = "0";
+                //    // d["REMOVE_NM"] = frm["REMOVE_NM"];
 
-                    list.Add(d);
-                    act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+                //    list.Add(d);
+                //    act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
 
-                }
-                else
+                //}
+                //else
 
-                {
+                //{
 
-                    string File_name_tx = string.Empty;
-                    string file_path_tx = string.Empty;
-                    string FolderName = string.Empty;
-                    FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + Convert.ToString(frm["REG_ID"]) + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
-                    if (ConfigurationManager.AppSettings.AllKeys.Contains("GLOBAL_DOCUMENT_ROOT"))
-                        FolderName = Convert.ToString(ConfigurationManager.AppSettings["GLOBAL_DOCUMENT_ROOT"]) + FolderName;
-                    else
-                        FolderName = AppDomain.CurrentDomain.BaseDirectory + FolderName;
+                //    string File_name_tx = string.Empty;
+                //    string file_path_tx = string.Empty;
+                //    string FolderName = string.Empty;
+                //    FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + Convert.ToString(frm["REG_ID"]) + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
+                //    if (ConfigurationManager.AppSettings.AllKeys.Contains("GLOBAL_DOCUMENT_ROOT"))
+                //        FolderName = Convert.ToString(ConfigurationManager.AppSettings["GLOBAL_DOCUMENT_ROOT"]) + FolderName;
+                //    else
+                //        FolderName = AppDomain.CurrentDomain.BaseDirectory + FolderName;
 
-                    if (!string.IsNullOrEmpty(FolderName))
-                    {
-                        string _FileName = System.IO.Path.GetFileName(HttpContext.Current.Request.Files[0].FileName);
-                        string _PathExt = System.IO.Path.GetExtension(HttpContext.Current.Request.Files[0].FileName);
-                        string _path = FolderName;
-                        string _FullPath = System.IO.Path.Combine(_path, _FileName);
+                //    if (!string.IsNullOrEmpty(FolderName))
+                //    {
+                //        string _FileName = System.IO.Path.GetFileName(HttpContext.Current.Request.Files[0].FileName);
+                //        string _PathExt = System.IO.Path.GetExtension(HttpContext.Current.Request.Files[0].FileName);
+                //        string _path = FolderName;
+                //        string _FullPath = System.IO.Path.Combine(_path, _FileName);
 
-                        if (!(System.IO.Directory.Exists(_path)))
-                            System.IO.Directory.CreateDirectory(_path);
+                //        if (!(System.IO.Directory.Exists(_path)))
+                //            System.IO.Directory.CreateDirectory(_path);
 
-                        chechagain:
+                //        chechagain:
 
-                        if (System.IO.File.Exists(_FullPath))
-                        {
-                            _FileName = "1_" + _FileName;
-                            _FullPath = System.IO.Path.Combine(_path, _FileName);
-                            goto chechagain;
-                        }
-                        else
-                        {
-                            File_name_tx = _FileName;
-                            file_path_tx = _FullPath;
-                            frm.Add("FILE_NAME_TX", File_name_tx);
-                            frm.Add("FILE_PATH_TX", file_path_tx);
-                            HttpContext.Current.Request.Files[0].SaveAs(_FullPath);
-                        }
-                    }
-                    List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-                    Dictionary<string, object> d = new Dictionary<string, object>();
+                //        if (System.IO.File.Exists(_FullPath))
+                //        {
+                //            _FileName = "1_" + _FileName;
+                //            _FullPath = System.IO.Path.Combine(_path, _FileName);
+                //            goto chechagain;
+                //        }
+                //        else
+                //        {
+                //            File_name_tx = _FileName;
+                //            file_path_tx = _FullPath;
+                //            frm.Add("FILE_NAME_TX", File_name_tx);
+                //            frm.Add("FILE_PATH_TX", file_path_tx);
+                //            HttpContext.Current.Request.Files[0].SaveAs(_FullPath);
+                //        }
+                //    }
+                //    List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+                //    Dictionary<string, object> d = new Dictionary<string, object>();
 
-                    d["DOC_TYPE_ID"] = frm["DOCUMENT_TYPE_ID"];
-                    d["UPLOADED_ON"] = DateTime.Now.ToString("yyyy-MM-dd");
-                    d["FILE_NAME_TX"] = frm["FILE_NAME_TX"];
-                    d["FILE_PATH_TX"] = frm["FILE_PATH_TX"];
-                    d["ACTIVE_YN"] = "0";
-                    list.Add(d);
+                //    d["DOC_TYPE_ID"] = frm["DOCUMENT_TYPE_ID"];
+                //    d["UPLOADED_ON"] = DateTime.Now.ToString("yyyy-MM-dd");
+                //    d["FILE_NAME_TX"] = frm["FILE_NAME_TX"];
+                //    d["FILE_PATH_TX"] = frm["FILE_PATH_TX"];
+                //    d["ACTIVE_YN"] = "0";
+                //    list.Add(d);
 
-                    act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
-                    // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
-                }
-                return act;
+                //    act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+                //    // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+                //}
+                actionClass = ProcessUploadDocuments("EA", frm);
+                return actionClass;
             }
             /* upload end*/
 
@@ -547,8 +548,8 @@ namespace ICSI_WebApp.BusinessLayer
 
                 d["ID"] = Convert.ToInt32(docID);
                 d["ACTIVE_YN"] = Convert.ToBoolean(1);
-                d["EDU_ALOW_REQ_ID"] = Convert.ToInt32(eduAllowanceID);
-
+                //d["EDU_ALOW_REQ_ID"] = Convert.ToInt32(eduAllowanceID);
+                d["REQUEST_ID"] = Convert.ToInt32(eduAllowanceID);
                 list1.Add(d);
             }
             actionClass = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list1);
@@ -558,6 +559,93 @@ namespace ICSI_WebApp.BusinessLayer
             return actionClass;
         }
 
+        private ActionClass ProcessUploadDocuments(string ReqType, FormCollection frm)
+        {
+            ActionClass act = null;
+            if (frm["isremove"] == "1")
+            {
+                frm["s"] = "update";
+                frm.Add("ID", frm["removeid"]);
+                frm.Add("ACTIVE_YN", "0");
+                string filePath = frm["PATH_TX"];
+                System.IO.File.Delete(filePath);
+
+                List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+                Dictionary<string, object> d = new Dictionary<string, object>();
+
+                d["ID"] = frm["removeid"];
+                d["ACTIVE_YN"] = "0";
+                list.Add(d);
+                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+            }
+            else
+            {
+                string File_name_tx = string.Empty;
+                string file_path_tx = string.Empty;
+                string FolderName = string.Empty;
+                FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + ReqType + "\\" +  Convert.ToString(frm["REG_ID"]) + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("GLOBAL_DOCUMENT_ROOT"))
+                    FolderName = Convert.ToString(ConfigurationManager.AppSettings["GLOBAL_DOCUMENT_ROOT"]) + FolderName;
+                else
+                    FolderName = AppDomain.CurrentDomain.BaseDirectory + FolderName;
+
+                if (!string.IsNullOrEmpty(FolderName))
+                {
+                    string _FileName = System.IO.Path.GetFileName(HttpContext.Current.Request.Files[0].FileName);
+                    string _PathExt = System.IO.Path.GetExtension(HttpContext.Current.Request.Files[0].FileName);
+                    string _path = FolderName;
+                    string _FullPath = System.IO.Path.Combine(_path, _FileName);
+
+                    if (!(System.IO.Directory.Exists(_path)))
+                        System.IO.Directory.CreateDirectory(_path);
+
+                    chechagain:
+
+                    if (System.IO.File.Exists(_FullPath))
+                    {
+                        _FileName = "1_" + _FileName;
+                        _FullPath = System.IO.Path.Combine(_path, _FileName);
+                        goto chechagain;
+                    }
+                    else
+                    {
+                        File_name_tx = _FileName;
+                        file_path_tx = _FullPath;
+                        frm.Add("FILE_NAME_TX", File_name_tx);
+                        frm.Add("FILE_PATH_TX", file_path_tx);
+                        HttpContext.Current.Request.Files[0].SaveAs(_FullPath);
+                    }
+                }
+                int reqTypeId = 0;
+                switch (ReqType)
+                {
+                    case "EA":
+                         reqTypeId = 1;
+                        break;
+                    case "ME":
+                         reqTypeId = 2;
+                        break;
+                    case "FA":
+                         reqTypeId = 3;
+                        break;
+                }
+
+                List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+                Dictionary<string, object> d = new Dictionary<string, object>();
+
+                d["DOC_TYPE_ID"] = frm["DOCUMENT_TYPE_ID"];
+                d["UPLOADED_ON"] = DateTime.Now.ToString("yyyy-MM-dd");
+                d["FILE_NAME_TX"] = frm["FILE_NAME_TX"];
+                d["FILE_PATH_TX"] = frm["FILE_PATH_TX"];
+                d["REQUEST_TYPE_ID"] = reqTypeId;
+                d["ACTIVE_YN"] = "0";
+                list.Add(d);
+
+                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+                // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+            }
+            return act;
+        }
         public ActionClass beforeCSBFRegistration(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             DataTable dt = new DataTable();
