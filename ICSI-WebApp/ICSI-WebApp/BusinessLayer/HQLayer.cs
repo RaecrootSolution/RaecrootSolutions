@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace ICSI_WebApp.BusinessLayer
 {
     public class HQLayer
     {
+        private string Prod_Stimulate = Convert.ToString(ConfigurationManager.AppSettings["PStimulate"]);
+        private string Prod_Training_Stimulate = Convert.ToString(ConfigurationManager.AppSettings["PTraining_Stimulate"]);
+        SqlConnection sCon;
+        SqlCommand sCmd;
+        SqlDataAdapter sDa;
+        SqlDataReader sDr;
         public ActionClass beforeTrainingStructure(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             return Util.UtilService.beforeLoad(WEB_APP_ID, frm);
@@ -535,6 +542,7 @@ namespace ICSI_WebApp.BusinessLayer
                 Mul_tblData = new Dictionary<string, object>();
                 Mul_tblData.Add("ID", frm["CSBF_REQ_ID"]);
                 Mul_tblData.Add("STATUS_TX", "Approved");
+                Mul_tblData.Add("LIFE_MEMBERSHIP_NUMBER_TX",frm["u"]);
                 lstData1.Add(Mul_tblData);
                 string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]) + "/AddUpdate";
                 string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
@@ -555,11 +563,79 @@ namespace ICSI_WebApp.BusinessLayer
                 if (innerresult)
                 {
                     // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+
+                    Dictionary<string, object> dataCSBFCertificate = new Dictionary<string, object>();
+                    List<Dictionary<string, object>> lstCsbfCertificate = new List<Dictionary<string, object>>();
+                    List<Dictionary<string, object>> lstCsbfCertificatenew = new List<Dictionary<string, object>>();
+                    dataCSBFCertificate.Add("REF_ID", frm["CSBF_REQ_ID"]);
+                    dataCSBFCertificate.Add("ACTIVE_YN", 1);
+                    string cerno = CSBF_CertificateNo();
+                    dataCSBFCertificate.Add("CERTIFICATE_TX", cerno);
+                    lstCsbfCertificate.Add(dataCSBFCertificate);
+                    lstCsbfCertificatenew.Add(Util.UtilService.addSubParameter(applicationSchema, "CSBF_CERTIFICATE_T", 0, 0, lstCsbfCertificate, conditions));
+                    act = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfCertificatenew));
                 }
             }
             return act;
         }
         #endregion
+        public string CSBF_CertificateNo()
+        {
+            string certno = string.Empty;
+            try
+            {
+                sCon = new SqlConnection(Prod_Training_Stimulate);
+                sCmd = new SqlCommand("select max(ID) from csbf_registartion_t", sCon);             
+
+                sCon.Open();
+                sDr = sCmd.ExecuteReader();
+                sDr.Read();
+                if(sDr.HasRows)
+                {
+                    if(sDr[0].ToString()!= "")
+                    {
+                        Int64 maxNo = Int64.Parse(sDr[0].ToString());
+                        long b = (maxNo + 1);
+
+                        if (b <= 9)
+                        {
+                            certno = "100" + b.ToString();
+                        }
+                        else if (b <= 99)
+                        {
+                            certno = "10" + b.ToString();
+                        }
+                        else if (b <= 999)
+                        {
+                            certno = "1" + b.ToString();
+                        }
+                        else if (b <= 9999)
+                        {
+                            certno = b.ToString();
+                        }
+                        sDr.Close();
+                    }
+                }
+                else
+                {
+                    sDr.Close();
+                    certno = "1001";
+                }                
+            }
+            catch (Exception ex)
+            {
+                certno = "ERROR";
+            }
+            finally
+            {
+                if (sCon != null)
+                {
+                    if (sCon.State == ConnectionState.Open)
+                        sCon.Close();
+                }
+            }
+            return certno;
+        }
         public ActionClass beforeFCSApproval(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             string compid = "";
