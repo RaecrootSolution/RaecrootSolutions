@@ -2933,5 +2933,187 @@ namespace ICSI_WebApp.BusinessLayer
             return act;
         }
 
+        #region "CSBF Dependent Update"
+
+        public ActionClass beforeUpdateCSBFDependent(int WEB_APP_ID, FormCollection frm, Screen_T screen)
+        {
+            //string compid = "";
+            //compid = Convert.ToString((screen.ScreenComponents.Where(x => x.Comp_Type_Nm == 27)).ToList()[0].Id);
+            //return UtilService.searchLoad(WEB_APP_ID, frm, screen.Action_Tx, compid, Convert.ToString(screen.ID));
+            return Util.UtilService.beforeLoad(WEB_APP_ID, frm);
+        }
+        public ActionClass afterUpdateCSBFDependent(int WEB_APP_ID, FormCollection frm)
+        {
+            ActionClass act = new ActionClass();
+            //bool innerresult = true;
+            if (frm["u"] != null && frm["u"] != "")
+            {
+                frm.Add("ACTION_BY", frm["U"]);
+            }
+            //if (frm["ED_ID"] != null)
+            //{
+            //    for (int i = 0; i < frm["ED_ID"].Split(',').Length; i++)
+            //    {
+            //        FormCollection FRM1 = new FormCollection();
+            //        FRM1.Add("ID", Convert.ToString(frm["ED_ID"].Split(',')[i]));
+            //        FRM1.Add("APPROVE_NM", Convert.ToString(frm["DOC_APPROVE_NM"].Split(',')[i]));
+            //        FRM1.Add("s", "update");
+            //        if (frm["u"] != null && frm["u"] != "")
+            //        {
+            //            FRM1.Add("u", frm["u"]);
+            //        }
+            //        if (frm["m"] != null && frm["m"] != "")
+            //        {
+            //            FRM1.Add("m", frm["m"]);
+            //        }
+            //        if (frm["ui"] != null && frm["ui"] != "")
+            //        {
+            //            FRM1.Add("ui", frm["ui"]);
+            //        }
+            //        if (frm["si"] != null && frm["si"] != "")
+            //        {
+            //            FRM1.Add("si", frm["si"]);
+            //        }
+            //        if (frm["u"] != null && frm["u"] != "")
+            //        {
+            //            FRM1.Add("ACTION_BY", frm["U"]);
+            //        }
+            //        ActionClass act1 = afterSubmitforBL(WEB_APP_ID, FRM1, "MEM_FCS_REG_EDUCATION_DTL_T");
+            //        if (act1.StatCode == "0" && act1.StatMessage.ToLower() == "success")
+            //        {
+            //            innerresult = true;
+            //        }
+            //        else
+            //        {
+            //            act = act1;
+            //            innerresult = false;
+            //            break;
+            //        }
+            //    }
+            //}
+            //if (innerresult)
+            //{
+            //    FormCollection FRM1 = new FormCollection();
+            //    Dictionary<string, object> conditions = new Dictionary<string, object>();
+            //    List<Dictionary<string, object>> lstData;
+            //    List<Dictionary<string, object>> lstData1;
+            //    Dictionary<string, object> Mul_tblData;
+            //    lstData1 = new List<Dictionary<string, object>>();
+            //    lstData = new List<Dictionary<string, object>>();
+            //    Mul_tblData = new Dictionary<string, object>();
+            //    // DateTime dispatchdt;
+            //    //DateTime deliverydt;
+            //    FRM1.Add("s", "update");
+            //    if (frm["u"] != null && frm["u"] != "")
+            //    {
+            //        FRM1.Add("u", frm["u"]);
+            //    }
+            //    if (frm["m"] != null && frm["m"] != "")
+            //    {
+            //        FRM1.Add("m", frm["m"]);
+            //    }
+            //    if (frm["ui"] != null && frm["ui"] != "")
+            //    {
+            //        FRM1.Add("ui", frm["ui"]);
+            //    }
+            //    if (frm["si"] != null && frm["si"] != "")
+            //    {
+            //        FRM1.Add("si", frm["si"]);
+            //    }
+            //    if (frm["ID"] != null && frm["ID"] != "")
+            //    {
+            //        FRM1.Add("ID", frm["ID"]);
+            //    }
+            //    if (frm["DELIVERY_MODE_ID"] != null && frm["DELIVERY_MODE_ID"] != "")
+            //    {
+            //        FRM1.Add("DELIVERY_MODE_ID", frm["DELIVERY_MODE_ID"]);
+            //    }
+            //    if (frm["COURIER_ID"] != null && frm["COURIER_ID"] != "")
+            //    {
+            //        FRM1.Add("COURIER_ID", frm["COURIER_ID"]);
+            //    }
+            //    if (frm["sellist1"] != null && frm["sellist1"] != "")
+            //    {
+            //        FRM1.Add("sellist1", frm["sellist1"]);
+            //    }
+            //    if (frm["DOCKET_NM"] != null && frm["DOCKET_NM"] != "")
+            //    {
+            //        FRM1.Add("DOCKET_NM", frm["DOCKET_NM"]);
+            //    }
+            //    if (frm["DISPATCH_DT"] != null && frm["DISPATCH_DT"] != "")
+            //    {
+            //        FRM1.Add("DISPATCH_DT", frm["DISPATCH_DT"]);
+            //        // dispatchdt = DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            //    }
+            //    if (frm["DELIVERY_DT"] != null && frm["DELIVERY_DT"] != "")
+            //    {
+            //        FRM1.Add("DELIVERY_DT", frm["DELIVERY_DT"]);
+            //        //deliverydt = DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            //    }
+            //    //FRM1.Add("VALID_YN", "1");
+            //    //FRM1.Add("EXPIRED_YN", "0");
+
+            //    conditions.Clear();
+            //    conditions.Add("ACTIVE_YN", 1);
+            //    conditions.Add("ID", frm["ID"]);
+            //    Screen_T screen = screenObject(WEB_APP_ID, frm);
+            //    string applicationSchema = Util.UtilService.getApplicationScheme(screen);
+            //    DataTable dt = UtilService.getData(UtilService.getApplicationScheme(screen), "CSBF_REGISTARTION_T", conditions, null, 0, 1);
+            //    if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            //    {
+            //        FRM1["s"] = "update";
+            //    }
+            //    else
+            //    {
+            //        FRM1["s"] = "insert";
+            //    }
+            //    Mul_tblData.Add("ID", frm["ID"]);
+            //    Mul_tblData.Add("COURIER_ID", frm["COURIER_ID"]);
+            //    Mul_tblData.Add("MODEOFDELIVERY_TX", frm["DELIVERY_MODE_ID"]);
+            //    Mul_tblData.Add("DELIVERYSTATUS_TX", frm["sellist1"]);
+            //    Mul_tblData.Add("DOCKETNUMBER_TX", frm["DOCKET_NM"]);
+            //    Mul_tblData.Add("DISPATCHDATE_DT", DateTime.ParseExact(frm["DISPATCH_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            //    Mul_tblData.Add("DELIVERYDATE_DT", DateTime.ParseExact(frm["DELIVERY_DT"], "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            //    Mul_tblData.Add("DISPATCHSTATUS_TX", "Dispatched");
+            //    lstData1.Add(Mul_tblData);
+            //    string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]) + "/AddUpdate";
+            //    string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+            //    string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+            //    // ActionClass act1 = afterSubmitforBL(WEB_APP_ID, FRM1, "MEM_FCS_REGISTERED_STUDENT_T");
+            //    lstData.Add(Util.UtilService.addSubParameter(applicationSchema, "CSBF_REGISTARTION_T", 0, 0, lstData1, conditions));
+            //    act = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstData));
+            //    if (act.StatCode == "0" && act.StatMessage.ToLower() == "success")
+            //    {
+            //        innerresult = true;
+            //    }
+            //    else
+            //    {
+            //        // act = act1;
+            //        innerresult = false;
+            //    }
+
+            //    if (innerresult)
+            //    {
+            //        // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+            //    }
+            //}
+            return act;
+        }
+        #endregion
+        public ActionClass searchTrackMemberMedicalRequest(int WEB_APP_ID, FormCollection frm, string ScreenType, string sid, string screenId = "", Screen_T screen = null)
+        {
+            int userid = 0;
+
+            if (HttpContext.Current.Session["USER_ID"] != null)
+            {
+                int.TryParse(Convert.ToString(HttpContext.Current.Session["USER_ID"]), out userid);
+            }
+
+            frm.Add("COND_REQ.CREATED_BY", "AND =");
+            frm.Add("SCRH_REQ.CREATED_BY", frm["u"].ToString());
+
+            return Util.UtilService.searchLoad(WEB_APP_ID, frm, ScreenType, Convert.ToString(sid));
+        }
+
     }
 }
