@@ -159,6 +159,23 @@ namespace ICSI_WebApp.BusinessLayer
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
 
+            string doc_status = frm["DOC_STATUS"].ToString();
+            List<Dictionary<string, object>> list1 = new List<Dictionary<string, object>>();
+            foreach (string row in doc_status.Split(','))
+            {
+                string[] arr = row.Split('_');
+                int action = Convert.ToInt32(arr[0]);
+                int docid = Convert.ToInt32(arr[1]);
+
+                Dictionary<string, object> d = new Dictionary<string, object>();
+
+                d["ID"] = Convert.ToInt32(docid);
+                d["ACTIVE_YN"] = Convert.ToBoolean(1);
+                d["STATUS_NM"] = action;
+                list1.Add(d);
+            }
+            actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
+
             frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             return actionClass;
         }
@@ -483,7 +500,7 @@ namespace ICSI_WebApp.BusinessLayer
             return UtilService.beforeLoad(WEB_APP_ID, frm);
         }
 
-        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm) 
+        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm)
         {
             Dictionary<string, object> eduAllowanceEntity = new Dictionary<string, object>();
             Dictionary<string, object> bankEntity = new Dictionary<string, object>();
@@ -498,12 +515,7 @@ namespace ICSI_WebApp.BusinessLayer
 
             if (frm["BUTTON_TYPE"] == "upload")
             {
-                /* upload start*/
-                if ((frm["UPD_DOCS"] == null || frm["UPD_DOCS"].Trim() == "") && (HttpContext.Current.Request.Files[0] != null || frm["isremove"] != "0"))
-                {
-                    actionClass = ProcessUploadDocuments("EA", frm);
-                } 
-                /* upload end*/
+                actionClass = ProcessUploadDocuments("EA", frm);
             }
             else if (frm["BUTTON_TYPE"] == "submit")
             {
@@ -550,6 +562,8 @@ namespace ICSI_WebApp.BusinessLayer
                     eduAllowanceEntity.Add("REF_ID", frm["REG_ID"].ToString());
                     eduAllowanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
                     eduAllowanceEntity.Add("REF_NUMBER_TX", "0");
+                    eduAllowanceEntity.Add("PENDING_WITH_NM", 16);
+                    eduAllowanceEntity.Add("STATUS_NM", 6);
                     eduAllowanceEntity.Add("BANK_REF_ID", bankRefID);
                     lstNominationsfData1.Add(eduAllowanceEntity);
 
@@ -617,13 +631,11 @@ namespace ICSI_WebApp.BusinessLayer
 
                         d["ID"] = Convert.ToInt32(docID);
                         d["ACTIVE_YN"] = Convert.ToBoolean(1);
-                        //d["EDU_ALOW_REQ_ID"] = Convert.ToInt32(eduAllowanceID);
-                        d["REQUEST_ID"] = Convert.ToInt32(eduAllowanceID);
+                        d["REF_ID"] = Convert.ToInt32(eduAllowanceID);
                         list1.Add(d);
                     }
-                    actionClass = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list1);
+                    actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
                 }
-                //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             }
             return actionClass;
         }
@@ -645,14 +657,14 @@ namespace ICSI_WebApp.BusinessLayer
                 d["ID"] = frm["removeid"];
                 d["ACTIVE_YN"] = "0";
                 list.Add(d);
-                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+                act = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list);
             }
             else
             {
                 string File_name_tx = string.Empty;
                 string file_path_tx = string.Empty;
                 string FolderName = string.Empty;
-                FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + ReqType + "\\" +  Convert.ToString(frm["REG_ID"]) + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
+                FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + ReqType + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
                 if (ConfigurationManager.AppSettings.AllKeys.Contains("GLOBAL_DOCUMENT_ROOT"))
                     FolderName = Convert.ToString(ConfigurationManager.AppSettings["GLOBAL_DOCUMENT_ROOT"]) + FolderName;
                 else
@@ -689,13 +701,13 @@ namespace ICSI_WebApp.BusinessLayer
                 switch (ReqType)
                 {
                     case "EA":
-                         reqTypeId = 1;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.EducationAllowanceRequest);
                         break;
                     case "ME":
-                         reqTypeId = 2;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.MedicalExpenseRequest);
                         break;
                     case "FA":
-                         reqTypeId = 3;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.FinancialAssistance);
                         break;
                 }
 
@@ -706,12 +718,12 @@ namespace ICSI_WebApp.BusinessLayer
                 d["UPLOADED_ON"] = DateTime.Now.ToString("yyyy-MM-dd");
                 d["FILE_NAME_TX"] = frm["FILE_NAME_TX"];
                 d["FILE_PATH_TX"] = frm["FILE_PATH_TX"];
+                d["REF_ID"] = "-1";
                 d["REQUEST_TYPE_ID"] = reqTypeId;
-                d["ACTIVE_YN"] = "0";
+                d["ACTIVE_YN"] = "1";
                 list.Add(d);
 
-                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
-                // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+                act = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list);
             }
             return act;
         }
