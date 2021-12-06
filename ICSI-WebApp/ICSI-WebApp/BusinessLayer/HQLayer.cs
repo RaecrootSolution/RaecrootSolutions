@@ -550,9 +550,15 @@ namespace ICSI_WebApp.BusinessLayer
                 // ActionClass act1 = afterSubmitforBL(WEB_APP_ID, FRM1, "MEM_FCS_REGISTERED_STUDENT_T");
                 lstData.Add(Util.UtilService.addSubParameter(applicationSchema, "CSBF_REGISTARTION_T", 0, 0, lstData1, conditions));
                 act = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "update", lstData));
+                conditions.Clear();
                 if (act.StatCode == "0" && act.StatMessage.ToLower() == "success")
                 {
-                    innerresult = true;
+                    string csbf_id = frm["CSBF_REQ_ID"].ToString();
+                    string updateDependentNominees = CSBF_DependentNomineesUpdate(Convert.ToInt32(csbf_id));
+                    if (updateDependentNominees != "ERROR")
+                    {
+                        innerresult = true;
+                    }                        
                 }
                 else
                 {
@@ -569,30 +575,94 @@ namespace ICSI_WebApp.BusinessLayer
                     List<Dictionary<string, object>> lstCsbfCertificatenew = new List<Dictionary<string, object>>();
                     dataCSBFCertificate.Add("REF_ID", frm["CSBF_REQ_ID"]);
                     dataCSBFCertificate.Add("ACTIVE_YN", 1);
-                    string cerno = CSBF_CertificateNo();
-                    dataCSBFCertificate.Add("CERTIFICATE_TX", cerno);
-                    lstCsbfCertificate.Add(dataCSBFCertificate);
-                    lstCsbfCertificatenew.Add(Util.UtilService.addSubParameter(applicationSchema, "CSBF_CERTIFICATE_T", 0, 0, lstCsbfCertificate, conditions));
-                    act = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfCertificatenew));
+                    if (!isCertificateExist(Convert.ToInt16(frm["CSBF_REQ_ID"])))
+                    {
+                        string cerno = CSBF_CertificateNo();
+                        dataCSBFCertificate.Add("CERTIFICATE_TX", cerno);
+                        lstCsbfCertificate.Add(dataCSBFCertificate);
+                        lstCsbfCertificatenew.Add(Util.UtilService.addSubParameter(applicationSchema, "CSBF_CERTIFICATE_T", 0, 0, lstCsbfCertificate, conditions));
+                        act = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstCsbfCertificatenew));
+                    }
+                    
                 }
             }
             return act;
         }
+        public bool isCertificateExist (int ID)
+        {
+            bool flag;
+            try
+            {
+                sCon = new SqlConnection(Prod_Training_Stimulate);
+                sCmd = new SqlCommand("select ID from CSBF_Certificate_t where Ref_ID=@ID", sCon);
+                sCmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+                sCon.Open();
+                sDr = sCmd.ExecuteReader();
+                sDr.Read();
+                if (sDr.HasRows)
+                {
+                    flag = true;
+                }
+                else
+                {
+                    flag = false;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                flag = false;
+            }
+
+            return flag;
+        }
         #endregion
+        public string CSBF_DependentNomineesUpdate(int ID)
+        {
+            string status = string.Empty;
+            try
+            {
+                sCon = new SqlConnection(Prod_Training_Stimulate);
+                sCmd = new SqlCommand("update CSBF_REGISTARTION_UPDATES_DETAILS_T set Status_NM = 1   WHERE REF_ID=@ID", sCon);
+                sCmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+                sCon.Open();
+                int i = sCmd.ExecuteNonQuery();
+                if (i >= 0)
+                    status = "SUCCESS";
+                else
+                    status = "ERROR";
+            }
+            catch (Exception ex)
+            {
+                status = "ERROR";
+            }
+            finally
+            {
+                if (sCon != null)
+                {
+                    if (sCon.State == ConnectionState.Open)
+                        sCon.Close();
+                }
+            }
+            return status;
+        }
         public string CSBF_CertificateNo()
         {
             string certno = string.Empty;
             try
             {
                 sCon = new SqlConnection(Prod_Training_Stimulate);
-                sCmd = new SqlCommand("select max(ID) from csbf_registartion_t", sCon);             
+                sCmd = new SqlCommand("select max(ID) as 'Additional' from CSBF_Certificate_t", sCon);             
 
                 sCon.Open();
                 sDr = sCmd.ExecuteReader();
                 sDr.Read();
                 if(sDr.HasRows)
                 {
-                    if(sDr[0].ToString()!= "")
+                    if(sDr["Additional"] != DBNull.Value)
                     {
                         Int64 maxNo = Int64.Parse(sDr[0].ToString());
                         long b = (maxNo + 1);
@@ -615,6 +685,11 @@ namespace ICSI_WebApp.BusinessLayer
                         }
                         sDr.Close();
                     }
+                    else
+                    {
+                        sDr.Close();
+                        certno = "1001";
+                    }
                 }
                 else
                 {
@@ -635,7 +710,7 @@ namespace ICSI_WebApp.BusinessLayer
                 }
             }
             return certno;
-        }
+        }        
         public ActionClass beforeFCSApproval(int WEB_APP_ID, FormCollection frm, Screen_T screen)
         {
             string compid = "";
