@@ -5981,5 +5981,12 @@ namespace ICSI_WebApp.Util
 
             return dt;
         }
+
+        public enum DocumentUploadType
+        {
+            EducationAllowanceRequest = 1,
+            MedicalExpenseRequest = 2,
+            FinancialAssistance = 3
+        }
     }
 }

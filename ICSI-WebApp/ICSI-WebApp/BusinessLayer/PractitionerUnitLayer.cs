@@ -159,6 +159,23 @@ namespace ICSI_WebApp.BusinessLayer
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
 
+            string doc_status = frm["DOC_STATUS"].ToString();
+            List<Dictionary<string, object>> list1 = new List<Dictionary<string, object>>();
+            foreach (string row in doc_status.Split(','))
+            {
+                string[] arr = row.Split('_');
+                int action = Convert.ToInt32(arr[0]);
+                int docid = Convert.ToInt32(arr[1]);
+
+                Dictionary<string, object> d = new Dictionary<string, object>();
+
+                d["ID"] = Convert.ToInt32(docid);
+                d["ACTIVE_YN"] = Convert.ToBoolean(1);
+                d["STATUS_NM"] = action;
+                list1.Add(d);
+            }
+            actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
+
             frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             return actionClass;
         }
@@ -468,6 +485,23 @@ namespace ICSI_WebApp.BusinessLayer
             lstNominationsfData.Clear();
             lstNominationsfData1.Clear();
 
+            string doc_status = frm["DOC_Action"].ToString();
+            List<Dictionary<string, object>> list1 = new List<Dictionary<string, object>>();
+            foreach (string row in doc_status.Split(','))
+            {
+                string[] arr = row.Split('_');
+                int action = Convert.ToInt32(arr[0]);
+                int docid = Convert.ToInt32(arr[1]);
+
+                Dictionary<string, object> d = new Dictionary<string, object>();
+
+                d["ID"] = Convert.ToInt32(docid);
+                d["ACTIVE_YN"] = Convert.ToBoolean(1);
+                d["STATUS_NM"] = action;
+                list1.Add(d);
+            }
+            actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
+
             frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             return actionClass;
         }
@@ -483,7 +517,7 @@ namespace ICSI_WebApp.BusinessLayer
             return UtilService.beforeLoad(WEB_APP_ID, frm);
         }
 
-        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm) 
+        public ActionClass afterCSBFEducationAllowanceRequest(int WEB_APP_ID, FormCollection frm)
         {
             Dictionary<string, object> eduAllowanceEntity = new Dictionary<string, object>();
             Dictionary<string, object> bankEntity = new Dictionary<string, object>();
@@ -498,12 +532,7 @@ namespace ICSI_WebApp.BusinessLayer
 
             if (frm["BUTTON_TYPE"] == "upload")
             {
-                /* upload start*/
-                if ((frm["UPD_DOCS"] == null || frm["UPD_DOCS"].Trim() == "") && (HttpContext.Current.Request.Files[0] != null || frm["isremove"] != "0"))
-                {
-                    actionClass = ProcessUploadDocuments("EA", frm);
-                } 
-                /* upload end*/
+                actionClass = ProcessUploadDocuments("EA", frm);
             }
             else if (frm["BUTTON_TYPE"] == "submit")
             {
@@ -550,6 +579,8 @@ namespace ICSI_WebApp.BusinessLayer
                     eduAllowanceEntity.Add("REF_ID", frm["REG_ID"].ToString());
                     eduAllowanceEntity.Add("DOD_DT", frm["DATE_OF_ENTRY"].ToString());
                     eduAllowanceEntity.Add("REF_NUMBER_TX", "0");
+                    eduAllowanceEntity.Add("PENDING_WITH_NM", 16);
+                    eduAllowanceEntity.Add("STATUS_NM", 6);
                     eduAllowanceEntity.Add("BANK_REF_ID", bankRefID);
                     lstNominationsfData1.Add(eduAllowanceEntity);
 
@@ -617,13 +648,11 @@ namespace ICSI_WebApp.BusinessLayer
 
                         d["ID"] = Convert.ToInt32(docID);
                         d["ACTIVE_YN"] = Convert.ToBoolean(1);
-                        //d["EDU_ALOW_REQ_ID"] = Convert.ToInt32(eduAllowanceID);
-                        d["REQUEST_ID"] = Convert.ToInt32(eduAllowanceID);
+                        d["REF_ID"] = Convert.ToInt32(eduAllowanceID);
                         list1.Add(d);
                     }
-                    actionClass = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list1);
+                    actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
                 }
-                //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
             }
             return actionClass;
         }
@@ -645,14 +674,14 @@ namespace ICSI_WebApp.BusinessLayer
                 d["ID"] = frm["removeid"];
                 d["ACTIVE_YN"] = "0";
                 list.Add(d);
-                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
+                act = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list);
             }
             else
             {
                 string File_name_tx = string.Empty;
                 string file_path_tx = string.Empty;
                 string FolderName = string.Empty;
-                FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + ReqType + "\\" +  Convert.ToString(frm["REG_ID"]) + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
+                FolderName = "MEMBERSHIP\\CSBF\\UPLOADS\\" + ReqType + "\\" + Convert.ToString(frm["MEMBERSHIP_NUMBER"]) + "\\DOC" + Convert.ToString(frm["DOCUMENT_TYPE_ID"]);
                 if (ConfigurationManager.AppSettings.AllKeys.Contains("GLOBAL_DOCUMENT_ROOT"))
                     FolderName = Convert.ToString(ConfigurationManager.AppSettings["GLOBAL_DOCUMENT_ROOT"]) + FolderName;
                 else
@@ -689,13 +718,13 @@ namespace ICSI_WebApp.BusinessLayer
                 switch (ReqType)
                 {
                     case "EA":
-                         reqTypeId = 1;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.EducationAllowanceRequest);
                         break;
                     case "ME":
-                         reqTypeId = 2;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.MedicalExpenseRequest);
                         break;
                     case "FA":
-                         reqTypeId = 3;
+                        reqTypeId = Convert.ToInt32(DocumentUploadType.FinancialAssistance);
                         break;
                 }
 
@@ -706,12 +735,12 @@ namespace ICSI_WebApp.BusinessLayer
                 d["UPLOADED_ON"] = DateTime.Now.ToString("yyyy-MM-dd");
                 d["FILE_NAME_TX"] = frm["FILE_NAME_TX"];
                 d["FILE_PATH_TX"] = frm["FILE_PATH_TX"];
+                d["REF_ID"] = "-1";
                 d["REQUEST_TYPE_ID"] = reqTypeId;
-                d["ACTIVE_YN"] = "0";
+                d["ACTIVE_YN"] = "1";
                 list.Add(d);
 
-                act = UtilService.insertOrUpdate("Training", "CSBF_EDU_DOCUMENTS_T", list);
-                // act = Util.UtilService.afterSubmit(WEB_APP_ID, frm);
+                act = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list);
             }
             return act;
         }
@@ -2012,94 +2041,121 @@ namespace ICSI_WebApp.BusinessLayer
 
             Dictionary<string, object> conditions = new Dictionary<string, object>();
             ActionClass actionClass = new ActionClass();
-            string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
-            string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
-            string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
-            AppUrl = AppUrl + "/AddUpdate";
-            Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
-            int bankRefID = 0;
 
-            bankEntity.Add("BANK_NAME_TX", frm["BANK_NAME_TX"].ToString());
-            bankEntity.Add("ACCOUNT_NUMBER_TX ", frm["ACCOUNT_NUMBER_TX"].ToString());
-            bankEntity.Add("ACCOUNT_HOLDER_NAME_TX ", frm["ACCOUNT_HOLDER_NAME_TX"].ToString());
-            bankEntity.Add("IFSC_CODE_TX ", frm["IFSC_CODE_TX"].ToString());
-            bankEntity.Add("APPLICANT_REMARKS_TX", frm["APPLICANT_REMARKS_TX"].ToString());
-
-            if (bankEntity["BANK_NAME_TX"].ToString().Trim().Length > 0)
+            if (frm["BUTTON_TYPE"] == "upload")
             {
-                lstNominationsfData1.Add(bankEntity);
-                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_BANK_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
-                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-                if (Convert.ToInt32(actionClass.StatCode) >= 0)
+                actionClass = ProcessUploadDocuments("ME", frm);
+            }
+            else if (frm["BUTTON_TYPE"] == "submit")
+            {
+                string AppUrl = Convert.ToString(ConfigurationManager.AppSettings["AppUrl"]);
+                string UserName = Convert.ToString(HttpContext.Current.Session["LOGIN_ID"]);
+                string Session_Key = Convert.ToString(HttpContext.Current.Session["SESSION_KEY"]);
+                AppUrl = AppUrl + "/AddUpdate";
+                Screen_T screen = Util.UtilService.screenObject(WEB_APP_ID, frm);
+                int bankRefID = 0;
+
+                bankEntity.Add("BANK_NAME_TX", frm["BANK_NAME_TX"].ToString());
+                bankEntity.Add("ACCOUNT_NUMBER_TX ", frm["ACCOUNT_NUMBER_TX"].ToString());
+                bankEntity.Add("ACCOUNT_HOLDER_NAME_TX ", frm["ACCOUNT_HOLDER_NAME_TX"].ToString());
+                bankEntity.Add("IFSC_CODE_TX ", frm["IFSC_CODE_TX"].ToString());
+                bankEntity.Add("APPLICANT_REMARKS_TX", frm["APPLICANT_REMARKS_TX"].ToString());
+
+                if (bankEntity["BANK_NAME_TX"].ToString().Trim().Length > 0)
                 {
-                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-                    DataTable dtb = new DataTable();
-                    if (userdata.HasValues)
+                    lstNominationsfData1.Add(bankEntity);
+                    lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_BANK_DETAILS_T", 0, 0, lstNominationsfData1, conditions));
+                    actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+                    if (Convert.ToInt32(actionClass.StatCode) >= 0)
                     {
-                        foreach (JProperty val in userdata.Properties())
+                        JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                        DataTable dtb = new DataTable();
+                        if (userdata.HasValues)
                         {
-                            if (val.Name == "CSBF_BANK_DETAILS_T")
+                            foreach (JProperty val in userdata.Properties())
                             {
-                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-                                bankRefID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                                if (val.Name == "CSBF_BANK_DETAILS_T")
+                                {
+                                    dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                                    bankRefID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                                }
                             }
                         }
                     }
+                    lstNominationsfData.Clear();
+                    lstNominationsfData1.Clear();
                 }
-                lstNominationsfData.Clear();
-                lstNominationsfData1.Clear();
-            }
-            if (frm["REG_ID"].ToString().Trim().Length > 0)
-            {
-                medicalExpenseEntity.Add("REF_ID", frm["REG_ID"].ToString());
-                medicalExpenseEntity.Add("MEDICAL_REIMBURSEMENT_FOR_TX", frm["MEDICAL_REIMBURSEMENT_FOR_TX"].ToString());
-                medicalExpenseEntity.Add("REF_NUMBER_TX", "0");
-                medicalExpenseEntity.Add("BANK_REF_ID", bankRefID);
-                medicalExpenseEntity.Add("STATUS_NM", 6);
-                medicalExpenseEntity.Add("PENDING_WITH_NM", 16);
-                lstNominationsfData1.Add(medicalExpenseEntity);
-
-                lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
-                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-                if (Convert.ToInt32(actionClass.StatCode) >= 0)
+                if (frm["REG_ID"].ToString().Trim().Length > 0)
                 {
-                    JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
-                    DataTable dtb = new DataTable();
-                    if (userdata.HasValues)
+                    medicalExpenseEntity.Add("REF_ID", frm["REG_ID"].ToString());
+                    medicalExpenseEntity.Add("MEDICAL_REIMBURSEMENT_FOR_TX", frm["MEDICAL_REIMBURSEMENT_FOR_TX"].ToString());
+                    medicalExpenseEntity.Add("REF_NUMBER_TX", "0");
+                    medicalExpenseEntity.Add("BANK_REF_ID", bankRefID);
+                    medicalExpenseEntity.Add("STATUS_NM", 6);
+                    medicalExpenseEntity.Add("PENDING_WITH_NM", 16);
+                    lstNominationsfData1.Add(medicalExpenseEntity);
+
+                    lstNominationsfData.Add(Util.UtilService.addSubParameter("Training", "CSBF_MEDICAL_EXPENSE_REQUEST_T", 0, 0, lstNominationsfData1, conditions));
+                    actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+                    if (Convert.ToInt32(actionClass.StatCode) >= 0)
                     {
-                        foreach (JProperty val in userdata.Properties())
+                        JObject userdata = JObject.Parse(Convert.ToString(actionClass.DecryptData));
+                        DataTable dtb = new DataTable();
+                        if (userdata.HasValues)
                         {
-                            if (val.Name == "CSBF_MEDICAL_EXPENSE_REQUEST_T")
+                            foreach (JProperty val in userdata.Properties())
                             {
-                                dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
-                                financialAssistanceID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                                if (val.Name == "CSBF_MEDICAL_EXPENSE_REQUEST_T")
+                                {
+                                    dtb = JsonConvert.DeserializeObject<DataTable>(val.Value.ToString());
+                                    financialAssistanceID = Convert.ToInt32(dtb.Rows[0]["ID"]);
+                                }
                             }
                         }
                     }
+                    lstNominationsfData.Clear();
+                    lstNominationsfData1.Clear();
                 }
+
+                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
+
                 lstNominationsfData.Clear();
                 lstNominationsfData1.Clear();
+
+                Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
+                List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
+                List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
+                dataRequestHistory.Add("REF_ID", financialAssistanceID);
+                dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
+                dataRequestHistory.Add("REQUEST_TYPE", "Medical Expense");
+                dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
+                dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
+                lstRequestHistoryData1.Add(dataRequestHistory);
+                lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
+                actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
+                dataRequestHistory.Clear();
+                lstRequestHistoryData.Clear();
+                lstRequestHistoryData1.Clear();
+
+                List<Dictionary<string, object>> list1 = new List<Dictionary<string, object>>();
+                if (frm["UPD_DOCS"] != null)
+                {
+                    foreach (string docID in frm["UPD_DOCS"].Split(','))
+                    {
+                        frm["s"] = "update";
+                        frm.Add("ID", docID);
+                        frm.Add("ACTIVE_YN", "1");
+
+                        Dictionary<string, object> d = new Dictionary<string, object>();
+
+                        d["ID"] = Convert.ToInt32(docID);
+                        d["ACTIVE_YN"] = Convert.ToBoolean(1);
+                        d["REF_ID"] = Convert.ToInt32(financialAssistanceID);
+                        list1.Add(d);
+                    }
+                    actionClass = UtilService.insertOrUpdate("Training", "CSBF_DOCUMENTS_T", list1);
+                }
             }
-
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstNominationsfData));
-
-            lstNominationsfData.Clear();
-            lstNominationsfData1.Clear();
-
-            Dictionary<string, object> dataRequestHistory = new Dictionary<string, object>();
-            List<Dictionary<string, object>> lstRequestHistoryData = new List<Dictionary<string, object>>();
-            List<Dictionary<string, object>> lstRequestHistoryData1 = new List<Dictionary<string, object>>();
-            dataRequestHistory.Add("REF_ID", financialAssistanceID);
-            dataRequestHistory.Add("MEMBERSHIP_NUMBER_TX", frm["MEMBERSHIP_NUMBER_TX"].ToString());
-            dataRequestHistory.Add("REQUEST_TYPE", "Medical Expense");
-            dataRequestHistory.Add("REQUEST_DATE", DateTime.Now);
-            dataRequestHistory.Add("APPLICATION_STATUS", "Pending For Approval");
-            lstRequestHistoryData1.Add(dataRequestHistory);
-            lstRequestHistoryData.Add(Util.UtilService.addSubParameter("Training", "CSBF_REQUEST_HISTORY_T", 0, 0, lstRequestHistoryData1, conditions));
-            actionClass = UtilService.createRequestObject(AppUrl, UserName, Session_Key, UtilService.createParameters("", "", "", "", "", "insert", lstRequestHistoryData));
-            dataRequestHistory.Clear();
-            lstRequestHistoryData.Clear();
-            lstRequestHistoryData1.Clear();
 
             //frm["nextscreen"] = Convert.ToString(screen.Screen_Next_Id);
 
